@@ -9,4 +9,26 @@ Check voor remote pagina 33 (instellen met Annanas).
 
 Installeer server op Gentoo, later op NAS (wanneer git-server package uit private beta is). 
 
-Pagina 73 gebleven. 
+Pagina 79 gebleven. 
+
+Check pagina 75/76 voor setup via ssh. 
+
+Acties:
+
+- Bare repository maken met git clone --bare voornaaminliedje voornaaminliedje.git (check waar runnen)
+- Op de server zetten met scp -r voornaaminliedje.git git@annanas:/volume1/home/git/repos
+- Check met user vanaf Gentoo met git clone git@annanas:/volume1/home/git/repos/voornaaminliedje.git
+- Nog iets met shared? git init --bare --shared
+
+- Check SSH public key in .ssh dir. Kijk voor * en *.pub. Run anders ssh-keygen. 
+- Kopieer de inhoud van de pub key (cat ~/.ssh/id_rsa.pub). 
+
+- Maak de user git aan op synology (via scherm op prompt). 
+- Mkdir .ssh in home dir (check via cd ~/ wat de home dir wordt). 
+- Zet de inhoud van pub keys in authorized_keys. 
+- Draai dan git init --bare:
+  - cd /opt/git
+  - mkdir project.git
+  - cd project.git
+  - git --bare init
+
