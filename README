@@ -9,7 +9,7 @@ Check voor remote pagina 33 (instellen met Annanas).
 
 Installeer server op Gentoo, later op NAS (wanneer git-server package uit private beta is). 
 
-Pagina 79 gebleven. 
+Pagina 97 gebleven. 
 
 Check pagina 75/76 voor setup via ssh. 
 
@@ -25,10 +25,11 @@ Acties:
 
 - Maak de user git aan op synology (via scherm op prompt). 
 - Mkdir .ssh in home dir (check via cd ~/ wat de home dir wordt). 
-- Zet de inhoud van pub keys in authorized_keys. 
+- Zet de inhoud van pub keys in ~/.ssh/authorized_keys. 
 - Draai dan git init --bare:
   - cd /opt/git
   - mkdir project.git
   - cd project.git
   - git --bare init
 
+Check /etc/passwd nog even voor git user (zie pagina 83 bijvoorbeeld). 
