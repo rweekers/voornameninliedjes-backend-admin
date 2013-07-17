@@ -17,7 +17,7 @@ Acties:
 
 - Bare repository maken met git clone --bare voornaaminliedje voornaaminliedje.git (check waar runnen)
 - Op de server zetten met scp -r voornaaminliedje.git git@annanas:/volume1/home/git/repos
-- Check met user vanaf Gentoo met git clone git@annanas:/volume1/home/git/repos/voornaaminliedje.git
+- Check met user vanaf Gentoo met git clone git@annanas:/volume1/homes/git/git_repos/voornaaminliedje.git
 - Nog iets met shared? git init --bare --shared
 
 - Check SSH public key in .ssh dir. Kijk voor * en *.pub. Run anders ssh-keygen. 
