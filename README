@@ -33,3 +33,5 @@ Acties:
   - git --bare init
 
 Check /etc/passwd nog even voor git user (zie pagina 83 bijvoorbeeld). 
+
+Originele files toegevoegd in nieuwe map. 
