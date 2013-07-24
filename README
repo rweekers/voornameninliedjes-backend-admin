@@ -40,13 +40,10 @@ Stappen voor snelle productie:
 
 1. Voor de insertscripts in de map origineleBestanden een tabel aanmaken.
 2. De nummers inserten in de tabel.
-3. Een pagina aanmaken die alle nummers in een tabel toont op basis van html en php.
+3. Framework kiezen voor java. 
+3. Een pagina aanmaken die alle nummers in een tabel toont op basis van java. 
 4. Vormgeving pagina verbeteren. 
-
-Daarna:
-
-1. Pagina op basis van java (framework nog bepalen) maken.
-2. Deployen (heroku, google?). 
+5. Deployen (heroku, google?). 
 
 Vervolgens:
 
