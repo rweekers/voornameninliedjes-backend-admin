@@ -1,0 +1,1 @@
+create table songs (id int not null auto_increment primary key, artist varchar(255) not null, title varchar(255) not null, surname varchar(50) not null, nameIndex int not null, nameLength int not null, creator_id int, date_ins datetime not null, date_mod datetime, user_ins varchar(255) not null, user_mod varchar(255));
