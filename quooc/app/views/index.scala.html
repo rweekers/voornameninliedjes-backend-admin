@@ -1,7 +1,27 @@
-@(message: String)
+@(songs: List[Song], songForm: Form[Song])
 
-@main("Welcome to Play 2.0") {
-    
-    @play20.welcome(message, style = "Java")
-    
+@import helper._
+
+@main("Songlist") {
+
+    <h1>@songs.size() song(s)</h1>
+
+    <ul>
+        @for(song <- songs) {
+            <li>
+                @song.title
+            </li>
+        }
+    </ul>
+
+    <h2>Add a new task</h2>
+
+    @form(routes.Application.newSong()) {
+
+        @inputText(songForm("title"))
+
+        <input type="submit" value="Create">
+
+    }
+
 }
