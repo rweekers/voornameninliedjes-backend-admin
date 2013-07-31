@@ -15,7 +15,7 @@ import views.html.*;
 
 public class Application extends Controller {
 
-  static Form<Song> songForm = form(Song.class);
+  static Form<Song> songForm = Form.form(Song.class);
 
   public static Result index() {
     return redirect(routes.Application.songs());
