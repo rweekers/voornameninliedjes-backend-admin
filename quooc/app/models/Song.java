@@ -4,7 +4,8 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
-public class Song {
+@Table(name = "song")
+public class Song{
 
   @Id
   public Long id;
