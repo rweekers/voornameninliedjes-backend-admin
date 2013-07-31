@@ -2,14 +2,13 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
-import play.db.*;
 import java.sql.*;
 import play.data.*;
 import models.*;
 import java.util.List;
 import java.util.ArrayList;
 import javax.persistence.Query;
-import play.db.jpa.JPA;
+import play.db.jpa.*;
 
 import views.html.*;
 
@@ -21,7 +20,7 @@ public class Application extends Controller {
     return redirect(routes.Application.songs());
   }
 
-  @play.db.jpa.Transactional
+  @Transactional
   public static Result songs() {
 	  return ok(
 	    views.html.index.render(getAll(), songForm)
