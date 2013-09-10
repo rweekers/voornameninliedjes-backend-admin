@@ -1,4 +1,4 @@
-package com.codetutr.domain;
+package nl.flamingostyle.quooc.domain;
 
 
 public class Person {

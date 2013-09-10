@@ -1,4 +1,7 @@
-package com.codetutr.controller;
+package nl.flamingostyle.quooc.controller;
+
+import nl.flamingostyle.quooc.domain.Person;
+import nl.flamingostyle.quooc.service.PersonService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.codetutr.domain.Person;
-import com.codetutr.service.PersonService;
 
 @Controller
 @RequestMapping("api")

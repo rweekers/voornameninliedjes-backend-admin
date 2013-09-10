@@ -1,10 +1,10 @@
-package com.codetutr.service;
+package nl.flamingostyle.quooc.service;
 
 import java.util.Random;
 
-import org.springframework.stereotype.Service;
+import nl.flamingostyle.quooc.domain.Person;
 
-import com.codetutr.domain.Person;
+import org.springframework.stereotype.Service;
 
 @Service
 public class PersonServiceImpl implements PersonService {

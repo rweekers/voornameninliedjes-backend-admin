@@ -1,6 +1,6 @@
-package com.codetutr.service;
+package nl.flamingostyle.quooc.service;
 
-import com.codetutr.domain.Person;
+import nl.flamingostyle.quooc.domain.Person;
 
 public interface PersonService {
 	public Person getRandom();
