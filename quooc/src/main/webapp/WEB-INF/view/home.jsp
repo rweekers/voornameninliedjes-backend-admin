@@ -43,12 +43,16 @@
 		
 		<h2>Submit new Song</h2>
 		<form id="newSongForm">
-			<label for="nameInput">Name: </label>
-			<input type="text" name="name" id="nameInput" />
+			<label for="titleInput">Title: </label>
+			<input type="text" name="title" id="titleInput" />
 			<br/>
 			
-			<label for="ageInput">Age: </label>
-			<input type="text" name="age" id="ageInput" />
+			<label for="artistInput">Artist: </label>
+			<input type="text" name="artist" id="artistInput" />
+			<br/>
+			
+			<label for="firstNameInput">Firstname: </label>
+			<input type="text" name="firstName" id="firstNameInput" />
 			<br/>
 			<input type="submit" value="Save Song" /><br/><br/>
 			<div id="songFormResponse" class="green"> </div>
@@ -63,7 +67,7 @@
 			// Random Song AJAX Request
 			$('#randomSong').click(function() {
 				$.getJSON('${pageContext.request.contextPath}/api/song/random', function(song) {
-					$('#songResponse').text(song.name + ', age ' + song.age);
+					$('#songResponse').text(song.title + ', artist ' + song.artist);
 				});
 			});
 			
@@ -73,7 +77,7 @@
 				if(!validateSongId(songId)) 
 					return false;
 				$.get('${pageContext.request.contextPath}/api/song/' + songId, function(song) {
-					$('#songIdResponse').text(song.name + ', age ' + song.age);
+					$('#songIdResponse').text(song.title + ', artist ' + song.artist);
 				});
 				e.preventDefault(); // prevent actual form submit
 			});
@@ -81,7 +85,7 @@
 			// Save Song AJAX Form Submit
 			$('#randomSong').click(function() {
 				$.getJSON('${pageContext.request.contextPath}/api/song/random', function(song) {
-					$('#songResponse').text(song.name + ', age ' + song.age);
+					$('#songResponse').text(song.title + ', artist ' + song.artist);
 				});
 			});
 			

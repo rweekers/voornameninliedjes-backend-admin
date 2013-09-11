@@ -23,20 +23,16 @@
 		<c:if test="${not empty message}"><div class="message green">${message}</div></c:if>
 		
 		<form:form modelAttribute="song">
-			<label for="nameInput">Name: </label>
-			<form:input path="name" id="nameInput" />
+			<label for="titleInput">Title: </label>
+			<form:input path="title" id="titleInput" />
 			<br/>
 			
-			<label for="ageInput">Age: </label>
-			<form:input path="age" id="ageInput" />
+			<label for="artistInput">Artist: </label>
+			<form:input path="artist" id="artistInput" />
 			<br/>
 			
-			<label for="sexOptions">Sex: </label>
-			<form:select path="sex" id="sexOptions">
-				<form:option value="">Select Sex</form:option>
-				<form:option value="MALE">Male</form:option>
-				<form:option value="FEMALE">Female</form:option>
-			</form:select>
+			<label for="firstNameInput">Firstname: </label>
+			<form:input path="firstName" id="firstNameInput" />
 			<br/>
 			
 			<label for="newsletterCheckbox">Nesletter? </label>
@@ -69,7 +65,7 @@
 			
 			$('#randomSong').click(function() {
 				$.getJSON('${pageContext.request.contextPath}/api/song/random', function(song) {
-					$('#songResponse').text(song.name + ', age ' + song.age);
+					$('#songResponse').text(song.title + ', artist ' + song.artist + ', firstname ' + song.firstName);
 				});
 			});
 			
