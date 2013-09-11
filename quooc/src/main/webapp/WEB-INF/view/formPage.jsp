@@ -19,10 +19,10 @@
 	
 	<div id="container">
 	
-		<h2>Create Person!</h2>
+		<h2>Create Song!</h2>
 		<c:if test="${not empty message}"><div class="message green">${message}</div></c:if>
 		
-		<form:form modelAttribute="person">
+		<form:form modelAttribute="song">
 			<label for="nameInput">Name: </label>
 			<form:input path="name" id="nameInput" />
 			<br/>
@@ -57,9 +57,9 @@
 		
 		<br/><br/>
 		<hr />
-		<h2>Random Person Generator</h2>
-		<input type="submit" id="randomPerson" value="Get Random Person" />
-		<div id="personResponse"> </div>
+		<h2>Random Song Generator</h2>
+		<input type="submit" id="randomSong" value="Get Random Song" />
+		<div id="songResponse"> </div>
 	</div>
 	
 	
@@ -67,9 +67,9 @@
 	
 		$(document).ready(function() {
 			
-			$('#randomPerson').click(function() {
-				$.getJSON('${pageContext.request.contextPath}/api/person/random', function(person) {
-					$('#personResponse').text(person.name + ', age ' + person.age);
+			$('#randomSong').click(function() {
+				$.getJSON('${pageContext.request.contextPath}/api/song/random', function(song) {
+					$('#songResponse').text(song.name + ', age ' + song.age);
 				});
 			});
 			

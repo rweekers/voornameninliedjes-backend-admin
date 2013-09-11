@@ -1,7 +1,7 @@
 package nl.flamingostyle.quooc.controller;
 
-import nl.flamingostyle.quooc.domain.Person;
-import nl.flamingostyle.quooc.service.PersonService;
+import nl.flamingostyle.quooc.domain.Song;
+import nl.flamingostyle.quooc.service.SongService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,46 +13,46 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("api")
-public class PersonController {
+public class SongController {
 	
-	PersonService personService;
+	SongService songService;
 	
 	@Autowired
-	public PersonController(PersonService personService) {
-		this.personService = personService;
+	public SongController(SongService songService) {
+		this.songService = songService;
 	}
 
-	@RequestMapping("person/random")
+	@RequestMapping("song/random")
 	@ResponseBody
-	public Person randomPerson() {
-		return personService.getRandom();
+	public Song randomSong() {
+		return songService.getRandom();
 	}
 	
-	@RequestMapping("person/{id}")
+	@RequestMapping("song/{id}")
 	@ResponseBody
-	public Person getById(@PathVariable Long id) {
-		return personService.getById(id);
+	public Song getById(@PathVariable Long id) {
+		return songService.getById(id);
 	}
 	
 	/* same as above method, but is mapped to
-	 * /api/person?id= rather than /api/person/{id}
+	 * /api/song?id= rather than /api/song/{id}
 	 */
-	@RequestMapping(value="person", params="id")
+	@RequestMapping(value="song", params="id")
 	@ResponseBody
-	public Person getByIdFromParam(@RequestParam("id") Long id) {
-		return personService.getById(id);
+	public Song getByIdFromParam(@RequestParam("id") Long id) {
+		return songService.getById(id);
 	}
 	
 	/**
-	 * Saves new person. Spring automatically binds the name
-	 * and age parameters in the request to the person argument
-	 * @param person
+	 * Saves new song. Spring automatically binds the name?
+	 * and age? parameters in the request to the song argument
+	 * @param song
 	 * @return String indicating success or failure of save
 	 */
-	@RequestMapping(value="person", method=RequestMethod.POST)
+	@RequestMapping(value="song", method=RequestMethod.POST)
 	@ResponseBody
-	public String savePerson(Person person) {
-		personService.save(person);
-		return "Saved person: " + person.toString();
+	public String saveSong(Song song) {
+		songService.save(song);
+		return "Saved song: " + song.toString();
 	}
 }

@@ -2,34 +2,34 @@ package nl.flamingostyle.quooc.service;
 
 import java.util.Random;
 
-import nl.flamingostyle.quooc.domain.Person;
+import nl.flamingostyle.quooc.domain.Song;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonServiceImpl implements PersonService {
+public class SongServiceImpl implements SongService {
 
 	String[] names = {"Nikolaus Otto", "Robert Ford", "Gottlieb Daimler", "Lt. General Masaharu Homma"};
 
 	@Override
-	public Person getRandom() {
-		Person person = new Person();
-		person.setName(randomName());
-		person.setAge(randomAge());
-		return person;
+	public Song getRandom() {
+		Song song = new Song();
+		song.setName(randomName());
+		song.setAge(randomAge());
+		return song;
 	}
 
 	@Override
-	public Person getById(Long id) {
-		Person person = new Person();
-		person.setName(names[id.intValue()]);
-		person.setAge(50);
-		return person;
+	public Song getById(Long id) {
+		Song song = new Song();
+		song.setName(names[id.intValue()]);
+		song.setAge(50);
+		return song;
 	}
 	
 	@Override
-	public void save(Person person) {
-		// Save person to database ...
+	public void save(Song song) {
+		// Save song to database ...
 	}
 	
 	private Integer randomAge() {

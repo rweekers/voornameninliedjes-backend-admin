@@ -1,7 +1,7 @@
 package nl.flamingostyle.quooc.domain;
 
 
-public class Person {
+public class Song {
 
 	private String name;
 	private Integer age;
@@ -24,7 +24,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person [name=" + name + ", age=" + age + "]";
+		return "Song [name=" + name + ", age=" + age + "]";
 	}
 	
 	

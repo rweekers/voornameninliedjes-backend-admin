@@ -1,9 +1,9 @@
 package nl.flamingostyle.quooc.service;
 
-import nl.flamingostyle.quooc.domain.Person;
+import nl.flamingostyle.quooc.domain.Song;
 
-public interface PersonService {
-	public Person getRandom();
-	public Person getById(Long id);
-	public void save(Person person);
+public interface SongService {
+	public Song getRandom();
+	public Song getById(Long id);
+	public void save(Song song);
 }
