@@ -3,29 +3,36 @@ package nl.flamingostyle.quooc.domain;
 
 public class Song {
 
-	private String name;
-	private Integer age;
+	private String artist;
+	private String title;
+	private String firstName;
 	
-	public String getName() {
-		return name;
+	public String getArtist() {
+		return artist;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public Integer getAge() {
-		return age;
+	public void setArtist(String artist) {
+		this.artist = artist;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	@Override
 	public String toString() {
-		return "Song [name=" + name + ", age=" + age + "]";
-	}
-	
-	
+		return "Song [name=" + title + ", artist=" + artist + ", firstname=" + firstName + "]";
+	}	
 }

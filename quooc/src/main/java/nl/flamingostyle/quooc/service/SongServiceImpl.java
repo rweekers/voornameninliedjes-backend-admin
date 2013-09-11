@@ -9,21 +9,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class SongServiceImpl implements SongService {
 
-	String[] names = {"Nikolaus Otto", "Robert Ford", "Gottlieb Daimler", "Lt. General Masaharu Homma"};
+	String[] titles = {"Roxanne", "Hey Jude", "Anne", "Ruby"};
+	String[] artists = {"Police", "The Beatles", "Herman van Veen", "Kaiser Chiefs"};
+	String[] firstNames = {"Roxanne", "Jude", "Anne", "Ruby"};
 
 	@Override
 	public Song getRandom() {
 		Song song = new Song();
-		song.setName(randomName());
-		song.setAge(randomAge());
+		song.setTitle(randomTitle());
+		song.setArtist(randomArtist());
+		song.setFirstName(randomFirstName());
 		return song;
 	}
 
 	@Override
 	public Song getById(Long id) {
 		Song song = new Song();
-		song.setName(names[id.intValue()]);
-		song.setAge(50);
+		song.setTitle(titles[id.intValue()]);
+		song.setArtist(titles[id.intValue()]);
+		song.setFirstName(titles[id.intValue()]);
 		return song;
 	}
 	
@@ -32,14 +36,19 @@ public class SongServiceImpl implements SongService {
 		// Save song to database ...
 	}
 	
-	private Integer randomAge() {
+	private String randomTitle() {
 		Random random = new Random();
-		return 10 + random.nextInt(100);
+		return titles[random.nextInt(titles.length)];
 	}
-
-	private String randomName() {
+	
+	private String randomArtist() {
 		Random random = new Random();
-		return names[random.nextInt(names.length)];
+		return artists[random.nextInt(artists.length)];
+	}
+	
+	private String randomFirstName() {
+		Random random = new Random();
+		return firstNames[random.nextInt(firstNames.length)];
 	}
 
 }
