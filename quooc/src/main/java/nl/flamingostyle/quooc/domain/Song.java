@@ -7,6 +7,16 @@ public class Song {
 	private String title;
 	private String firstName;
 	
+	public Song(){
+		
+	}
+	
+	public Song(String title, String artist, String firstName){
+		this.title = title;
+		this.artist = artist;
+		this.firstName = firstName;
+	}
+	
 	public String getArtist() {
 		return artist;
 	}
