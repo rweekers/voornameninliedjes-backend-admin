@@ -1,4 +1,4 @@
-package org.krams.tutorial.domain;
+package nl.flamingostyle.quooc.domain;
 
 import java.io.Serializable;
 

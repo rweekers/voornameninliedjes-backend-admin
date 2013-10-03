@@ -1,12 +1,13 @@
-package org.krams.tutorial.controller;
+package nl.flamingostyle.quooc.controller;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import nl.flamingostyle.quooc.domain.Person;
+import nl.flamingostyle.quooc.service.PersonService;
+
 import org.apache.log4j.Logger;
-import org.krams.tutorial.domain.Person;
-import org.krams.tutorial.service.PersonService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;

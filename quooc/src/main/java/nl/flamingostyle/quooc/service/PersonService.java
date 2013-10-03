@@ -1,14 +1,15 @@
-package org.krams.tutorial.service;
+package nl.flamingostyle.quooc.service;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import nl.flamingostyle.quooc.domain.Person;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.krams.tutorial.domain.Person;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +31,7 @@ public class PersonService {
 	 * 
 	 * @return a list of persons
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Person> getAll() {
 		logger.debug("Retrieving all persons");
 		
