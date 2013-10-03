@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import nl.flamingostyle.quooc.domain.Person;
-import nl.flamingostyle.quooc.service.PersonService;
+import nl.flamingostyle.quooc.domain.Song;
+import nl.flamingostyle.quooc.service.SongService;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -25,8 +25,8 @@ public class MainController {
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
-	@Resource(name="personService")
-	private PersonService personService;
+	@Resource(name="songService")
+	private SongService songService;
 	
 	/**
 	 * Handles and retrieves all persons and show it in a JSP page
@@ -38,11 +38,11 @@ public class MainController {
     	
     	logger.debug("Received request to show all persons");
     	
-    	// Retrieve all persons by delegating the call to PersonService
-    	List<Person> persons = personService.getAll();
+    	// Retrieve all persons by delegating the call to SongService
+    	List<Song> songs = songService.getAll();
     	
     	// Attach persons to the Model
-    	model.addAttribute("persons", persons);
+    	model.addAttribute("persons", songs);
     	
     	// This will resolve to /WEB-INF/jsp/personspage.jsp
     	return "personspage";
@@ -57,36 +57,36 @@ public class MainController {
     public String getAdd(Model model) {
     	logger.debug("Received request to show add page");
     
-    	// Create new Person and add to model
+    	// Create new Song and add to model
     	// This is the formBackingOBject
-    	model.addAttribute("personAttribute", new Person());
+    	model.addAttribute("personAttribute", new Song());
 
     	// This will resolve to /WEB-INF/jsp/addpage.jsp
     	return "addpage";
 	}
  
     /**
-     * Adds a new person by delegating the processing to PersonService.
+     * Adds a new person by delegating the processing to SongService.
      * Displays a confirmation JSP page
      * 
      * @return  the name of the JSP page
      */
     @RequestMapping(value = "/persons/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute("personAttribute") Person person) {
+    public String add(@ModelAttribute("personAttribute") Song song) {
 		logger.debug("Received request to add new person");
 		
     	// The "personAttribute" model has been passed to the controller from the JSP
     	// We use the name "personAttribute" because the JSP uses that name
 		
-		// Call PersonService to do the actual adding
-		personService.add(person);
+		// Call SongService to do the actual adding
+		songService.add(song);
 
     	// This will resolve to /WEB-INF/jsp/addedpage.jsp
 		return "addedpage";
 	}
     
     /**
-     * Deletes an existing person by delegating the processing to PersonService.
+     * Deletes an existing person by delegating the processing to SongService.
      * Displays a confirmation JSP page
      * 
      * @return  the name of the JSP page
@@ -97,8 +97,8 @@ public class MainController {
    
 		logger.debug("Received request to delete existing person");
 		
-		// Call PersonService to do the actual deleting
-		personService.delete(id);
+		// Call SongService to do the actual deleting
+		songService.delete(id);
 		
 		// Add id reference to Model
 		model.addAttribute("id", id);
@@ -117,22 +117,22 @@ public class MainController {
     										Model model) {
     	logger.debug("Received request to show edit page");
     
-    	// Retrieve existing Person and add to model
+    	// Retrieve existing Song and add to model
     	// This is the formBackingOBject
-    	model.addAttribute("personAttribute", personService.get(id));
+    	model.addAttribute("personAttribute", songService.get(id));
     	
     	// This will resolve to /WEB-INF/jsp/editpage.jsp
     	return "editpage";
 	}
     
     /**
-     * Edits an existing person by delegating the processing to PersonService.
+     * Edits an existing person by delegating the processing to SongService.
      * Displays a confirmation JSP page
      * 
      * @return  the name of the JSP page
      */
     @RequestMapping(value = "/persons/edit", method = RequestMethod.POST)
-    public String saveEdit(@ModelAttribute("personAttribute") Person person, 
+    public String saveEdit(@ModelAttribute("personAttribute") Song song, 
     										   @RequestParam(value="id", required=true) Integer id, 
     												Model model) {
     	logger.debug("Received request to update person");
@@ -142,10 +142,10 @@ public class MainController {
     	
     	// We manually assign the id because we disabled it in the JSP page
     	// When a field is disabled it will not be included in the ModelAttribute
-    	person.setId(id);
+    	song.setId(id);
     	
-    	// Delegate to PersonService for editing
-    	personService.edit(person);
+    	// Delegate to SongService for editing
+    	songService.edit(song);
     	
     	// Add id reference to Model
 		model.addAttribute("id", id);

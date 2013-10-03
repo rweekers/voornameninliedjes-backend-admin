@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import nl.flamingostyle.quooc.domain.Person;
+import nl.flamingostyle.quooc.domain.Song;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -14,12 +14,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Service for processing Persons
+ * Service for processing Songs
  * 
  */
-@Service("personService")
+@Service("songService")
 @Transactional
-public class PersonService {
+public class SongService {
 
 	protected static Logger logger = Logger.getLogger("service");
 	
@@ -27,84 +27,84 @@ public class PersonService {
 	private SessionFactory sessionFactory;
 	
 	/**
-	 * Retrieves all persons
+	 * Retrieves all songs
 	 * 
-	 * @return a list of persons
+	 * @return a list of songs
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Person> getAll() {
+	public List<Song> getAll() {
 		logger.debug("Retrieving all persons");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM  Person");
+		Query query = session.createQuery("FROM  Song");
 		
 		// Retrieve all
 		return  query.list();
 	}
 	
 	/**
-	 * Retrieves a single person
+	 * Retrieves a single song
 	 */
-	public Person get( Integer id ) {
+	public Song get( Integer id ) {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		
-		// Retrieve existing person first
-		Person person = (Person) session.get(Person.class, id);
+		// Retrieve existing song first
+		Song song = (Song) session.get(Song.class, id);
 		
-		return person;
+		return song;
 	}
 	/**
-	 * Adds a new person
+	 * Adds a new song
 	 */
-	public void add(Person person) {
-		logger.debug("Adding new person");
+	public void add(Song song) {
+		logger.debug("Adding new song");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		
 		// Save
-		session.save(person);
+		session.save(song);
 	}
 	
 	/**
 	 * Deletes an existing person
-	 * @param id the id of the existing person
+	 * @param id the id of the existing song
 	 */
 	public void delete(Integer id) {
-		logger.debug("Deleting existing person");
+		logger.debug("Deleting existing song");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		
 		// Retrieve existing person first
-		Person person = (Person) session.get(Person.class, id);
+		Song song = (Song) session.get(Song.class, id);
 		
 		// Delete 
-		session.delete(person);
+		session.delete(song);
 	}
 	
 	/**
-	 * Edits an existing person
+	 * Edits an existing song
 	 */
-	public void edit(Person person) {
+	public void edit(Song song) {
 		logger.debug("Editing existing person");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		
 		// Retrieve existing person via id
-		Person existingPerson = (Person) session.get(Person.class, person.getId());
+		Song existingSong = (Song) session.get(Song.class, song.getId());
 		
 		// Assign updated values to this person
-		existingPerson.setFirstName(person.getFirstName());
-		existingPerson.setLastName(person.getLastName());
-		existingPerson.setMoney(person.getMoney());
+		existingSong.setArtist(song.getArtist());
+		existingSong.setTitle(song.getTitle());
+		existingSong.setFirstName(song.getFirstName());
 
 		// Save updates
-		session.save(existingPerson);
+		session.save(existingSong);
 	}
 }
