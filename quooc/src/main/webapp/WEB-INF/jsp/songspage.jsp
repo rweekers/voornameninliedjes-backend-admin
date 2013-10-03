@@ -8,26 +8,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Persons</h1>
+<h1>Songs</h1>
 
-<c:url var="addUrl" value="/krams/main/persons/add" />
+<c:url var="addUrl" value="/quooc/main/songs/add" />
 <table style="border: 1px solid; width: 500px; text-align:center">
 	<thead style="background:#fcf">
 		<tr>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Money</th>
+			<th>Artist</th>
+			<th>Title</th>
+			<th>Firstname</th>
 			<th colspan="3"></th>
 		</tr>
 	</thead>
 	<tbody>
-	<c:forEach items="${persons}" var="person">
-			<c:url var="editUrl" value="/krams/main/persons/edit?id=${person.id}" />
-			<c:url var="deleteUrl" value="/krams/main/persons/delete?id=${person.id}" />
+	<c:forEach items="${songs}" var="song">
+			<c:url var="editUrl" value="/quooc/main/songs/edit?id=${song.id}" />
+			<c:url var="deleteUrl" value="/quooc/main/songs/delete?id=${song.id}" />
 		<tr>
-			<td><c:out value="${person.firstName}" /></td>
-			<td><c:out value="${person.lastName}" /></td>
-			<td><c:out value="${person.money}" /></td>
+			<td><c:out value="${song.artist}" /></td>
+			<td><c:out value="${song.title}" /></td>
+			<td><c:out value="${song.firstName}" /></td>
 			<td><a href="${editUrl}">Edit</a></td>
 			<td><a href="${deleteUrl}">Delete</a></td>
 			<td><a href="${addUrl}">Add</a></td>
@@ -36,8 +36,8 @@
 	</tbody>
 </table>
 
-<c:if test="${empty persons}">
-	There are currently no persons in the list. <a href="${addUrl}">Add</a> a person.
+<c:if test="${empty songs}">
+	There are currently no songs in the list. <a href="${addUrl}">Add</a> a song.
 </c:if>
 
 </body>

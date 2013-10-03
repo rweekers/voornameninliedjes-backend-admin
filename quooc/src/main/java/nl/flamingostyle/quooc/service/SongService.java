@@ -33,7 +33,7 @@ public class SongService {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Song> getAll() {
-		logger.debug("Retrieving all persons");
+		logger.debug("Retrieving all songs");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
@@ -71,7 +71,7 @@ public class SongService {
 	}
 	
 	/**
-	 * Deletes an existing person
+	 * Deletes an existing song
 	 * @param id the id of the existing song
 	 */
 	public void delete(Integer id) {
@@ -80,7 +80,7 @@ public class SongService {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		
-		// Retrieve existing person first
+		// Retrieve existing song first
 		Song song = (Song) session.get(Song.class, id);
 		
 		// Delete 
@@ -91,15 +91,15 @@ public class SongService {
 	 * Edits an existing song
 	 */
 	public void edit(Song song) {
-		logger.debug("Editing existing person");
+		logger.debug("Editing existing song");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		
-		// Retrieve existing person via id
+		// Retrieve existing song via id
 		Song existingSong = (Song) session.get(Song.class, song.getId());
 		
-		// Assign updated values to this person
+		// Assign updated values to this song
 		existingSong.setArtist(song.getArtist());
 		existingSong.setTitle(song.getTitle());
 		existingSong.setFirstName(song.getFirstName());

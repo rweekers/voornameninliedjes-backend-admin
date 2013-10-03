@@ -10,10 +10,10 @@
 </head>
 <body>
 
-<h1>Edit Person</h1>
+<h1>Edit Song</h1>
 
-<c:url var="saveUrl" value="/krams/main/persons/edit?id=${personAttribute.id}" />
-<form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
+<c:url var="saveUrl" value="/quooc/main/songs/edit?id=${songAttribute.id}" />
+<form:form modelAttribute="songAttribute" method="POST" action="${saveUrl}">
 	<table>
 		<tr>
 			<td><form:label path="id">Id:</form:label></td>
@@ -21,18 +21,18 @@
 		</tr>
 	
 		<tr>
-			<td><form:label path="firstName">First Name:</form:label></td>
-			<td><form:input path="firstName"/></td>
+			<td><form:label path="artist">Artist:</form:label></td>
+			<td><form:input path="artist"/></td>
 		</tr>
 
 		<tr>
-			<td><form:label path="lastName">Last Name</form:label></td>
-			<td><form:input path="lastName"/></td>
+			<td><form:label path="title">Title</form:label></td>
+			<td><form:input path="title"/></td>
 		</tr>
 		
 		<tr>
-			<td><form:label path="money">Money</form:label></td>
-			<td><form:input path="money"/></td>
+			<td><form:label path="firstName">FirstName</form:label></td>
+			<td><form:input path="firstName"/></td>
 		</tr>
 	</table>
 	

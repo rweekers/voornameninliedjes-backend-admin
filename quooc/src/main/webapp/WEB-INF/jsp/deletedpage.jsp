@@ -10,11 +10,11 @@
 </head>
 <body>
 
-<h1>Persons</h1>
+<h1>Songs</h1>
 
-<p>You have deleted a person with id ${id} at <%= new java.util.Date() %></p>
+<p>You have deleted a song with id ${id} at <%= new java.util.Date() %></p>
 
-<c:url var="mainUrl" value="/krams/main/persons" />
+<c:url var="mainUrl" value="/quooc/main/songs" />
 <p>Return to <a href="${mainUrl}">Main List</a></p>
 
 </body>
