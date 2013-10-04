@@ -1,4 +1,4 @@
-INSERT INTO `song` (`id`, `artist`, `title`, `surname`, `name_index`, `name_length`, `date_inserted`, `date_modified`, `user_inserted`, `user_modified`) VALUES
+INSERT INTO `song` (`id`, `artist`, `title`, `firstname`, `name_index`, `name_length`, `date_inserted`, `date_modified`, `user_inserted`, `user_modified`) VALUES
 	(12065, 'Todd Rundgren', 'Piss Aaron', 'Aaron', 9, 5, '2013-07-25 10:19:44', NULL, 'Parser', NULL),
 	(12066, 'C&eacute;line Dion', 'La M&eacute;moire d\'Abraham', 'Abraham', 24, 7, '2013-07-25 10:19:44', NULL, 'Parser', NULL),
 	(12067, 'Aerosmith', 'Adam\'s apple', 'Adam', 4, 4, '2013-07-25 10:19:44', NULL, 'Parser', NULL),
