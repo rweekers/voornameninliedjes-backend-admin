@@ -1,6 +1,7 @@
 package nl.flamingostyle.quooc.service;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 
@@ -25,6 +26,11 @@ public class SongService {
 	
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
+	
+	public Song getRandom() {
+		Random random = new Random();
+		return get(random.nextInt());
+	}
 	
 	/**
 	 * Retrieves all songs

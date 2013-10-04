@@ -2,31 +2,46 @@ package nl.flamingostyle.quooc.controller;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import nl.flamingostyle.quooc.domain.Song;
 import nl.flamingostyle.quooc.service.SongService;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
  * Handles and retrieves song request
  */
 @Controller
-@RequestMapping("/main")
+@RequestMapping("api")
 public class MainController {
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
-	@Resource(name="songService")
 	private SongService songService;
+	
+	@Autowired
+	public MainController(SongService songService){
+		this.songService = songService;
+	}
+	
+    @RequestMapping("song/random")
+    @ResponseBody
+    public Song randomSong() {
+        Song song = new Song();
+        song.setArtist("blabla");
+        song.setTitle("LaLa Lola");
+        song.setFirstName("Lola");
+        return song;
+    	// return songService.getRandom();
+    }
 	
 	/**
 	 * Handles and retrieves all songs and show it in a JSP page
