@@ -5,3 +5,6 @@ quooc/target
 quooc/tmp
 quooc/.history
 quooc/dist
+quooc/.classpath
+quooc/.project
+quooc/.settings

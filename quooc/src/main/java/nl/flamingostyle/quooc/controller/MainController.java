@@ -25,14 +25,10 @@ public class MainController {
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
-	SongServiceImpl songServiceImpl;
-	
 	@Autowired
-	public MainController(SongServiceImpl songServiceImpl){
-		this.songServiceImpl = songServiceImpl;
-	}
-	
-    @RequestMapping("song/random")
+	SongServiceImpl songServiceImpl;
+		
+    @RequestMapping(value = "song/random", method = RequestMethod.GET)
     @ResponseBody
     public Song randomSong() {
         Song song = new Song();
@@ -49,6 +45,7 @@ public class MainController {
 	 * @return the name of the JSP page
 	 */
     @RequestMapping(value = "/songs", method = RequestMethod.GET)
+    @ResponseBody
     public String getSongs(Model model) {
     	
     	logger.debug("Received request to show all songs");
@@ -69,6 +66,7 @@ public class MainController {
      * @return the name of the JSP page
      */
     @RequestMapping(value = "/songs/add", method = RequestMethod.GET)
+    @ResponseBody
     public String getAdd(Model model) {
     	logger.debug("Received request to show add page");
     
@@ -87,6 +85,7 @@ public class MainController {
      * @return  the name of the JSP page
      */
     @RequestMapping(value = "/songs/add", method = RequestMethod.POST)
+    @ResponseBody
     public String add(@ModelAttribute("songAttribute") Song song) {
 		logger.debug("Received request to add new song");
 		
@@ -107,6 +106,7 @@ public class MainController {
      * @return  the name of the JSP page
      */
     @RequestMapping(value = "/songs/delete", method = RequestMethod.GET)
+    @ResponseBody
     public String delete(@RequestParam(value="id", required=true) Integer id, 
     										Model model) {
    
@@ -128,6 +128,7 @@ public class MainController {
      * @return the name of the JSP page
      */
     @RequestMapping(value = "/songs/edit", method = RequestMethod.GET)
+    @ResponseBody
     public String getEdit(@RequestParam(value="id", required=true) Integer id,  
     										Model model) {
     	logger.debug("Received request to show edit page");
@@ -147,6 +148,7 @@ public class MainController {
      * @return  the name of the JSP page
      */
     @RequestMapping(value = "/songs/edit", method = RequestMethod.POST)
+    @ResponseBody
     public String saveEdit(@ModelAttribute("songAttribute") Song song, 
     										   @RequestParam(value="id", required=true) Integer id, 
     												Model model) {
