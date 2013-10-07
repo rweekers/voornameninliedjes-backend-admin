@@ -25,7 +25,7 @@ public class MainController {
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
-	private SongService songService;
+	SongService songService;
 	
 	@Autowired
 	public MainController(SongService songService){
@@ -38,7 +38,7 @@ public class MainController {
         Song song = new Song();
         song.setArtist("blabla");
         song.setTitle("LaLa Lola");
-        song.setFirstName("Lola");
+        song.setFirstname("Lola");
         return song;
     	// return songService.getRandom();
     }

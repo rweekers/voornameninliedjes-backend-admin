@@ -108,7 +108,7 @@ public class SongService {
 		// Assign updated values to this song
 		existingSong.setArtist(song.getArtist());
 		existingSong.setTitle(song.getTitle());
-		existingSong.setFirstName(song.getFirstName());
+		existingSong.setFirstname(song.getFirstname());
 
 		// Save updates
 		session.save(existingSong);

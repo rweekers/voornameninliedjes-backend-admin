@@ -14,24 +14,24 @@ import javax.persistence.Table;
  * Hibernate Annotations Communit Documentations</a>
  */
 @Entity
-@Table(name = "SONG")
+@Table(name = "song")
 public class Song implements Serializable {
 
 	private static final long serialVersionUID = -5527566248002296042L;
 	
 	@Id
-	@Column(name = "ID")
+	@Column(name = "id")
 	@GeneratedValue
 	private Integer id;
 	
-	@Column(name = "ARTIST")
+	@Column(name = "artist")
 	private String artist;
 	
-	@Column(name = "TITLE")
+	@Column(name = "title")
 	private String title;
 	
-	@Column(name = "FIRSTNAME")
-	private String firstName;
+	@Column(name = "firstname")
+	private String firstname;
 
 	public Integer getId() {
 		return id;
@@ -57,11 +57,11 @@ public class Song implements Serializable {
 		this.title = title;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 }
