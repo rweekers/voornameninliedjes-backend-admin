@@ -21,16 +21,16 @@ public class WebConfig {
  
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";  
     private static final String PROPERTY_NAME_DATABASE_PASSWORD = "root";  
-    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost/voornaaminliedje";  
+    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/voornaaminliedje";  
     private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";  
       
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQL5InnoDBDialect";  
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
     private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL = "hibernate.hbm2ddl.validate";
 
-	
+	/*
     @Resource  
-    private Environment env;
+    private Environment env;*/
     
     @Bean
     public InternalResourceViewResolver viewResolver() {
@@ -40,7 +40,7 @@ public class WebConfig {
         resolver.setSuffix(".jsp");
         return resolver;
     }
-    
+    /*
     @Bean  
     public DataSource dataSource() {  
         DriverManagerDataSource dataSource = new DriverManagerDataSource();  
@@ -67,6 +67,6 @@ public class WebConfig {
         properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
         properties.put(PROPERTY_NAME_HIBERNATE_HBM2DDL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_HBM2DDL));
         return properties;    
-    } 
+    } */
      
 }
