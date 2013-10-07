@@ -3,7 +3,7 @@ package nl.flamingostyle.quooc.controller;
 import java.util.List;
 
 import nl.flamingostyle.quooc.domain.Song;
-import nl.flamingostyle.quooc.service.SongService;
+import nl.flamingostyle.quooc.service.SongServiceImpl;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +25,11 @@ public class MainController {
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
-	SongService songService;
+	SongServiceImpl songServiceImpl;
 	
 	@Autowired
-	public MainController(SongService songService){
-		this.songService = songService;
+	public MainController(SongServiceImpl songServiceImpl){
+		this.songServiceImpl = songServiceImpl;
 	}
 	
     @RequestMapping("song/random")
@@ -40,7 +40,7 @@ public class MainController {
         song.setTitle("LaLa Lola");
         song.setFirstname("Lola");
         return song;
-    	// return songService.getRandom();
+    	// return songServiceImpl.getRandom();
     }
 	
 	/**
@@ -53,8 +53,8 @@ public class MainController {
     	
     	logger.debug("Received request to show all songs");
     	
-    	// Retrieve all songs by delegating the call to SongService
-    	List<Song> songs = songService.getAll();
+    	// Retrieve all songs by delegating the call to SongServiceImpl
+    	List<Song> songs = songServiceImpl.getAll();
     	
     	// Attach songs to the Model
     	model.addAttribute("songs", songs);
@@ -81,7 +81,7 @@ public class MainController {
 	}
  
     /**
-     * Adds a new song by delegating the processing to SongService.
+     * Adds a new song by delegating the processing to SongServiceImpl.
      * Displays a confirmation JSP page
      * 
      * @return  the name of the JSP page
@@ -93,15 +93,15 @@ public class MainController {
     	// The "songAttribute" model has been passed to the controller from the JSP
     	// We use the name "songAttribute" because the JSP uses that name
 		
-		// Call SongService to do the actual adding
-		songService.add(song);
+		// Call SongServiceImpl to do the actual adding
+		songServiceImpl.add(song);
 
     	// This will resolve to /WEB-INF/jsp/addedpage.jsp
 		return "addedpage";
 	}
     
     /**
-     * Deletes an existing song by delegating the processing to SongService.
+     * Deletes an existing song by delegating the processing to SongServiceImpl.
      * Displays a confirmation JSP page
      * 
      * @return  the name of the JSP page
@@ -112,8 +112,8 @@ public class MainController {
    
 		logger.debug("Received request to delete existing song");
 		
-		// Call SongService to do the actual deleting
-		songService.delete(id);
+		// Call SongServiceImpl to do the actual deleting
+		songServiceImpl.delete(id);
 		
 		// Add id reference to Model
 		model.addAttribute("id", id);
@@ -134,14 +134,14 @@ public class MainController {
     
     	// Retrieve existing Song and add to model
     	// This is the formBackingOBject
-    	model.addAttribute("songAttribute", songService.get(id));
+    	model.addAttribute("songAttribute", songServiceImpl.get(id));
     	
     	// This will resolve to /WEB-INF/jsp/editpage.jsp
     	return "editpage";
 	}
     
     /**
-     * Edits an existing song by delegating the processing to SongService.
+     * Edits an existing song by delegating the processing to SongServiceImpl.
      * Displays a confirmation JSP page
      * 
      * @return  the name of the JSP page
@@ -159,8 +159,8 @@ public class MainController {
     	// When a field is disabled it will not be included in the ModelAttribute
     	song.setId(id);
     	
-    	// Delegate to SongService for editing
-    	songService.edit(song);
+    	// Delegate to SongServiceImpl for editing
+    	songServiceImpl.edit(song);
     	
     	// Add id reference to Model
 		model.addAttribute("id", id);

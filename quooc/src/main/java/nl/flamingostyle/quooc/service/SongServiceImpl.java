@@ -18,18 +18,23 @@ import org.springframework.transaction.annotation.Transactional;
  * Service for processing Songs
  * 
  */
-@Service("songService")
+@Service
 @Transactional
-public class SongService {
+public class SongServiceImpl implements SongService {
 
 	protected static Logger logger = Logger.getLogger("service");
 	
-	@Resource(name="sessionFactory")
-	private SessionFactory sessionFactory;
+// 	@Resource(name="sessionFactory")
+//	private SessionFactory sessionFactory;
 	
 	public Song getRandom() {
-		Random random = new Random();
-		return get(random.nextInt());
+		// Random random = new Random();
+		// return get(random.nextInt());
+		Song s = new Song();
+		s.setArtist("Kinks");
+		s.setTitle("LalaLola");
+		s.setFirstname("Lola");
+		return s;
 	}
 	
 	/**
@@ -42,13 +47,14 @@ public class SongService {
 		logger.debug("Retrieving all songs");
 		
 		// Retrieve session from Hibernate
-		Session session = sessionFactory.getCurrentSession();
+		// Session session = sessionFactory.getCurrentSession();
 		
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM  Song");
+		// Query query = session.createQuery("FROM  Song");
 		
 		// Retrieve all
-		return  query.list();
+		// return  query.list();
+		return null;
 	}
 	
 	/**
@@ -56,12 +62,13 @@ public class SongService {
 	 */
 	public Song get( Integer id ) {
 		// Retrieve session from Hibernate
-		Session session = sessionFactory.getCurrentSession();
+		// Session session = sessionFactory.getCurrentSession();
 		
 		// Retrieve existing song first
-		Song song = (Song) session.get(Song.class, id);
+		// Song song = (Song) session.get(Song.class, id);
 		
-		return song;
+		// return song;
+		return new Song();
 	}
 	/**
 	 * Adds a new song
@@ -70,10 +77,10 @@ public class SongService {
 		logger.debug("Adding new song");
 		
 		// Retrieve session from Hibernate
-		Session session = sessionFactory.getCurrentSession();
+		// Session session = sessionFactory.getCurrentSession();
 		
 		// Save
-		session.save(song);
+		// session.save(song);
 	}
 	
 	/**
@@ -84,13 +91,13 @@ public class SongService {
 		logger.debug("Deleting existing song");
 		
 		// Retrieve session from Hibernate
-		Session session = sessionFactory.getCurrentSession();
+		// Session session = sessionFactory.getCurrentSession();
 		
 		// Retrieve existing song first
-		Song song = (Song) session.get(Song.class, id);
+		// Song song = (Song) session.get(Song.class, id);
 		
 		// Delete 
-		session.delete(song);
+		// session.delete(song);
 	}
 	
 	/**
@@ -100,17 +107,17 @@ public class SongService {
 		logger.debug("Editing existing song");
 		
 		// Retrieve session from Hibernate
-		Session session = sessionFactory.getCurrentSession();
+		// Session session = sessionFactory.getCurrentSession();
 		
 		// Retrieve existing song via id
-		Song existingSong = (Song) session.get(Song.class, song.getId());
+		// Song existingSong = (Song) session.get(Song.class, song.getId());
 		
 		// Assign updated values to this song
-		existingSong.setArtist(song.getArtist());
-		existingSong.setTitle(song.getTitle());
-		existingSong.setFirstname(song.getFirstname());
+		// existingSong.setArtist(song.getArtist());
+		// existingSong.setTitle(song.getTitle());
+		// existingSong.setFirstname(song.getFirstname());
 
 		// Save updates
-		session.save(existingSong);
+		// session.save(existingSong);
 	}
 }
