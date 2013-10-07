@@ -3,7 +3,7 @@ package nl.flamingostyle.quooc.controller;
 import java.util.List;
 
 import nl.flamingostyle.quooc.domain.Song;
-import nl.flamingostyle.quooc.service.SongServiceImpl;
+import nl.flamingostyle.quooc.service.SongService;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +26,17 @@ public class MainController {
 	protected static Logger logger = Logger.getLogger("controller");
 	
 	@Autowired
-	SongServiceImpl songServiceImpl;
+	SongService songService;
 		
     @RequestMapping(value = "song/random", method = RequestMethod.GET)
     @ResponseBody
     public Song randomSong() {
-        Song song = new Song();
-        song.setArtist("blabla");
-        song.setTitle("LaLa Lola");
-        song.setFirstname("Lola");
-        return song;
-    	// return songServiceImpl.getRandom();
+        // Song song = new Song();
+        // song.setArtist("blabla");
+        // song.setTitle("LaLa Lola");
+        // song.setFirstname("Lola");
+        // return song;
+    	return songService.getRandom();
     }
 	
 	/**
@@ -51,7 +51,7 @@ public class MainController {
     	logger.debug("Received request to show all songs");
     	
     	// Retrieve all songs by delegating the call to SongServiceImpl
-    	List<Song> songs = songServiceImpl.getAll();
+    	List<Song> songs = songService.getAll();
     	
     	// Attach songs to the Model
     	model.addAttribute("songs", songs);
@@ -93,7 +93,7 @@ public class MainController {
     	// We use the name "songAttribute" because the JSP uses that name
 		
 		// Call SongServiceImpl to do the actual adding
-		songServiceImpl.add(song);
+		songService.add(song);
 
     	// This will resolve to /WEB-INF/jsp/addedpage.jsp
 		return "addedpage";
@@ -113,7 +113,7 @@ public class MainController {
 		logger.debug("Received request to delete existing song");
 		
 		// Call SongServiceImpl to do the actual deleting
-		songServiceImpl.delete(id);
+		songService.delete(id);
 		
 		// Add id reference to Model
 		model.addAttribute("id", id);
@@ -135,7 +135,7 @@ public class MainController {
     
     	// Retrieve existing Song and add to model
     	// This is the formBackingOBject
-    	model.addAttribute("songAttribute", songServiceImpl.get(id));
+    	model.addAttribute("songAttribute", songService.get(id));
     	
     	// This will resolve to /WEB-INF/jsp/editpage.jsp
     	return "editpage";
@@ -162,7 +162,7 @@ public class MainController {
     	song.setId(id);
     	
     	// Delegate to SongServiceImpl for editing
-    	songServiceImpl.edit(song);
+    	songService.edit(song);
     	
     	// Add id reference to Model
 		model.addAttribute("id", id);
