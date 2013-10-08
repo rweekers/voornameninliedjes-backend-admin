@@ -31,11 +31,6 @@ public class MainController {
     @RequestMapping(value = "song/random", method = RequestMethod.GET)
     @ResponseBody
     public Song randomSong() {
-        // Song song = new Song();
-        // song.setArtist("blabla");
-        // song.setTitle("LaLa Lola");
-        // song.setFirstname("Lola");
-        // return song;
     	return songService.getRandom();
     }
 	
@@ -56,8 +51,8 @@ public class MainController {
     	// Attach songs to the Model
     	model.addAttribute("songs", songs);
     	
-    	// This will resolve to /WEB-INF/jsp/songspage.jsp
-    	return "songspage";
+    	// This will resolve to /WEB-INF/view/songs.jsp
+    	return "songs";
 	}
     
     /**
