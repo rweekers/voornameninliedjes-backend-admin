@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 
 /**
  * Handles and retrieves song request
@@ -28,7 +28,7 @@ public class MainController {
 	@Autowired
 	SongService songService;
 		
-    @RequestMapping(value = "/song/random", method = RequestMethod.GET)
+    @RequestMapping(value = "song/random", method = RequestMethod.GET)
     @ResponseBody
     public Song randomSong() {
     	return songService.getRandom();
@@ -39,7 +39,7 @@ public class MainController {
 	 * 
 	 * @return the name of the JSP page
 	 */
-    @RequestMapping(value = "/songs", method = RequestMethod.GET)
+    @RequestMapping(value = "songs", method = RequestMethod.GET)
     @ResponseBody
     public String getSongs(Model model) {
     	
@@ -56,12 +56,18 @@ public class MainController {
     	return "songs.html";
 	}
     
+	@RequestMapping("song/{id}")
+	@ResponseBody
+	public Song getById(@PathVariable int id) {
+		return (Song)songService.get(id);
+	}
+    
     /**
      * Retrieves the add page
      * 
      * @return the name of the JSP page
      */
-    @RequestMapping(value = "/songs/add", method = RequestMethod.GET)
+    @RequestMapping(value = "songs/add", method = RequestMethod.GET)
     @ResponseBody
     public String getAdd(Model model) {
     	logger.debug("Received request to show add page");
@@ -80,7 +86,7 @@ public class MainController {
      * 
      * @return  the name of the JSP page
      */
-    @RequestMapping(value = "/songs/add", method = RequestMethod.POST)
+    @RequestMapping(value = "songs/add", method = RequestMethod.POST)
     @ResponseBody
     public String add(@ModelAttribute("songAttribute") Song song) {
 		logger.debug("Received request to add new song");
@@ -101,7 +107,7 @@ public class MainController {
      * 
      * @return  the name of the JSP page
      */
-    @RequestMapping(value = "/songs/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "songs/delete", method = RequestMethod.GET)
     @ResponseBody
     public String delete(@RequestParam(value="id", required=true) Integer id, 
     										Model model) {
@@ -123,7 +129,7 @@ public class MainController {
      * 
      * @return the name of the JSP page
      */
-    @RequestMapping(value = "/songs/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "songs/edit", method = RequestMethod.GET)
     @ResponseBody
     public String getEdit(@RequestParam(value="id", required=true) Integer id,  
     										Model model) {
@@ -143,7 +149,7 @@ public class MainController {
      * 
      * @return  the name of the JSP page
      */
-    @RequestMapping(value = "/songs/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "songs/edit", method = RequestMethod.POST)
     @ResponseBody
     public String saveEdit(@ModelAttribute("songAttribute") Song song, 
     										   @RequestParam(value="id", required=true) Integer id, 
