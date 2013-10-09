@@ -7,7 +7,7 @@
 <title>Voornaam in liedje</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <meta name="description" content="Welcome to my basic template.">
-<link rel="stylesheet" href="css/style.css?v=1">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css" />
 </head>
 
 <body>

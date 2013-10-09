@@ -39,7 +39,7 @@ public class MainController {
 	 * 
 	 * @return the name of the JSP page
 	 */
-    @RequestMapping(value = "songs", method = RequestMethod.GET)
+    @RequestMapping(value = "/songs", method = RequestMethod.GET)
     @ResponseBody
     public String getSongs(Model model) {
     	
@@ -52,7 +52,8 @@ public class MainController {
     	model.addAttribute("songs", songs);
     	
     	// This will resolve to /WEB-INF/view/songs.jsp
-    	return "songs";
+    	// return "songs";
+    	return "songs.html";
 	}
     
     /**
