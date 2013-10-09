@@ -26,6 +26,8 @@
 		<h2>Random Song Generator</h2>
 		<input type="submit" id="randomSong" value="Get Random Song" /><br />
 		<br />
+		<input type="submit" id="randomSong2" value="Get Random Song2" /><br />
+		<br />
 		<div id="songResponse"></div>
 
 		<div id="core" class="clearfix">
@@ -55,6 +57,15 @@
 				});
 			});
 			
+			$('#randomSong2').click(function() {
+				$.ajax({
+  					url: "http://localhost:8080/api/song/random",
+  					success: function( data ) {
+    				// $( "#songResponse" ).html( "<strong>" + song.title + "</strong> degrees" );
+    				alert("testje.");
+  				}
+				});			
+			});
 		});
 		
 	
