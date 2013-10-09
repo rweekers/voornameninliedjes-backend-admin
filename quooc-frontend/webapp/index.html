@@ -50,7 +50,7 @@
 			
 			// Random Song AJAX Request
 			$('#randomSong').click(function() {
-				$.getJSON('http://localhost:8080/api/song/random', function(song) {
+				$.getJSON('http://localhost:8080/api/song/random', function(song) {		
 					$('#songResponse').text(song.title + ', artist ' + song.artist);
 				});
 			});
