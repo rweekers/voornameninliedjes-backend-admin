@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <title>Voornaam in liedje</title>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <meta name="description" content="Welcome to my basic template.">
 <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
 </head>
@@ -42,7 +42,7 @@
 
 		<footer>
 			<p>Some copyright and legal notices here. Maybe use the © symbol
-				a bit.</p>
+				a bit. En zo.</p>
 		</footer>
 	</div>
 
@@ -51,21 +51,21 @@
 		$(document).ready(function() {
 			
 			// Random Song AJAX Request
-			$('#randomSong').click(function() {
-				$.getJSON('http://localhost:8080/api/song/random', function(song) {		
-					$('#songResponse').text(song.title + ', artist ' + song.artist);
-				});
-			});
-			
-			$('#randomSong2').click(function() {
-				$.ajax({
-  					url: "http://localhost:8080/api/song/random",
-  					success: function( data ) {
-    				// $( "#songResponse" ).html( "<strong>" + song.title + "</strong> degrees" );
-    				alert("testje.");
-  				}
-				});			
-			});
+        $('#randomSong').click(function() {
+          console.log("Starting function randomSong.");
+          $.getJSON('http://localhost:8080/api/song/random', function(song) {
+				console.log("Gotten song " + song.artist);            
+            $('#songResponse').text(song.artist + ', title ' + song.title);
+          })
+          .fail(function() {
+            $('#songResponse').text(song.artist + ', title ' + song.title);
+            console.log( "error" );
+          });
+        });
+
+        $('#randomSong2').click(function() {
+          alert("blabla.")			
+	     });
 		});
 		
 	
