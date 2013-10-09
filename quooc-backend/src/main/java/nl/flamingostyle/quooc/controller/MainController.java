@@ -28,7 +28,7 @@ public class MainController {
 	@Autowired
 	SongService songService;
 		
-    @RequestMapping(value = "song/random", method = RequestMethod.GET)
+    @RequestMapping(value = "/song/random", method = RequestMethod.GET)
     @ResponseBody
     public Song randomSong() {
     	return songService.getRandom();

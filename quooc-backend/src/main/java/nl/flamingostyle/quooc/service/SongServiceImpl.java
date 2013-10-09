@@ -38,7 +38,9 @@ public class SongServiceImpl implements SongService {
 	public Song getRandom() {
 		List<Song> songs = getAll();
 		Random randomizer = new Random();
-		return songs.get(randomizer.nextInt(songs.size()));
+		Song song = songs.get(randomizer.nextInt(songs.size()));
+		logger.debug("Random song retrieved: " + song.getArtist() + " - " + song.getTitle());
+		return song;
 	}
 	
 	/**
@@ -62,9 +64,9 @@ public class SongServiceImpl implements SongService {
 	 */
 	public Song get( Integer id ) {
 		// Retrieve existing song first
-		logger.info("Calling get with the id " + id);
+		logger.debug("Calling get with the id " + id);
 		Song song = (Song) getCurrentSession().get(Song.class, id);
-		logger.info("Gotten song " + song.getTitle());
+		logger.debug("Gotten song " + song.getTitle());
 		return song;
 	}
 	
