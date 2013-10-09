@@ -1,0 +1,47 @@
+<div id="addAbonneeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addAbonneeModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="verwijderModalLabel">Abonnement toevoegen</h3>
+  </div>
+  {{#with _abonnee}}
+  <div class="modal-body">
+    <div class="control-group">
+      <label class="control-label">Abonnement</label>
+      <div class="controls">
+        <input type="hidden" id="abonnement" class="input-xxlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Startdatum</label>
+      <div class="controls">
+        <input type="hidden" name="startdatum" value="{{startdatum}}">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Einddatum</label>
+      <div class="controls">
+        <input type="hidden" name="einddatum" value="{{einddatum}}">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Tarief</label>
+      <div class="controls">
+        <strong class="tarief">{{currency 0}}</strong>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Korting</label>
+      <div class="controls">
+        <div class="input-append">
+          <input id="korting" type="number" name="kortingsPercentage" value="{{kortingsPercentage}}" class="input-mini"><span class="add-on">%</span>
+        </div>
+        <strong class="korting"></strong>
+      </div>
+    </div>
+  </div>
+  {{/with}}
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Annuleren</button>
+    <button class="confirm-abbo-add btn btn-success" type="submit">Bewaren</button>
+  </div>
+</div>

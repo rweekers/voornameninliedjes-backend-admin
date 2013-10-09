@@ -1,0 +1,111 @@
+<div class="row"></div>
+<div class="row">
+  <div class="span12">
+    <div class="page-header">
+      <h1>Nieuw abonnement</h1>
+    </div>
+
+    <form class="form-horizontal" id="nieuwAbonnementForm">
+      <input type="hidden" name="id" value="{{id}}" />
+      <div class="row-fluid">
+        <div class="span12">
+          <legend>Soort abonnement</legend>
+          <div class="control-group">
+            <label class="control-label">Abonnement</label>
+            <div class="controls">
+              <select id="code" name="code">
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Omschrijving</label>
+            <div class="controls">
+              <input id="omschrijving" name="omschrijving" class="omschrijving" value="{{omschrijving}}" type="text">
+            </div>
+          </div><div class="control-group">
+            <label class="control-label">Soort</label>
+            <div class="controls">
+              <select id="soort" name="soort">
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="span5">
+          <legend>Belasting</legend>
+          <div class="control-group" id="btwOverPercentageDiv">
+            <label class="control-label">BTW over percentage</label>
+            <div class="controls">
+              <input id="btwOverPercentage" name="btwOverPercentage" class="btwOverPercentage" value="{{btwOverPercentage}}" type="text" placeholder="12">
+            </div>
+          </div>
+          <div class="control-group" id="assurantiebelastingOverPercentageDiv">
+            <label class="control-label">Assurantiebelasting over percentage</label>
+            <div class="controls">
+              <input id="assurantiebelastingOverPercentage" name="assurantiebelastingOverPercentage" value="{{assurantiebelastingOverPercentage}}" type="hidden"/>
+              <input id="assurantiebelastingOverPercentageReadonly" name="assurantiebelastingOverPercentageReadonly" value="{{assurantiebelastingOverPercentage}}" type="text" disabled>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Startdatum abonnement</label>
+            <div class="controls">
+              <input id="startdatumAbonnement" name="startdatumAbonnement" type="hidden" value="{{startdatumAbonnement}}" data-mindate="{{_today}}">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Einddatum abonnement</label>
+            <div class="controls">
+              <input id="einddatumAbonnement" name="einddatumAbonnement" type="hidden" value="{{einddatumAbonnement}}" data-mindate="{{_today}}">
+            </div>
+          </div>
+        </div>
+        <div class="span5">
+          <legend>Nieuw tarief</legend>
+          <div class="control-group">
+            <label class="control-label">Maandtarief</label>
+            <div class="controls">
+              <input type="text" name="nieuwMaandTarief" id="nieuwMaandTarief">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Startdatum</label>
+            <div class="controls">
+              <input type="hidden" name="startdatumTarief" id="startdatumTarief" value="{{startdatumTarief}}" data-mindate="{{_today}}">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Einddatum</label>
+            <div class="controls">
+              <input type="hidden" name="einddatumTarief" id="einddatumTarief" value="{{einddatumTarief}}" data-mindate="{{_today}}">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">BTW (over <span id="btwOverPercentageText">{{number btwOverPercentage 2}}</span>%)</label>
+            <div class="controls">
+               <span id="btwOverBedrag">{{{currency btwOverBedrag}}}</span>
+            </div>
+          </div>
+          <div class="control-group" id="assurantiebelastingOverBedragDiv">
+            <label class="control-label">Assurantiebelasting (over <span id="assurantiebelastingOverPercentageText">{{number assurantiebelastingOverPercentage 2}}</span>%)</label>
+            <div class="controls">
+               <span id="assurantiebelastingOverBedrag">{{{currency assurantiebelastingOverBedrag}}}</span>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Totaal</span></label>
+            <div class="controls">
+               <span id="totaalBedrag">{{{currency totaalBedrag}}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary nieuwOpslaan">Bewaren</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<div id="verwijderModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="verwijderModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="verwijderModalLabel">Verwijder abonnement</h3>
+  </div>
+  <div class="modal-body">
+    <p>Weet u zeker dat u dit abonnement wilt verwijderen?</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Nee</button>
+    <button class="bevestig-verwijder btn btn-danger">Ja</button>
+  </div>
+</div>
+
+<form action="/abonnement" method="post" class="form-horizontal">
+  <input type="hidden" name="id" value="{{id}}" />
+  <div class="row-fluid">
+    <div class="span12">
+      <legend>{{code}} - {{omschrijving}}</legend>
+      <div class="control-group">
+        <label class="control-label">Soort</label>
+        <div class="controls">
+          <input type="text" name="soort[naam]" value="{{soort.naam}}" disabled>
+        </div>
+      </div>
+      <legend>Abonnement</legend>
+      <div class="control-group">
+        <label class="control-label">BTW over percentage</label>
+        <div class="controls">
+          <input id="btwOverPercentage" name="btwOverPercentage" class="btwOverPercentage" value="{{btwOverPercentage}}" type="text" placeholder="12">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Assurantiebelasting over percentage</label>
+        <div class="controls">
+          <input id="assurantiebelastingOverPercentageHidden" name="assurantiebelastingOverPercentage" value="{{assurantiebelastingOverPercentage}}" type="hidden"/>
+          <input id="assurantiebelastingOverPercentage" name="assurantiebelastingOverPercentage" value="{{assurantiebelastingOverPercentage}}" type="text" disabled>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Startdatum abonnement</label>
+        <div class="controls">
+          <input id="startDatumAbonnement" name="startDatumAbonnement" type="text" value="{{date startdatum}}" disabled>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">Einddatum abonnement</label>
+        <div class="controls">
+          <input id="eindDatumAbonnement" name="eindDatumAbonnement" value="{{einddatum}}" data-mindate="{{_today}}" type="hidden" />
+        </div>
+      </div>
+      <legend>Huidig Tarief</legend>
+      
+      <div class="span4">
+        <table class="table table-condensed table-bordered">
+          <tbody>
+            <tr>
+              <td>Maandtarief</td>
+              <td>{{{currency huidigTarief.maandBedrag.amount}}}</td>
+            </tr>
+            <tr>
+              <td>Startdatum</td>
+              <td>{{{date huidigTarief.startdatum}}}</td>
+            </tr>
+            <tr>
+              <td>Assurantiebelasting (over <span id="assurantiebelastingOverPercentageText">{{number assurantiebelastingOverPercentage 2}}</span>%)</td>
+              <td id="assurantiebelastingOverBedrag">{{{currency huidigTarief.assurantiebelastingOverBedrag}}}</td>
+            </tr>
+            <tr>
+              <td>BTW (over <span id="btwOverPercentageText">{{number btwOverPercentage 2}}</span>%)</td>
+              <td id="btwOverBedrag">{{{currency huidigTarief.btwOverBedrag}}}</td>
+            </tr>
+            <tr>
+              <td>Totaal</td>
+              <td id="totaalBedrag">{{{currency huidigTarief.totaalBedrag}}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="form-actions">
+        <button class="verwijder btn btn-danger btn-block">Verwijder</button>
+      </div>
+    </div>
+    <div class="span6">
+      <div class="form-actions">
+        <button type="reset" class="btn">Herstel</button>
+        <button type="submit" class="btn btn-primary">Bewaren</button>
+      </div>
+    </div>
+  </div>
+</form>
