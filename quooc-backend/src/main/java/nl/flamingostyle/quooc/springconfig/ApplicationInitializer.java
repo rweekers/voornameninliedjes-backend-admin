@@ -37,7 +37,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");
 
-		logger.debug("WebapplicationInitializer started...");
+		logger.info("WebapplicationInitializer started...");
 		
 		// Register Spring security filter
 		FilterRegistration.Dynamic corsFilter = container.addFilter(
