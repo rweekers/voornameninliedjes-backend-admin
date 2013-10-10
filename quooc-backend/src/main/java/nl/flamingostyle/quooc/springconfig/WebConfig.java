@@ -14,7 +14,6 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -36,18 +35,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Resource
 	private Environment env;
-
-	/**
-	 * Since we don't have any controller logic, simpler to just define
-	 * controller for page using View Controller. Note: had to extend
-	 * WebMvcConfigurerAdapter to get this functionality
-	 * 
-	 * @param registry
-	 */
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("home");
-	}
 	
 	@Bean
 	public InternalResourceViewResolver viewResolver() {

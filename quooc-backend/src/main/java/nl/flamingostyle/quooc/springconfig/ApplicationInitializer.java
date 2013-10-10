@@ -1,10 +1,13 @@
 package nl.flamingostyle.quooc.springconfig;
 
-import javax.servlet.ServletConfig;
+import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+import nl.flamingostyle.quooc.controller.CorsFilter;
+
+import org.apache.log4j.Logger;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -12,6 +15,8 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 public class ApplicationInitializer implements WebApplicationInitializer {
 
+	protected static Logger logger = Logger.getLogger("corsFilter");
+	
 	@Override
 	public void onStartup(ServletContext container) throws ServletException {
 
@@ -31,6 +36,13 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 				"dispatcher", new DispatcherServlet(dispatcherContext));
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");
+
+		logger.debug("WebapplicationInitializer started...");
+		
+		// Register Spring security filter
+		FilterRegistration.Dynamic corsFilter = container.addFilter(
+				"corsFilter", CorsFilter.class);
+		corsFilter.addMappingForUrlPatterns(null, false, "/*");
 
 	}
 }
