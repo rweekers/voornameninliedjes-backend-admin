@@ -5,6 +5,8 @@ import java.util.Properties;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
+import nl.flamingostyle.quooc.controller.CorsFilter;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -49,6 +51,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addViewController("/").setViewName("home");
 	}
 
+	@Bean
+	public CorsFilter corsFilter() {
+		CorsFilter corsFilter = new CorsFilter();
+		return corsFilter;
+	}
+	
 	@Bean
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();

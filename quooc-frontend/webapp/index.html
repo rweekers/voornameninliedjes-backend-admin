@@ -58,8 +58,9 @@
             $('#songResponse').text(song.artist + ', title ' + song.title);
           })
           .fail(function() {
-            $('#songResponse').text(song.artist + ', title ' + song.title);
-            console.log( "error" );
+            // $('#songResponse').text(song.artist + ', title ' + song.title);
+            // console.log( "error" + song );
+            console.log( "niet goed" );
           });
         });
 
