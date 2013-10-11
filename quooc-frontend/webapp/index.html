@@ -26,9 +26,9 @@
 		<h2>Random Song Generator</h2>
 		<input type="submit" id="randomSong" value="Get Random Song" /><br />
 		<br />
-		<input type="submit" id="randomSong2" value="Get Random Song2" /><br />
-		<br />
 		<div id="songResponse"></div>
+
+      <div id="images"></div>
 
 		<div id="core" class="clearfix">
 			<section id="left">
@@ -61,14 +61,26 @@
             // $('#songResponse').text(song.artist + ', title ' + song.title);
             // console.log( "error" + song );
             console.log( "niet goed" );
+            });
           });
         });
 
-        $('#randomSong2').click(function() {
-          alert("blabla.")			
-	     });
-		});
-		
+        $(function(){
+            var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+            $.getJSON( flickerAPI, {
+                tags: "paris",
+                tagmode: "any",
+                format: "json"
+            })
+              .done(function( data ) {
+                $.each( data.items, function( i, item ) {
+                  $( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
+                  if ( i === 3 ) {
+                    return false;
+                  }
+                });
+            });
+        });
 	
 	</script>
 
