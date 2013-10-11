@@ -52,7 +52,7 @@
 			
 			// Random Song AJAX Request
         $('#randomSong').click(function() {
-          console.log("Starting function randomSong.");
+          console.log("Starting function randomSong from button.");
           $.getJSON('http://localhost:8080/api/song/random', function(song) {
 				console.log("Gotten song " + song.artist);            
             $('#songResponse').text(song.artist + ', title ' + song.title);
@@ -63,6 +63,14 @@
             console.log( "niet goed" );
             });
           });
+        });
+
+        $(function(){
+            console.log("Starting function randomSong from page load.");
+            $.getJSON('http://localhost:8080/api/song/random', function(song) {
+				console.log("Gotten song " + song.artist);            
+              $('#songResponse').text(song.artist + ', title ' + song.title);
+            })
         });
 
         $(function(){
