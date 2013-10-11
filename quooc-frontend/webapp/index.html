@@ -1,96 +1,96 @@
 <!doctype html>
 <head>
-<meta charset="utf-8">
-<title>Voornaam in liedje</title>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<meta name="description" content="Welcome to my basic template.">
-<link rel="stylesheet" href="resources/css/style.css" type="text/css" />
+    <meta charset="utf-8">
+    <title>Voornaam in liedje</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <meta name="description" content="Welcome to my basic template.">
+    <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
 </head>
 
 <body>
-	<div id="wrapper">
-		<header>
-			<h1>Welkom bij de site met voornamen. </h1>
+    <div id="wrapper">
+        <header>
+            <h1>Welkom bij de site met voornamen. </h1>
 
-			<nav>
-				<ul>
-					<li><a rel="external" href="#">Home</a></li>
-					<li><a rel="external" href="#">Over ons</a></li>
-					<li><a rel="external" href="#">Contact</a></li>
-				</ul>
-			</nav>
-		</header>
+            <nav>
+                <ul>
+                    <li><a rel="external" href="#">Home</a></li>
+                    <li><a rel="external" href="#">Over ons</a></li>
+                    <li><a rel="external" href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
 
-		<br />
+        <br />
 
-		<h2>Random Song Generator</h2>
-		<input type="submit" id="randomSong" value="Get Random Song" /><br />
-		<br />
-		<div id="songResponse"></div>
+        <h2>Random Song Generator</h2>
+        <input type="submit" id="randomSong" value="Get Random Song" /><br />
+        <br />
+        <div id="songResponse"></div>
 
-      <div id="images"></div>
+        <div id="images"></div>
 
-		<div id="core" class="clearfix">
-			<section id="left">
-				<p>some content here.</p>
-			</section>
+        <div id="core" class="clearfix">
+            <section id="left">
+                <p>some content here.</p>
+            </section>
 
-			<section id="right">
-				<p>but some here as well!</p>
-			</section>
-		</div>
+            <section id="right">
+                <p>but some here as well!</p>
+            </section>
+        </div>
 
-		<footer>
-			<p>Some copyright and legal notices here. Maybe use the © symbol
-				a bit. En zo.</p>
-		</footer>
-	</div>
+        <footer>
+            <p>Some copyright and legal notices here. Maybe use the © symbol
+                a bit. En zo.</p>
+        </footer>
+    </div>
 
-	<script type="text/javascript">
-	
-		$(document).ready(function() {
-			
-			// Random Song AJAX Request
-        $('#randomSong').click(function() {
-          console.log("Starting function randomSong from button.");
-          $.getJSON('http://localhost:8080/api/song/random', function(song) {
-				console.log("Gotten song " + song.artist);            
-            $('#songResponse').text(song.artist + ', title ' + song.title);
-          })
-          .fail(function() {
-            // $('#songResponse').text(song.artist + ', title ' + song.title);
-            // console.log( "error" + song );
-            console.log( "niet goed" );
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            // Random Song AJAX Request
+            $('#randomSong').click(function() {
+                console.log("Starting function randomSong from button.");
+                $.getJSON('http://localhost:8080/api/song/random', function(song) {
+                    console.log("Gotten song " + song.artist);
+                    $('#songResponse').text(song.artist + ', title ' + song.title);
+                })
+                        .fail(function() {
+                    // $('#songResponse').text(song.artist + ', title ' + song.title);
+                    // console.log( "error" + song );
+                    console.log("niet goed");
+                });
             });
-          });
         });
 
-        $(function(){
+        $(function() {
             console.log("Starting function randomSong from page load.");
             $.getJSON('http://localhost:8080/api/song/random', function(song) {
-				console.log("Gotten song " + song.artist);            
-              $('#songResponse').text(song.artist + ', title ' + song.title);
+                console.log("Gotten song " + song.artist);
+                $('#songResponse').text(song.artist + ', title ' + song.title);
             })
         });
 
-        $(function(){
+        $(function() {
             var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-            $.getJSON( flickerAPI, {
+            $.getJSON(flickerAPI, {
                 tags: "paris",
                 tagmode: "any",
                 format: "json"
             })
-              .done(function( data ) {
-                $.each( data.items, function( i, item ) {
-                  $( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
-                  if ( i === 3 ) {
-                    return false;
-                  }
+                    .done(function(data) {
+                $.each(data.items, function(i, item) {
+                    $("<img>").attr("src", item.media.m).appendTo("#images");
+                    if (i === 3) {
+                        return false;
+                    }
                 });
             });
         });
-	
-	</script>
+
+    </script>
 
 </body>
 </html>
