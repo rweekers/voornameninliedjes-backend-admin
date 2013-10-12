@@ -127,6 +127,9 @@
 
                     <div class="zen-resources" id="zen-resources">
                         <h3 class="resources">Resources:</h3>
+
+                        <iframe width="320" height="180" src="//www.youtube.com/embed/uq-gYOrU8bA?feature=player_detailpage" frameborder="0"></iframe>
+
                         <ul>
                             <li class="view-css">
                                 <a href="182/182.css" title="View the source CSS file of the currently-viewed design.">
@@ -166,67 +169,7 @@
         <div class="extra1" role="presentation"></div><div class="extra2" role="presentation"></div><div class="extra3" role="presentation"></div>
         <div class="extra4" role="presentation"></div><div class="extra5" role="presentation"></div><div class="extra6" role="presentation"></div>
 
-        <script type="text/javascript">
-
-            var artist;
-            var title;
-
-            var customTags;
-
-            $(document).ready(function() {
-
-                // Random Song AJAX Request
-                $('#randomSong').click(function() {
-                    console.log("Starting function randomSong from button.");
-                    $.getJSON('http://localhost:8080/api/song/random', function(song) {
-                        console.log("Gotten song " + song.artist);
-                        $('#songResponse').text(song.artist + ' - ' + song.title);
-                        artist = song.artist;
-                        title = song.title;
-                        customTags = artist + " " + title;
-                        // callFlickr(customTags);
-                    })
-                            .fail(function() {
-                        // $('#songResponse').text(song.artist + ', title ' + song.title);
-                        // console.log( "error" + song );
-                        console.log("niet goed");
-                    });
-                });
-            });
-
-            $(function() {
-                console.log("Starting function randomSong from page load.");
-                $.getJSON('http://localhost:8080/api/song/random', function(song) {
-                    console.log("Gotten song " + song.artist);
-                    $('#songResponse').text(song.artist + ' - ' + song.title);
-                    artist = song.artist;
-                    title = song.title;
-                    customTags = artist + " " + title;
-                    console.log("De artist en title variabelen zijn " + artist + " " + title);
-                    callFlickr(customTags);
-                });
-            });
-
-            function callFlickr(tags) {
-                var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-                console.log("Calling flickr api with tags: " + tags);
-                $.getJSON(flickerAPI, {
-                    tags: "paris",
-                    // tags: tags,
-                    tagmode: "any",
-                    format: "json"
-                })
-                        .done(function(data) {
-                    $.each(data.items, function(i, item) {
-                        $("<img>").attr("src", item.media.m).appendTo("#images");
-                        if (i === 3) {
-                            return false;
-                        }
-                    });
-                });
-            }
-
-        </script>
+        <script src="resources/js/custom.js"></script>
 
     </body>
 </html>
