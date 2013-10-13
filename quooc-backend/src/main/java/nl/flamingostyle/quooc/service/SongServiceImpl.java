@@ -42,6 +42,12 @@ public class SongServiceImpl implements SongService {
 		logger.debug("Random song retrieved: " + song.getArtist() + " - " + song.getTitle());
 		return song;
 	}
+        
+        public Song getRandomSQL() {
+            Query query = getCurrentSession().createQuery("from song order by rand() limit 1");
+            
+            return (Song)query.list().get(0);
+        }
 	
 	/**
 	 * Retrieves all songs

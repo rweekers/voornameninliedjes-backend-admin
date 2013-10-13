@@ -33,6 +33,12 @@ public class MainController {
     public Song randomSong() {
     	return songService.getRandom();
     }
+    
+    @RequestMapping(value = "songs/all", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Song> allSongs() {
+    	return songService.getAll();
+    }
 	
 	/**
 	 * Handles and retrieves all songs and show it in a JSP page

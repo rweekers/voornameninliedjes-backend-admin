@@ -6,6 +6,8 @@ import nl.flamingostyle.quooc.domain.Song;
 
 public interface SongService {
 	public Song getRandom();
+        
+        public Song getRandomSQL();
 
 	public List<Song> getAll();
 
