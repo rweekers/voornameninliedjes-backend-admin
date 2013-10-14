@@ -23,12 +23,14 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableTransactionManagement
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-	private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
+	private static final String PROPERTY_NAME_DATABASE_DRIVER = "org.postgresql.Driver";
 	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "root";
-	private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost/voornaaminliedje";
-	private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
+	// private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost/voornaaminliedje";
+        private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:postgresql://localhost:5432/voornaaminliedje";
+	private static final String PROPERTY_NAME_DATABASE_USERNAME = "postgres";
 
-	private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQL5InnoDBDialect";
+	// private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
+        private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "net.sf.hibernate.dialect.PostgreSQLDialect";
 	private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "true";
 	private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "nl.flamingostyle.quooc.domain";
 	private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL = "hibernate.hbm2ddl.validate";
