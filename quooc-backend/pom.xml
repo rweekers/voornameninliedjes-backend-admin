@@ -164,13 +164,13 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
-        <dependency>
+        <!-- dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.17</version>
             <type>jar</type>
             <scope>compile</scope>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
