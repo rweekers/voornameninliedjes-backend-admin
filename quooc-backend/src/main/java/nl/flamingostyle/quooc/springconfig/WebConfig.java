@@ -25,7 +25,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "root";
     private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:postgresql://localhost:5432/voornaaminliedje";
 	private static final String PROPERTY_NAME_DATABASE_USERNAME = "postgres";
-        // private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
 
 	private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
 	private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "true";
