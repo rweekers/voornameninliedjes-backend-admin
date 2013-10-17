@@ -8,7 +8,7 @@ $(document).ready(function() {
 	// Random Song AJAX Request
 	$('#randomSong').click(function() {
 		console.log("Starting function randomSong from button.");
-		$.getJSON('http://localhost:8080/api/song/random', function(song) {
+		$.getJSON('http://localhost:8080/voornaaminliedje/api/song/random', function(song) {
 			console.log("Gotten song " + song.artist);
 			$('#songResponse').text(song.artist + ' - ' + song.title);
 			artist = song.artist;
@@ -25,7 +25,7 @@ $(document).ready(function() {
 
 $(function() {
 	console.log("Starting function randomSong from page load.");
-	$.getJSON('http://localhost:8080/api/song/random', function(song) {
+	$.getJSON('http://localhost:8080/voornaaminliedje/api/song/random', function(song) {
 		console.log("Gotten song " + song.artist);
 		$('#songResponse').text(song.artist + ' - ' + song.title);
 		artist = song.artist;
