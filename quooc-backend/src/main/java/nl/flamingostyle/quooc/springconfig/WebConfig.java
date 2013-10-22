@@ -22,9 +22,16 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "org.postgresql.Driver";
-	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "root";
-    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:postgresql://localhost:5432/voornaaminliedje";
-	private static final String PROPERTY_NAME_DATABASE_USERNAME = "postgres";
+	
+	// private static final String PROPERTY_NAME_DATABASE_PASSWORD = "root";
+    
+	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "kzciaMUwTvd4y9Q0KYI6";
+	
+	private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:postgresql://localhost:5432/voornaaminliedje";
+	
+	// private static final String PROPERTY_NAME_DATABASE_USERNAME = "postgres";
+	
+	private static final String PROPERTY_NAME_DATABASE_USERNAME = "vil";
 
 	private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
 	private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "true";
