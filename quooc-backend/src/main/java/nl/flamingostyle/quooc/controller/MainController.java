@@ -34,6 +34,12 @@ public class MainController {
     	return songService.getRandom();
     }
     
+    @RequestMapping(value = "song/find/{firstname}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Song> findSongs(@PathVariable String firstname) {
+    	return songService.findByFirstname(firstname);
+    }
+    
     @RequestMapping(value = "songs/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Song> allSongs() {

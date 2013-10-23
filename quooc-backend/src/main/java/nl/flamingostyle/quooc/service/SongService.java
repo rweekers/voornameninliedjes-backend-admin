@@ -8,6 +8,8 @@ public interface SongService {
 	public Song getRandom();
 
 	public List<Song> getAll();
+	
+	public List<Song> findByFirstname(String firstname);
 
 	public void add(Song song);
 

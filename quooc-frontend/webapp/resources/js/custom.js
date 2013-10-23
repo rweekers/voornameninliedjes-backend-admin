@@ -14,11 +14,8 @@ $(document).ready(function() {
 			artist = song.artist;
 			title = song.title;
 			customTags = artist + " " + title;
-			// callFlickr(customTags);
 		}).fail(function() {
-			// $('#songResponse').text(song.artist + ', title ' + song.title);
-			// console.log( "error" + song );
-			console.log("niet goed");
+			console.log("Error bij zoeken random nummer.");
 		});
 	});
 });
