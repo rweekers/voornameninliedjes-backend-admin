@@ -13,7 +13,7 @@ display: block;
 
 body {
 line-height: 1;
-background: #555 url(images/12abg.jpg) repeat;
+background: #555 url(/resources/images/12abg.jpg) repeat;
 font-family: Verdana, Arial, Helvetica, sans-serif;
 color: #333;
 font-size: 14px;
@@ -46,7 +46,7 @@ margin-top: -5px;
 width: 940px;
 margin: 0 auto;
 padding-top: 30px;
-background: #FFF url(images/colbg.png) repeat-y;
+background: #FFF url(/resources/images/colbg.png) repeat-y;
 overflow: hidden;
 }
 
