@@ -5,6 +5,9 @@
 <title>Voornaam in liedje: Een verzameling van populaire liedjes
 	met voornamen in de titel</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type='text/javascript' src='resources/js/knockout-2.3.0.js'></script>
+<script type='text/javascript'
+	src='resources/js/knockout.mapping-latest.js'></script>
 <meta name="description" content="Welcome to my basic template.">
 <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,9 +41,9 @@
 					<b>info <i>at</i> voornaaminliedje <i>punt</i> nl
 					</b>
 				</p>
-				<p>Wanneer geverifiëerd kan worden dat het nummer bestaat en
+				<p>Wanneer geverifiÃ«erd kan worden dat het nummer bestaat en
 					voldoet aan de regels, wordt het in de database opgenomen.
-					Achtergronden voor één van de nummers, of de namen eruit, zijn
+					Achtergronden voor Ã«Ã«n van de nummers, of de namen eruit, zijn
 					altijd welkom.</p>
 			</div>
 		</section>
@@ -92,32 +95,20 @@
 				<div class="design-selection" id="design-selection">
 					<h3 class="select">Liedjes</h3>
 					<nav role="navigation">
-						<ul>
-							<li><a href="?cssfile=/216/216.css" class="design-name">Fountain
-									Kiss</a> by <a href="http://jeremycarlson.com"
-								class="designer-name">Jeremy Carlson</a></li>
-							<li><a href="?cssfile=/215/215.css" class="design-name">A
-									Robot Named Jimmy</a> by <a href="http://meltmedia.com/"
-								class="designer-name">meltmedia</a></li>
-							<li><a href="?cssfile=/214/214.css" class="design-name">Verde
-									Moderna</a> by <a href="http://www.mezzoblue.com/"
-								class="designer-name">Dave Shea</a></li>
-							<li><a href="?cssfile=/213/213.css" class="design-name">Under
-									the Sea!</a> by <a href="http://www.ericstoltz.com/"
-								class="designer-name">Eric Stoltz</a></li>
-							<li><a href="?cssfile=/212/212.css" class="design-name">Make
-									’em Proud</a> by <a href="http://skybased.com/"
-								class="designer-name">Michael McAghon and Scotty Reifsnyder</a>
-							</li>
-							<li><a href="?cssfile=/211/211.css" class="design-name">Orchid
-									Beauty</a> by <a href="#" class="designer-name">Kevin Addison</a></li>
-							<li><a href="?cssfile=/210/210.css" class="design-name">Oceanscape</a>
-								by <a href="http://www.pixel-house.com.au/"
-								class="designer-name">Justin Gray</a></li>
-							<li><a href="?cssfile=/209/209.css" class="design-name">CSS
-									Co., Ltd.</a> by <a href="http://www.benklemm.de/"
-								class="designer-name">Benjamin Klemm</a></li>
-						</ul>
+						<table>
+							<thead>
+								<tr>
+									<th>First name</th>
+									<th>Last name</th>
+								</tr>
+							</thead>
+							<tbody data-bind="foreach: songs">
+								<tr>
+									<td data-bind="text: $data.artist"></td>
+									<td data-bind="text: $data.title"></td>
+								</tr>
+							</tbody>
+						</table>
 					</nav>
 				</div>
 
@@ -172,6 +163,7 @@
 	<div class="extra6" role="presentation"></div>
 
 	<script src="resources/js/custom.js"></script>
+	<script src="resources/js/knockoutCustom.js"></script>
 
 </body>
 </html>
