@@ -80,10 +80,12 @@ public class SongServiceImpl implements SongService {
 	public List<Song> findByFirstname(String firstname) {
 		logger.debug("Finding songs with firstname " + firstname);
 		
-		String firstnameLowerCase = firstname.toLowerCase();
+		String firstnameLowerCaseWithWildcards = "%" + firstname.toLowerCase() + "%";
 		
 		// Create a Hibernate query (HQL)
-		Query query = getCurrentSession().createQuery("FROM  Song where lower(firstname) like '%" + firstnameLowerCase + "%'");
+		// Query query = getCurrentSession().createQuery("FROM  Song where lower(firstname) like '%" + firstnameLowerCase + "%'");
+		Query query = getCurrentSession().createQuery("FROM  Song where lower(firstname) like :firstname");
+		query.setParameter("firstname", firstnameLowerCaseWithWildcards);
 		
 		return query.list();
 	}
