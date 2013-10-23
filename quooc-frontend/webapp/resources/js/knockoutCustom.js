@@ -1,34 +1,28 @@
-/* ko.applyBindings({
-	songs : [ {
-		artist : 'Bert',
-		title : 'Bertington'
-	}, {
-		artist : 'Charles',
-		title : 'Charlesforth'
-	}, {
-		artist : 'Denise',
-		title : 'Dentiste'
-	} ]
-});*/
+function TasksViewModel() {
+        var self = this;
+        self.tasksURI = 'http://localhost:8080/voornaaminliedje/api.song/find/bert';
+        self.songs = ko.observableArray();
 
-/*
-ko
-		.applyBindings({
-			songs : $
-					.getJSON('http://localhost:8080/voornaaminliedje/api/song/find/bert')
-		});*/
+        self.ajax = function(uri, method, data) {
+            var request = {
+                url: uri,
+                type: method,
+                contentType: "application/json",
+                accepts: "application/json",
+                cache: false,
+                dataType: 'json',
+                data: JSON.stringify(data),
+            };
+            return $.ajax(request);
+        }
 
-$(function() {
-	$.getJSON('http://localhost:8080/voornaaminliedje/api/song/find/bert', function(result) {
-
-		function viewModel() {
-			return ko.mapping.fromJS(result);
-		}
-		;
-	    
-		ko.applyBindings(new viewModel());
-		
-	}).error(function() {
-		alert("error");
-	});
-});
+        $.getJSON('http://localhost:8080/voornaaminliedje/api/song/find/maria', function(data) {
+            for (var i = 0; i < data.length; i++) {
+                self.songs.push({
+                    artist: ko.observable(data[i].artist),
+                    title: ko.observable(data[i].title)
+                });
+            }
+        });
+    }
+    ko.applyBindings(new TasksViewModel(), $('#main')[0]);
