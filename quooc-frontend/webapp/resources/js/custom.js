@@ -28,8 +28,7 @@ $(function() {
 		artist = song.artist;
 		title = song.title;
 		customTags = artist + " " + title;
-		console.log("De artist en title variabelen zijn " + artist + " "
-				+ title);
+		console.log("De artist en title variabelen zijn " + artist + " " + title);
 		callFlickr(customTags);
 	});
 });
@@ -38,10 +37,10 @@ function callFlickr(tags) {
 	var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
 	console.log("Calling flickr api with tags: " + tags);
 	$.getJSON(flickerAPI, {
-		tags : "music guitar",
+		tags: "music guitar",
 		// tags: tags,
-		tagmode : "any",
-		format : "json"
+		tagmode: "any",
+		format: "json"
 	}).done(function(data) {
 		$.each(data.items, function(i, item) {
 			$("<img>").attr("src", item.media.m).appendTo("#images");
