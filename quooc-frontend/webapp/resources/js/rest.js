@@ -15,27 +15,23 @@ $(document).ready(function() {
 			title = song.title;
 			customTags = artist + " " + title;
 		}).fail(function() {
-			console.log("Error bij zoeken random nummer.");
+			console.log(error);
 		});
 	});
 });
 
 $(function() {
-	console.log("Starting function randomSong from page load.");
 	$.getJSON('http://localhost:8080/voornaaminliedje/api/song/random', function(song) {
-		console.log("Gotten song " + song.artist);
 		$('#songResponse').text(song.artist + ' - ' + song.title);
 		artist = song.artist;
 		title = song.title;
 		customTags = artist + " " + title;
-		console.log("De artist en title variabelen zijn " + artist + " " + title);
 		callFlickr(customTags);
 	});
 });
 
 function callFlickr(tags) {
 	var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-	console.log("Calling flickr api with tags: " + tags);
 	$.getJSON(flickerAPI, {
 		tags: "music guitar",
 		// tags: tags,

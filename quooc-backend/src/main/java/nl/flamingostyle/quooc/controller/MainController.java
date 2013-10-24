@@ -46,6 +46,12 @@ public class MainController {
     	return songService.getAll();
     }
 	
+    @RequestMapping(value = "songs/some", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Song> allSongsPagination() {
+        return songService.getAllPagination();
+    }
+
 	/**
 	 * Handles and retrieves all songs and show it in a JSP page
 	 * 

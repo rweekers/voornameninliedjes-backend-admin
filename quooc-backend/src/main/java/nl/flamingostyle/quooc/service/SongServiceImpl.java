@@ -36,10 +36,16 @@ public class SongServiceImpl implements SongService {
  	 * @return A random song from the database 
  	 */
 	public Song getRandom() {
-		List<Song> songs = getAll();
-		Random randomizer = new Random();
-		Song song = songs.get(randomizer.nextInt(songs.size()));
-		logger.debug("Random song retrieved: " + song.getArtist() + " - " + song.getTitle());
+		// List<Song> songs = getAll();
+		// Random randomizer = new Random();
+		// Song song = songs.get(randomizer.nextInt(songs.size()));
+		// logger.debug("Random song retrieved: " + song.getArtist() + " - " + song.getTitle());
+		
+		// Retrieve existing song 'You can call me Al'
+		int id = 12070;
+		Song song = (Song) getCurrentSession().get(Song.class, id);
+		logger.debug("Gotten song " + song.getTitle());
+		
 		return song;
 	}
 	
@@ -59,6 +65,24 @@ public class SongServiceImpl implements SongService {
 		return  query.list();
 	}
 	
+    /**
+	 * Retrieves all songs
+	 * 
+	 * @return a list of songs
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Song> getAllPagination() {
+		logger.debug("Retrieving all songs");
+		
+		// Create a Hibernate query (HQL)
+		Query query = getCurrentSession().createQuery("FROM  Song");
+		query.setFirstResult(0);
+		query.setMaxResults(15);
+		
+		// Retrieve all
+		return  query.list();
+	}
+
 	/**
 	 * Retrieves a single song
 	 */
