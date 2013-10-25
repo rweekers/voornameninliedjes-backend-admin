@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class SongServiceImpl implements SongService {
 
-	protected static Logger logger = Logger.getLogger("service");
+	protected static final Logger logger = Logger.getLogger("service");
 	
  	@Autowired
 	private SessionFactory sessionFactory;
