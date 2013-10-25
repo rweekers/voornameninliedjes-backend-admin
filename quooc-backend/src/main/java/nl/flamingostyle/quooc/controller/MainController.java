@@ -48,8 +48,8 @@ public class MainController {
 	
     @RequestMapping(value = "songs/some", method = RequestMethod.GET)
     @ResponseBody
-    public List<Song> allSongsPagination() {
-        return songService.getAllPagination();
+    public List<Song> allSongsPagination(@RequestParam("max") int max, @RequestParam("offset") int offset) {
+        return songService.getAllPagination(max, offset);
     }
 
 	/**

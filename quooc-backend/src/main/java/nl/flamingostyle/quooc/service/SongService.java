@@ -9,7 +9,7 @@ public interface SongService {
 
 	public List<Song> getAll();
 
-	public List<Song> getAllPagination();
+	public List<Song> getAllPagination(int max, int offset);
 	
 	public List<Song> findByFirstname(String firstname);
 

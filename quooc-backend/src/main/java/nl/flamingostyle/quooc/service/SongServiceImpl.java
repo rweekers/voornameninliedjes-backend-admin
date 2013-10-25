@@ -1,7 +1,6 @@
 package nl.flamingostyle.quooc.service;
 
 import java.util.List;
-import java.util.Random;
 
 import nl.flamingostyle.quooc.domain.Song;
 
@@ -71,13 +70,13 @@ public class SongServiceImpl implements SongService {
 	 * @return a list of songs
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Song> getAllPagination() {
+	public List<Song> getAllPagination(int max, int offset) {
 		logger.debug("Retrieving all songs");
 		
 		// Create a Hibernate query (HQL)
 		Query query = getCurrentSession().createQuery("FROM  Song");
-		query.setFirstResult(0);
-		query.setMaxResults(15);
+		query.setFirstResult(offset);
+		query.setMaxResults(max);
 		
 		// Retrieve all
 		return  query.list();
