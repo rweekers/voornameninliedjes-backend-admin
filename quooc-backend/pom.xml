@@ -11,7 +11,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jackson.version>2.2.2</jackson.version>
         <jaxb-api.version>2.2.9</jaxb-api.version>
-        <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
     </properties>
     <dependencies>
         <dependency>
