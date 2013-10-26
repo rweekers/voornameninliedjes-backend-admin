@@ -12,6 +12,8 @@ public interface SongService {
 	public List<Song> getAllPagination(int max, int offset);
 	
 	public List<Song> findByFirstname(String firstname);
+        
+        public long getMax();
 
 	public void add(Song song);
 
