@@ -13,6 +13,8 @@ function SongsViewModel() {
     self.songs = ko.observableArray([]);
     self.newSongText = ko.observable();
     self.url = ko.observable();
+    self.van = ko.observable();
+    self.tot = ko.observable();
     url = "http://localhost:8080/voornaaminliedje/api/songs/some?offset=" + offset + "&max=" + max;
     urlMax = "http://localhost:8080/voornaaminliedje/api/songs/max";
     count = 0;
@@ -42,6 +44,9 @@ function SongsViewModel() {
             });
             self.songs(mappedSongs);
         });
+        
+        self.van = offset;
+        self.tot = offset + max;
     };
 
     self.next = function() {
@@ -57,6 +62,9 @@ function SongsViewModel() {
             });
             self.songs(mappedSongs);
         });
+        
+        self.van = offset;
+        self.tot = offset + max;
     };
 }
 
