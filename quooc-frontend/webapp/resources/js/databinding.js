@@ -9,12 +9,14 @@ function Song(data) {
 function SongsViewModel() {
     // Data
     var self = this;
+    
+    self.van = ko.observable(9);
+    self.tot = ko.observable(13);
 
     self.songs = ko.observableArray([]);
     self.newSongText = ko.observable();
     self.url = ko.observable();
-    self.van = ko.observable();
-    self.tot = ko.observable();
+
     url = "http://localhost:8080/voornaaminliedje/api/songs/some?offset=" + offset + "&max=" + max;
     urlMax = "http://localhost:8080/voornaaminliedje/api/songs/max";
     count = 0;
@@ -47,6 +49,7 @@ function SongsViewModel() {
         
         self.van = offset;
         self.tot = offset + max;
+        console.log("Waarden: " + self.van + " en " + self.tot);
     };
 
     self.next = function() {
@@ -65,6 +68,8 @@ function SongsViewModel() {
         
         self.van = offset;
         self.tot = offset + max;
+        
+        console.log("Waarden: " + self.van + " en " + self.tot);
     };
 }
 
