@@ -30,8 +30,8 @@ function SongsViewModel() {
     });
 
     self.previous = function() {
-        if (offset > 10) {
-            offset = offset - 10;
+        if (offset > max) {
+            offset = offset - max;
         } else {
             offset = 0;
         }
@@ -45,10 +45,10 @@ function SongsViewModel() {
     };
 
     self.next = function() {
-        if (offset + 10 > count){
-            offset = count - 10;
+        if (offset + 2 * max < count){
+            offset = offset + max;
         } else {
-            offset = offset + 10;
+            offset = count - max;
         }
         url = "http://localhost:8080/voornaaminliedje/api/songs/some?offset=" + offset + "&max=" + max;
         $.getJSON(url, function(allData) {
