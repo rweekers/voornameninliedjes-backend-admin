@@ -1,4 +1,4 @@
-var offset = 99;
+var offset = 730;
 var max = 10;
 
 function Song(data) {
@@ -14,6 +14,12 @@ function SongsViewModel() {
     self.newSongText = ko.observable();
     self.url = ko.observable();
     url = "http://localhost:8080/voornaaminliedje/api/songs/some?offset=" + offset + "&max=" + max;
+    urlMax = "http://localhost:8080/voornaaminliedje/api/songs/max";
+    count = 0;
+    
+    $.getJSON(urlMax, function(data) {
+        count = data.valueOf();
+    });
 
     // Load initial state from server, convert it to Song instances, then populate self.songs
     $.getJSON(url, function(allData) {
@@ -39,7 +45,11 @@ function SongsViewModel() {
     };
 
     self.next = function() {
-        offset = offset + 10;
+        if (offset + 10 > count){
+            offset = count - 10;
+        } else {
+            offset = offset + 10;
+        }
         url = "http://localhost:8080/voornaaminliedje/api/songs/some?offset=" + offset + "&max=" + max;
         $.getJSON(url, function(allData) {
             var mappedSongs = $.map(allData, function(item) {

@@ -63,7 +63,7 @@ p:nth-child(2),p:nth-child(3),p:nth-child(4),p:nth-child(5),p:nth-child(6) { pad
  margin: 0;
  padding: 0;
 }
-.design-selection h3, .zen-resources h3, .design-archives h3 {
+.design-selection h3, .quooc-resources h3, .design-archives h3 {
  height: 23px;
  margin: 0;
  padding: 0;
@@ -76,7 +76,7 @@ p:nth-child(2),p:nth-child(3),p:nth-child(4),p:nth-child(5),p:nth-child(6) { pad
 .requirements h3 { background: url(/resources/images/hdReq.gif) no-repeat; }
 .design-selection h3 { background: url(/resources/images/hdSelect.gif) no-repeat; }
 .design-archives h3 { background: url(/resources/images/hdArch.gif) no-repeat; margin-top: 15px;}
-.zen-resources h3 { background: url(/resources/images/hdResc.gif) no-repeat; margin-top: 15px; }
+.quooc-resources h3 { background: url(/resources/images/hdResc.gif) no-repeat; margin-top: 15px; }
 /* --// links --// */
 a { 
  color: #683A33;
@@ -104,7 +104,7 @@ li a.designer-name {
  padding: 0;
  background: none;
 }
-.design-archives li a, .zen-resources li a {
+.design-archives li a, .quooc-resources li a {
  display: inline;
  font-weight: normal;
  font-size: 9px;
@@ -135,7 +135,7 @@ ul,li {
  margin: 0;
  line-height: 15px; 
 }
-.design-selection, .zen-resources, .design-archives {
+.design-selection, .quooc-resources, .design-archives {
  padding-bottom: 6px;
  background: url(/resources/images/liBttmBg.gif) center bottom no-repeat;
 }
