@@ -72,6 +72,29 @@
                         voornaam in de <i>titel</i> van het nummer zit. Het nummer moet
                         officieel uitgebracht zijn, en het moet uit de tekst af te leiden
                         zijn dat het daadwerkelijk een voornaam betreft in het nummer.
+                        
+                        <h3 class="select">Zoek een nummer!</h3>
+                        
+                        
+                        <p>First name: <input data-bind="value: voornaam" /></p>
+                        <button data-bind="click: zoeknummers">Zoek</button>
+                        
+                        <nav role="navigation">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Artiest</th>
+                                        <th>Titel</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: findSongs">
+                                    <tr>
+                                        <td data-bind="text: artist"></td>
+                                        <td data-bind="text: title"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </nav>
                 </div>
 
                 <footer>
@@ -110,10 +133,6 @@
                         </nav>
                         <a href="#" data-bind="click: previous">Vorige</a>
                         <a href="#" data-bind="click: next">Volgende</a>
-                        <span>Van: <strong data-bind="text: van"></strong></span>
-                        <span>Tot: <strong data-bind="text: tot"></strong></span>
-                        <!--span data-bind="text: van"></span>
-                        <span data-bind="text: tot"></span-->
                     </div>
                     
                     <div class="design-archives" id="design-archives">
