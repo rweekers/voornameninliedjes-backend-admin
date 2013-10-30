@@ -10,7 +10,9 @@ function SongsViewModel() {
     // Data
     var self = this;
 
-    self.voornaam = ko.observable("bert");
+    self.voornaam = ko.observable();
+    self.vanaf = ko.observable();
+
     self.songs = ko.observableArray([]);
     self.findSongs = ko.observableArray([]);
 
@@ -22,7 +24,6 @@ function SongsViewModel() {
     count = 0;
 
     urlFind = "http://localhost:8080/voornaaminliedje/api/song/find/";
-    +self.voornaam();
 
     $.getJSON(urlMax, function(data) {
         count = data.valueOf();
@@ -81,6 +82,19 @@ function SongsViewModel() {
                 return new Song(item);
             });
             self.findSongs(mappedSongs);
+        });
+    };
+
+    self.blader = function() {
+        url = "http://localhost:8080/voornaaminliedje/api/songs/some?offset=" + self.vanaf() + "&max=" + max;
+
+        offset = self.vanaf() -1 + 1;
+
+        $.getJSON(url, function(allData) {
+            var mappedSongs = $.map(allData, function(item) {
+                return new Song(item);
+            });
+            self.songs(mappedSongs);
         });
     };
 }
