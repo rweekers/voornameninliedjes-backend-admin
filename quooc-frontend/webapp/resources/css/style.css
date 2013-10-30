@@ -1,7 +1,9 @@
 body { 
  font: 11px/18px verdana,arial,helvetica,sans-serif; 
  color: #512720; 
- background: #512720 url(/resources/images/bodyBg.gif) center top repeat-y; 
+ // background: #512720 url(/resources/images/bodyBg.gif) center top repeat-y;
+ // background: #512720 url(/resources/images/bgNew2.gif) center top repeat-y;
+ background: url(/resources/images/generalBackground.png) repeat-y;
  margin: 0;
  padding: 0;
  text-align: center;	 
@@ -11,8 +13,10 @@ abbr {
  border-bottom: 1px dotted #B0915F;
 }
 .page-wrapper {
- width: 765px;
- background: url(/resources/images/mainBg.gif) repeat-y;
+ width: 1000px;
+ background: url(/resources/images/centerBackground.gif) repeat-y;
+ // color: #C3A680;
+ // background: url(/resources/images/bgNew2.png) repeat-y;
  margin: 0 auto;
  padding: 0;
  text-align: left;
@@ -45,7 +49,7 @@ header {
  top: 343px;
  margin-left: 529px;
  color: #2B0101;
- width: 175px; 
+ width: 425px; 
 }
 footer {
  display: block;
