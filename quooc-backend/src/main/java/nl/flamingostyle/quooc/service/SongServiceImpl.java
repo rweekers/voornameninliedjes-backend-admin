@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -73,11 +72,12 @@ public class SongServiceImpl implements SongService {
      * @return a list of songs
      */
     @SuppressWarnings("unchecked")
+    @Override
     public List<Song> getAll() {
         logger.debug("Retrieving all songs");
 
         // Create a Hibernate query (HQL)
-        Query query = getCurrentSession().createQuery("FROM  Song");
+        Query query = getCurrentSession().createQuery("FROM  Song song order by song.firstname");
 
         // Retrieve all
         return query.list();
@@ -93,7 +93,7 @@ public class SongServiceImpl implements SongService {
         logger.debug("Retrieving all songs");
 
         // Create a Hibernate query (HQL)
-        Query query = getCurrentSession().createQuery("FROM  Song");
+        Query query = getCurrentSession().createQuery("FROM  Song song order by song.firstname");
         query.setFirstResult(offset);
         query.setMaxResults(max);
 
