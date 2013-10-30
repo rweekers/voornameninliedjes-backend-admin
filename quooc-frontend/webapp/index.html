@@ -47,23 +47,27 @@
             </section>
 
             <div class="main supporting" id="quooc-supporting" role="main">
-                <div class="explanation" id="quooc-explanation" role="article">
+                <!-- div class="explanation" id="quooc-explanation" role="article" -->
                     <h3>Het lied van de dag.</h3>
-
-                    <h4>Willekeurig liedje</h4>
-                    <input type="submit" id="randomSong"
-                           value="Willekeurig liedje tonen" /><br />
-                    <div id="songResponse"></div>
-                    <br />
-                    <iframe width="320" height="180"
-                            src="//www.youtube.com/embed/uq-gYOrU8bA?feature=player_detailpage"></iframe>
 
                     <h4>Achtergronden</h4>
                     <div id="backgroundSong"></div>
 
                     <p>Hier worden de achtergronden automatisch getoond, te halen
-                        uit het veld ''background'' van de ''song'' tabel. TODO</p>
-                </div>
+                        uit het veld ''background'' van de ''song'' tabel. TODO
+                    
+                    <output data-bind="value: songOfTheDay.artist" />
+                    
+                    </p>
+                    
+                    
+                    
+                    <h4>Media</h4>
+                    
+                    <iframe width="320" height="180"
+                            src="//www.youtube.com/embed/uq-gYOrU8bA?feature=player_detailpage"></iframe>
+                    
+                <!-- /div -->
 
                 <div class="participation" id="quooc-participation" role="article">
                     <h3>Spelregels</h3>
@@ -134,7 +138,7 @@
                         <a href="#" data-bind="click: previous">Vorige</a>
                         <a href="#" data-bind="click: next">Volgende</a><br />
                         <p>Zoek vanaf: <input data-bind="value: vanaf" /></p>
-                        <button data-bind="click: blader">Blader</button>
+                        <a href="#" data-bind="click: blader">Blader</a>
                     </div>
                     
                     <div class="design-archives" id="design-archives">

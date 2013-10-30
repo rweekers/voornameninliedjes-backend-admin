@@ -12,6 +12,8 @@ function SongsViewModel() {
 
     self.voornaam = ko.observable();
     self.vanaf = ko.observable();
+    
+    self.songOfTheDay = ko.observable();
 
     self.songs = ko.observableArray([]);
     self.findSongs = ko.observableArray([]);
@@ -22,11 +24,19 @@ function SongsViewModel() {
     url = "http://localhost:8080/voornaaminliedje/api/songs/some?offset=" + offset + "&max=" + max;
     urlMax = "http://localhost:8080/voornaaminliedje/api/songs/max";
     count = 0;
+    
+    urlSongOfTheDay = "http://localhost:8080/voornaaminliedje/api/song/random";
 
     urlFind = "http://localhost:8080/voornaaminliedje/api/song/find/";
 
     $.getJSON(urlMax, function(data) {
         count = data.valueOf();
+    });
+
+    // Load song of the day of the server and convert it to Song instance
+    $.getJSON(urlSongOfTheDay, function(data) {
+        console.log("De data is " + data);
+        // TODO Zie link mapping. 
     });
 
     // Load initial state from server, convert it to Song instances, then populate self.songs
