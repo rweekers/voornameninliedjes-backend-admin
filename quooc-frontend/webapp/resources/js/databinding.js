@@ -35,7 +35,12 @@ function SongsViewModel() {
 
     // Load song of the day of the server and convert it to Song instance
     $.getJSON(urlSongOfTheDay, function(data) {
-        console.log("De data is " + data);
+        console.log("De data is " + data.artist);
+        self.songOfTheDay.artist = data.artist;
+        self.songOfTheDay.title = data.title;
+        self.songOfTheDay.background = data.background;
+        console.log("Lied van de dag " + self.songOfTheDay.title);
+        console.log("Achtergrond lied van de dag " + self.songOfTheDay.background);
         // TODO Zie link mapping. 
     });
 

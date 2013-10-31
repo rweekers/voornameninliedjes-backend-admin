@@ -9,59 +9,71 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * For a complete reference see 
- * <a href="http://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/">
+ * For a complete reference see
+ * <a
+ * href="http://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/">
  * Hibernate Annotations Communit Documentations</a>
  */
 @Entity
 @Table(name = "song")
 public class Song implements Serializable {
 
-	private static final long serialVersionUID = -5527566248002296042L;
-	
-	@Id
-	@Column(name = "id")
-	@GeneratedValue
-	private Integer id;
-	
-	@Column(name = "artist")
-	private String artist;
-	
-	@Column(name = "title")
-	private String title;
-	
-	@Column(name = "firstname")
-	private String firstname;
+    private static final long serialVersionUID = -5527566248002296042L;
 
-	public Integer getId() {
-		return id;
-	}
+    @Id
+    @Column(name = "id")
+    @GeneratedValue
+    private Integer id;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column(name = "artist")
+    private String artist;
 
-	public String getArtist() {
-		return artist;
-	}
+    @Column(name = "title")
+    private String title;
 
-	public void setArtist(String artist) {
-		this.artist = artist;
-	}
+    @Column(name = "firstname")
+    private String firstname;
 
-	public String getTitle() {
-		return title;
-	}
+    @Column(name = "background")
+    private String background;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getFirstname() {
-		return firstname;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
+    }
 }

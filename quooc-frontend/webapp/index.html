@@ -6,6 +6,8 @@
             met voornamen in de titel</title>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type='text/javascript' src='resources/js/libs/knockout-2.3.0.js'></script>
+        <script type='text/javascript' src='resources/js/libs/knockout-mapping-2.4.1.js'></script>
+        <script language="javascript" src="resources/js/libs/email.js"></script>
         <meta name="description" content="Voornaam in liedje">
         <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,8 +38,8 @@
                     <p>Nieuwe aanvullingen zijn altijd welkom, en kunnen verstuurd
                         worden aan:</p>
                     <p>
-                        <b>info <i>at</i> voornaaminliedje <i>punt</i> nl
-                        </b>
+                        <b><i><script>mail("info","ovroanmaniildeejn?l",-2,"")</script>
+                            </i></b>
                     </p>
                     <p>Wanneer geverifiëerd kan worden dat het nummer bestaat en
                         voldoet aan de regels, wordt het in de database opgenomen.
@@ -48,25 +50,25 @@
 
             <div class="main supporting" id="quooc-supporting" role="main">
                 <!-- div class="explanation" id="quooc-explanation" role="article" -->
-                    <h3>Het lied van de dag.</h3>
+                <h3>Het lied van de dag.</h3>
 
-                    <h4>Achtergronden</h4>
-                    <div id="backgroundSong"></div>
+                <h4>Achtergronden</h4>
+                <div id="backgroundSong"></div>
 
-                    <p>Hier worden de achtergronden automatisch getoond, te halen
-                        uit het veld ''background'' van de ''song'' tabel. TODO
-                    
-                    <output data-bind="value: songOfTheDay.artist" />
-                    
-                    </p>
-                    
-                    
-                    
-                    <h4>Media</h4>
-                    
-                    <iframe width="320" height="180"
-                            src="//www.youtube.com/embed/uq-gYOrU8bA?feature=player_detailpage"></iframe>
-                    
+                <p>Hier worden de achtergronden automatisch getoond, te halen
+                    uit het veld ''background'' van de ''song'' tabel. TODO
+
+                    <output data-bind="value: songOfTheDay.background" />
+
+                </p>
+
+
+
+                <h4>Media</h4>
+
+                <iframe width="320" height="180"
+                        src="//www.youtube.com/embed/uq-gYOrU8bA?feature=player_detailpage"></iframe>
+
                 <!-- /div -->
 
                 <div class="participation" id="quooc-participation" role="article">
@@ -76,29 +78,29 @@
                         voornaam in de <i>titel</i> van het nummer zit. Het nummer moet
                         officieel uitgebracht zijn, en het moet uit de tekst af te leiden
                         zijn dat het daadwerkelijk een voornaam betreft in het nummer.
-                        
-                        <h3 class="select">Zoek een nummer!</h3>
-                        
-                        
-                        <p>Voornaam: <input data-bind="value: voornaam" /></p>
-                        <button data-bind="click: zoeknummers">Zoek</button>
-                        
-                        <nav role="navigation">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Artiest</th>
-                                        <th>Titel</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-bind="foreach: findSongs">
-                                    <tr>
-                                        <td data-bind="text: artist"></td>
-                                        <td data-bind="text: title"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </nav>
+
+                    <h3 class="select">Zoek een nummer!</h3>
+
+
+                    <p>Voornaam: <input data-bind="value: voornaam" /></p>
+                    <button data-bind="click: zoeknummers">Zoek</button>
+
+                    <nav role="navigation">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Artiest</th>
+                                    <th>Titel</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: findSongs">
+                                <tr>
+                                    <td data-bind="text: artist"></td>
+                                    <td data-bind="text: title"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </nav>
                 </div>
 
                 <footer>
@@ -140,7 +142,7 @@
                         <p>Zoek vanaf: <input data-bind="value: vanaf" /></p>
                         <a href="#" data-bind="click: blader">Blader</a>
                     </div>
-                    
+
                     <div class="design-archives" id="design-archives">
 
 
