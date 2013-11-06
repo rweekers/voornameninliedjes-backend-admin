@@ -6,6 +6,7 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,12 +17,14 @@ import javax.persistence.Table;
  * Hibernate Annotations Communit Documentations</a>
  */
 @Entity
-@Table(name = "search")
+@Table(name = "searchInstruction")
 public class SearchInstruction implements Serializable {
 
+    private static final long serialVersionUID = -7149957706738879274L;
+    
     @Id
     @Column(name = "id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
 
     @Column(name = "argument")
@@ -36,7 +39,7 @@ public class SearchInstruction implements Serializable {
     @Column(name = "browser")
     private String browser;
 
-    @Column(name = "operatingSysttem")
+    @Column(name = "operatingSystem")
     private String operatingSystem;
 
     @Column(name = "date_inserted")

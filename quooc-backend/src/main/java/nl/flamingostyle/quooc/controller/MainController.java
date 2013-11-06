@@ -1,8 +1,10 @@
 package nl.flamingostyle.quooc.controller;
 
 import java.util.List;
+import nl.flamingostyle.quooc.domain.SearchInstruction;
 
 import nl.flamingostyle.quooc.domain.Song;
+import nl.flamingostyle.quooc.service.SearchInstructionService;
 import nl.flamingostyle.quooc.service.SongService;
 
 import org.apache.log4j.Logger;
@@ -31,6 +33,9 @@ public class MainController {
     @Autowired
     SongService songService;
 
+    @Autowired
+    SearchInstructionService searchInstructionService;
+    
     /**
      * Gets a random song
      *
@@ -125,121 +130,16 @@ public class MainController {
     }
 
     /**
-     * Retrieves the add page
+     * Adds a new searchInstruction by delegating the processing to SearchInstructionServiceImpl. 
      *
-     * @return the name of the JSP page
-     * @param model the model
+     * @param argument the search argument
      */
-    @RequestMapping(value = "songs/add", method = RequestMethod.GET)
+    @RequestMapping(value = "searchInstruction/add", method = RequestMethod.GET)
     @ResponseBody
-    public String getAdd(Model model) {
-        logger.debug("Received request to show add page");
-
-    	// Create new Song and add to model
-        // This is the formBackingOBject
-        model.addAttribute("songAttribute", new Song());
-
-        // This will resolve to /WEB-INF/jsp/addpage.jsp
-        return "addpage";
+    public void add(@RequestParam("argument") String argument) {
+        logger.debug("Received request to add new searchInstruction");
+        SearchInstruction searchInstruction = new SearchInstruction();
+        searchInstruction.setArgument(argument);
+        searchInstructionService.add(searchInstruction);
     }
-
-    /**
-     * Adds a new song by delegating the processing to SongServiceImpl. Displays
-     * a confirmation JSP page
-     *
-     * @return the name of the JSP page
-     * @param song the song
-     */
-    @RequestMapping(value = "songs/add", method = RequestMethod.POST)
-    @ResponseBody
-    public String add(@ModelAttribute("songAttribute") Song song) {
-        logger.debug("Received request to add new song");
-
-    	// The "songAttribute" model has been passed to the controller from the JSP
-        // We use the name "songAttribute" because the JSP uses that name
-        // Call SongServiceImpl to do the actual adding
-        songService.add(song);
-
-        // This will resolve to /WEB-INF/jsp/addedpage.jsp
-        return "addedpage";
-    }
-
-    /**
-     * Deletes an existing song by delegating the processing to SongServiceImpl.
-     * Displays a confirmation JSP page
-     *
-     * @return the name of the JSP page
-     * @param id the id
-     * @param model the model
-     */
-    @RequestMapping(value = "songs/delete", method = RequestMethod.GET)
-    @ResponseBody
-    public String delete(@RequestParam(value = "id", required = true) Integer id,
-            Model model) {
-
-        logger.debug("Received request to delete existing song");
-
-        // Call SongServiceImpl to do the actual deleting
-        songService.delete(id);
-
-        // Add id reference to Model
-        model.addAttribute("id", id);
-
-        // This will resolve to /WEB-INF/jsp/deletedpage.jsp
-        return "deletedpage";
-    }
-
-    /**
-     * Retrieves the edit page
-     *
-     * @return the name of the JSP page
-     * @param id the id
-     * @param model the model
-     */
-    @RequestMapping(value = "songs/edit", method = RequestMethod.GET)
-    @ResponseBody
-    public String getEdit(@RequestParam(value = "id", required = true) Integer id,
-            Model model) {
-        logger.debug("Received request to show edit page");
-
-    	// Retrieve existing Song and add to model
-        // This is the formBackingOBject
-        model.addAttribute("songAttribute", songService.get(id));
-
-        // This will resolve to /WEB-INF/jsp/editpage.jsp
-        return "editpage";
-    }
-
-    /**
-     * Edits an existing song by delegating the processing to SongServiceImpl.
-     * Displays a confirmation JSP page
-     *
-     * @return the name of the JSP page
-     * @param song the song
-     * @param id the id
-     * @param model the model
-     */
-    @RequestMapping(value = "songs/edit", method = RequestMethod.POST)
-    @ResponseBody
-    public String saveEdit(@ModelAttribute("songAttribute") Song song,
-            @RequestParam(value = "id", required = true) Integer id,
-            Model model) {
-        logger.debug("Received request to update song");
-
-    	// The "songAttribute" model has been passed to the controller from the JSP
-        // We use the name "songAttribute" because the JSP uses that name
-    	// We manually assign the id because we disabled it in the JSP page
-        // When a field is disabled it will not be included in the ModelAttribute
-        song.setId(id);
-
-        // Delegate to SongServiceImpl for editing
-        songService.edit(song);
-
-        // Add id reference to Model
-        model.addAttribute("id", id);
-
-        // This will resolve to /WEB-INF/jsp/editedpage.jsp
-        return "editedpage";
-    }
-
 }
