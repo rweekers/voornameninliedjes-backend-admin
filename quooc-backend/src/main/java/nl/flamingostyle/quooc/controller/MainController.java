@@ -36,7 +36,7 @@ public class MainController {
 
     @Autowired
     SearchInstructionService searchInstructionService;
-    
+
     /**
      * Gets a random song
      *
@@ -113,7 +113,7 @@ public class MainController {
         // Attach songs to the Model
         model.addAttribute("songs", songs);
 
-    	// This will resolve to /WEB-INF/view/songs.jsp
+        // This will resolve to /WEB-INF/view/songs.jsp
         // return "songs";
         return "songs.html";
     }
@@ -131,17 +131,21 @@ public class MainController {
     }
 
     /**
-     * Adds a new searchInstruction by delegating the processing to SearchInstructionServiceImpl. 
+     * Adds a new searchInstruction by delegating the processing to
+     * SearchInstructionServiceImpl.
      *
      * @param argument the search argument
      */
     @RequestMapping(value = "searchInstruction/add", method = RequestMethod.GET)
     @ResponseBody
-    public void addSearchInstruction(@RequestParam(value="argument") String argument, @RequestParam(value="browser", defaultValue="") String browser) {
+    public void addSearchInstruction(@RequestParam(value = "argument") String argument, @RequestParam(value = "browser", defaultValue = "") String browser, @RequestParam(value = "country", defaultValue = "") String country, @RequestParam(value = "ipAddress", defaultValue = "") String ipAddress, @RequestParam(value = "operatingSystem", defaultValue = "") String operatingSystem) {
         logger.debug("Received request to add new searchInstruction");
         SearchInstruction searchInstruction = new SearchInstruction();
         searchInstruction.setArgument(argument);
         searchInstruction.setBrowser(browser);
+        searchInstruction.setCountry(country);
+        searchInstruction.setIpAddress(ipAddress);
+        searchInstruction.setOperatingSystem(operatingSystem);
         searchInstruction.setDateInserted(new Timestamp(System.currentTimeMillis()));
         searchInstructionService.add(searchInstruction);
     }
