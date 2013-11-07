@@ -137,11 +137,11 @@ public class MainController {
      */
     @RequestMapping(value = "searchInstruction/add", method = RequestMethod.GET)
     @ResponseBody
-    public void add(@RequestParam("argument") String argument) {
+    public void addSearchInstruction(@RequestParam(value="argument") String argument, @RequestParam(value="browser", defaultValue="") String browser) {
         logger.debug("Received request to add new searchInstruction");
         SearchInstruction searchInstruction = new SearchInstruction();
         searchInstruction.setArgument(argument);
-        java.util.Date today = new java.util.Date();
+        searchInstruction.setBrowser(browser);
         searchInstruction.setDateInserted(new Timestamp(System.currentTimeMillis()));
         searchInstructionService.add(searchInstruction);
     }
