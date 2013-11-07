@@ -1,6 +1,7 @@
 package nl.flamingostyle.quooc.controller;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import nl.flamingostyle.quooc.domain.SearchInstruction;
 
@@ -12,7 +13,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -142,7 +142,7 @@ public class MainController {
         SearchInstruction searchInstruction = new SearchInstruction();
         searchInstruction.setArgument(argument);
         java.util.Date today = new java.util.Date();
-        searchInstruction.setDateInserted(new java.sql.Date(today.getTime()));
+        searchInstruction.setDateInserted(new Timestamp(System.currentTimeMillis()));
         searchInstructionService.add(searchInstruction);
     }
 }

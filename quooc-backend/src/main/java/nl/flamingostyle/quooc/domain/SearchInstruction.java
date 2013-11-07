@@ -2,6 +2,7 @@ package nl.flamingostyle.quooc.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,7 +44,7 @@ public class SearchInstruction implements Serializable {
     private String operatingSystem;
 
     @Column(name = "date_inserted")
-    private Date dateInserted;
+    private Timestamp dateInserted;
 
     public Integer getId() {
         return id;
@@ -93,11 +94,11 @@ public class SearchInstruction implements Serializable {
         this.operatingSystem = operatingSystem;
     }
 
-    public Date getDateInserted() {
+    public Timestamp getDateInserted() {
         return dateInserted;
     }
 
-    public void setDateInserted(Date dateInserted) {
+    public void setDateInserted(Timestamp dateInserted) {
         this.dateInserted = dateInserted;
     }
 }
