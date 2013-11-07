@@ -1,5 +1,6 @@
 package nl.flamingostyle.quooc.controller;
 
+import java.sql.Date;
 import java.util.List;
 import nl.flamingostyle.quooc.domain.SearchInstruction;
 
@@ -140,6 +141,8 @@ public class MainController {
         logger.debug("Received request to add new searchInstruction");
         SearchInstruction searchInstruction = new SearchInstruction();
         searchInstruction.setArgument(argument);
+        java.util.Date today = new java.util.Date();
+        searchInstruction.setDateInserted(new java.sql.Date(today.getTime()));
         searchInstructionService.add(searchInstruction);
     }
 }
