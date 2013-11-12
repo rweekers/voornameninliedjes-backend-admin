@@ -163,11 +163,10 @@ public class MainController {
      */
     @RequestMapping(value = "visit/add", method = RequestMethod.GET)
     @ResponseBody
-    public void addSearchInstruction(@RequestParam(value = "browser", defaultValue = "") String browser, @RequestParam(value = "country", defaultValue = "") String country, @RequestParam(value = "ipAddress", defaultValue = "") String ipAddress, @RequestParam(value = "operatingSystem", defaultValue = "") String operatingSystem) {
+    public void addSearchInstruction(@RequestParam(value = "browser", defaultValue = "") String browser, @RequestParam(value = "ipAddress", defaultValue = "") String ipAddress, @RequestParam(value = "operatingSystem", defaultValue = "") String operatingSystem) {
         logger.debug("Received request to add new searchInstruction");
         Visit visit = new Visit();
         visit.setBrowser(browser);
-        visit.setCountry(country);
         visit.setIpAddress(ipAddress);
         visit.setOperatingSystem(operatingSystem);
         visit.setDateInserted(new Timestamp(System.currentTimeMillis()));

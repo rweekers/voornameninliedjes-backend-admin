@@ -3,6 +3,11 @@ var title;
 
 var customTags;
 
+var ipAddress;
+var country;
+var browser;
+var operatingSystem;
+
 $(document).ready(function() {
 
     // Random Song AJAX Request
@@ -18,6 +23,7 @@ $(document).ready(function() {
     });
 
     logVisit();
+    // storeVisit();
 });
 
 $(function() {
@@ -34,7 +40,6 @@ function callFlickr(tags) {
     var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
     $.getJSON(flickerAPI, {
         tags: "music guitar",
-        // tags: tags,
         tagmode: "any",
         format: "json"
     }).done(function(data) {
@@ -50,26 +55,23 @@ function callFlickr(tags) {
 function logVisit() {
 
     console.log("logging visit...");
-    // function getip(json) {
-
-    // var geoipUrl = "http://jsonip.appspot.com/?callback=getip";
-    // var geoipUrl = "http://smart-ip.net/geoip-json";
-    var geoipUrl = "http://api.hostip.info/get_html.php";
-
-    //Get the JSON Code
-    /*$.getJSON(geoipUrl, {},
-     function(data) {
-     //JS Goodness here! Your ip variable is data.ip
-     alert('Your IP Address is ' + data.ip)
-     });*/
+    var geoipUrl = "http://api.hostip.info/get_json.php";
 
     $.getJSON(geoipUrl, function(data) {
-        alert('Your IP Address is ' + data.ip)
+        console.log('Your IP Address is ' + data.ip);
+        console.log('Your country is ' + data.country_name);
+        console.log('Your city is ' + data.city);
+        console.log('Your browser is ' + BrowserDetect.browser);
+        ipAddress = data.ip;
     }).fail(function(error) {
         console.log(error);
     });
+}
 
-    // } json.ip
-    // <script type="application/javascript" src="http://jsonip.appspot.com/?callback=getip"> </script>
+function storeVisit() {
+    url = "http://localhost:8080/voornaaminliedje/api/visit/add?ipAddress=" + ipAddress + "&browser=" + browser + "&operatingSystem=" + operatingSystem;
 
+    $.getJSON(url, function() {
+        console.log("Storing visit for ip " + ipAddress);
+    });
 }
