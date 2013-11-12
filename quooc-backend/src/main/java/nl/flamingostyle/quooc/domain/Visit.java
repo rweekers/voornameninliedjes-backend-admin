@@ -17,18 +17,15 @@ import javax.persistence.Table;
  * Hibernate Annotations Communit Documentations</a>
  */
 @Entity
-@Table(name = "searchInstruction")
-public class SearchInstruction implements Serializable {
+@Table(name = "visit")
+public class Visit implements Serializable {
 
-    private static final long serialVersionUID = -7149957706738879274L;
+    private static final long serialVersionUID = -7149957706738879275L;
     
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
-
-    @Column(name = "argument")
-    private String argument;
 
     @Column(name = "ipAddress")
     private String ipAddress;
@@ -51,14 +48,6 @@ public class SearchInstruction implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getArgument() {
-        return argument;
-    }
-
-    public void setArgument(String argument) {
-        this.argument = argument;
     }
 
     public String getIpAddress() {

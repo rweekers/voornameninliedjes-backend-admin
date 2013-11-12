@@ -6,8 +6,10 @@ import java.util.List;
 import nl.flamingostyle.quooc.domain.SearchInstruction;
 
 import nl.flamingostyle.quooc.domain.Song;
+import nl.flamingostyle.quooc.domain.Visit;
 import nl.flamingostyle.quooc.service.SearchInstructionService;
 import nl.flamingostyle.quooc.service.SongService;
+import nl.flamingostyle.quooc.service.VisitService;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,9 @@ public class MainController {
 
     @Autowired
     SearchInstructionService searchInstructionService;
+    
+    @Autowired
+    VisitService visitService;
 
     /**
      * Gets a random song
@@ -132,7 +137,7 @@ public class MainController {
 
     /**
      * Adds a new searchInstruction by delegating the processing to
-     * SearchInstructionServiceImpl.
+     * SearchInstructionService.
      *
      * @param argument the search argument
      */
@@ -148,5 +153,24 @@ public class MainController {
         searchInstruction.setOperatingSystem(operatingSystem);
         searchInstruction.setDateInserted(new Timestamp(System.currentTimeMillis()));
         searchInstructionService.add(searchInstruction);
+    }
+    
+      /**
+     * Adds a new visit by delegating the processing to
+     * VisitService.
+     *
+     * @param argument the search argument
+     */
+    @RequestMapping(value = "visit/add", method = RequestMethod.GET)
+    @ResponseBody
+    public void addSearchInstruction(@RequestParam(value = "browser", defaultValue = "") String browser, @RequestParam(value = "country", defaultValue = "") String country, @RequestParam(value = "ipAddress", defaultValue = "") String ipAddress, @RequestParam(value = "operatingSystem", defaultValue = "") String operatingSystem) {
+        logger.debug("Received request to add new searchInstruction");
+        Visit visit = new Visit();
+        visit.setBrowser(browser);
+        visit.setCountry(country);
+        visit.setIpAddress(ipAddress);
+        visit.setOperatingSystem(operatingSystem);
+        visit.setDateInserted(new Timestamp(System.currentTimeMillis()));
+        visitService.add(visit);
     }
 }

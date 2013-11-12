@@ -3,8 +3,6 @@ package nl.flamingostyle.quooc.service;
 import java.util.List;
 import nl.flamingostyle.quooc.domain.SearchInstruction;
 
-import nl.flamingostyle.quooc.domain.Song;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Service for processing Songs
+ * Service for processing SearchInstructions
  *
  */
 @Service
@@ -33,7 +31,7 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
     /**
      * Retrieves all searchInstructions
      *
-     * @return a list of songs
+     * @return a list of searchInstructions
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -48,7 +46,7 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
     }
 
     /**
-     * Retrieves a single song
+     * Retrieves a single searchInstruction
      * 
      * @return the searchInstruction
      * @param id the id of the searchInstruction
@@ -62,7 +60,9 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
     }
 
     /**
-     * Adds a new song
+     * Adds a new searchInstruction
+     * 
+     * @param searchInstruction the searchInstruction to add
      */
     public void add(SearchInstruction searchInstruction) {
         logger.debug("Adding new searchInstruction");
