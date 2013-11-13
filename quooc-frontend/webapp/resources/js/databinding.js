@@ -98,6 +98,7 @@ function SongsViewModel() {
             });
             self.findSongs(mappedSongs);
         });
+        logSearchInstruction(self.voornaam());
     };
 
     self.blader = function() {
