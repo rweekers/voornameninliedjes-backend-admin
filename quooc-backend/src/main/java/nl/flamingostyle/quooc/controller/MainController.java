@@ -1,6 +1,5 @@
 package nl.flamingostyle.quooc.controller;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 import nl.flamingostyle.quooc.domain.SearchInstruction;
