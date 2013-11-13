@@ -23,7 +23,6 @@ $(document).ready(function() {
     });
 
     logVisit();
-    storeVisit();
 });
 
 $(function() {
