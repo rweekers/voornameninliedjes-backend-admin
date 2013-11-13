@@ -56,12 +56,11 @@ footer {
  padding: 12px 0 0 0;
  margin: 20px 0 0 120px;
  text-align: center;
- background: url(/resources/images/footer.gif) no-repeat;
  height: 43px;
  width: 204px;
 }
 p:nth-child(2),p:nth-child(3),p:nth-child(4),p:nth-child(5),p:nth-child(6) { padding-left: 8px; }
-.preamble h3,.explanation h3, .participation h3, .benefits h3, .requirements h3 { 
+.preamble h3,.explanation h3, .zoekNummers h3, .benefits h3, .requirements h3 { 
  height: 60px; 
  text-indent: -8000px;
  margin: 0;
@@ -73,14 +72,12 @@ p:nth-child(2),p:nth-child(3),p:nth-child(4),p:nth-child(5),p:nth-child(6) { pad
  padding: 0;
  text-indent: -8000px; 
 }
-.preamble h3 { background: url(/resources/images/hdRoad.gif) no-repeat; }
+.preamble h3 { background: url(/resources/images/introduction.gif) no-repeat; }
 .explanation h3 { background: url(/resources/images/hdAbout.gif) no-repeat; }
-.participation h3 { background: url(/resources/images/hdPart.gif) no-repeat; }
-.benefits h3 { background: url(/resources/images/hdBen.gif) no-repeat; }
-.requirements h3 { background: url(/resources/images/hdReq.gif) no-repeat; }
-.design-selection h3 { background: url(/resources/images/hdSelect.gif) no-repeat; }
+.zoekNummers h3 { background: url(/resources/images/zoekNummers.gif) no-repeat; }
+.design-selection h3 { background: url(/resources/images/bladeren.gif) no-repeat; }
 .design-archives h3 { background: url(/resources/images/hdArch.gif) no-repeat; margin-top: 15px;}
-.quooc-resources h3 { background: url(/resources/images/hdResc.gif) no-repeat; margin-top: 15px; }
+.quooc-spelregels h3 { background: url(/resources/images/spelregels.gif) no-repeat; margin-top: 15px; }
 /* --// links --// */
 a { 
  color: #683A33;
@@ -98,7 +95,6 @@ li a {
  font-size: 10px;
  text-transform: uppercase;
  padding: 0 0 0 10px;
- background: url(/resources/images/star.gif) no-repeat;
  border-bottom: 0;
 }
 li a.designer-name {
@@ -117,7 +113,6 @@ li a.designer-name {
 }
 .design-archives li a { background: none; }
 li a:hover, li a:hovera.designer-name { color: #5E1919; border-bottom: 0; }
-li a:hover { background: url(/resources/images/star_over.gif) no-repeat; }
 li a:hovera.designer-name { background: none; }
 footer a {
  text-decoration: none;
@@ -141,11 +136,9 @@ ul,li {
 }
 .design-selection, .quooc-resources, .design-archives {
  padding-bottom: 6px;
- background: url(/resources/images/liBttmBg.gif) center bottom no-repeat;
 }
 li {
  padding: 5px 5px 12px 5px;
- background: url(/resources/images/liBg.gif) center bottom no-repeat;
  text-transform: uppercase; 
  font-size: 9px; 
 }
