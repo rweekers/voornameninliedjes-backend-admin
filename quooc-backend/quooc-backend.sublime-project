@@ -1,0 +1,10 @@
+{
+	"folders":
+	[
+		{
+			"path": "/C/Documents/Projects/voornaaminliedje/quooc-backend",
+			"folder_exclude_patterns": ["target", ".settings"],
+			"file_exclude_patterns": [".classpath", ".project", "quooc-backend.sublime-workspace"]
+		}
+	]
+}

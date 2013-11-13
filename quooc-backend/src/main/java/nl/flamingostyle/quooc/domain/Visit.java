@@ -30,6 +30,12 @@ public class Visit implements Serializable {
     @Column(name = "ipAddress")
     private String ipAddress;
 
+    @Column(name = "country")
+    private String country;
+
+    @Column(name = "city")
+    private String city;
+
     @Column(name = "browser")
     private String browser;
 
@@ -53,6 +59,22 @@ public class Visit implements Serializable {
 
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getBrowser() {
