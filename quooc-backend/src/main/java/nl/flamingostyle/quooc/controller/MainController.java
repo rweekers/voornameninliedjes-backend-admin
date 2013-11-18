@@ -2,11 +2,13 @@ package nl.flamingostyle.quooc.controller;
 
 import java.sql.Timestamp;
 import java.util.List;
-import nl.flamingostyle.quooc.domain.SearchInstruction;
 
+import nl.flamingostyle.quooc.domain.SearchInstruction;
 import nl.flamingostyle.quooc.domain.Song;
+import nl.flamingostyle.quooc.domain.SongOfTheDay;
 import nl.flamingostyle.quooc.domain.Visit;
 import nl.flamingostyle.quooc.service.SearchInstructionService;
+import nl.flamingostyle.quooc.service.SongOfTheDayService;
 import nl.flamingostyle.quooc.service.SongService;
 import nl.flamingostyle.quooc.service.VisitService;
 
@@ -40,6 +42,9 @@ public class MainController {
     
     @Autowired
     VisitService visitService;
+    
+    @Autowired
+    SongOfTheDayService songOfTheDayService;
 
     /**
      * Gets a random song
@@ -169,5 +174,16 @@ public class MainController {
         visit.setOperatingSystem(operatingSystem);
         visit.setDateInserted(new Timestamp(System.currentTimeMillis()));
         visitService.add(visit);
+    }
+    
+    /**
+     * Returns all songs
+     *
+     * @return all songs
+     */
+    @RequestMapping(value = "songsOfTheDay/all", method = RequestMethod.GET)
+    @ResponseBody
+    public List<SongOfTheDay> allSongsOfTheDay() {
+        return songOfTheDayService.getAll();
     }
 }

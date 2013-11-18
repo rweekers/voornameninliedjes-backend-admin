@@ -1,7 +1,8 @@
 package nl.flamingostyle.quooc.service;
 
 import java.util.List;
-import nl.flamingostyle.quooc.domain.Visit;
+
+import nl.flamingostyle.quooc.domain.SongOfTheDay;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -17,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class VisitServiceImpl implements VisitService {
+public class SongOfTheDayServiceImpl implements SongOfTheDayService {
 
     protected static final Logger logger = Logger.getLogger("service");
 
@@ -29,47 +30,32 @@ public class VisitServiceImpl implements VisitService {
     }
 
     /**
-     * Retrieves all visits
+     * Retrieves all songsOfTheDay
      *
-     * @return a list of visits
+     * @return a list of songsOfTheDay
      */
     @SuppressWarnings("unchecked")
     @Override
-    public List<Visit> getAll() {
-        logger.debug("Retrieving all visits");
+    public List<SongOfTheDay> getAll() {
+        logger.debug("Retrieving all songsOfTheDay");
 
         // Create a Hibernate query (HQL)
-        Query query = getCurrentSession().createQuery("FROM  Visit visit order by visit.id");
+        Query query = getCurrentSession().createQuery("FROM  SongOfTheDay songOfTheDay order by songOfTheDay.id");
 
         // Retrieve all
         return query.list();
     }
 
     /**
-     * Retrieves a single visit
+     * Retrieves a single songOfTheDay
      * 
-     * @return the visit
-     * @param id the id of the visit
+     * @return the songOfTheDay
+     * @param id the id of the songOfTheDay
      */
-    public Visit get(Integer id) {
+    public SongOfTheDay get(Integer id) {
         // Retrieve existing visit first
         logger.debug("Calling get with the id " + id);
-        Visit visit = (Visit) getCurrentSession().get(Visit.class, id);
-        logger.debug("Gotten visit " + visit.getIpAddress());
-        return visit;
-    }
-
-    /**
-     * Adds a new visit
-     * 
-     * @param visit the visit to add
-     */
-    public void add(Visit visit) {
-        logger.debug("Adding new visit");
-
-	// Retrieve session from Hibernate
-        Session session = getCurrentSession();
-	// Save
-        session.save(visit);
+        SongOfTheDay songOfTheDay = (SongOfTheDay) getCurrentSession().get(SongOfTheDay.class, id);
+        return songOfTheDay;
     }
 }
