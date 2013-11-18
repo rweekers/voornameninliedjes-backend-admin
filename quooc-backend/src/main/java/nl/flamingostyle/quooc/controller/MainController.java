@@ -186,4 +186,13 @@ public class MainController {
     public List<SongOfTheDay> allSongsOfTheDay() {
         return songOfTheDayService.getAll();
     }
+    
+    /**
+     * Initializes the list with random songs
+     */
+    @RequestMapping(value = "songsOfTheDay/initialize", method = RequestMethod.GET)
+    @ResponseBody
+    public void initializeSongsOfTheDay() {
+    	songOfTheDayService.initialize();
+    }
 }
