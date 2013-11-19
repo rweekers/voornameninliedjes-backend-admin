@@ -57,27 +57,29 @@ public class SongOfTheDayServiceImpl implements SongOfTheDayService {
 	/**
 	 * Initializes the list with random songs per day
 	 */
-	public void initialize(){
-    	logger.debug("Initalizing list with songs of the day...");
-    	List<Song> songs = songService.getAll();
-    	Collections.shuffle(songs);
-    	Date day = new Date(System.currentTimeMillis());
-    	
-    	for (Song song : songs){
-    		logger.debug("Gotten song " + song.getTitle() + " on day " + day);
-    		SongOfTheDay songOfTheDay = new SongOfTheDay();
-    		songOfTheDay.setSong(song);
-    		songOfTheDay.setDay(day);
-    		// day = addDays(day, 1);
-    		// getCurrentSession().save(songOfTheDay);
-    	}
-    }
+	public void initialize() {
+		int numberOfSongsOfTheDay = getAll().size();
+		logger.debug("Aantal songsOfTheDay in database: "
+				+ numberOfSongsOfTheDay);
 
-	public Date addDays(Date date, int days) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		cal.add(Calendar.DATE, days); // minus number would decrement the days
-		return (Date) cal.getTime();
+		if (numberOfSongsOfTheDay == 0) {
+
+			logger.debug("Initalizing list with songs of the day...");
+			List<Song> songs = songService.getAll();
+			Collections.shuffle(songs);
+			Calendar calendarDay = Calendar.getInstance();
+
+			for (Song song : songs) {
+				Date day = new Date(calendarDay.getTimeInMillis());
+				SongOfTheDay songOfTheDay = new SongOfTheDay();
+				songOfTheDay.setSong(song);
+				songOfTheDay.setDay(day);
+				calendarDay.add(Calendar.DATE, 1);
+				getCurrentSession().save(songOfTheDay);
+			}
+		} else {
+			logger.debug("Initialize not necessary, already songsOfTheDay.");
+		}
 	}
 
 	/**
