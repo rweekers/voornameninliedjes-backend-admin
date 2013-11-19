@@ -1,6 +1,7 @@
 package nl.flamingostyle.quooc.service;
 
 import java.util.List;
+import java.util.Random;
 
 import nl.flamingostyle.quooc.domain.Song;
 
@@ -53,13 +54,26 @@ public class SongServiceImpl implements SongService {
      */
     @Override
     public Song getRandom() {
-		// List<Song> songs = getAll();
-        // Random randomizer = new Random();
-        // Song song = songs.get(randomizer.nextInt(songs.size()));
-        // logger.debug("Random song retrieved: " + song.getArtist() + " - " + song.getTitle());
+		List<Song> songs = getAll();
+        Random randomizer = new Random();
+        Song song = songs.get(randomizer.nextInt(songs.size()));
+        logger.debug("Random song retrieved: " + song.getArtist() + " - " + song.getTitle());
 
-        // Retrieve existing song 'You can call me Al'
-        int id = 12070;
+        logger.debug("Gotten song " + song.getTitle());
+
+        return song;
+    }
+    
+    /**
+     * Returns "You Can Call Me All" from the database (for developing purposes).
+     *
+     * @return The song "You Can Call Me All" from the database
+     */
+    @Override
+    public Song getYouCanCallMeAll() {
+    	
+    	// Retrieve existing song 'You can call me Al'
+    	int id = 12070;
         Song song = (Song) getCurrentSession().get(Song.class, id);
         logger.debug("Gotten song " + song.getTitle());
 

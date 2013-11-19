@@ -25,7 +25,7 @@ function SongsViewModel() {
     urlMax = "http://localhost:8080/voornaaminliedje/api/songs/max";
     count = 0;
     
-    urlSongOfTheDay = "http://localhost:8080/voornaaminliedje/api/song/random";
+    urlSongOfTheDay = "http://localhost:8080/voornaaminliedje/api/song/all";
 
     urlFind = "http://localhost:8080/voornaaminliedje/api/song/find/";
 

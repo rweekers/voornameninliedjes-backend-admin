@@ -5,7 +5,10 @@ import java.util.List;
 import nl.flamingostyle.quooc.domain.Song;
 
 public interface SongService {
+	
 	public Song getRandom();
+	
+	public Song getYouCanCallMeAll();
 
 	public List<Song> getAll();
 

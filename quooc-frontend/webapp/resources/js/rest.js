@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     // Random Song AJAX Request
     $('#randomSong').click(function() {
-        $.getJSON('http://localhost:8080/voornaaminliedje/api/song/random', function(song) {
+        $.getJSON('http://localhost:8080/voornaaminliedje/api/song/all', function(song) {
             $('#songResponse').text(song.artist + ' - ' + song.title);
             artist = song.artist;
             title = song.title;
@@ -26,7 +26,7 @@ $(document).ready(function() {
 });
 
 $(function() {
-    $.getJSON('http://localhost:8080/voornaaminliedje/api/song/random', function(song) {
+    $.getJSON('http://localhost:8080/voornaaminliedje/api/song/all', function(song) {
         $('#songResponse').text(song.artist + ' - ' + song.title);
         artist = song.artist;
         title = song.title;
