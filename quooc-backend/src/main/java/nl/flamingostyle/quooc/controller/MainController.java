@@ -54,7 +54,7 @@ public class MainController {
     @RequestMapping(value = "song/random", method = RequestMethod.GET)
     @ResponseBody
     public Song randomSong() {
-        return songService.getRandom();
+    	return songOfTheDayService.getSongOfTheDay();
     }
     
     /**

@@ -83,6 +83,22 @@ public class SongOfTheDayServiceImpl implements SongOfTheDayService {
 	}
 
 	/**
+	 * Returns the song for today
+	 * 
+	 * @param today today
+	 * @return the song that is due for today
+	 */
+	public Song getSongOfTheDay() {
+		Date today = new Date(Calendar.getInstance().getTimeInMillis());
+		// Create a Hibernate query (HQL)
+		Query query = getCurrentSession().createQuery(
+				"FROM  SongOfTheDay songOfTheDay where songOfTheDay.day = :today");
+		query.setParameter("today", today);
+		SongOfTheDay songOfTheDay = (SongOfTheDay) query.list().get(0);
+		return songOfTheDay.getSong();
+	}
+	
+	/**
 	 * Retrieves a single songOfTheDay
 	 * 
 	 * @return the songOfTheDay
