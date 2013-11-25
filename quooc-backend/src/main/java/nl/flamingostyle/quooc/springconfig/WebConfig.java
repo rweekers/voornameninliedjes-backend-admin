@@ -2,6 +2,7 @@ package nl.flamingostyle.quooc.springconfig;
 
 import java.util.Properties;
 
+import javax.servlet.MultipartConfigElement;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -80,5 +81,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		transactionManager.setSessionFactory(sessionFactory().getObject());
 		return transactionManager;
 	}
+	
+	@Bean
+    MultipartConfigElement multipartConfigElement() {
+        return new MultipartConfigElement("");
+    }
 
 }
