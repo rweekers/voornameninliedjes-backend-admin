@@ -2,7 +2,7 @@
 	"folders":
 	[
 		{
-			"path": "/C/Documents/Projects/voornaaminliedje/dbScripts",
+			"path": "/D/Projects/voornaaminliedje/dbScripts",
 			"folder_exclude_patterns": [],
 			"file_exclude_patterns": ["dbScripts.sublime-workspace"]
 		}
