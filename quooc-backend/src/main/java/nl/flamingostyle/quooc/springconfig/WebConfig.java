@@ -2,7 +2,6 @@ package nl.flamingostyle.quooc.springconfig;
 
 import java.util.Properties;
 
-import javax.servlet.MultipartConfigElement;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -14,7 +13,6 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
@@ -32,14 +30,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "true";
 	private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "nl.flamingostyle.quooc.domain";
 	private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL = "hibernate.hbm2ddl.validate";
-
-	@Bean
-	public InternalResourceViewResolver viewResolver() {
-		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/WEB-INF/view/");
-		resolver.setSuffix(".jsp");
-		return resolver;
-	}
 
 	@Bean
 	public DataSource dataSource() {
@@ -81,10 +71,4 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		transactionManager.setSessionFactory(sessionFactory().getObject());
 		return transactionManager;
 	}
-	
-	@Bean
-    MultipartConfigElement multipartConfigElement() {
-        return new MultipartConfigElement("");
-    }
-
 }
