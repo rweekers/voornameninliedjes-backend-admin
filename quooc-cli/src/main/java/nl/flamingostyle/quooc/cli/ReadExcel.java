@@ -46,9 +46,9 @@ public class ReadExcel {
 				int nameIndex = title.indexOf(firstname);
 
 				Song song = new Song();
-				song.setArtist(artist);
-				song.setTitle(title);
-				song.setFirstname(firstname);
+				song.setArtist(artist.replaceAll("'", "''"));
+				song.setTitle(title.replaceAll("'", "''"));
+				song.setFirstname(firstname.replaceAll("'", "''"));
 				song.setNameIndex(nameIndex);
 				song.setNameLength(nameLength);
 				song.setBackground(background);

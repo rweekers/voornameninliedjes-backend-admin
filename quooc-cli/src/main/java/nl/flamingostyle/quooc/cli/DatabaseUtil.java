@@ -38,7 +38,7 @@ public class DatabaseUtil {
 					+ " met achtergrond " + song.getBackground()
 					+ " aangemeld door " + song.getReporter());
 
-			String update = new String(
+			String insert = new String(
 					"insert into song (artist, title, firstname, name_index, name_length, background, date_inserted, user_inserted)"
 							+ "values ('"
 							+ song.getArtist()
@@ -55,9 +55,9 @@ public class DatabaseUtil {
 							+ "',current_timestamp,'"
 							+ song.getReporter() + "');");
 			
-			System.out.println(update);
+			System.out.println(insert);
 			
-			stmt.execute(update);
+			stmt.execute(insert);
 
 		} catch (SQLException e) {
 
