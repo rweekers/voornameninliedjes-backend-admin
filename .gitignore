@@ -24,3 +24,7 @@ quooc-frontend/webapp/index.html~
 /quooc-frontend/quooc-frontend.sublime-workspace
 /quooc-backend/quooc-backend.sublime-workspace
 /dbScripts/dbScripts.sublime-workspace
+
+quooc-cli/target
+quooc-cli/.classpath
+quooc-cli/.project
