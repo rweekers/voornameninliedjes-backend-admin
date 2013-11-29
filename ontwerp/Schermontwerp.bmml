@@ -1,0 +1,20 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1211" measuredH="769" mockupW="1177" mockupH="747">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::Title" x="34" y="22" w="-1" h="-1" measuredW="604" measuredH="43" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Voornaaminliedje%20Schermontwerp</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="167" y="140" w="1044" h="592" measuredW="450" measuredH="400" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Voornaaminliedje%0Ahttp%3A//www.voornaaminliedje.nl</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="844" y="748" w="-1" h="-1" measuredW="352" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>6710886</color>
+        <text>%28c%29%202013%20by%20Remco%20Weekers%2C%20http%3A//www.voornaaminliedje.nl</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

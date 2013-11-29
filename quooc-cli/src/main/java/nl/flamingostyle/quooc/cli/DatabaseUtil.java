@@ -58,6 +58,8 @@ public class DatabaseUtil {
 			System.out.println(insert);
 			
 			stmt.execute(insert);
+			
+			// TODO Search last SongOfTheDay and add one with day+1
 
 		} catch (SQLException e) {
 
