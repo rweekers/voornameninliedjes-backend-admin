@@ -54,12 +54,14 @@ public class DatabaseUtil {
 							+ song.getBackground()
 							+ "',current_timestamp,'"
 							+ song.getReporter() + "');");
-			
+
 			System.out.println(insert);
-			
+
 			stmt.execute(insert);
-			
+
 			// TODO Search last SongOfTheDay and add one with day+1
+			String select = new String(
+					"select * from songOfTheDay sotd where sotd.day = (select max(sotd2.day) from songOfTheDay sotd2)");
 
 		} catch (SQLException e) {
 
