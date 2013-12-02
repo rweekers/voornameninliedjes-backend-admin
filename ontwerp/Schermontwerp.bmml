@@ -16,5 +16,10 @@
         <text>%28c%29%202013%20by%20Remco%20Weekers%2C%20http%3A//www.voornaaminliedje.nl</text>
       </controlProperties>
     </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="230" y="244" w="-1" h="-1" measuredW="108" measuredH="21" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Voornaam%20in%20liedje</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>
