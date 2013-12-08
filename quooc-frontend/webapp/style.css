@@ -1,5 +1,7 @@
 /* Space out content a bit */
 body {
+  background-image:url('../../resources/images/vinyl.jpg');
+  /* background-color:#cccccc; */
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -22,12 +24,14 @@ body {
   margin-bottom: 0;
   line-height: 40px;
   padding-bottom: 19px;
+  color:#cccccc;
 }
 
 /* Custom page footer */
 .footer {
   padding-top: 19px;
-  color: #777;
+  /* color: #777;*/
+  color:#cccccc;
   border-top: 1px solid #e5e5e5;
 }
 
@@ -59,8 +63,14 @@ body {
   margin-top: 28px;
 }
 
-.inhoud {
+.inhoudBoven {
   min-height: 512px;
+  color:#cccccc;
+}
+
+.inhoudOnder {
+  min-height: 256px;
+  color:#cccccc;
 }
 
 /* Responsive: Portrait tablets and up */
