@@ -1,6 +1,7 @@
 /* Space out content a bit */
 body {
-background-image:url('../../resources/images/vinyl.jpg');
+/*background-image:url('../../resources/images/vinyl.jpg');*/
+background-image:url('../../resources/images/generalBackground.png');
 /* background-color:#cccccc; */
 padding-top: 20px;
 padding-bottom: 20px;
@@ -22,22 +23,19 @@ margin-top: 0;
 margin-bottom: 0;
 line-height: 40px;
 padding-bottom: 19px;
-color:#000f55;
+color:#FFFFFF;
 }
 /* Custom page footer */
 .footer {
 padding-top: 19px;
 /* color: #777;*/
-color:#000f55;
+color:#FFFFFF;
 border-top: 1px solid #e5e5e5;
 }
 /* Customize container */
 @media (min-width: 768px) {
 .container {
 max-width: 730px;
-border:2px solid;
-border-radius:25px;
-background-image: url('../../resources/images/papertexture.jpg');
 }
 .container-narrow > hr {
 margin: 30px 0;
@@ -61,10 +59,18 @@ margin-top: 28px;
 .inhoudBoven {
 min-height: 512px;
 color:#000f55;
+border:2px solid;
+border-radius:25px;
+/*background-image: url('../../resources/images/papertexture.jpg');*/
+background-color: #ffffff;
 }
 .inhoudOnder {
-min-height: 256px;
+min-height: 512px;
 color:#000f55;
+border:2px solid;
+border-radius:25px;
+/*background-image: url('../../resources/images/papertexture.jpg');*/
+background-color: #ffffff;
 }
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
