@@ -2,7 +2,7 @@
 	"folders":
 	[
 		{
-			"path": "/D/Projects/voornaaminliedje/quooc-frontend",
+			"path": ".",
 			"folder_exclude_patterns": [".settings", "nbproject"],
 			"file_exclude_patterns": [".project", "index.html~", "quooc-frontend.sublime-workspace"]
 		}

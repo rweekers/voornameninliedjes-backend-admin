@@ -2,7 +2,7 @@
 	"folders":
 	[
 		{
-			"path": "/D/Projects/voornaaminliedje/quooc-backend",
+			"path": ".",
 			"folder_exclude_patterns": ["target", ".settings"],
 			"file_exclude_patterns": [".classpath", ".project", "quooc-backend.sublime-workspace"]
 		}
