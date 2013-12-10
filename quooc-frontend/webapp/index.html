@@ -48,6 +48,7 @@
                                 </tbody>
                             </table>
                         </nav>
+                        Voornaam: <input data-bind="value: voornaam" /><button data-bind="click: zoeknummers">Zoek</button>
                     </p>
                 </div>
             </div>
@@ -67,30 +68,8 @@
             </div>
             <div class="col-lg-6">
                 <div class="inhoudOnder">
-                    <!--h4>Youtube</h4>
-                    <iframe width="320" height="180" src="//www.youtube.com/embed/uq-gYOrU8bA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe-->
-                    <h4>Zoek een nummer!</h4>
-                    <p>Voornaam:
-                        <input data-bind="value: voornaam" />
-                    </p>
-                    <button data-bind="click: zoeknummers">Zoek</button>
-
-                    <nav role="navigation">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Artiest</th>
-                                    <th>Titel</th>
-                                </tr>
-                            </thead>
-                            <tbody data-bind="foreach: songs">
-                                <tr>
-                                    <td data-bind="text: artist"></td>
-                                    <td data-bind="text: title"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </nav>
+                    <h4>Youtube</h4>
+                    <iframe width="320" height="180" src="//www.youtube.com/embed/uq-gYOrU8bA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

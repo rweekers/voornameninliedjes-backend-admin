@@ -59,15 +59,13 @@
         color:#000f55;
         border:2px solid;
         border-radius:25px;
-        /*background-image: url('../../resources/images/papertexture.jpg');*/
         background-color: #ffffff;
     }
     .inhoudOnder {
-        min-height: 512px;
+        min-height: 256px;
         color:#000f55;
         border:2px solid;
         border-radius:25px;
-        /*background-image: url('../../resources/images/papertexture.jpg');*/
         background-color: #ffffff;
     }
     /* Responsive: Portrait tablets and up */
