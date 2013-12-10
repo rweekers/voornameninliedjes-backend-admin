@@ -25,7 +25,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h3 class="text-muted">Voornaam in liedje</h3>
+            <h3 class="text-muted text-center">Voornaam in liedje</h3>
         </div>
         <div class="row marketing">
             <div class="col-lg-6">
@@ -33,7 +33,7 @@
                     <h4>Bladeren</h4>
                     <p>
                         <nav role="navigation">
-                            <table>
+                            <table class "table">
                                 <thead>
                                     <tr>
                                         <th>Artiest</th>
@@ -48,7 +48,10 @@
                                 </tbody>
                             </table>
                         </nav>
-                        Voornaam: <input data-bind="value: voornaam" /><button data-bind="click: zoeknummers">Zoek</button>
+                        Voornaam:
+                        <input data-bind="value: voornaam" />
+                        <button class="btn btn-default btn-xs active" type="submit" data-bind="click: zoeknummers">Zoek</button>
+                        <!--button data-bind="click: zoeknummers">Zoek</button-->
                     </p>
                 </div>
             </div>
@@ -73,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
+        <div class="footer text-right">
             <p>&copy; 2013 by Remco Weekers</p>
         </div>
     </div>

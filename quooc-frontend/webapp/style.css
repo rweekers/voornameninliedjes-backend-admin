@@ -13,7 +13,7 @@
 }
 /* Custom page header */
  .header {
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #ffa500;
 }
 /* Make the masthead heading the same height as the navigation */
  .header h3 {
@@ -21,14 +21,14 @@
     margin-bottom: 0;
     line-height: 40px;
     padding-bottom: 19px;
-    color:#FFFFFF;
+    color:#ffa500;
 }
 /* Custom page footer */
  .footer {
     padding-top: 19px;
     /* color: #777;*/
-    color:#FFFFFF;
-    border-top: 1px solid #e5e5e5;
+    color:#ffa500;
+    border-top: 1px solid #ffa500;
 }
 /* Customize container */
  @media (min-width: 768px) {
@@ -56,17 +56,17 @@
     }
     .inhoudBoven {
         min-height: 512px;
-        color:#000f55;
+        color:#ffa500;
         border:2px solid;
         border-radius:25px;
-        background-color: #ffffff;
+        background-color: #3f3f3f;
     }
     .inhoudOnder {
         min-height: 256px;
-        color:#000f55;
+        color:#ffa500;
         border:2px solid;
         border-radius:25px;
-        background-color: #ffffff;
+        background-color: #3f3f3f;
     }
     /* Responsive: Portrait tablets and up */
     @media screen and (min-width: 768px) {
