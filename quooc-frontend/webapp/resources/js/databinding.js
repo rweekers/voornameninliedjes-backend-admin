@@ -96,7 +96,8 @@ function SongsViewModel() {
             var mappedSongs = $.map(allData, function(item) {
                 return new Song(item);
             });
-            self.findSongs(mappedSongs);
+            // self.findSongs(mappedSongs);
+            self.songs(mappedSongs);
         });
         logSearchInstruction(self.voornaam());
     };
