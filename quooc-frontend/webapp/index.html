@@ -31,28 +31,24 @@
         <div class="row">
             <div class="col-lg-6">
                 <h4>Bladeren</h4>
-                <p>
-                    <nav role="navigation">
-                        <table class "table">
-                            <thead>
-                                <tr>
-                                    <th>Artiest</th>
-                                    <th>Titel</th>
-                                </tr>
-                            </thead>
-                            <tbody data-bind="foreach: songs">
-                                <tr>
-                                    <td data-bind="text: artist"></td>
-                                    <td data-bind="text: title"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </nav>
-                    Voornaam:
-                    <input data-bind="value: voornaam" />
-                    <button class="btn btn-default btn-xs active" type="submit" data-bind="click: zoeknummers">Zoek</button>
-                    <!--button data-bind="click: zoeknummers">Zoek</button-->
-                </p>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Artiest</th>
+                            <th>Titel</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: songs">
+                        <tr>
+                            <td data-bind="text: artist"></td>
+                            <td data-bind="text: title"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                Voornaam:
+                <input data-bind="value: voornaam" />
+                <button class="btn btn-default btn-xs active" type="submit" data-bind="click: zoeknummers">Zoek</button>
+                <!--button data-bind="click: zoeknummers">Zoek</button-->
             </div>
             <div class="col-lg-6">
                 <h4>Lied van de dag</h4>
