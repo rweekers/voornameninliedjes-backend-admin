@@ -1,146 +1,90 @@
-body { 
- font: 11px/18px verdana,arial,helvetica,sans-serif; 
- color: #512720; 
- // background: #512720 url(/resources/images/bodyBg.gif) center top repeat-y;
- // background: #512720 url(/resources/images/bgNew2.gif) center top repeat-y;
- background: url(/resources/images/generalBackground.png) repeat-y;
- margin: 0;
- padding: 0;
- text-align: center;	 
+/* Space out content a bit */
+ body {
+    /*background-image:url('../../resources/images/vinyl.jpg');*/
+    background-image:url('../../resources/images/generalBackground.png');
+    /* background-color:#cccccc; */
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
-abbr {
- cursor: help;
- border-bottom: 1px dotted #B0915F;
+/* Everything but the jumbotron gets side spacing for mobile first views */
+ .header, .marketing, .footer {
+    padding-left: 15px;
+    padding-right: 15px;
 }
-.page-wrapper {
- width: 1000px;
- background: url(/resources/images/centerBackground.gif) repeat-y;
- // color: #C3A680;
- // background: url(/resources/images/bgNew2.png) repeat-y;
- margin: 0 auto;
- padding: 0;
- text-align: left;
+/* Custom page header */
+ .header {
+    border-bottom: 1px solid #ffa500;
 }
-header {
- width: 765px;
- height: 343px;
- background: url(/resources/images/headerBg.jpg) no-repeat;
+/* Make the masthead heading the same height as the navigation */
+ .header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+    color:#ffa500;
 }
-.preamble, .supporting {
- text-align: left;
- width: 455px;
- margin: 0 0 0 43px;
+/* Custom page footer */
+ .footer {
+    padding-top: 19px;
+    /* color: #777;*/
+    color:#ffa500;
+    border-top: 1px solid #ffa500;
 }
-.preamble p, .supporting p {
- margin: 0 0 12px 0;
-}
-.summary { position: relative; }
-.summary p:last-child {
- position: absolute;
- margin-top: -70px;
- left: 615px;
- font: 9px/14px Georgia,Times,Serif;
- text-transform: uppercase;
- width: 100px;
- padding: 0;
-}
-.sidebar {
- position: absolute;
- top: 343px;
- margin-left: 529px;
- color: #2B0101;
- width: 425px; 
-}
-footer {
- display: block;
- padding: 12px 0 0 0;
- margin: 20px 0 0 120px;
- text-align: center;
- height: 43px;
- width: 204px;
-}
-p:nth-child(2),p:nth-child(3),p:nth-child(4),p:nth-child(5),p:nth-child(6) { padding-left: 8px; }
-.preamble h3,.explanation h3, .zoekNummers h3, .benefits h3, .requirements h3 { 
- height: 60px; 
- text-indent: -8000px;
- margin: 0;
- padding: 0;
-}
-.design-selection h3, .quooc-resources h3, .design-archives h3 {
- height: 23px;
- margin: 0;
- padding: 0;
- text-indent: -8000px; 
-}
-.preamble h3 { background: url(/resources/images/introduction.gif) no-repeat; }
-.explanation h3 { background: url(/resources/images/hdAbout.gif) no-repeat; }
-.zoekNummers h3 { background: url(/resources/images/zoekNummers.gif) no-repeat; }
-.design-selection h3 { background: url(/resources/images/bladeren.gif) no-repeat; }
-.design-archives h3 { background: url(/resources/images/hdArch.gif) no-repeat; margin-top: 15px;}
-.quooc-spelregels h3 { background: url(/resources/images/spelregels.gif) no-repeat; margin-top: 15px; }
-/* --// links --// */
-a { 
- color: #683A33;
- text-decoration: none;
- border-bottom: 1px dotted #683A33;
-}
-a:hover,a:active { 
- border-bottom: 1px solid #512720;
- background: #C3A680;
-}
-a abbr { border: 0; }
-li a {
- display: block;
- font-weight: bold;
- font-size: 10px;
- text-transform: uppercase;
- padding: 0 0 0 10px;
- border-bottom: 0;
-}
-li a.designer-name {
- font-size: 9px;
- font-weight: normal;
- display: inline;
- padding: 0;
- background: none;
-}
-.design-archives li a, .quooc-resources li a {
- display: inline;
- font-weight: normal;
- font-size: 9px;
- margin: 0;
- text-transform: uppercase;
-}
-.design-archives li a { background: none; }
-li a:hover, li a:hovera.designer-name { color: #5E1919; border-bottom: 0; }
-li a:hovera.designer-name { background: none; }
-footer a {
- text-decoration: none;
- border: none;
- font: 10px georgia,times,serif;
- padding: 1px;
- text-transform: uppercase;
-}
-footer a:hover {
- background: none;
- border-top: 1px solid #683A33;
- border-bottom: 1px solid #683A33;
-}
-.summary p:first-child, .extra1, .extra2, .extra3, .extra4, .extra5, .extra6, header h1,h2 { display : none; }
-
-ul,li {
- list-style: none;
- padding: 0;
- margin: 0;
- line-height: 15px; 
-}
-.design-selection, .quooc-resources, .design-archives {
- padding-bottom: 6px;
-}
-li {
- padding: 5px 5px 12px 5px;
- text-transform: uppercase; 
- font-size: 9px; 
-}
-p:nth-child(2):hover,p:nth-child(3):hover,p:nth-child(4):hover,p:nth-child(5):hover,p:nth-child(6):hover { border-left: 2px solid #B0915F; padding-left: 6px; }
-.summary p:last-child:hover { border: 0; padding: 0; }
+/* Customize container */
+ @media (min-width: 768px) {
+    .container {
+        max-width: 730px;
+    }
+    .container-narrow > hr {
+        margin: 30px 0;
+    }
+    /* Main marketing message and sign up button */
+    .jumbotron {
+        text-align: center;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+    }
+    /* Supporting marketing content */
+    .marketing {
+        margin: 40px 0;
+    }
+    .marketing p + h4 {
+        margin-top: 28px;
+    }
+    .inhoudBoven {
+        min-height: 512px;
+    }
+    .inhoudOnder {
+        min-height: 256px;
+    }
+    /* Styles you shouldn't keep as they are for displaying this base example only */
+    .col-lg-6 {
+        min-height: 512px;
+        padding-left: 19px;
+        padding-right: 19px;
+        padding-top: 19px;
+        padding-bottom: 19px;
+        border:2px solid;
+        border-radius:25px;
+        background-color: #3f3f3f;
+        color:#ffa500;
+    }
+    /* Responsive: Portrait tablets and up */
+    @media screen and (min-width: 768px) {
+        /* Remove the padding we set earlier */
+        .header, .marketing, .footer {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        /* Space out the masthead */
+        .header {
+            margin-bottom: 30px;
+        }
+        /* Remove the bottom border on the jumbotron for visual effect */
+        .jumbotron {
+            border-bottom: 0;
+        }
+    }

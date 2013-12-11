@@ -12,7 +12,7 @@
     <!-- Bootstrap core CSS -->
     <link href="../../resources/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="style.css" rel="stylesheet">
+    <link href="../../resources/css/style.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -27,53 +27,45 @@
         <div class="header">
             <h3 class="text-muted text-center">Voornaam in liedje</h3>
         </div>
-        <div class="row marketing">
+        <div class="row">
             <div class="col-lg-6">
-                <div class="inhoudBoven">
-                    <h4>Bladeren</h4>
-                    <p>
-                        <nav role="navigation">
-                            <table class "table">
-                                <thead>
-                                    <tr>
-                                        <th>Artiest</th>
-                                        <th>Titel</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-bind="foreach: songs">
-                                    <tr>
-                                        <td data-bind="text: artist"></td>
-                                        <td data-bind="text: title"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </nav>
-                        Voornaam:
-                        <input data-bind="value: voornaam" />
-                        <button class="btn btn-default btn-xs active" type="submit" data-bind="click: zoeknummers">Zoek</button>
-                        <!--button data-bind="click: zoeknummers">Zoek</button-->
-                    </p>
-                </div>
+                <h4>Bladeren</h4>
+                <p>
+                    <nav role="navigation">
+                        <table class "table">
+                            <thead>
+                                <tr>
+                                    <th>Artiest</th>
+                                    <th>Titel</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: songs">
+                                <tr>
+                                    <td data-bind="text: artist"></td>
+                                    <td data-bind="text: title"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </nav>
+                    Voornaam:
+                    <input data-bind="value: voornaam" />
+                    <button class="btn btn-default btn-xs active" type="submit" data-bind="click: zoeknummers">Zoek</button>
+                    <!--button data-bind="click: zoeknummers">Zoek</button-->
+                </p>
             </div>
             <div class="col-lg-6">
-                <div class="inhoudBoven">
-                    <h4>Lied van de dag</h4>
-                    <p>'You Can Call Me Al' is een liedje van de Amerikaanse zanger Paul Simon. Het werd in oktober 1986 door Warner Bros. Records als eerste single van zijn album Graceland uitgegeven. Op de B-kant stond het liedje 'Gumboots'. Simon verzorgde zelf de muzikale productie, met Roy Halee als opnametechnicus. De muziek werd opgenomen in The Hit Factory in New York. De single bereikte de vierde plaats in de UK Singles Chart en aanvankelijk de 44ste plaats in de Billboard Hot 100. 'You Can Call Me Al' werd in maart 1987 opnieuw uitgegeven. Het bereikte toen de 23ste plaats in de Verenigde Staten. In de door Gary Weis geregisseerde muziekvideo zit Simon naast acteur Chevy Chase, die het liedje playbackt. Voordat deze clip werd opgenomen, zou Simon twee andere video's hebben afgewezen omdat hij die te dwaas ('too silly') vond. Al Gore gebruikte 'You Can Call Me Al' in 1992 voor zijn campagne voor het vicepresidentschap van de Verenigde Staten.</p>
-                </div>
+                <h4>Lied van de dag</h4>
+                <p>'You Can Call Me Al' is een liedje van de Amerikaanse zanger Paul Simon. Het werd in oktober 1986 door Warner Bros. Records als eerste single van zijn album Graceland uitgegeven. Op de B-kant stond het liedje 'Gumboots'. Simon verzorgde zelf de muzikale productie, met Roy Halee als opnametechnicus. De muziek werd opgenomen in The Hit Factory in New York. De single bereikte de vierde plaats in de UK Singles Chart en aanvankelijk de 44ste plaats in de Billboard Hot 100. 'You Can Call Me Al' werd in maart 1987 opnieuw uitgegeven. Het bereikte toen de 23ste plaats in de Verenigde Staten. In de door Gary Weis geregisseerde muziekvideo zit Simon naast acteur Chevy Chase, die het liedje playbackt. Voordat deze clip werd opgenomen, zou Simon twee andere video's hebben afgewezen omdat hij die te dwaas ('too silly') vond. Al Gore gebruikte 'You Can Call Me Al' in 1992 voor zijn campagne voor het vicepresidentschap van de Verenigde Staten.</p>
             </div>
         </div>
-        <div class="row marketing">
+        <div class="row">
             <div class="col-lg-6">
-                <div class="inhoudOnder">
-                    <h4>Spelregels.</h4>
-                    <p>Mocht je nog een nummer weten dat niet in de lijst staat, dan horen we dat natuurlijk graag. Nummers uit alle talen zijn welkom. Voorwaarde is dat er een voornaam in de titel van het nummer zit. Het nummer moet op een uitgebrachte singel of album staan, en het moet uit de tekst af te leiden zijn dat het daadwerkelijk een voornaam betreft in het nummer. Je kunt nieuwe nummers melden aan <b><i><script>mail("info", "ovroanmaniildeejn?l", -2, "")</script></i></b>.</p>
-                </div>
+                <h4>Spelregels.</h4>
+                <p>Mocht je nog een nummer weten dat niet in de lijst staat, dan horen we dat natuurlijk graag. Nummers uit alle talen zijn welkom. Voorwaarde is dat er een voornaam in de titel van het nummer zit. Het nummer moet op een uitgebrachte singel of album staan, en het moet uit de tekst af te leiden zijn dat het daadwerkelijk een voornaam betreft in het nummer. Je kunt nieuwe nummers melden aan <b><i><script>mail("info", "ovroanmaniildeejn?l", -2, "")</script></i></b>.</p>
             </div>
             <div class="col-lg-6">
-                <div class="inhoudOnder">
-                    <h4>Youtube</h4>
-                    <iframe width="320" height="180" src="//www.youtube.com/embed/uq-gYOrU8bA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
-                </div>
+                <h4>Youtube</h4>
+                <iframe width="320" height="180" src="//www.youtube.com/embed/uq-gYOrU8bA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
         <div class="footer text-right">
