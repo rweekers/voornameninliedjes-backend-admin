@@ -37,6 +37,9 @@ public class Song implements Serializable {
 
     @Column(name = "background")
     private String background;
+    
+    @Column(name = "youtube")
+    private String youtube;
 
     public Integer getId() {
         return id;
@@ -76,5 +79,13 @@ public class Song implements Serializable {
 
     public void setBackground(String background) {
         this.background = background;
+    }
+    
+    public String getYoutube(){
+    	return youtube;
+    }
+    
+    public void setYoutube(String youtube) {
+    	this.youtube = youtube;
     }
 }

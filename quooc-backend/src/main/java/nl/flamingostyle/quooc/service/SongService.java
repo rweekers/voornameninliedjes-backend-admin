@@ -8,7 +8,7 @@ public interface SongService {
 	
 	public Song getRandom();
 	
-	public Song getYouCanCallMeAll();
+	public Song getYouCanCallMeAl();
 
 	public List<Song> getAll();
 

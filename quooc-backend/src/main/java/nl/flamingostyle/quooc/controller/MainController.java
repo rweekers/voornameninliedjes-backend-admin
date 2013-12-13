@@ -62,10 +62,10 @@ public class MainController {
      *
      * @return the random song
      */
-    @RequestMapping(value = "song/all", method = RequestMethod.GET)
+    @RequestMapping(value = "song/al", method = RequestMethod.GET)
     @ResponseBody
     public Song songAll() {
-        return songService.getYouCanCallMeAll();
+        return songService.getYouCanCallMeAl();
     }
 
     /**

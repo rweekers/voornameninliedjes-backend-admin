@@ -9,7 +9,7 @@ songApp.controller('SongListCtrl', function($scope, $http) {
     $scope.songs = data.splice(0,10);
   });
 
-  $http.get('http://localhost:8080/voornaaminliedje/api/song/all').success(function(data) {
+  $http.get('http://localhost:8080/voornaaminliedje/api/song/al').success(function(data) {
     $scope.songOfTheDay = data;
   });
 

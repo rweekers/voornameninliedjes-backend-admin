@@ -70,7 +70,7 @@ public class SongServiceImpl implements SongService {
      * @return The song "You Can Call Me All" from the database
      */
     @Override
-    public Song getYouCanCallMeAll() {
+    public Song getYouCanCallMeAl() {
     	
     	// Retrieve existing song 'You can call me Al'
     	int id = 12070;
