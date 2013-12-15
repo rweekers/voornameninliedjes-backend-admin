@@ -7,6 +7,12 @@
     <script type='text/JavaScript' src="../../resources/js/libs/email.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
     <script src="../../resources/js/controllers.js"></script>
+    <script src="//www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">
+      google.load("swfobject", "2.1");
+    </script>
+    <!--script type="text/javascript" src="/scripts/swfobject.js"--> 
+</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -108,11 +114,9 @@
             <div class="col-lg-1"></div>
             <div class="col-lg-7 inhoudOnder">
                 <h4>Youtube</h4>
-                <iframe width="380" height="214" src="//www.youtube.com/embed/uq-gYOrU8bA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
 
-                <!--iframe width="380" height="214" ng-src="{{songOfTheDay.youtube}}" frameborder="0" allowfullscreen></iframe-->
+                <div id="videoDiv">Loading...</div>
 
-                {{songOfTheDay.youtube}}
             </div>
         </div>
         <div class="row horizontalDivider"></div>
@@ -128,8 +132,8 @@
     <script type='text/JavaScript' src="../../resources/js/libs/knockout-3.0.0.js"></script>
     <script type='text/JavaScript' src="../../resources/js/libs/knockout-mapping-2.4.1.js"></script>
     <script type='text/JavaScript' src="../../resources/js/libs/browserDetect.js"></script>
-    <script type='text/JavaScript' src="resources/js/rest.js"></script>
-    <script type='text/JavaScript' src="resources/js/databinding.js"></script>
+    <!--script type='text/JavaScript' src="resources/js/rest.js"></script-->
+    <!--script type='text/JavaScript' src="resources/js/databinding.js"></script-->
     <script type='text/JavaScript' src="resources/js/logVisits.js"></script>
     <script type='text/JavaScript' src="resources/js/logSearchInstruction.js"></script>
     <script type='text/JavaScript' src="../../resources/bootstrap3/js/bootstrap.min.js"></script>
