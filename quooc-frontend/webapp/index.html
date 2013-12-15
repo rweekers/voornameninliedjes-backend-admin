@@ -9,10 +9,10 @@
     <script src="../../resources/js/controllers.js"></script>
     <script src="//www.google.com/jsapi" type="text/javascript"></script>
     <script type="text/javascript">
-      google.load("swfobject", "2.1");
+    google.load("swfobject", "2.1");
     </script>
-    <!--script type="text/javascript" src="/scripts/swfobject.js"--> 
-</script>
+    <!--script type="text/javascript" src="/scripts/swfobject.js"-->
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -44,13 +44,6 @@
                 Zoek:
                 <input ng-model="query">
 
-                <!--ul class="songs">
-                    <li ng-repeat="song in songs | filter:query | orderBy:orderProp">
-                        {{song.artist}}
-                        <p>{{song.title}}</p>
-                    </li>
-                </ul-->
-
                 <table class="table table-condensed">
                     <thead class="tableHead">
                         <tr>
@@ -73,27 +66,12 @@
                     <option value="title">Titel</option>
                 </select>
 
-                <!--table class="table table-condensed">
-                    <thead class="tableHead">
-                        <tr>
-                            <th>Artiest</th>
-                            <th>Titel</th>
-                        </tr>
-                    </thead>
-                    <tbody data-bind="foreach: songs">
-                        <tr>
-                            <td data-bind="text: artist"></td>
-                            <td data-bind="text: title"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button class="btn btn-default btn-xs active" type="submit" data-bind="click: previous">Vorige</button>
-                <button class="btn btn-default btn-xs active" type="submit" data-bind="click: next">Volgende</button>
-                <br />
-                <br />Voornaam:
-                <input autofocus="autofocus" data-bind="value: voornaam" />
-                <button class="btn btn-default btn-xs active" type="submit" data-bind="click: zoeknummers">Zoek</button>
-                <!--button data-bind="click: zoeknummers">Zoek</button-->
+                <input autofocus="autofocus" ng-model="zoekOpdracht" placeholder="Zoek op een voornaam..." />
+                <button class="btn btn-default btn-xs active" type="submit" ng-click="search($event)">Zoek</button>
+
+                <!--button class="btn btn-default btn-xs active" type="submit" data-bind="click: previous">Vorige</button>
+                <button class="btn btn-default btn-xs active" type="submit" data-bind="click: next">Volgende</button-->
+
             </div>
             <div class="col-lg-1"></div>
             <div class="col-lg-5 inhoudBoven">
@@ -128,12 +106,8 @@
     <!-- Bootstrap core JavaScript
       ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script type='text/JavaScript' src="../../resources/js/libs/jquery-2.0.3.min.js"></script>
-    <script type='text/JavaScript' src="../../resources/js/libs/knockout-3.0.0.js"></script>
-    <script type='text/JavaScript' src="../../resources/js/libs/knockout-mapping-2.4.1.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script type='text/JavaScript' src="../../resources/js/libs/browserDetect.js"></script>
-    <!--script type='text/JavaScript' src="resources/js/rest.js"></script-->
-    <!--script type='text/JavaScript' src="resources/js/databinding.js"></script-->
     <script type='text/JavaScript' src="resources/js/logVisits.js"></script>
     <script type='text/JavaScript' src="resources/js/logSearchInstruction.js"></script>
     <script type='text/JavaScript' src="../../resources/bootstrap3/js/bootstrap.min.js"></script>

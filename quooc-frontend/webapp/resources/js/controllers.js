@@ -18,15 +18,19 @@ songApp.controller('SongListCtrl', function($scope, $http) {
     logVisit();
 
     $scope.orderProp = 'artist';
+
+    $scope.zoekOpdracht;
+
+    $scope.search = function($event) {
+     logSearchInstruction($scope.zoekOpdracht);
+    }
 });
 
 function run(songOTD) {
     /*
      * Simple player embed
      */
-    console.debug("Songofthe day is " + songOTD.youtube);
     // The video to load.
-    // var videoID = "uq-gYOrU8bA"
     var videoID = songOTD.youtube;
     // Lets Flash from another domain call JavaScript
     var params = {
