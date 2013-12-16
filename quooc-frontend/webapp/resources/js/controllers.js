@@ -2,26 +2,87 @@
 
 /* Controllers */
 
-var songApp = angular.module('songApp', []);
+var songControllers = angular.module('songControllers', []);
+
 var songOTD;
 
-songApp.controller('SongListCtrl', function($scope, $http) {
-    $http.get('http://localhost:8080/voornaaminliedje/api/songs/all').success(function(data) {
-        $scope.songs = data.splice(0, 10);
-    });
+songControllers.controller('SongListCtrl', ['$scope', 'Song', 'FindSongs',
+    function($scope, Song, FindSongs) {
 
-    $http.get('http://localhost:8080/voornaaminliedje/api/song/al').success(function(data) {
-        $scope.songOfTheDay = data;
-        songOTD = $scope.songOfTheDay;
-    });
+        $scope.songs = Song.query({
+            offset: 0,
+            max: 15
+        });
+        $scope.orderProp = 'artist';
 
-    logVisit();
+        $scope.disabled = 'enabled';
 
-    $scope.orderProp = 'artist';
+        logVisit();
 
-    $scope.zoekOpdracht;
+        $scope.offset = 0;
 
-    $scope.search = function($event) {
-     logSearchInstruction($scope.zoekOpdracht);
+        $scope.next = function($event) {
+            $scope.offset = calculateNextOffset($scope.offset, 770, 15);
+            $scope.songs = Song.query({
+                offset: $scope.offset,
+                max: 15
+            });
+        }
+
+        $scope.previous = function($event) {
+            $scope.offset = calculatePrevOffset($scope.offset, 770, 15);
+            $scope.songs = Song.query({
+                offset: $scope.offset,
+                max: 15
+            });
+        }
+
+        $scope.search = function($event) {
+            logSearchInstruction($scope.searchInstruction);
+
+            $scope.songs = FindSongs.query({
+                firstname: $scope.searchInstruction
+            });
+        }
     }
-});
+
+
+]);
+
+songControllers.controller('SongOfTheDayCtrl', ['$scope', 'SongOfTheDay',
+    function($scope, SongOfTheDay) {
+
+        $scope.songOfTheDay = SongOfTheDay.query();
+        songOTD = $scope.songOfTheDay;
+    }
+]);
+
+function calculatePrevOffset(oldOffset, count, max) {
+    var offset;
+
+    if (oldOffset > max) {
+        offset = oldOffset - max;
+    } else {
+        offset = 0;
+    }
+
+    return offset;
+}
+
+function calculateNextOffset(oldOffset, count, max) {
+    var offset;
+
+    if (oldOffset + 2 * max < count) {
+        offset = oldOffset + max;
+    } else {
+        offset = count - max;
+    }
+
+    return offset;
+}
+
+/*
+$scope.search = function($event) {
+    // logSearchInstruction($scope.zoekOpdracht);
+    console.log("blabla.");
+}*/

@@ -85,9 +85,9 @@ public class MainController {
      * @param firstname the firstname to search
      * @return a list of songs with (part of) the firstname
      */
-    @RequestMapping(value = "song/find/{firstname}", method = RequestMethod.GET)
+    @RequestMapping(value = "songs/find", method = RequestMethod.GET)
     @ResponseBody
-    public List<Song> findSongs(@PathVariable String firstname) {
+    public List<Song> findSongs(@RequestParam("firstname") String firstname) {
         return songService.findByFirstname(firstname);
     }
 

@@ -5,8 +5,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script type='text/JavaScript' src="../../resources/js/libs/email.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
-    <script src="../../resources/js/controllers.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
+    <!--script type='text/JavaScript' src="../../resources/js/libs/angular.js"></script>
+    <script type='text/JavaScript' src="../../resources/js/libs/angular-resource.js"></script>
+    <script type='text/JavaScript' src="../../resources/js/libs/angular-route.js"></script-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -26,17 +30,17 @@
     <![endif]-->
 </head>
 
-<body ng-controller="SongListCtrl">
+<body>
     <div class="container">
         <div class="header">
             <h3 class="text-muted text-center">Voornaam in liedje</h3>
         </div>
         <div class="row">
-            <div class="col-lg-6 inhoudBoven">
-                <h4>Bladeren</h4>
+            <div class="col-lg-6 inhoudBoven" ng-controller="SongListCtrl">
 
-                Zoek:
-                <input ng-model="query">
+                <button class="btn-link" type="submit" ng-click="previous($event)">Vorige</button>
+                <button class="btn-link" type="submit" ng-click="next($event)">Volgende</button>
+                Toon {{offset}} tot en met {{offset + 15}}
 
                 <table class="table table-condensed">
                     <thead class="tableHead">
@@ -52,23 +56,21 @@
                         </tr>
                     </tbody>
                 </table>
-
+                <!--
                 Sort by:
                 <select ng-model="orderProp">
                     <option value="artist">Artiest</option>
                     <option value="-artist">Artiest Z-A</option>
                     <option value="title">Titel</option>
-                </select>
+                </select>-->
 
-                <input autofocus="autofocus" ng-model="zoekOpdracht" placeholder="Zoek op een voornaam..." />
-                <button class="btn btn-default btn-xs active" type="submit" ng-click="search($event)">Zoek</button>
+                <input name="widget.title" ng-model="searchInstruction" placeholder="Zoek op voornaam..." />
 
-                <!--button class="btn btn-default btn-xs active" type="submit" data-bind="click: previous">Vorige</button>
-                <button class="btn btn-default btn-xs active" type="submit" data-bind="click: next">Volgende</button-->
+                <button class="btn-xs" type="submit" ng-click="search($event)">Zoek</button>
 
             </div>
             <div class="col-lg-1"></div>
-            <div class="col-lg-5 inhoudBoven">
+            <div class="col-lg-5 inhoudBoven" ng-controller="SongOfTheDayCtrl">
                 <h4>Lied van de dag</h4>
                 <h5><i>{{songOfTheDay.title}}</i> van <i>{{songOfTheDay.artist}}</i>
                 </h5>
@@ -84,10 +86,9 @@
                 <p>Mocht je nog een nummer weten dat niet in de lijst staat, dan horen we dat natuurlijk graag. Nummers uit alle talen zijn welkom. Voorwaarde is dat er een voornaam in de titel van het nummer zit. Het nummer moet op een uitgebrachte singel of album staan, en het moet uit de tekst af te leiden zijn dat het daadwerkelijk een voornaam betreft in het nummer. Je kunt nieuwe nummers melden aan <b><i><script>mail("info", "ovroanmaniildeejn?l", -2, "")</script></i></b>.</p>
             </div>
             <div class="col-lg-1"></div>
-            <div class="col-lg-7 inhoudOnder">
+            <div class="col-lg-7 inhoudOnder" ng-controller="SongOfTheDayCtrl">
                 <h4>Youtube</h4>
 
-                <!--div id="videoDiv">Loading...</div-->
                 <div id="player">Loading...</div>
 
             </div>
@@ -106,6 +107,9 @@
     <script type='text/JavaScript' src="../../resources/js/logVisits.js"></script>
     <script type='text/JavaScript' src="../../resources/js/logSearchInstruction.js"></script>
     <script type='text/JavaScript' src="../../resources/bootstrap3/js/bootstrap.min.js"></script>
+    <script type='text/JavaScript' src="../../resources/js/services.js"></script>
+    <script type='text/JavaScript' src="../../resources/js/app.js"></script>
+    <script type='text/JavaScript' src="../../resources/js/controllers.js"></script>
     <script type='text/JavaScript' src="../../resources/js/youtube.js"></script>
 </body>
 
