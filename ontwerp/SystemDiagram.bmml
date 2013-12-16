@@ -1,0 +1,50 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1453" measuredH="634" mockupW="1336" mockupH="521">
+  <controls>
+    <control controlID="5" controlTypeID="__group__" x="1387" y="242" w="66" h="82" measuredW="66" measuredH="82" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <controlName>Database</controlName>
+      </controlProperties>
+      <groupChildrenDescriptors>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Component" x="0" y="0" w="66" h="82" measuredW="66" measuredH="82" zOrder="0" locked="false" isInGroup="5">
+          <controlProperties>
+            <override controlID="0">
+              <text>psql%209.3</text>
+            </override>
+            <src>%24ACCOUNT/assets/Network%2520Diagrams.bmml%23Database</src>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Component" x="1115" y="290" w="49" h="84" measuredW="49" measuredH="84" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <override controlID="0">
+          <text>tomcat7</text>
+        </override>
+        <src>%24ACCOUNT/assets/Network%2520Diagrams.bmml%23Server</src>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Component" x="1115" y="113" w="49" h="85" measuredW="49" measuredH="85" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <override controlID="0">
+          <text>nginx</text>
+        </override>
+        <src>%24ACCOUNT/assets/Network%2520Diagrams.bmml%23Web%2520Server</src>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Component" x="839" y="239" w="61" h="54" measuredW="61" measuredH="54" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>%24ACCOUNT/assets/Network%2520Diagrams.bmml%23Laptop</src>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Component" x="962" y="235" w="87" h="63" measuredW="87" measuredH="63" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>%24ACCOUNT/assets/Network%2520Diagrams.bmml%23Internet</src>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::SiteMap" x="117" y="324" w="-1" h="-1" measuredW="898" measuredH="310" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Voornaaminliedje%0A-%20Frontend%0A--%20table%20with%20songs%0A--%20song%20of%20the%20day%20background%0A--%20song%20of%20the%20day%20youtube%0A--%20how%20to%20play%0A-%20Backend%0A--%20/api/songs/all%0A--%20/api/song/random</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
