@@ -45,7 +45,7 @@
         min-height: 340px;
     }
     .horizontalDivider {
-    	min-height: 19px;
+        min-height: 19px;
     }
     /* Styles you shouldn't keep as they are for displaying this base example only */
     .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7 {
@@ -60,15 +60,12 @@
         color:#ffffff;
         font-size: 13px;
     }
-
     .tableHead {
-    	color:#ffa500;
+        color:#ffa500;
     }
-
     h4 {
-    	color:#ffa500;
+        color:#ffa500;
     }
-
     /* Responsive: Portrait tablets and up */
     @media screen and (min-width: 768px) {
         /* Remove the padding we set earlier */
@@ -84,4 +81,15 @@
         .jumbotron {
             border-bottom: 0;
         }
+    }
+    .gridStyle {
+        border: 1px solid rgb(212, 212, 212);
+        width: 380px;
+        height: 320px;
+    }
+    .ngHeaderText {
+        color: black;
+    }
+    .ngCellText {
+        color: black;
     }

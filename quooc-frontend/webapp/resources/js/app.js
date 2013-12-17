@@ -3,6 +3,7 @@
 /* App Module */
 var songApp = angular.module('songApp', [
   'ngRoute',
+  'ngGrid',
   'songControllers',
   'songServices'
 ]);

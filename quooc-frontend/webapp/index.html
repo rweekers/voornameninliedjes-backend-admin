@@ -5,9 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script type='text/JavaScript' src="../../resources/js/libs/email.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-resource.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
+    <script type='text/JavaScript' src="../../resources/js/libs/ng-grid-2.0.7.debug.js"></script>
     <!--script type='text/JavaScript' src="../../resources/js/libs/angular.js"></script>
     <script type='text/JavaScript' src="../../resources/js/libs/angular-resource.js"></script>
     <script type='text/JavaScript' src="../../resources/js/libs/angular-route.js"></script-->
@@ -18,6 +20,7 @@
     <title>Voornaam in liedje: Een verzameling van populaire liedjes met voornamen in de titel</title>
     <!-- Bootstrap core CSS -->
     <link href="../../resources/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/ng-grid.css" />
     <link rel="stylesheet" href="../../resources/css/bootstrap.css">
     <!-- Custom styles for this template -->
     <link href="../../resources/css/style.css" rel="stylesheet">
@@ -86,12 +89,18 @@
                 <p>Mocht je nog een nummer weten dat niet in de lijst staat, dan horen we dat natuurlijk graag. Nummers uit alle talen zijn welkom. Voorwaarde is dat er een voornaam in de titel van het nummer zit. Het nummer moet op een uitgebrachte singel of album staan, en het moet uit de tekst af te leiden zijn dat het daadwerkelijk een voornaam betreft in het nummer. Je kunt nieuwe nummers melden aan <b><i><script>mail("info", "ovroanmaniildeejn?l", -2, "")</script></i></b>.</p>
             </div>
             <div class="col-lg-1"></div>
-            <div class="col-lg-7 inhoudOnder" ng-controller="SongOfTheDayCtrl">
-                <h4>Youtube</h4>
+            <!-- div class="col-lg-7 inhoudOnder" ng-controller="SongOfTheDayCtrl"-->
+            <div class="col-lg-7 inhoudOnder" ng-controller="MyCtrl2">
+                <!--h4>Youtube</h4>
 
-                <div id="player">Loading...</div>
+                <div id="player">Loading...</div-->
+
+                <div class="gridStyle" ng-grid="gridOptions"></div>
 
             </div>
+
+
+
         </div>
         <div class="row horizontalDivider"></div>
         <div class="footer text-left">
@@ -102,7 +111,6 @@
     <!-- Bootstrap core JavaScript
       ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script type='text/JavaScript' src="../../resources/js/libs/browserDetect.js"></script>
     <script type='text/JavaScript' src="../../resources/js/logVisits.js"></script>
     <script type='text/JavaScript' src="../../resources/js/logSearchInstruction.js"></script>
