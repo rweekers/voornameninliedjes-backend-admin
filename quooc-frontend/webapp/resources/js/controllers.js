@@ -183,9 +183,3 @@ function calculateNextOffset(oldOffset, count, max) {
 
     return offset;
 }
-
-/*
-$scope.search = function($event) {
-    // logSearchInstruction($scope.zoekOpdracht);
-    console.log("blabla.");
-}*/
