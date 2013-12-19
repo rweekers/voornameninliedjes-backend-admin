@@ -8,6 +8,7 @@ quooc-backend/dist
 quooc-backend/.classpath
 quooc-backend/.project
 quooc-backend/.settings/
+quooc-backend/.springBeans
 
 quooc-frontend/logs
 quooc-frontend/project/project
