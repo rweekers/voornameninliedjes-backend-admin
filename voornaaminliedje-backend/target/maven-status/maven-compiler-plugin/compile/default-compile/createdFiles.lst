@@ -1,4 +1,5 @@
 nl\flamingostyle\voornaaminliedje\service\SongServiceImpl.class
+nl\flamingostyle\voornaaminliedje\springconfig\SecurityConfig.class
 nl\flamingostyle\voornaaminliedje\service\SearchInstructionServiceImpl.class
 nl\flamingostyle\voornaaminliedje\domain\SearchInstruction.class
 nl\flamingostyle\voornaaminliedje\springconfig\ApplicationInitializer.class

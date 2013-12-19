@@ -44,4 +44,7 @@
   <classpathentry kind="var" path="M2_REPO/cglib/cglib-nodep/2.2/cglib-nodep-2.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/jboss/javassist/3.7.ga/javassist-3.7.ga.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/postgresql/postgresql/9.2-1003-jdbc4/postgresql-9.2-1003-jdbc4.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/security/spring-security-web/3.2.0.RELEASE/spring-security-web-3.2.0.RELEASE.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/security/spring-security-core/3.2.0.RELEASE/spring-security-core-3.2.0.RELEASE.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/security/spring-security-config/3.2.0.RELEASE/spring-security-config-3.2.0.RELEASE.jar"/>
 </classpath>
