@@ -1,0 +1,16 @@
+nl\flamingostyle\voornaaminliedje\service\SongServiceImpl.class
+nl\flamingostyle\voornaaminliedje\service\SearchInstructionServiceImpl.class
+nl\flamingostyle\voornaaminliedje\domain\SearchInstruction.class
+nl\flamingostyle\voornaaminliedje\springconfig\ApplicationInitializer.class
+nl\flamingostyle\voornaaminliedje\controller\CorsFilter.class
+nl\flamingostyle\voornaaminliedje\service\SongOfTheDayService.class
+nl\flamingostyle\voornaaminliedje\service\SearchInstructionService.class
+nl\flamingostyle\voornaaminliedje\service\VisitService.class
+nl\flamingostyle\voornaaminliedje\service\SongService.class
+nl\flamingostyle\voornaaminliedje\controller\MainController.class
+nl\flamingostyle\voornaaminliedje\domain\SongOfTheDay.class
+nl\flamingostyle\voornaaminliedje\service\VisitServiceImpl.class
+nl\flamingostyle\voornaaminliedje\springconfig\WebConfig.class
+nl\flamingostyle\voornaaminliedje\domain\Visit.class
+nl\flamingostyle\voornaaminliedje\domain\Song.class
+nl\flamingostyle\voornaaminliedje\service\SongOfTheDayServiceImpl.class
