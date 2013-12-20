@@ -67,6 +67,17 @@ public class MainController {
     public Song songAll() {
         return songService.getYouCanCallMeAl();
     }
+    
+    /**
+     * Gets a random song
+     *
+     * @return the random song
+     */
+    @RequestMapping(value = "admin/song/al", method = RequestMethod.GET)
+    @ResponseBody
+    public Song songAll2() {
+        return songService.getYouCanCallMeAl();
+    }
 
     /**
      * Gets the max number
