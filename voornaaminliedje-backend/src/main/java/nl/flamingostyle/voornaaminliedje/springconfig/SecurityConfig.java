@@ -14,15 +14,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
-		auth.inMemoryAuthentication().withUser("letsnosh").password("noshing")
-				.roles("USER").and().withUser("remco").password("remco")
+		auth.inMemoryAuthentication().withUser("admin").password("admin")
 				.roles("ADMIN");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/api/song/**").hasRole("USER")
-				.antMatchers("/api/songs/**").hasRole("ADMIN").anyRequest()
-				.anonymous().and().httpBasic();
+		http.authorizeRequests().antMatchers("/api/**").permitAll()
+				.antMatchers("/api/admin/**").hasRole("ADMIN").anyRequest()
+				.authenticated().and().httpBasic();
 	}
 }

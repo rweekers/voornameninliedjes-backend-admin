@@ -96,7 +96,7 @@ public class MainController {
      *
      * @return all songs
      */
-    @RequestMapping(value = "songs/all", method = RequestMethod.GET)
+    @RequestMapping(value = "admin/songs/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Song> allSongs() {
         return songService.getAll();

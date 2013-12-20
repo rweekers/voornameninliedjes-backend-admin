@@ -46,8 +46,6 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 				"corsFilter", CorsFilter.class);
 		corsFilter.addMappingForUrlPatterns(null, false, "/*");
 
-		// WebApplicationContext webRootContext = createRootContext(container);
-
 		configureSpringSecurity(container, rootContext);
 
 	}
@@ -58,17 +56,5 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 				"springSecurityFilterChain", new DelegatingFilterProxy(
 						"springSecurityFilterChain", rootContext));
 		springSecurity.addMappingForUrlPatterns(null, true, "/*");
-	}
-
-	private WebApplicationContext createRootContext(
-			ServletContext servletContext) {
-		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-		rootContext.register(SecurityConfig.class);
-		rootContext.refresh();
-
-		servletContext.addListener(new ContextLoaderListener(rootContext));
-		servletContext.setInitParameter("defaultHtmlEscape", "true");
-
-		return rootContext;
 	}
 }
