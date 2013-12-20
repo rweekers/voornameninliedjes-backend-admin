@@ -11,18 +11,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-  @Autowired
-  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    auth.inMemoryAuthentication()
-        .withUser("letsnosh").password("noshing").roles("USER");
-  }
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth)
+			throws Exception {
+		auth.inMemoryAuthentication().withUser("letsnosh").password("noshing")
+				.roles("USER").and().withUser("remco").password("remco")
+				.roles("ADMIN");
+	}
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests()
-        .antMatchers("/aggregators/**").hasRole("USER")
-        .anyRequest().anonymous()
-        .and()
-        .httpBasic();
-  }
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers("/api/song/**").hasRole("USER")
+				.antMatchers("/api/songs/**").hasRole("ADMIN").anyRequest()
+				.anonymous().and().httpBasic();
+	}
 }

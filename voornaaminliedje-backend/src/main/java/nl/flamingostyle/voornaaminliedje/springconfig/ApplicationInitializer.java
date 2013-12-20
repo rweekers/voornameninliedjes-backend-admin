@@ -10,19 +10,21 @@ import nl.flamingostyle.voornaaminliedje.controller.CorsFilter;
 import org.apache.log4j.Logger;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
 public class ApplicationInitializer implements WebApplicationInitializer {
 
 	protected static Logger logger = Logger.getLogger("corsFilter");
-	
+
 	@Override
 	public void onStartup(ServletContext container) throws ServletException {
 
 		// Create the 'root' Spring application context
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-		rootContext.register(WebConfig.class);
+		rootContext.register(WebConfig.class, SecurityConfig.class);
 
 		// Manage the lifecycle of the root application context
 		container.addListener(new ContextLoaderListener(rootContext));
@@ -38,11 +40,35 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 		dispatcher.addMapping("/");
 
 		logger.info("WebapplicationInitializer started...");
-		
+
 		// Register Spring security filter
 		FilterRegistration.Dynamic corsFilter = container.addFilter(
 				"corsFilter", CorsFilter.class);
 		corsFilter.addMappingForUrlPatterns(null, false, "/*");
 
+		// WebApplicationContext webRootContext = createRootContext(container);
+
+		configureSpringSecurity(container, rootContext);
+
+	}
+
+	private void configureSpringSecurity(ServletContext servletContext,
+			WebApplicationContext rootContext) {
+		FilterRegistration.Dynamic springSecurity = servletContext.addFilter(
+				"springSecurityFilterChain", new DelegatingFilterProxy(
+						"springSecurityFilterChain", rootContext));
+		springSecurity.addMappingForUrlPatterns(null, true, "/*");
+	}
+
+	private WebApplicationContext createRootContext(
+			ServletContext servletContext) {
+		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
+		rootContext.register(SecurityConfig.class);
+		rootContext.refresh();
+
+		servletContext.addListener(new ContextLoaderListener(rootContext));
+		servletContext.setInitParameter("defaultHtmlEscape", "true");
+
+		return rootContext;
 	}
 }
