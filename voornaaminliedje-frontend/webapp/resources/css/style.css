@@ -48,7 +48,7 @@
         min-height: 19px;
     }
     /* Styles you shouldn't keep as they are for displaying this base example only */
-    .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7 {
+    .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-12 {
         padding-left: 19px;
         padding-right: 19px;
         padding-top: 19px;
