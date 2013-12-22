@@ -21,7 +21,7 @@ function logVisit() {
 }
 
 function storeVisit() {
-    url = "http://localhost:8080/voornaaminliedje/api/visit/add?ipAddress=" + this.ipAddress + "&browser=" + browser + "&operatingSystem=" + operatingSystem + "&city=" + city + "&country=" + country;
+    url = "http://127.0.0.1:8080/voornaaminliedje/api/visit/add?ipAddress=" + this.ipAddress + "&browser=" + browser + "&operatingSystem=" + operatingSystem + "&city=" + city + "&country=" + country;
 
     $.getJSON(url, function() {
         console.log("Storing visit for ip " + ipAddress);

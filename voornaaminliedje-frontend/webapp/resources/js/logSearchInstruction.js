@@ -13,7 +13,7 @@ function logSearchInstruction(argument) {
 }
 
 function storeSearchInstruction(argument) {
-    url = "http://localhost:8080/voornaaminliedje/api/searchInstruction/add?ipAddress=" + this.ipAddress + "&argument=" + argument;
+    url = "http://127.0.0.1:8080/voornaaminliedje/api/searchInstruction/add?ipAddress=" + this.ipAddress + "&argument=" + argument;
 
     $.getJSON(url, function() {
         console.log("Storing visit for ip " + ipAddress);
