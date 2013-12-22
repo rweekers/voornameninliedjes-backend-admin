@@ -30,7 +30,7 @@
 
  songServices.factory('FindSongs', ['$resource',
      function($resource) {
-         return $resource('http://localhost:8080/voornaaminliedje/api/songs/find', {}, {
+         return $resource('http://localhost:8080/api/songs/find', {}, {
              query: {
                  method: 'GET',
                  params: {
