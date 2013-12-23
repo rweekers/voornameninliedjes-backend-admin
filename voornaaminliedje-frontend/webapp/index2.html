@@ -71,12 +71,15 @@
         </div>
 
 
+        <script type='text/JavaScript' src="../../resources/js/services.js"></script>
+        <script type='text/JavaScript' src="../../resources/js/app.js"></script>
+        <script type='text/JavaScript' src="../../resources/js/controllers.js"></script>
         <script>
         function isNumber(n) {
             return !isNaN(parseFloat(n)) && isFinite(n);
         }
-        var app = angular.module('main', ['ngTable', 'ngResource', 'ngMockE2E']).
-        run(function($httpBackend, $filter, $log, ngTableParams) {
+        var app = angular.module('main', ['ngTable', 'ngResource', 'ngMockE2E', 'songControllers', 'songServices']).
+        run(function($httpBackend, $filter, $log, ngTableParams, Song) {
             // emulation of api server
             $httpBackend.whenGET(/data.*/).respond(function(method, url, data, headers) {
                 var query = url.split('?')[1],
@@ -109,6 +112,11 @@
                     }
                 }
 
+                data = Song.query({
+                    offset: 0,
+                    max: 700
+                });
+                /*
                 data = [{
                     name: "Moroni",
                     age: 50
@@ -160,7 +168,7 @@
                 }, {
                     name: "Enos",
                     age: 34
-                }];
+                }];*/
 
                 var params = new ngTableParams(requestParams);
                 data = params.filter() ? $filter('filter')(data, params.filter()) : data;
