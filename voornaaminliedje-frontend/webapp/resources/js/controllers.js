@@ -57,47 +57,7 @@ songControllers.controller('SongOfTheDayCtrl', ['$scope', 'SongOfTheDay',
     }
 ]);
 
-songControllers.controller('MyCtrl', ['$scope',
-    function($scope) {
-        $scope.myData = [{
-            name: "Moroni",
-            age: 50
-        }, {
-            name: "Tiancum",
-            age: 43
-        }, {
-            name: "Jacob",
-            age: 27
-        }, {
-            name: "Nephi",
-            age: 29
-        }, {
-            name: "Enos",
-            age: 34
-        }, {
-            name: "Janssen",
-            age: 19
-        }, {
-            name: "Vries",
-            age: 29
-        }, {
-            name: "Peters",
-            age: 31
-        }, {
-            name: "Boels",
-            age: 20
-        }, {
-            name: "Groenen",
-            age: 19
-        }];
-        $scope.gridOptions = {
-            data: 'myData',
-            jqueryUITheme: true
-        };
-    }
-]);
-
-songControllers.controller('MyCtrl2', ['$scope','$http',
+songControllers.controller('MyCtrl', ['$scope', '$http',
     function($scope, $http) {
         $scope.filterOptions = {
             filterText: "",
@@ -159,6 +119,79 @@ songControllers.controller('MyCtrl2', ['$scope','$http',
         };
     }
 ]);
+
+songControllers.controller('MyCtrl2', ['$scope', '$http',
+    function($scope, $http) {
+        $scope.filterOptions = {
+            filterText: "",
+            useExternalFilter: true
+        };
+        $scope.totalServerItems = 0;
+        $scope.pagingOptions = {
+            pageSizes: [5, 10, 20],
+            pageSize: 7,
+            currentPage: 1
+        };
+        $scope.setPagingData = function(data, page, pageSize) {
+            var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
+            $scope.myData = pagedData;
+            $scope.totalServerItems = data.length;
+            if (!$scope.$$phase) {
+                $scope.$apply();
+            }
+        };
+        $scope.getPagedDataAsync = function(pageSize, page, searchText) {
+            setTimeout(function() {
+                var data;
+                if (searchText) {
+                    var ft = searchText.toLowerCase();
+                    $http.get('http://127.0.0.1:8080/voornaaminliedje/api/song/all').success(function(largeLoad) {
+                        data = largeLoad.filter(function(item) {
+                            return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
+                        });
+                        $scope.setPagingData(data, page, pageSize);
+                    });
+                } else {
+                    $http.get('http://127.0.0.1:8080/voornaaminliedje/api/song/all').success(function(largeLoad) {
+                        $scope.setPagingData(largeLoad, page, pageSize);
+                    });
+                }
+            }, 100);
+        };
+
+        $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+
+        $scope.$watch('pagingOptions', function(newVal, oldVal) {
+            if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+                $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+            }
+        }, true);
+        $scope.$watch('filterOptions', function(newVal, oldVal) {
+            if (newVal !== oldVal) {
+                $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+            }
+        }, true);
+
+        $scope.gridOptions = {
+            data: 'myData',
+            enablePaging: true,
+            showFooter: true,
+            totalServerItems: 'totalServerItems',
+            pagingOptions: $scope.pagingOptions,
+            filterOptions: $scope.filterOptions,
+            columnDefs: [{
+                field: 'artist',
+                displayName: 'Artiest',
+                width: "30%"
+            }, {
+                field: 'title',
+                displayName: 'Titel',
+                width: "65%"
+            }]
+        };
+    }
+]);
+
 
 function calculatePrevOffset(oldOffset, count, max) {
     var offset;

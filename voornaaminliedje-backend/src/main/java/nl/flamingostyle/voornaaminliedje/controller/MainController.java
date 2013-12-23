@@ -15,7 +15,6 @@ import nl.flamingostyle.voornaaminliedje.service.VisitService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -84,7 +83,7 @@ public class MainController {
      *
      * @return the max number of songs
      */
-    @RequestMapping(value = "songs/max", method = RequestMethod.GET)
+    @RequestMapping(value = "song/max", method = RequestMethod.GET)
     @ResponseBody
     public long maxSong() {
         return songService.getMax();
@@ -96,7 +95,7 @@ public class MainController {
      * @param firstname the firstname to search
      * @return a list of songs with (part of) the firstname
      */
-    @RequestMapping(value = "songs/find", method = RequestMethod.GET)
+    @RequestMapping(value = "song/find", method = RequestMethod.GET)
     @ResponseBody
     public List<Song> findSongs(@RequestParam("firstname") String firstname) {
         return songService.findByFirstname(firstname);
@@ -107,7 +106,7 @@ public class MainController {
      *
      * @return all songs
      */
-    @RequestMapping(value = "admin/songs/all", method = RequestMethod.GET)
+    @RequestMapping(value = "song/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Song> allSongs() {
         return songService.getAll();
@@ -120,33 +119,10 @@ public class MainController {
      * @param offset the offset
      * @return a list of songs according to offset and max
      */
-    @RequestMapping(value = "songs/some", method = RequestMethod.GET)
+    @RequestMapping(value = "song/some", method = RequestMethod.GET)
     @ResponseBody
     public List<Song> allSongsPagination(@RequestParam("max") int max, @RequestParam("offset") int offset) {
         return songService.getAllPagination(max, offset);
-    }
-
-    /**
-     * Handles and retrieves all songs and show it in a JSP page
-     *
-     * @return the name of the JSP page
-     * @param model the model
-     */
-    @RequestMapping(value = "songs", method = RequestMethod.GET)
-    @ResponseBody
-    public String getSongs(Model model) {
-
-        logger.debug("Received request to show all songs");
-
-        // Retrieve all songs by delegating the call to SongServiceImpl
-        List<Song> songs = songService.getAll();
-
-        // Attach songs to the Model
-        model.addAttribute("songs", songs);
-
-        // This will resolve to /WEB-INF/view/songs.jsp
-        // return "songs";
-        return "songs.html";
     }
 
     /**
@@ -203,7 +179,7 @@ public class MainController {
      *
      * @return all songs
      */
-    @RequestMapping(value = "songsOfTheDay/all", method = RequestMethod.GET)
+    @RequestMapping(value = "admin/songOfTheDay/all", method = RequestMethod.GET)
     @ResponseBody
     public List<SongOfTheDay> allSongsOfTheDay() {
         return songOfTheDayService.getAll();
@@ -212,9 +188,31 @@ public class MainController {
     /**
      * Initializes the list with random songs
      */
-    @RequestMapping(value = "songsOfTheDay/initialize", method = RequestMethod.GET)
+    @RequestMapping(value = "admin/songOfTheDay/initialize", method = RequestMethod.GET)
     @ResponseBody
     public void initializeSongsOfTheDay() {
     	songOfTheDayService.initialize();
+    }
+    
+    /**
+     * Gets all visits
+     * 
+     * @return list with all visits
+     */
+    @RequestMapping(value = "admin/visit/all", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Visit> allVisits() {
+    	return visitService.getAll();
+    }
+    
+    /**
+     * Gets all searchInstructions
+     * 
+     * @return list with all searchInstructions
+     */
+    @RequestMapping(value = "admin/searchInstruction/all", method = RequestMethod.GET)
+    @ResponseBody
+    public List<SearchInstruction> allSearchInstructions() {
+    	return searchInstructionService.getAll();
     }
 }
