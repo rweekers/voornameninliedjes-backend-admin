@@ -104,7 +104,7 @@ public class SongServiceImpl implements SongService {
      */
     @SuppressWarnings("unchecked")
     public List<Song> getAllPagination(int max, int offset) {
-        logger.debug("Retrieving all songs");
+        logger.debug("Retrieving all songs with pagination");
 
         // Create a Hibernate query (HQL)
         Query query = getCurrentSession().createQuery("FROM  Song song order by song.firstname");

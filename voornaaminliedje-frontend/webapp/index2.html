@@ -59,12 +59,12 @@
 
         <div loading-container="tableParams.settings().$loading">
             <table ng-table="tableParams" show-filter="true" class="table">
-                <tr ng-repeat="user in $data">
-                    <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="'name'">
-                        {{user.name}} {{$loading}}
+                <tr ng-repeat="song in $data">
+                    <td data-title="'Artiest'" filter="{ 'artist': 'text' }" sortable="'artist'">
+                        {{song.artist}} <!--{{$loading}}-->
                     </td>
-                    <td data-title="'Age'" sortable="'age'">
-                        {{user.age}}
+                    <td data-title="'Titel'" sortable="'title'">
+                        {{song.title}}
                     </td>
                 </tr>
             </table>
@@ -79,7 +79,7 @@
             return !isNaN(parseFloat(n)) && isFinite(n);
         }
         var app = angular.module('main', ['ngTable', 'ngResource', 'ngMockE2E', 'songControllers', 'songServices']).
-        run(function($httpBackend, $filter, $log, ngTableParams, Song) {
+        run(function($httpBackend, $filter, $log, ngTableParams, Song2) {
             // emulation of api server
             $httpBackend.whenGET(/data.*/).respond(function(method, url, data, headers) {
                 var query = url.split('?')[1],
@@ -112,63 +112,60 @@
                     }
                 }
 
-                data = Song.query({
-                    offset: 0,
-                    max: 700
-                });
-                /*
+                // data = Song2.query();
+
                 data = [{
-                    name: "Moroni",
-                    age: 50
+                    artist: "Moroni",
+                    title: 50
                 }, {
-                    name: "Tiancum",
-                    age: 43
+                    artist: "Tiancum",
+                    title: 43
                 }, {
-                    name: "Jacob",
-                    age: 27
+                    artist: "Jacob",
+                    title: 27
                 }, {
-                    name: "Nephi",
-                    age: 29
+                    artist: "Nephi",
+                    title: 29
                 }, {
-                    name: "Enos",
-                    age: 34
+                    artist: "Enos",
+                    title: 34
                 }, {
-                    name: "Tiancum",
-                    age: 43
+                    artist: "Tiancum",
+                    title: 43
                 }, {
-                    name: "Jacob",
-                    age: 27
+                    artist: "Jacob",
+                    title: 27
                 }, {
-                    name: "Nephi",
-                    age: 29
+                    artist: "Nephi",
+                    title: 29
                 }, {
-                    name: "Enos",
-                    age: 34
+                    artist: "Enos",
+                    title: 34
                 }, {
-                    name: "Tiancum",
-                    age: 43
+                    artist: "Tiancum",
+                    title: 43
                 }, {
-                    name: "Jacob",
-                    age: 27
+                    artist: "Jacob",
+                    title: 27
                 }, {
-                    name: "Nephi",
-                    age: 29
+                    artist: "Nephi",
+                    title: 29
                 }, {
-                    name: "Enos",
-                    age: 34
+                    artist: "Enos",
+                    title: 34
                 }, {
-                    name: "Tiancum",
-                    age: 43
+                    artist: "Tiancum",
+                    title: 43
                 }, {
-                    name: "Jacob",
-                    age: 27
+                    artist: "Jacob",
+                    title: 27
                 }, {
-                    name: "Nephi",
-                    age: 29
+                    artist: "Nephi",
+                    title: 29
                 }, {
-                    name: "Enos",
-                    age: 34
-                }];*/
+                    artist: "Enos",
+                    title: 34
+                }];
 
                 var params = new ngTableParams(requestParams);
                 data = params.filter() ? $filter('filter')(data, params.filter()) : data;
@@ -199,6 +196,7 @@
                 };
             })
             .controller('DemoCtrl', function($scope, $timeout, $resource, ngTableParams) {
+                console.log("Nummers ophalen...");
                 var Api = $resource('/data');
 
                 $scope.tableParams = new ngTableParams({
