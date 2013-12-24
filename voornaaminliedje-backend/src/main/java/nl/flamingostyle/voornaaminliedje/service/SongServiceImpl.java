@@ -1,8 +1,6 @@
 package nl.flamingostyle.voornaaminliedje.service;
 
 import java.util.List;
-import java.util.Random;
-
 import nl.flamingostyle.voornaaminliedje.domain.Song;
 
 import org.apache.log4j.Logger;
@@ -54,11 +52,10 @@ public class SongServiceImpl implements SongService {
      */
     @Override
     public Song getRandom() {
-		List<Song> songs = getAll();
-        Random randomizer = new Random();
-        Song song = songs.get(randomizer.nextInt(songs.size()));
-        logger.debug("Random song retrieved: " + song.getArtist() + " - " + song.getTitle());
-
+    	// Retrieve existing song 'You can call me Al'
+    	// TODO Implement with songOfTheDay
+    	int id = 12070;
+        Song song = (Song) getCurrentSession().get(Song.class, id);
         logger.debug("Gotten song " + song.getTitle());
 
         return song;
@@ -81,6 +78,30 @@ public class SongServiceImpl implements SongService {
     }
 
     /**
+     * Retrieves all songs ordered or limited
+     *
+     * @return a list of songs
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Song> getAll(int count, int page, String sortingArtist, String sortingTitle) {
+        logger.debug("Retrieving all songs");
+
+        if (count > 20) {
+        	count = 20;
+        }
+          
+        // Create a Hibernate query (HQL)
+        Query query = getCurrentSession().createQuery("FROM  Song song order by song.firstname");
+        
+        query.setFirstResult(0);
+        query.setMaxResults(count);
+
+        // Retrieve all
+        return query.list();
+    }
+
+    /**
      * Retrieves all songs
      *
      * @return a list of songs
@@ -96,25 +117,7 @@ public class SongServiceImpl implements SongService {
         // Retrieve all
         return query.list();
     }
-
-    /**
-     * Retrieves all songs
-     *
-     * @return a list of songs
-     */
-    @SuppressWarnings("unchecked")
-    public List<Song> getAllPagination(int max, int offset) {
-        logger.debug("Retrieving all songs with pagination");
-
-        // Create a Hibernate query (HQL)
-        Query query = getCurrentSession().createQuery("FROM  Song song order by song.firstname");
-        query.setFirstResult(offset);
-        query.setMaxResults(max);
-
-        // Retrieve all
-        return query.list();
-    }
-
+    
     /**
      * Retrieves a single song
      */

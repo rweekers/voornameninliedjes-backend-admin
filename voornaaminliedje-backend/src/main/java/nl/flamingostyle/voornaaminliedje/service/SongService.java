@@ -5,18 +5,19 @@ import java.util.List;
 import nl.flamingostyle.voornaaminliedje.domain.Song;
 
 public interface SongService {
-	
+
 	public Song getRandom();
-	
+
 	public Song getYouCanCallMeAl();
+
+	public List<Song> getAll(int count, int page, String sortingArtist,
+			String sortingTitle);
 
 	public List<Song> getAll();
 
-	public List<Song> getAllPagination(int max, int offset);
-	
 	public List<Song> findByFirstname(String firstname);
-        
-        public long getMax();
+
+	public long getMax();
 
 	public void add(Song song);
 

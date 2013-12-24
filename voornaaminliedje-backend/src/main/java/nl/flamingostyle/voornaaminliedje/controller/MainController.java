@@ -28,191 +28,192 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("api")
 public class MainController {
 
-    /**
-     * The logger
-     */
-    protected static final Logger logger = Logger.getLogger("controller");
+	/**
+	 * The logger
+	 */
+	protected static final Logger logger = Logger.getLogger("controller");
 
-    @Autowired
-    SongService songService;
+	@Autowired
+	SongService songService;
 
-    @Autowired
-    SearchInstructionService searchInstructionService;
-    
-    @Autowired
-    VisitService visitService;
-    
-    @Autowired
-    SongOfTheDayService songOfTheDayService;
+	@Autowired
+	SearchInstructionService searchInstructionService;
 
-    /**
-     * Gets a random song
-     *
-     * @return the random song
-     */
-    @RequestMapping(value = "song/random", method = RequestMethod.GET)
-    @ResponseBody
-    public Song randomSong() {
-    	return songOfTheDayService.getSongOfTheDay();
-    }
-    
-    /**
-     * Gets a random song
-     *
-     * @return the random song
-     */
-    @RequestMapping(value = "song/al", method = RequestMethod.GET)
-    @ResponseBody
-    public Song songAll() {
-        return songService.getYouCanCallMeAl();
-    }
-    
-    /**
-     * Gets a random song
-     *
-     * @return the random song
-     */
-    @RequestMapping(value = "admin/song/al", method = RequestMethod.GET)
-    @ResponseBody
-    public Song songAll2() {
-        return songService.getYouCanCallMeAl();
-    }
+	@Autowired
+	VisitService visitService;
 
-    /**
-     * Gets the max number
-     *
-     * @return the max number of songs
-     */
-    @RequestMapping(value = "song/max", method = RequestMethod.GET)
-    @ResponseBody
-    public long maxSong() {
-        return songService.getMax();
-    }
+	@Autowired
+	SongOfTheDayService songOfTheDayService;
 
-    /**
-     * Finds a song by firstname
-     *
-     * @param firstname the firstname to search
-     * @return a list of songs with (part of) the firstname
-     */
-    @RequestMapping(value = "song/find", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Song> findSongs(@RequestParam("firstname") String firstname) {
-        return songService.findByFirstname(firstname);
-    }
+	/**
+	 * Gets a random song
+	 * 
+	 * @return the random song
+	 */
+	@RequestMapping(value = "song/random", method = RequestMethod.GET)
+	@ResponseBody
+	public Song randomSong() {
+		return songOfTheDayService.getSongOfTheDay();
+	}
 
-    /**
-     * Returns all songs
-     *
-     * @return all songs
-     */
-    @RequestMapping(value = "song/all", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Song> allSongs() {
-        return songService.getAll();
-    }
+	/**
+	 * Gets a random song
+	 * 
+	 * @return the random song
+	 */
+	@RequestMapping(value = "song/al", method = RequestMethod.GET)
+	@ResponseBody
+	public Song songAll() {
+		return songService.getYouCanCallMeAl();
+	}
 
-    /**
-     * Returns all songs with offset and max
-     *
-     * @param max the max number of songs
-     * @param offset the offset
-     * @return a list of songs according to offset and max
-     */
-    @RequestMapping(value = "song/some", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Song> allSongsPagination(@RequestParam("max") int max, @RequestParam("offset") int offset) {
-        return songService.getAllPagination(max, offset);
-    }
+	/**
+	 * Gets a random song
+	 * 
+	 * @return the random song
+	 */
+	@RequestMapping(value = "admin/song/al", method = RequestMethod.GET)
+	@ResponseBody
+	public Song songAll2() {
+		return songService.getYouCanCallMeAl();
+	}
 
-    /**
-     * Gets a song by id
-     *
-     * @param id the id of the song
-     * @return the song
-     */
-    @RequestMapping("song/{id}")
-    @ResponseBody
-    public Song getById(@PathVariable int id) {
-        return (Song) songService.get(id);
-    }
+	/**
+	 * Gets the max number
+	 * 
+	 * @return the max number of songs
+	 */
+	@RequestMapping(value = "song/max", method = RequestMethod.GET)
+	@ResponseBody
+	public long maxSong() {
+		return songService.getMax();
+	}
 
-    /**
-     * Adds a new searchInstruction by delegating the processing to
-     * SearchInstructionService.
-     *
-     * @param argument the search argument
-     */
-    @RequestMapping(value = "searchInstruction/add", method = RequestMethod.GET)
-    @ResponseBody
-    public void addSearchInstruction(@RequestParam(value = "argument") String argument, @RequestParam(value = "ipAddress", defaultValue = "") String ipAddress) {
-        logger.debug("Received request to add new searchInstruction");
-        SearchInstruction searchInstruction = new SearchInstruction();
-        searchInstruction.setArgument(argument);
-        searchInstruction.setIpAddress(ipAddress);
-        searchInstruction.setDateInserted(new Timestamp(System.currentTimeMillis()));
-        searchInstructionService.add(searchInstruction);
-    }
-    
-      /**
-     * Adds a new visit by delegating the processing to
-     * VisitService.
-     *
-     * @param argument the search argument
-     */
-    @RequestMapping(value = "visit/add", method = RequestMethod.GET)
-    @ResponseBody
-    public void addVisit(@RequestParam(value = "browser", defaultValue = "") String browser, @RequestParam(value = "ipAddress", defaultValue = "") String ipAddress, @RequestParam(value = "country", defaultValue = "") String country, @RequestParam(value = "city", defaultValue = "") String city, @RequestParam(value = "operatingSystem", defaultValue = "") String operatingSystem) {
-        logger.debug("Received request to add new searchInstruction");
-        Visit visit = new Visit();
-        visit.setBrowser(browser);
-        visit.setIpAddress(ipAddress);
-        visit.setCountry(country);
-        visit.setCity(city);
-        visit.setOperatingSystem(operatingSystem);
-        visit.setDateInserted(new Timestamp(System.currentTimeMillis()));
-        visitService.add(visit);
-    }
-    
-    /**
-     * Returns all songs
-     *
-     * @return all songs
-     */
-    @RequestMapping(value = "admin/songOfTheDay/all", method = RequestMethod.GET)
-    @ResponseBody
-    public List<SongOfTheDay> allSongsOfTheDay() {
-        return songOfTheDayService.getAll();
-    }
-    
-    /**
-     * Initializes the list with random songs
-     */
-    @RequestMapping(value = "admin/songOfTheDay/initialize", method = RequestMethod.GET)
-    @ResponseBody
-    public void initializeSongsOfTheDay() {
-    	songOfTheDayService.initialize();
-    }
-    
-    /**
-     * Gets all visits
-     * 
-     * @return list with all visits
-     */
-    @RequestMapping(value = "admin/visit/all", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Visit> allVisits() {
-    	return visitService.getAll();
-    }
-    
-    /**
-     * Gets all searchInstructions
-     * 
-     * @return list with all searchInstructions
-     */
-    @RequestMapping(value = "admin/searchInstruction/all", method = RequestMethod.GET)
-    @ResponseBody
-    public List<SearchInstruction> allSearchInstructions() {
-    	return searchInstructionService.getAll();
-    }
+	/**
+	 * Finds a song by firstname
+	 * 
+	 * @param firstname
+	 *            the firstname to search
+	 * @return a list of songs with (part of) the firstname
+	 */
+	@RequestMapping(value = "song/find", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Song> findSongs(@RequestParam("firstname") String firstname) {
+		return songService.findByFirstname(firstname);
+	}
+
+	/**
+	 * Returns all songs
+	 * 
+	 * @return all songs
+	 */
+	@RequestMapping(value = "song/all", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Song> allSongs(@RequestParam("count") int count,
+			@RequestParam("page") int page,
+			@RequestParam("sortingArtist") String sortingArtist,
+			@RequestParam("sortingTitle") String sortingTitle) {
+		return songService.getAll(count, page, sortingArtist, sortingTitle);
+	}
+
+	/**
+	 * Gets a song by id
+	 * 
+	 * @param id
+	 *            the id of the song
+	 * @return the song
+	 */
+	@RequestMapping("song/{id}")
+	@ResponseBody
+	public Song getById(@PathVariable int id) {
+		return (Song) songService.get(id);
+	}
+
+	/**
+	 * Adds a new searchInstruction by delegating the processing to
+	 * SearchInstructionService.
+	 * 
+	 * @param argument
+	 *            the search argument
+	 */
+	@RequestMapping(value = "searchInstruction/add", method = RequestMethod.GET)
+	@ResponseBody
+	public void addSearchInstruction(
+			@RequestParam(value = "argument") String argument,
+			@RequestParam(value = "ipAddress", defaultValue = "") String ipAddress) {
+		logger.debug("Received request to add new searchInstruction");
+		SearchInstruction searchInstruction = new SearchInstruction();
+		searchInstruction.setArgument(argument);
+		searchInstruction.setIpAddress(ipAddress);
+		searchInstruction.setDateInserted(new Timestamp(System
+				.currentTimeMillis()));
+		searchInstructionService.add(searchInstruction);
+	}
+
+	/**
+	 * Adds a new visit by delegating the processing to VisitService.
+	 * 
+	 * @param argument
+	 *            the search argument
+	 */
+	@RequestMapping(value = "visit/add", method = RequestMethod.GET)
+	@ResponseBody
+	public void addVisit(
+			@RequestParam(value = "browser", defaultValue = "") String browser,
+			@RequestParam(value = "ipAddress", defaultValue = "") String ipAddress,
+			@RequestParam(value = "country", defaultValue = "") String country,
+			@RequestParam(value = "city", defaultValue = "") String city,
+			@RequestParam(value = "operatingSystem", defaultValue = "") String operatingSystem) {
+		logger.debug("Received request to add new searchInstruction");
+		Visit visit = new Visit();
+		visit.setBrowser(browser);
+		visit.setIpAddress(ipAddress);
+		visit.setCountry(country);
+		visit.setCity(city);
+		visit.setOperatingSystem(operatingSystem);
+		visit.setDateInserted(new Timestamp(System.currentTimeMillis()));
+		visitService.add(visit);
+	}
+
+	/**
+	 * Returns all songs
+	 * 
+	 * @return all songs
+	 */
+	@RequestMapping(value = "admin/songOfTheDay/all", method = RequestMethod.GET)
+	@ResponseBody
+	public List<SongOfTheDay> allSongsOfTheDay() {
+		return songOfTheDayService.getAll();
+	}
+
+	/**
+	 * Initializes the list with random songs
+	 */
+	@RequestMapping(value = "admin/songOfTheDay/initialize", method = RequestMethod.GET)
+	@ResponseBody
+	public void initializeSongsOfTheDay() {
+		songOfTheDayService.initialize();
+	}
+
+	/**
+	 * Gets all visits
+	 * 
+	 * @return list with all visits
+	 */
+	@RequestMapping(value = "admin/visit/all", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Visit> allVisits() {
+		return visitService.getAll();
+	}
+
+	/**
+	 * Gets all searchInstructions
+	 * 
+	 * @return list with all searchInstructions
+	 */
+	@RequestMapping(value = "admin/searchInstruction/all", method = RequestMethod.GET)
+	@ResponseBody
+	public List<SearchInstruction> allSearchInstructions() {
+		return searchInstructionService.getAll();
+	}
 }
