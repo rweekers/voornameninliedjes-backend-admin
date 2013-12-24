@@ -22,6 +22,12 @@
          return $resource('http://127.0.0.1:8080/voornaaminliedje/api/song/all', {}, {
              query: {
                  method: 'GET',
+                 params: {
+                     page: '',
+                     count: '',
+                     sortingArtist: '',
+                     sortingTitle: ''
+                 },
                  isArray: true
              }
          });
