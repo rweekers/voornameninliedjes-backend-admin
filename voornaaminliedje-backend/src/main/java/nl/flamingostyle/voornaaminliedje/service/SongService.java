@@ -10,7 +10,7 @@ public interface SongService {
 
 	public Song getYouCanCallMeAl();
 
-	public List<Song> getAll(int count, int page, String sortingArtist,
+	public List<Song> getAll(Integer count, Integer page, String sortingArtist,
 			String sortingTitle);
 
 	public List<Song> getAll();

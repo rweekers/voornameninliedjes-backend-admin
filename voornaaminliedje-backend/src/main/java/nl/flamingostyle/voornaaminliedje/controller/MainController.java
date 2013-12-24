@@ -109,10 +109,10 @@ public class MainController {
 	 */
 	@RequestMapping(value = "song/all", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Song> allSongs(@RequestParam("count") int count,
-			@RequestParam("page") int page,
-			@RequestParam("sortingArtist") String sortingArtist,
-			@RequestParam("sortingTitle") String sortingTitle) {
+	public List<Song> allSongs(@RequestParam(value = "count", required = false) Integer count,
+			@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "sortingArtist", required = false) String sortingArtist,
+			@RequestParam(value = "sortingTitle", required = false) String sortingTitle) {
 		return songService.getAll(count, page, sortingArtist, sortingTitle);
 	}
 
