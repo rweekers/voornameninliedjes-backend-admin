@@ -61,7 +61,8 @@
             <table ng-table="tableParams" show-filter="true" class="table">
                 <tr ng-repeat="song in $data">
                     <td data-title="'Artiest'" filter="{ 'artist': 'text' }" sortable="'artist'">
-                        {{song.artist}} <!--{{$loading}}-->
+                        {{song.artist}}
+                        <!--{{$loading}}-->
                     </td>
                     <td data-title="'Titel'" sortable="'title'">
                         {{song.title}}
@@ -195,7 +196,7 @@
                     }
                 };
             })
-            .controller('DemoCtrl', function($scope, $timeout, $resource, ngTableParams) {
+            .controller('DemoCtrl', function($scope, $timeout, $resource, ngTableParams, Song2) {
                 console.log("Nummers ophalen...");
                 var Api = $resource('/data');
 
@@ -209,14 +210,24 @@
                     total: 0, // length of data
                     getData: function($defer, params) {
                         // ajax request to api
+
+                        // Onderstaande vervangen
+                        data = Song2.query({count:5});
+                        $defer.resolve(data);
+
+                        /*
                         Api.get(params.url(), function(data) {
+                            console.log("Params.page " + params.page);
+                            console.log("Params.count " + params.count);
+                            // data = Song2.query();
                             $timeout(function() {
                                 // update table params
                                 params.total(data.total);
                                 // set new data
-                                $defer.resolve(data.result);
+                                // $defer.resolve(data.result);
+                                $defer.resolve(data);
                             }, 500);
-                        });
+                        });*/
                     }
                 });
             })
