@@ -37,9 +37,6 @@ public class SongServiceImpl implements SongService {
 	public long getMax() {
 		logger.debug("Getting max");
 
-		// return (Integer)
-		// getCurrentSession().createCriteria("song").setProjection(Projections.rowCount()).uniqueResult();
-
 		Query query = getCurrentSession().createQuery(
 				"SELECT COUNT(*) FROM  Song song");
 
@@ -101,35 +98,46 @@ public class SongServiceImpl implements SongService {
 			offset = page * count;
 		}
 
-		String queryString = "FROM Song song where 1 = 1";
+		String queryString = "FROM  Song song WHERE 1 = 1 ";
 
+		if (filterArtist != null) {
+			queryString = queryString + " AND lower(song.artist) like :artist)";
+		}
+		
+		if (filterTitle != null) {
+			queryString = queryString + " AND lower(song.title) like :title)";
+		}
+
+		logger.info("Zoeken op " + filterArtist);
+		logger.info("Zoeken op " + filterTitle);
 		/*
-		if (filterArtist != null && filterArtist != ""
-				&& !filterArtist.equalsIgnoreCase("undefined")) {
-			queryString = queryString + " and song.artist like " + filterArtist;
-		}
-		if (filterTitle != null && filterArtist != ""
-				&& !filterArtist.equalsIgnoreCase("undefined")) {
-			queryString = queryString + " and song.title like " + filterTitle;
-		}*/
-
-		if (sortingArtist != null) {
-			queryString = queryString + " order by song.artist "
-					+ sortingArtist;
-		} else {
-			if (sortingTitle != null) {
-				queryString = queryString + " order by song.title  "
-						+ sortingTitle;
-			}
-		}
+		 * if (filterArtist != null) { queryString = queryString +
+		 * " and lower(song.artist) like '%" + filterArtist.toLowerCase() +
+		 * "%'"; }
+		 * 
+		 * if (sortingArtist != null) { queryString = queryString +
+		 * " order by song.artist " + sortingArtist; } else { if (sortingTitle
+		 * != null) { queryString = queryString + " order by song.title  " +
+		 * sortingTitle; } }
+		 */
 
 		// Create a Hibernate query (HQL)
+		
+		logger.info("QueryString " + queryString);
+		logger.info("Session " + getCurrentSession().toString());
+		
 		Query query = getCurrentSession().createQuery(queryString);
-
-		// "FROM  Song song order by song.firstname"
+		if (filterArtist != null) {
+			query.setParameter("artist", "%" + filterArtist.toLowerCase() + "%");
+		}
+		if (filterTitle != null) {
+			query.setParameter("title", "%" + filterTitle.toLowerCase() + "%");
+		}
 
 		query.setFirstResult(offset);
 		query.setMaxResults(count);
+
+		logger.info("Querying: " + query.toString());
 
 		// Retrieve all
 		return query.list();

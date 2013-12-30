@@ -113,8 +113,8 @@ public class MainController {
 			@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "sortingArtist", required = false) String sortingArtist,
 			@RequestParam(value = "sortingTitle", required = false) String sortingTitle,
-			@RequestParam(value = "sortingArtist", required = false) String filterArtist,
-			@RequestParam(value = "sortingTitle", required = false) String filterTitle) {
+			@RequestParam(value = "filterArtist", required = false) String filterArtist,
+			@RequestParam(value = "filterTitle", required = false) String filterTitle) {
 		return songService.getAll(count, page, sortingArtist, sortingTitle, filterArtist, filterTitle);
 	}
 
