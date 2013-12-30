@@ -101,31 +101,31 @@ public class SongServiceImpl implements SongService {
 		String queryString = "FROM  Song song WHERE 1 = 1 ";
 
 		if (filterArtist != null) {
-			queryString = queryString + " AND lower(song.artist) like :artist)";
+			queryString = queryString + " AND lower(song.artist) like :artist";
 		}
-		
+
 		if (filterTitle != null) {
-			queryString = queryString + " AND lower(song.title) like :title)";
+			queryString = queryString + " AND lower(song.title) like :title";
 		}
 
 		logger.info("Zoeken op " + filterArtist);
 		logger.info("Zoeken op " + filterTitle);
-		/*
-		 * if (filterArtist != null) { queryString = queryString +
-		 * " and lower(song.artist) like '%" + filterArtist.toLowerCase() +
-		 * "%'"; }
-		 * 
-		 * if (sortingArtist != null) { queryString = queryString +
-		 * " order by song.artist " + sortingArtist; } else { if (sortingTitle
-		 * != null) { queryString = queryString + " order by song.title  " +
-		 * sortingTitle; } }
-		 */
+
+		if (sortingArtist != null) {
+			queryString = queryString + " order by song.artist "
+					+ sortingArtist;
+		} else {
+			if (sortingTitle != null) {
+				queryString = queryString + " order by song.title  "
+						+ sortingTitle;
+			}
+		}
 
 		// Create a Hibernate query (HQL)
-		
+
 		logger.info("QueryString " + queryString);
 		logger.info("Session " + getCurrentSession().toString());
-		
+
 		Query query = getCurrentSession().createQuery(queryString);
 		if (filterArtist != null) {
 			query.setParameter("artist", "%" + filterArtist.toLowerCase() + "%");
