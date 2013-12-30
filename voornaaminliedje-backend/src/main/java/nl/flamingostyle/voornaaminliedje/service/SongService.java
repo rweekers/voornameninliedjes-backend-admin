@@ -11,7 +11,7 @@ public interface SongService {
 	public Song getYouCanCallMeAl();
 
 	public List<Song> getAll(Integer count, Integer page, String sortingArtist,
-			String sortingTitle);
+			String sortingTitle, String filterArtist, String filterTitle);
 
 	public List<Song> getAll();
 

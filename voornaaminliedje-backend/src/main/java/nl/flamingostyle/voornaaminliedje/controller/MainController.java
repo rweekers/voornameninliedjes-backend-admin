@@ -112,8 +112,10 @@ public class MainController {
 	public List<Song> allSongs(@RequestParam(value = "count", required = false) Integer count,
 			@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "sortingArtist", required = false) String sortingArtist,
-			@RequestParam(value = "sortingTitle", required = false) String sortingTitle) {
-		return songService.getAll(count, page, sortingArtist, sortingTitle);
+			@RequestParam(value = "sortingTitle", required = false) String sortingTitle,
+			@RequestParam(value = "sortingArtist", required = false) String filterArtist,
+			@RequestParam(value = "sortingTitle", required = false) String filterTitle) {
+		return songService.getAll(count, page, sortingArtist, sortingTitle, filterArtist, filterTitle);
 	}
 
 	/**

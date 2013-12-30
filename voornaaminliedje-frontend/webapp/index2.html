@@ -64,7 +64,7 @@
                         {{song.artist}}
                         <!--{{$loading}}-->
                     </td>
-                    <td data-title="'Titel'" sortable="'title'">
+                    <td data-title="'Titel'" filter="{ 'title': 'text' }" sortable="'title'">
                         {{song.title}}
                     </td>
                 </tr>
@@ -204,15 +204,30 @@
                     page: 1, // show first page
                     count: 10, // count per page
                     sorting: {
-                        name: 'asc' // initial sorting
+                        artist: 'asc' // initial sorting
                     }
                 }, {
                     total: 0, // length of data
                     getData: function($defer, params) {
                         // ajax request to api
 
+                        console.log("tableParams count " + $scope.tableParams.$params.count);
+                        console.log("tableParams order " + $scope.tableParams.$params.sorting.artist);
+                        console.log("tableParams filterartist " + $scope.tableParams.$params.filter.artist);
+                        console.log("tableParams filtertitle " + $scope.tableParams.$params.filter.title);
+
+                        // filterArtist = 
+                        
                         // Onderstaande vervangen
-                        data = Song2.query({count:5});
+                        data = Song2.query({
+                            count: $scope.tableParams.$params.count,
+                            page: $scope.tableParams.$params.page,
+                            sortingArtist: $scope.tableParams.$params.sorting.artist,
+                            sortingTitle: $scope.tableParams.$params.sorting.title,
+                            filterArtist: $scope.tableParams.$params.filter.artist,
+                            filterTitle: $scope.tableParams.$params.filter.title
+                        });
+                        params.total(700);
                         $defer.resolve(data);
 
                         /*

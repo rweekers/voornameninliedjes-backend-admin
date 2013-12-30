@@ -88,20 +88,30 @@ public class SongServiceImpl implements SongService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Song> getAll(Integer count, Integer page, String sortingArtist,
-			String sortingTitle) {
+			String sortingTitle, String filterArtist, String filterTitle) {
 		logger.debug("Retrieving all songs");
 
-		if (count == null || count > 20) {
-			count = 20;
+		if (count == null || count > 25) {
+			count = 25;
 		}
-		
+
 		int offset = 0;
-		
-		if(page != null){
+
+		if (page != null) {
 			offset = page * count;
 		}
 
-		String queryString = "FROM Song song";
+		String queryString = "FROM Song song where 1 = 1";
+
+		/*
+		if (filterArtist != null && filterArtist != ""
+				&& !filterArtist.equalsIgnoreCase("undefined")) {
+			queryString = queryString + " and song.artist like " + filterArtist;
+		}
+		if (filterTitle != null && filterArtist != ""
+				&& !filterArtist.equalsIgnoreCase("undefined")) {
+			queryString = queryString + " and song.title like " + filterTitle;
+		}*/
 
 		if (sortingArtist != null) {
 			queryString = queryString + " order by song.artist "

@@ -26,7 +26,9 @@
                      page: '',
                      count: '',
                      sortingArtist: '',
-                     sortingTitle: ''
+                     sortingTitle: '',
+                     filterArtist: '',
+                     filterTitle: '',
                  },
                  isArray: true
              }
