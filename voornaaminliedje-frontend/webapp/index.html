@@ -10,6 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-resource.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
     <script type='text/JavaScript' src="../../resources/js/libs/ng-grid-2.0.7.debug.js"></script>
+    <script type='text/JavaScript' src="../../resources/js/libs/angular-mocks.js"></script>
+    <script type='text/JavaScript' src="../../resources/js/libs/ng-table.js"></script>
     <!--script type='text/JavaScript' src="../../resources/js/libs/angular.js"></script>
     <script type='text/JavaScript' src="../../resources/js/libs/angular-resource.js"></script>
     <script type='text/JavaScript' src="../../resources/js/libs/angular-route.js"></script-->
@@ -22,6 +24,7 @@
     <link href="../../resources/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../resources/css/ng-grid.css" />
     <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resources/css/ng-table.css">
     <!-- Custom styles for this template -->
     <link href="../../resources/css/style.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -39,37 +42,26 @@
             <h3 class="text-muted text-center">Voornaam in liedje</h3>
         </div>
         <div class="row">
-            <div class="col-lg-6 inhoudBoven" ng-controller="SongListCtrl">
+            <!--div class="col-lg-6 inhoudBoven" ng-controller="SongListCtrl"-->
 
-                <button class="btn-link" type="submit" ng-click="previous($event)">Vorige</button>
-                <button class="btn-link" type="submit" ng-click="next($event)">Volgende</button>
-                Toon {{offset}} tot en met {{offset + 15}}
+            <div class="col-lg-6 inhoudBoven" ng-controller="DemoCtrl">
 
-                <table class="table table-condensed">
-                    <thead class="tableHead">
-                        <tr>
-                            <th>Artiest</th>
-                            <th>Titel</th>
+                <button ng-click="tableParams.reload()" class="btn pull-right">Reload</button>
+                <button ng-click="tableParams.sorting({})" class="btn pull-right">Clear sorting</button>
+                <div class="clearfix"></div>
+
+                <div loading-container="tableParams.settings().$loading">
+                    <table ng-table="tableParams" show-filter="true" class="table">
+                        <tr ng-repeat="song in $data">
+                            <td data-title="'Artiest'" filter="{ 'artist': 'text' }" sortable="'artist'">
+                                {{song.artist}}
+                            </td>
+                            <td data-title="'Titel'" filter="{ 'title': 'text' }" sortable="'title'">
+                                {{song.title}}
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="song in songs | filter:query | orderBy:orderProp">
-                            <td>{{song.artist}}</td>
-                            <td>{{song.title}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!--
-                Sort by:
-                <select ng-model="orderProp">
-                    <option value="artist">Artiest</option>
-                    <option value="-artist">Artiest Z-A</option>
-                    <option value="title">Titel</option>
-                </select>-->
-
-                <input name="widget.title" ng-model="searchInstruction" placeholder="Zoek op voornaam..." />
-
-                <button class="btn-xs" type="submit" ng-click="search($event)">Zoek</button>
+                    </table>
+                </div>
 
             </div>
             <div class="col-lg-1"></div>
@@ -91,11 +83,9 @@
             <div class="col-lg-1"></div>
             <!-- div class="col-lg-7 inhoudOnder" ng-controller="SongOfTheDayCtrl"-->
             <div class="col-lg-7 inhoudOnder" ng-controller="MyCtrl2">
-                <!--h4>Youtube</h4>
+                <h4>Youtube</h4>
 
-                <div id="player">Loading...</div-->
-
-                <div class="gridStyle" ng-grid="gridOptions"></div>
+                <div id="player">Loading...</div>
 
             </div>
 
@@ -119,6 +109,63 @@
     <script type='text/JavaScript' src="../../resources/js/app.js"></script>
     <script type='text/JavaScript' src="../../resources/js/controllers.js"></script>
     <script type='text/JavaScript' src="../../resources/js/youtube.js"></script>
+    <script>
+    function isNumber(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+    var app = angular.module('songApp', ['ngTable', 'ngResource', 'ngMockE2E', 'songControllers', 'songServices']).
+    run(function($httpBackend, $filter, $log, ngTableParams, Song2) {
+        $httpBackend.whenGET(/.*/).passThrough();
+    })
+        .directive('loadingContainer', function() {
+            return {
+                restrict: 'A',
+                scope: false,
+                link: function(scope, element, attrs) {
+                    var loadingLayer = angular.element('<div class="loading"></div>');
+                    element.append(loadingLayer);
+                    element.addClass('loading-container');
+                    scope.$watch(attrs.loadingContainer, function(value) {
+                        loadingLayer.toggleClass('ng-hide', !value);
+                    });
+                }
+            };
+        })
+        .controller('DemoCtrl', function($scope, $timeout, $resource, ngTableParams, Song2) {
+            console.log("Nummers ophalen...");
+            var Api = $resource('/data');
+
+            $scope.tableParams = new ngTableParams({
+                page: 1, // show first page
+                count: 10, // count per page
+                sorting: {
+                    artist: 'asc' // initial sorting
+                }
+            }, {
+                total: 0, // length of data
+                getData: function($defer, params) {
+                    // ajax request to api
+
+                    console.log("tableParams count " + $scope.tableParams.$params.count);
+                    console.log("tableParams order " + $scope.tableParams.$params.sorting.artist);
+                    console.log("tableParams filterartist " + $scope.tableParams.$params.filter.artist);
+                    console.log("tableParams filtertitle " + $scope.tableParams.$params.filter.title);
+
+                    data = Song2.query({
+                        count: $scope.tableParams.$params.count,
+                        page: $scope.tableParams.$params.page - 1,
+                        sortingArtist: $scope.tableParams.$params.sorting.artist,
+                        sortingTitle: $scope.tableParams.$params.sorting.title,
+                        filterArtist: $scope.tableParams.$params.filter.artist,
+                        filterTitle: $scope.tableParams.$params.filter.title
+                    });
+                    params.total(700);
+                    $defer.resolve(data);
+
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>

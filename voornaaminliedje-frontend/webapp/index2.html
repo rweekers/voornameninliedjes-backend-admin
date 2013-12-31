@@ -81,105 +81,6 @@
         }
         var app = angular.module('main', ['ngTable', 'ngResource', 'ngMockE2E', 'songControllers', 'songServices']).
         run(function($httpBackend, $filter, $log, ngTableParams, Song2) {
-            // emulation of api server
-            $httpBackend.whenGET(/data.*/).respond(function(method, url, data, headers) {
-                var query = url.split('?')[1],
-                    requestParams = {};
-
-                $log.log('Ajax request: ', url);
-
-                var vars = query.split('&');
-                for (var i = 0; i < vars.length; i++) {
-                    var pair = vars[i].split('=');
-                    requestParams[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
-                }
-                // parse url params
-                for (var key in requestParams) {
-                    if (key.indexOf('[') >= 0) {
-                        var params = key.split(/\[(.*)\]/),
-                            value = requestParams[key],
-                            lastKey = '';
-
-                        angular.forEach(params.reverse(), function(name) {
-                            if (name != '') {
-                                var v = value;
-                                value = {};
-                                value[lastKey = name] = isNumber(v) ? parseFloat(v) : v;
-                            }
-                        });
-                        requestParams[lastKey] = angular.extend(requestParams[lastKey] || {}, value[lastKey]);
-                    } else {
-                        requestParams[key] = isNumber(requestParams[key]) ? parseFloat(requestParams[key]) : requestParams[key];
-                    }
-                }
-
-                // data = Song2.query();
-
-                data = [{
-                    artist: "Moroni",
-                    title: 50
-                }, {
-                    artist: "Tiancum",
-                    title: 43
-                }, {
-                    artist: "Jacob",
-                    title: 27
-                }, {
-                    artist: "Nephi",
-                    title: 29
-                }, {
-                    artist: "Enos",
-                    title: 34
-                }, {
-                    artist: "Tiancum",
-                    title: 43
-                }, {
-                    artist: "Jacob",
-                    title: 27
-                }, {
-                    artist: "Nephi",
-                    title: 29
-                }, {
-                    artist: "Enos",
-                    title: 34
-                }, {
-                    artist: "Tiancum",
-                    title: 43
-                }, {
-                    artist: "Jacob",
-                    title: 27
-                }, {
-                    artist: "Nephi",
-                    title: 29
-                }, {
-                    artist: "Enos",
-                    title: 34
-                }, {
-                    artist: "Tiancum",
-                    title: 43
-                }, {
-                    artist: "Jacob",
-                    title: 27
-                }, {
-                    artist: "Nephi",
-                    title: 29
-                }, {
-                    artist: "Enos",
-                    title: 34
-                }];
-
-                var params = new ngTableParams(requestParams);
-                data = params.filter() ? $filter('filter')(data, params.filter()) : data;
-                data = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
-
-                var total = data.length;
-                data = data.slice((params.page() - 1) * params.count(), params.page() * params.count());
-
-                return [200, {
-                    result: data,
-                    total: total
-                }];
-            });
             $httpBackend.whenGET(/.*/).passThrough();
         })
             .directive('loadingContainer', function() {
@@ -217,7 +118,7 @@
                         console.log("tableParams filtertitle " + $scope.tableParams.$params.filter.title);
 
                         // filterArtist = 
-                        
+
                         // Onderstaande vervangen
                         data = Song2.query({
                             count: $scope.tableParams.$params.count,
