@@ -63,7 +63,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		properties.put(PROPERTY_NAME_HIBERNATE_FORMAT_SQL,
 				"true");
 		properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL,
-				"true");
+				"false");
 		properties.put(PROPERTY_NAME_HIBERNATE_HBM2DDL,
 				PROPERTY_NAME_HIBERNATE_HBM2DDL);
 		properties.put(PROPERTY_NAME_HIBERNATE_USE_SQL_COMMENTS, "true");

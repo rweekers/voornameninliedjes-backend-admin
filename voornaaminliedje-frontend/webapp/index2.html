@@ -221,7 +221,7 @@
                         // Onderstaande vervangen
                         data = Song2.query({
                             count: $scope.tableParams.$params.count,
-                            page: $scope.tableParams.$params.page,
+                            page: $scope.tableParams.$params.page - 1,
                             sortingArtist: $scope.tableParams.$params.sorting.artist,
                             sortingTitle: $scope.tableParams.$params.sorting.title,
                             filterArtist: $scope.tableParams.$params.filter.artist,
