@@ -98,18 +98,18 @@ public class SongServiceImpl implements SongService {
 			offset = page * count;
 		}
 
+		// Create a Hibernate query (HQL)
 		String queryString = "FROM  Song song WHERE 1 = 1 ";
+		logger.debug("Artistfilter " + filterArtist);
+		logger.debug("Titlefilter " + filterTitle);
 
-		if (filterArtist != null) {
+		if (filterArtist != null && filterArtist.trim() != "") {
 			queryString = queryString + " AND lower(song.artist) like :artist";
 		}
 
-		if (filterTitle != null) {
+		if (filterTitle != null && filterTitle.trim() != "") {
 			queryString = queryString + " AND lower(song.title) like :title";
 		}
-
-		logger.info("Zoeken op " + filterArtist);
-		logger.info("Zoeken op " + filterTitle);
 
 		if (sortingArtist != null) {
 			queryString = queryString + " order by song.artist "
@@ -120,11 +120,6 @@ public class SongServiceImpl implements SongService {
 						+ sortingTitle;
 			}
 		}
-
-		// Create a Hibernate query (HQL)
-
-		logger.info("QueryString " + queryString);
-		logger.info("Session " + getCurrentSession().toString());
 
 		Query query = getCurrentSession().createQuery(queryString);
 		if (filterArtist != null) {
@@ -137,10 +132,9 @@ public class SongServiceImpl implements SongService {
 		query.setFirstResult(offset);
 		query.setMaxResults(count);
 
-		logger.info("Querying: " + query.toString());
-
-		// Retrieve all
-		return query.list();
+		List<Song> songs = query.list();
+		logger.info("Number of songs " + songs.size());
+		return songs;
 	}
 
 	/**
