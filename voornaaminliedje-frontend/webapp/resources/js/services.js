@@ -28,7 +28,22 @@
                      sortingArtist: '',
                      sortingTitle: '',
                      filterArtist: '',
-                     filterTitle: '',
+                     filterTitle: ''
+                 },
+                 isArray: true
+             }
+         });
+     }
+ ]);
+
+  songServices.factory('Visit', ['$resource',
+     function($resource) {
+         return $resource('http://127.0.0.1:8080/voornaaminliedje/api/visit/all', {}, {
+             query: {
+                 method: 'GET',
+                 params: {
+                     page: '',
+                     count: ''
                  },
                  isArray: true
              }
