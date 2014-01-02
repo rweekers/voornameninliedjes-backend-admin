@@ -125,12 +125,15 @@
 
                         var encoded = Base64.encode(username + ':' + password);
                         // $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
-
+                        /*
                         $http.defaults.headers.common = {
                             "Access-Control-Request-Headers": "accept, origin, authorization"
-                        }; //you probably don't need this line.  This lets me connect to my server on a different domain
+                        };*/ //you probably don't need this line.  This lets me connect to my server on a different domain
                         $http.defaults.headers.common = {
-                            "Access-Control-Expose-Headers": "x-json"
+                            "Access-Control-Expose-Headers": "*"
+                        };
+                        $http.defaults.headers.common = {
+                            "Access-Control-Allow-Origin": "*"
                         };
                         $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + 'admin');
 
