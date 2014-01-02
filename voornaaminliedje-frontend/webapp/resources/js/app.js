@@ -4,6 +4,7 @@
 var songApp = angular.module('songApp', [
   'ngRoute',
   'ngGrid',
+  'ngCookies',
   'songControllers',
   'songServices'
 ]);

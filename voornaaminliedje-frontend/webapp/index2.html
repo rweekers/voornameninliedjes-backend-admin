@@ -130,20 +130,6 @@
                         });
                         params.total(700);
                         $defer.resolve(data);
-
-                        /*
-                        Api.get(params.url(), function(data) {
-                            console.log("Params.page " + params.page);
-                            console.log("Params.count " + params.count);
-                            // data = Song2.query();
-                            $timeout(function() {
-                                // update table params
-                                params.total(data.total);
-                                // set new data
-                                // $defer.resolve(data.result);
-                                $defer.resolve(data);
-                            }, 500);
-                        });*/
                     }
                 });
             })

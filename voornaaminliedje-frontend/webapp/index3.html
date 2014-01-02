@@ -21,6 +21,7 @@
     <!--script src="js/angular.min.js"></script>
     <script src="js/angular-resource.min.js"></script-->
     <script type='text/JavaScript' src="../../resources/js/libs/angular-mocks.js"></script>
+    <script type='text/JavaScript' src="../../resources/js/libs/angular-cookies.js"></script>
     <script type='text/JavaScript' src="../../resources/js/libs/ng-table.js"></script>
     <!--script src="js/angular-mocks.js"></script-->
     <!--script src="../ng-table.js"></script-->
@@ -78,7 +79,7 @@
         function isNumber(n) {
             return !isNaN(parseFloat(n)) && isFinite(n);
         }
-        var app = angular.module('main', ['ngTable', 'ngResource', 'ngMockE2E', 'songControllers', 'songServices']).
+        var app = angular.module('main', ['ngTable', 'ngResource', 'ngMockE2E', 'songControllers', 'songServices', 'ngCookies']).
         run(function($httpBackend, $filter, $log, ngTableParams, Visit) {
             $httpBackend.whenGET(/.*/).passThrough();
         })
@@ -96,7 +97,7 @@
                     }
                 };
             })
-            .controller('DemoCtrl', function($scope, $timeout, $resource, ngTableParams, Visit) {
+            .controller('DemoCtrl', function($scope, $timeout, $resource, ngTableParams, $http, Base64) {
                 console.log("Nummers ophalen...");
                 var Api = $resource('/data');
 
@@ -119,29 +120,71 @@
                         // filterArtist = 
 
                         // Onderstaande vervangen
-                        data = Visit.query({
-                            count: $scope.tableParams.$params.count,
-                            page: $scope.tableParams.$params.page - 1
-                        });
-                        params.total(700);
-                        $defer.resolve(data);
+                        var username = 'admin';
+                        var password = 'admin';
 
-                        /*
-                        Api.get(params.url(), function(data) {
-                            console.log("Params.page " + params.page);
-                            console.log("Params.count " + params.count);
-                            // data = Song2.query();
-                            $timeout(function() {
-                                // update table params
-                                params.total(data.total);
-                                // set new data
-                                // $defer.resolve(data.result);
-                                $defer.resolve(data);
-                            }, 500);
-                        });*/
+                        var encoded = Base64.encode(username + ':' + password);
+                        // $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
+
+                        $http.defaults.headers.common = {
+                            "Access-Control-Request-Headers": "accept, origin, authorization"
+                        }; //you probably don't need this line.  This lets me connect to my server on a different domain
+                        $http.defaults.headers.common = {
+                            "Access-Control-Expose-Headers": "x-json"
+                        };
+                        $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + 'admin');
+
+                        $http({
+                            method: 'GET',
+                            url: 'http://127.0.0.1:8080/voornaaminliedje/api/admin/visit/all'
+                        }).success(function(visits) {
+                            data = visits;
+                            params.total(700);
+                            $defer.resolve(data);
+                        });
+                        // params.total(700);
+                        // $defer.resolve(data);
                     }
                 });
             })
+        /*
+        .controller('DemoCtrl', function($scope, $timeout, $resource, ngTableParams, Visit, Base64) {
+            console.log("Nummers ophalen...");
+            var Api = $resource('/data');
+
+            $scope.tableParams = new ngTableParams({
+                page: 1, // show first page
+                count: 10, // count per page
+                sorting: {
+                    artist: 'asc' // initial sorting
+                }
+            }, {
+                total: 0, // length of data
+                getData: function($defer, params) {
+                    // ajax request to api
+
+                    console.log("tableParams count " + $scope.tableParams.$params.count);
+                    console.log("tableParams order " + $scope.tableParams.$params.sorting.artist);
+                    console.log("tableParams filterartist " + $scope.tableParams.$params.filter.artist);
+                    console.log("tableParams filtertitle " + $scope.tableParams.$params.filter.title);
+
+                    // filterArtist = 
+                    console.log("Username en wachtwoord:*" + Base64.encode('Aladdin:open sesame') + '*');
+
+                    // Onderstaande vervangen
+                    data = Visit.query({
+                        count: $scope.tableParams.$params.count,
+                        page: $scope.tableParams.$params.page - 1,
+                        sortingArtist: $scope.tableParams.$params.sorting.artist,
+                        sortingTitle: $scope.tableParams.$params.sorting.title,
+                        filterArtist: $scope.tableParams.$params.filter.artist,
+                        filterTitle: $scope.tableParams.$params.filter.title
+                    });
+                    params.total(700);
+                    $defer.resolve(data);
+                }
+            });
+        })*/
         </script>
 
     </div>
