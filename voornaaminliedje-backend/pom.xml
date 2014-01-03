@@ -34,14 +34,15 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>3.2.2.RELEASE</version>
+			<!-- version>3.2.2.RELEASE</version-->
+			<version>4.0.0.RELEASE</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>3.2.2.RELEASE</version>
+			<version>4.0.0.RELEASE</version>
 			<type>jar</type>
 			<scope>compile</scope>
 			<exclusions>
@@ -61,7 +62,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>3.2.2.RELEASE</version>
+			<version>4.0.0.RELEASE</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
@@ -82,14 +83,14 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>3.2.2.RELEASE</version>
+			<version>4.0.0.RELEASE</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
-			<version>3.2.2.RELEASE</version>
+			<version>4.0.0.RELEASE</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
@@ -131,7 +132,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>3.2.2.RELEASE</version>
+			<version>4.0.0.RELEASE</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
