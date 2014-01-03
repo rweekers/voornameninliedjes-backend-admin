@@ -20,7 +20,7 @@ public class CorsFilter extends OncePerRequestFilter {
 	/**
 	 * The logger
 	 */
-	protected static final Logger logger = Logger.getLogger("corsFilter");
+	protected static final Logger logger = Logger.getLogger("service");
 
 	/**
 	 * The method that implements the filter
@@ -39,27 +39,34 @@ public class CorsFilter extends OncePerRequestFilter {
 			HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 
-		if (request.getHeader("Access-Control-Request-Method") != null
-				&& "OPTIONS".equals(request.getMethod())) {
-			// CORS "pre-flight" request
-			response.addHeader("Access-Control-Allow-Origin", "*");
-			response.addHeader("Access-Control-Allow-Methods",
-					"GET, OPTIONS");
-			response.addHeader("Access-Control-Allow-Headers",
-					"Content-Type: application/json");
-			response.addHeader("Access-Control-Allow-Credentials", "true");
-			response.addHeader("Access-Control-Max-Age", "1800");// 30 min
-
-		}
-
+		/*
+		 * if (request.getHeader("Access-Control-Request-Method") != null &&
+		 * "OPTIONS".equals(request.getMethod())) { // CORS "pre-flight" request
+		 * response.addHeader("Access-Control-Allow-Origin", "*");
+		 * response.addHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+		 * response.addHeader("Access-Control-Allow-Headers",
+		 * "Content-Type: application/json");
+		 * response.addHeader("Access-Control-Allow-Credentials", "true");
+		 * response.addHeader("Access-Control-Max-Age", "1800");// 30 min
+		 * System.out.println("====================================");
+		 * 
+		 * }
+		 */
 		response.addHeader("Access-Control-Allow-Origin", "*");
-		response.addHeader("Access-Control-Allow-Methods",
-				"GET, OPTIONS");
 		response.addHeader("Access-Control-Allow-Headers",
-				"Content-Type: application/json");
-		response.addHeader("Access-Control-Allow-Credentials", "true");
-		response.addHeader("Access-Control-Max-Age", "1800");// 30 min
-
+				"Origin, X-Requested-With, Content-Type, Accept, Authorization");
+		response.addHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+		logger.info("Request method header: "
+				+ request.getHeader("Access-Control-Request-Method"));
+		logger.info("Request method: " + request.getMethod());
+		/*
+		 * response.addHeader("Access-Control-Allow-Origin", "*");
+		 * response.addHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+		 * response.addHeader("Access-Control-Allow-Headers",
+		 * "Content-Type: application/json");
+		 * response.addHeader("Access-Control-Allow-Credentials", "true");
+		 * response.addHeader("Access-Control-Max-Age", "1800");// 30 min
+		 */
 		filterChain.doFilter(request, response);
 	}
 }

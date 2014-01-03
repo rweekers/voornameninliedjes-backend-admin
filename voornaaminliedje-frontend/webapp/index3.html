@@ -98,58 +98,62 @@
                 };
             })
             .controller('DemoCtrl', function($scope, $timeout, $resource, ngTableParams, $http, Base64) {
-                console.log("Nummers ophalen...");
-                var Api = $resource('/data');
+                    console.log("Nummers ophalen...");
+                    var Api = $resource('/data');
 
-                $scope.tableParams = new ngTableParams({
-                    page: 1, // show first page
-                    count: 10, // count per page
-                    sorting: {
-                        artist: 'asc' // initial sorting
-                    }
-                }, {
-                    total: 0, // length of data
-                    getData: function($defer, params) {
-                        // ajax request to api
+                    $scope.tableParams = new ngTableParams({
+                            page: 1, // show first page
+                            count: 10, // count per page
+                            sorting: {
+                                artist: 'asc' // initial sorting
+                            }
+                        }, {
+                            total: 0, // length of data
+                            getData: function($defer, params) {
+                                // ajax request to api
 
-                        console.log("tableParams count " + $scope.tableParams.$params.count);
-                        console.log("tableParams order " + $scope.tableParams.$params.sorting.artist);
-                        console.log("tableParams filterartist " + $scope.tableParams.$params.filter.artist);
-                        console.log("tableParams filtertitle " + $scope.tableParams.$params.filter.title);
+                                console.log("tableParams count " + $scope.tableParams.$params.count);
+                                console.log("tableParams order " + $scope.tableParams.$params.sorting.artist);
+                                console.log("tableParams filterartist " + $scope.tableParams.$params.filter.artist);
+                                console.log("tableParams filtertitle " + $scope.tableParams.$params.filter.title);
 
-                        // filterArtist = 
+                                // filterArtist = 
 
-                        // Onderstaande vervangen
-                        var username = 'admin';
-                        var password = 'admin';
+                                // Onderstaande vervangen
+                                var username = 'admin';
+                                var password = 'admin';
 
-                        var encoded = Base64.encode(username + ':' + password);
-                        // $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
-                        /*
+                                var encoded = Base64.encode(username + ':' + password);
+                                // $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
+                                /*
                         $http.defaults.headers.common = {
                             "Access-Control-Request-Headers": "accept, origin, authorization"
                         };*/ //you probably don't need this line.  This lets me connect to my server on a different domain
-                        $http.defaults.headers.common = {
-                            "Access-Control-Expose-Headers": "*"
-                        };
-                        $http.defaults.headers.common = {
-                            "Access-Control-Allow-Origin": "*"
-                        };
-                        $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + 'admin');
+                                /*
+                                $http.defaults.headers.common = {
+                                    "Access-Control-Expose-Headers": "*"
+                                };*/
+                                /*
+                                $http.defaults.headers.common = {
+                                    "Access-Control-Allow-Origin": "*"
+                                };*/
+                                $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + 'admin');
 
-                        $http({
-                            method: 'GET',
-                            url: 'http://127.0.0.1:8080/voornaaminliedje/api/admin/visit/all'
-                        }).success(function(visits) {
-                            data = visits;
-                            params.total(700);
-                            $defer.resolve(data);
-                        });
-                        // params.total(700);
-                        // $defer.resolve(data);
-                    }
-                });
-            })
+                                // $http.get('http://localhost:8080/voornaaminliedje/api/admin/visit/all'
+                                $http({
+                                    method: 'GET',
+                                    url: 'http://127.0.0.1:8080/voornaaminliedje/api/visit/all'
+                                }
+                                ).success(function(visits) {
+                                    data = visits;
+                                    params.total(700);
+                                    $defer.resolve(data);
+                                });
+                            // params.total(700);
+                            // $defer.resolve(data);
+                        }
+                    });
+        })
         /*
         .controller('DemoCtrl', function($scope, $timeout, $resource, ngTableParams, Visit, Base64) {
             console.log("Nummers ophalen...");
