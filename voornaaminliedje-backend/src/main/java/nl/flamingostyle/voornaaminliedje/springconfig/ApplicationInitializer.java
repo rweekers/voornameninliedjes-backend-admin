@@ -43,7 +43,11 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 
 		// Register Spring security filter
 		FilterRegistration.Dynamic corsFilter = container.addFilter(
-				"corsFilter", CorsFilter.class);
+				 "corsFilter", CorsFilter.class);
+		/*
+		FilterRegistration.Dynamic corsFilter = container.addFilter(
+				"corsFilter", CORSFilter.class);
+		corsFilter.setInitParameter("cors.supportedHeaders", "Content-Type,Accept,Origin");*/
 		corsFilter.addMappingForUrlPatterns(null, false, "/*");
 
 		configureSpringSecurity(container, rootContext);
