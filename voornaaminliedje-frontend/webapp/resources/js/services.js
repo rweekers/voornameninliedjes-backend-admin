@@ -38,7 +38,7 @@
 
  songServices.factory('Visit', ['$resource', 
      function($resource) {
-         return $resource('http://127.0.0.1:8080/voornaaminliedje/api/visit/all', {}, {
+         return $resource('http://127.0.0.1:8080/voornaaminliedje/api/admin/visit/all?jsonp=parseResponse', {}, {
              query: {
                  method: 'GET',
                  params: {

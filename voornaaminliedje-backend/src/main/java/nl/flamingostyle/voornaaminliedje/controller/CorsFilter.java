@@ -43,23 +43,30 @@ public class CorsFilter extends OncePerRequestFilter {
 		// if (request.getHeader("Access-Control-Request-Method") != null
 		// && "OPTIONS".equals(request.getMethod())) {
 		// CORS "pre-flight" request
-		
+
 		Enumeration<String> headerNames = request.getHeaderNames();
 		while (headerNames.hasMoreElements()) {
 			String headerName = (String) headerNames.nextElement();
 			// logger.info("" + headerName);
 			// logger.info("" + request.getHeader(headerName));
 		}
-		
+
 		logger.info("Request method header: "
 				+ request.getHeader("Access-Control-Request-Method"));
 		logger.info("Request method: " + request.getMethod());
-
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-		response.setHeader("Access-Control-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Authorization");
-
+		if (request.getHeader("Access-Control-Request-Method") != null
+				&& "OPTIONS".equals(request.getMethod())) {
+			response.setHeader("Access-Control-Allow-Origin", "*");
+			response.setHeader("Access-Control-Allow-Credentials", "true");
+			response.setHeader("Access-Control-Allow-Methods",
+					"POST, GET, DELETE");
+			response.setHeader("Access-Control-Max-Age", "3600");
+			response.setHeader("Access-Control-Allow-Headers",
+					"x-requested-with, Authorization");
+		}	
+		// response.setHeader("Access-Control-Allow-Headers",
+			// 	"x-requested-with, Authorization");
+		// response.setHeader("Access-Control-Allow-Origin", "*");
 		filterChain.doFilter(request, response);
 	}
 }
