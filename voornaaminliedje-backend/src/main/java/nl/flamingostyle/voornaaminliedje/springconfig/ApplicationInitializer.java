@@ -17,7 +17,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 public class ApplicationInitializer implements WebApplicationInitializer {
 
-	protected static Logger logger = Logger.getLogger("corsFilter");
+	protected static Logger logger = Logger.getLogger("service");
 
 	@Override
 	public void onStartup(ServletContext container) throws ServletException {

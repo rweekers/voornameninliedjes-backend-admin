@@ -59,14 +59,15 @@ public class CorsFilter extends OncePerRequestFilter {
 			response.setHeader("Access-Control-Allow-Origin", "*");
 			response.setHeader("Access-Control-Allow-Credentials", "true");
 			response.setHeader("Access-Control-Allow-Methods",
-					"POST, GET, DELETE");
+					"POST, GET, DELETE, OPTIONS");
 			response.setHeader("Access-Control-Max-Age", "3600");
 			response.setHeader("Access-Control-Allow-Headers",
 					"x-requested-with, Authorization");
-		}	
+		}
 		// response.setHeader("Access-Control-Allow-Headers",
-			// 	"x-requested-with, Authorization");
+		// "x-requested-with, Authorization");
 		// response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		filterChain.doFilter(request, response);
 	}
 }
