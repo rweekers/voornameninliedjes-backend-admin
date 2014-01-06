@@ -24,9 +24,8 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 				+ request.getHeader("Access-Control-Request-Method"));
 		logger.info("REST: Request method: " + request.getMethod());
 
-		// response.sendError( HttpServletResponse.SC_UNAUTHORIZED,
-		// "Unauthorized" );
-		response.sendError(HttpServletResponse.SC_ACCEPTED, "Authorized");
+		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+		// response.sendError(HttpServletResponse.SC_ACCEPTED, "Authorized");
 		// response.sendRedirect(null);
 	}
 }

@@ -12,11 +12,14 @@
 		<intercept-url pattern="/api/admin/**" method="OPTIONS"
 			access="ROLE_ANONYMOUS" />
 
-		<!-- custom-filter position="FORM_LOGIN_FILTER" ref="myFilter" /-->
+		<form-login authentication-success-handler-ref="mySuccessHandler" />
+		<!-- custom-filter position="FORM_LOGIN_FILTER" ref="myFilter" / -->
 	</http>
 
-	<!-- beans:bean id="myFilter"
-		class="nl.flamingostyle.voornaaminliedje.springconfig.CorsAwareAuthenticationFilter" /-->
+	<beans:bean id="mySuccessHandler"
+		class="nl.flamingostyle.voornaaminliedje.springconfig.MySavedRequestAwareAuthenticationSuccessHandler" />
+	<!-- beans:bean id="myFilter" class="nl.flamingostyle.voornaaminliedje.springconfig.CorsAwareAuthenticationFilter" 
+		/ -->
 
 	<authentication-manager>
 		<authentication-provider>
