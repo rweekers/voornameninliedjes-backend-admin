@@ -64,9 +64,6 @@ public class CorsFilter extends OncePerRequestFilter {
 			response.setHeader("Access-Control-Allow-Headers",
 					"x-requested-with, Authorization");
 		}
-		// response.setHeader("Access-Control-Allow-Headers",
-		// "x-requested-with, Authorization");
-		// response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		filterChain.doFilter(request, response);
 	}
