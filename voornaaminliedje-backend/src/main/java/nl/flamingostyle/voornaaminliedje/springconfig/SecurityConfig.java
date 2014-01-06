@@ -1,15 +1,30 @@
 package nl.flamingostyle.voornaaminliedje.springconfig;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-/**
- * Spring doesn't yet support pure java configuration of spring security
- * so this will just have to import the old fashioned xml file.
- * 
- * @author remco
- *
- */
+@EnableWebSecurity
 @Configuration
-@ImportResource("classpath:META-INF/spring/security.xml")
-public class SecurityConfig {}
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth)
+			throws Exception {
+		auth.inMemoryAuthentication().withUser("admin").password("admin")
+				.roles("ADMIN");
+	}
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+				.antMatchers(HttpMethod.OPTIONS, "/api/admin/**").permitAll()
+				.antMatchers("/api/song/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/admin/**").hasRole("ADMIN")
+				.and().httpBasic();
+	}
+}

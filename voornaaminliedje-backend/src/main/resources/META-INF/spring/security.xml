@@ -6,18 +6,18 @@
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<http disable-url-rewriting="true" entry-point-ref="restAuthenticationEntryPoint">
-		<intercept-url pattern="/api/admin/**" access="ROLE_ADMIN"
+	<http auto-config="true" disable-url-rewriting="true" >
+		<intercept-url pattern="/api/admin/**" access="permitAll"
 			method="GET" />
-		<intercept-url pattern="/api/admin/**" method="OPTIONS"
-			access="ROLE_ANONYMOUS" />
+		<!-- intercept-url pattern="/api/admin/**" method="OPTIONS"
+			access="ROLE_ANONYMOUS" /-->
 
-		<form-login authentication-success-handler-ref="mySuccessHandler" />
+		<!-- form-login authentication-success-handler-ref="mySuccessHandler" /-->
 		<!-- custom-filter position="FORM_LOGIN_FILTER" ref="myFilter" / -->
 	</http>
 
-	<beans:bean id="mySuccessHandler"
-		class="nl.flamingostyle.voornaaminliedje.springconfig.MySavedRequestAwareAuthenticationSuccessHandler" />
+	<!-- beans:bean id="mySuccessHandler"
+		class="nl.flamingostyle.voornaaminliedje.springconfig.MySavedRequestAwareAuthenticationSuccessHandler" /-->
 	<!-- beans:bean id="myFilter" class="nl.flamingostyle.voornaaminliedje.springconfig.CorsAwareAuthenticationFilter" 
 		/ -->
 

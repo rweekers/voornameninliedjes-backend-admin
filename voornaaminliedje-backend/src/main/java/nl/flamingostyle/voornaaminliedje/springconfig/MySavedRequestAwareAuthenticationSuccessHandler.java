@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
@@ -16,12 +17,17 @@ import org.springframework.util.StringUtils;
 public class MySavedRequestAwareAuthenticationSuccessHandler extends
 		SimpleUrlAuthenticationSuccessHandler {
 
+	protected static final Logger logger = Logger.getLogger("service");
+	
 	private RequestCache requestCache = new HttpSessionRequestCache();
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request,
 			HttpServletResponse response, Authentication authentication)
 			throws ServletException, IOException {
+		
+		logger.info("Blablablabla" + request.getMethod());
+		
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
 
 		if (savedRequest == null) {

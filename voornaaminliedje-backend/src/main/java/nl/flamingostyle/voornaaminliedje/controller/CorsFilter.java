@@ -47,13 +47,13 @@ public class CorsFilter extends OncePerRequestFilter {
 		Enumeration<String> headerNames = request.getHeaderNames();
 		while (headerNames.hasMoreElements()) {
 			String headerName = (String) headerNames.nextElement();
-			// logger.info("" + headerName);
-			// logger.info("" + request.getHeader(headerName));
+			logger.info("" + headerName);
+			logger.info("" + request.getHeader(headerName));
 		}
 
-		// logger.info("Request method header: "
-			// 	+ request.getHeader("Access-Control-Request-Method"));
-		// logger.info("Request method: " + request.getMethod());
+		logger.info("Request method header: "
+				+ request.getHeader("Access-Control-Request-Method"));
+		logger.info("Request method: " + request.getMethod());
 		if (request.getHeader("Access-Control-Request-Method") != null
 				&& "OPTIONS".equals(request.getMethod())) {
 			response.setHeader("Access-Control-Allow-Origin", "*");
