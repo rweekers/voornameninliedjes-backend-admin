@@ -36,8 +36,12 @@
      }
  ]);
 
- songServices.factory('Visit', ['$resource', 
-     function($resource) {
+ songServices.factory('Visit', ['Base64', '$resource', 
+     function(Base64, $resource) {
+
+         var encoded = Base64.encode('admin:admin');
+         console.log("Blabla " + encoded);
+
          return $resource('http://127.0.0.1:8080/voornaaminliedje/api/admin/visit/all', {}, {
              query: {
                  method: 'GET',
@@ -47,8 +51,8 @@
                  },
                  isArray: true,
                  headers: {
-                     'Authorization': 'Basic ' + 'YWRtaW46YWRtaW4= ',
-                     // 'Authorization': 'Basic: ' + Base64.encode('admin:admin')
+                     // 'Authorization': 'Basic ' + 'YWRtaW46YWRtaW4= ',
+                     'Authorization': 'Basic ' + encoded, 
                  }
              }
          });
@@ -61,6 +65,7 @@
          // initialize to whatever is in the cookie, if anything
          $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
          var encoded = Base64.encode('admin:admin');
+         console.log("Encoded string is " + encoded);
          $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
          $cookieStore.put('authdata', encoded);
          console.log("Blabla");
