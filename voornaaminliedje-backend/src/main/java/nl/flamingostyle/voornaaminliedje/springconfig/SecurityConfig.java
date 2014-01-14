@@ -23,7 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS, "/api/admin/**").permitAll()
-				.antMatchers("/api/song/**").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/song/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/song/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/api/admin/**").hasRole("ADMIN")
 				.and().httpBasic();
 	}

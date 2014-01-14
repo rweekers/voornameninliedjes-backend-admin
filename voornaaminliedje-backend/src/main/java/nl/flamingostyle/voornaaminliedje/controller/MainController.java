@@ -186,8 +186,8 @@ public class MainController {
 	 * @param argument
 	 *            the search argument
 	 */
-	@RequestMapping(value = "visit/add", method = RequestMethod.GET)
-	@ResponseBody
+	@RequestMapping(value = "visit/add", method = RequestMethod.POST)
+	// @ResponseBody
 	public void addVisit(
 			@RequestParam(value = "browser", defaultValue = "") String browser,
 			@RequestParam(value = "ipAddress", defaultValue = "") String ipAddress,
