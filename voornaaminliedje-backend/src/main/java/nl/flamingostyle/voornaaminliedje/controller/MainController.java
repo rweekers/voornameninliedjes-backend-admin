@@ -3,6 +3,9 @@ package nl.flamingostyle.voornaaminliedje.controller;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import nl.flamingostyle.voornaaminliedje.domain.SearchInstruction;
 import nl.flamingostyle.voornaaminliedje.domain.Song;
 import nl.flamingostyle.voornaaminliedje.domain.SongOfTheDay;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles and retrieves song request
@@ -188,7 +192,7 @@ public class MainController {
 	 */
 	@RequestMapping(value = "visit/add", method = RequestMethod.POST)
 	// @ResponseBody
-	public void addVisit(
+	public String addVisit(
 			@RequestParam(value = "browser", defaultValue = "") String browser,
 			@RequestParam(value = "ipAddress", defaultValue = "") String ipAddress,
 			@RequestParam(value = "country", defaultValue = "") String country,
@@ -203,6 +207,7 @@ public class MainController {
 		visit.setOperatingSystem(operatingSystem);
 		visit.setDateInserted(new Timestamp(System.currentTimeMillis()));
 		visitService.add(visit);
+		return visit.getBrowser();
 	}
 
 	/**

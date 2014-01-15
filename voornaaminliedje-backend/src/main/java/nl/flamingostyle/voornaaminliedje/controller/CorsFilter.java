@@ -62,7 +62,7 @@ public class CorsFilter extends OncePerRequestFilter {
 					"POST, PUT, GET, DELETE, OPTIONS");
 			response.setHeader("Access-Control-Max-Age", "3600");
 			response.setHeader("Access-Control-Allow-Headers",
-					"x-requested-with, Content-Type, Authorization");
+					"x-requested-with, Content-Type, Authorization, x-domain-token");
 		}
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		filterChain.doFilter(request, response);
