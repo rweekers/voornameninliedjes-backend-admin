@@ -26,6 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/api/song/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/api/song/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/api/admin/**").hasRole("ADMIN")
-				.and().httpBasic();
+				.and().httpBasic().and().csrf().disable();
 	}
 }

@@ -194,7 +194,7 @@ public class MainController {
 			@RequestParam(value = "country", defaultValue = "") String country,
 			@RequestParam(value = "city", defaultValue = "") String city,
 			@RequestParam(value = "operatingSystem", defaultValue = "") String operatingSystem) {
-		logger.debug("Received request to add new searchInstruction");
+		logger.debug("Received request to add new visit");
 		Visit visit = new Visit();
 		visit.setBrowser(browser);
 		visit.setIpAddress(ipAddress);
