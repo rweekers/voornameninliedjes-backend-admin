@@ -191,8 +191,8 @@ public class MainController {
 	 *            the search argument
 	 */
 	@RequestMapping(value = "visit/add", method = RequestMethod.POST)
-	// @ResponseBody
-	public String addVisit(
+	@ResponseBody
+	public Visit addVisit(
 			@RequestParam(value = "browser", defaultValue = "") String browser,
 			@RequestParam(value = "ipAddress", defaultValue = "") String ipAddress,
 			@RequestParam(value = "country", defaultValue = "") String country,
@@ -207,7 +207,7 @@ public class MainController {
 		visit.setOperatingSystem(operatingSystem);
 		visit.setDateInserted(new Timestamp(System.currentTimeMillis()));
 		visitService.add(visit);
-		return visit.getBrowser();
+		return visit;
 	}
 
 	/**
