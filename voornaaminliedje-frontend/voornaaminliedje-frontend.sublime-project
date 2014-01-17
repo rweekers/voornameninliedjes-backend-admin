@@ -3,7 +3,7 @@
 	[
 		{
 			"path": ".",
-			"folder_exclude_patterns": ["nbproject", ".settings"],
+			"folder_exclude_patterns": ["nbproject", ".settings", "target"],
 			"file_exclude_patterns": [".project", "voornaaminliedje-frontend.sublime-workspace"]
 		}
 	]
