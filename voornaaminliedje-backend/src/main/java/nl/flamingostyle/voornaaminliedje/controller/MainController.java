@@ -55,6 +55,23 @@ public class MainController {
 	public Song randomSong() {
 		return songOfTheDayService.getSongOfTheDay();
 	}
+	
+	/**
+	 * Gets a dummy song
+	 * 
+	 * @return the dummy song
+	 */
+	@RequestMapping(value = "song/dummy", method = RequestMethod.GET)
+	@ResponseBody
+	public Song dummySong() {
+		Song dummy = new Song();
+		dummy.setArtist("Zanger");
+		dummy.setTitle("Voornaam in titel");
+		dummy.setFirstname("Voornaam");
+		dummy.setBackground("Testje");
+		dummy.setYoutube("Geen youtube");
+		return dummy;
+	}
 
 	/**
 	 * Gets a random song
