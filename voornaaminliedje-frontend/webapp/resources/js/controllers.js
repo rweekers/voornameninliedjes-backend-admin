@@ -18,7 +18,7 @@ songControllers.controller('VisitCtrl', ['$scope', '$http', 'Visit',
             city: ''
         };
 
-        log(bla);
+        log(bla);s
 
         console.log("Country is " + bla.country);
 
