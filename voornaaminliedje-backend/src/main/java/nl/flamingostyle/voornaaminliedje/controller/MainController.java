@@ -3,9 +3,6 @@ package nl.flamingostyle.voornaaminliedje.controller;
 import java.sql.Timestamp;
 import java.util.List;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-
 import nl.flamingostyle.voornaaminliedje.domain.SearchInstruction;
 import nl.flamingostyle.voornaaminliedje.domain.Song;
 import nl.flamingostyle.voornaaminliedje.domain.SongOfTheDay;
@@ -23,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles and retrieves song request
@@ -51,10 +47,10 @@ public class MainController {
 
 	/**
 	 * Gets a random song
-	 *
+	 * 
 	 * @return the random song
 	 */
-	@RequestMapping(value = "song/random", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/song/random", method = RequestMethod.GET)
 	@ResponseBody
 	public Song randomSong() {
 		return songOfTheDayService.getSongOfTheDay();
@@ -62,18 +58,7 @@ public class MainController {
 
 	/**
 	 * Gets a random song
-	 *
-	 * @return the random song
-	 */
-	@RequestMapping(value = "song/al", method = RequestMethod.GET)
-	@ResponseBody
-	public Song songAll() {
-		return songService.getYouCanCallMeAl();
-	}
-
-	/**
-	 * Gets a random song
-	 *
+	 * 
 	 * @return the random song
 	 */
 	@RequestMapping(value = "admin/song/al", method = RequestMethod.GET)
@@ -84,10 +69,10 @@ public class MainController {
 
 	/**
 	 * Gets the max number
-	 *
+	 * 
 	 * @return the max number of songs
 	 */
-	@RequestMapping(value = "song/max", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/song/max", method = RequestMethod.GET)
 	@ResponseBody
 	public long maxSong() {
 		return songService.getMax();
@@ -95,11 +80,12 @@ public class MainController {
 
 	/**
 	 * Finds a song by firstname
-	 *
-	 * @param firstname the firstname to search
+	 * 
+	 * @param firstname
+	 *            the firstname to search
 	 * @return a list of songs with (part of) the firstname
 	 */
-	@RequestMapping(value = "song/find", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/song/find", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Song> findSongs(@RequestParam("firstname") String firstname) {
 		return songService.findByFirstname(firstname);
@@ -107,55 +93,43 @@ public class MainController {
 
 	/**
 	 * Returns all songs
-	 *
+	 * 
 	 * @return all songs
 	 */
-	@RequestMapping(value = "song/all", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/song/all", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Song> allSongs(
-	  @RequestParam(value = "count", required = false) Integer count,
-	  @RequestParam(value = "page", required = false) Integer page,
-	  @RequestParam(value = "sortingArtist", required = false) String sortingArtist,
-	  @RequestParam(value = "sortingTitle", required = false) String sortingTitle,
-	  @RequestParam(value = "filterArtist", required = false) String filterArtist,
-	  @RequestParam(value = "filterTitle", required = false) String filterTitle) {
+			@RequestParam(value = "count", required = false) Integer count,
+			@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "sortingArtist", required = false) String sortingArtist,
+			@RequestParam(value = "sortingTitle", required = false) String sortingTitle,
+			@RequestParam(value = "filterArtist", required = false) String filterArtist,
+			@RequestParam(value = "filterTitle", required = false) String filterTitle) {
 		return songService.getAll(count, page, sortingArtist, sortingTitle,
-		  filterArtist, filterTitle);
+				filterArtist, filterTitle);
 	}
 
 	/**
 	 * Returns all visits
-	 *
+	 * 
 	 * @return all visits
 	 */
 	@RequestMapping(value = "admin/visit/all", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Visit> allVisits(
-	  @RequestParam(value = "count", required = false) Integer count,
-	  @RequestParam(value = "page", required = false) Integer page) {
-		return visitService.getAll();
-	}
-
-	/**
-	 * Returns all visits
-	 *
-	 * @return all visits
-	 */
-	@RequestMapping(value = "visit/all", method = RequestMethod.GET)
-	@ResponseBody
 	public List<Visit> allSongs(
-	  @RequestParam(value = "count", required = false) Integer count,
-	  @RequestParam(value = "page", required = false) Integer page) {
+			@RequestParam(value = "count", required = false) Integer count,
+			@RequestParam(value = "page", required = false) Integer page) {
 		return visitService.getAll();
 	}
 
 	/**
 	 * Gets a song by id
-	 *
-	 * @param id the id of the song
+	 * 
+	 * @param id
+	 *            the id of the song
 	 * @return the song
 	 */
-	@RequestMapping("song/{id}")
+	@RequestMapping("admin/song/{id}")
 	@ResponseBody
 	public Song getById(@PathVariable int id) {
 		return (Song) songService.get(id);
@@ -164,36 +138,38 @@ public class MainController {
 	/**
 	 * Adds a new searchInstruction by delegating the processing to
 	 * SearchInstructionService.
-	 *
-	 * @param argument the search argument
+	 * 
+	 * @param argument
+	 *            the search argument
 	 */
-	@RequestMapping(value = "searchInstruction/add", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/searchInstruction/add", method = RequestMethod.GET)
 	@ResponseBody
 	public void addSearchInstruction(
-	  @RequestParam(value = "argument") String argument,
-	  @RequestParam(value = "ipAddress", defaultValue = "") String ipAddress) {
+			@RequestParam(value = "argument") String argument,
+			@RequestParam(value = "ipAddress", defaultValue = "") String ipAddress) {
 		logger.debug("Received request to add new searchInstruction");
 		SearchInstruction searchInstruction = new SearchInstruction();
 		searchInstruction.setArgument(argument);
 		searchInstruction.setIpAddress(ipAddress);
 		searchInstruction.setDateInserted(new Timestamp(System
-		  .currentTimeMillis()));
+				.currentTimeMillis()));
 		searchInstructionService.add(searchInstruction);
 	}
 
 	/**
 	 * Adds a new visit by delegating the processing to VisitService.
-	 *
-	 * @param argument the search argument
+	 * 
+	 * @param argument
+	 *            the search argument
 	 */
 	@RequestMapping(value = "visit/add", method = RequestMethod.POST)
 	@ResponseBody
 	public Visit addVisit(
-	  @RequestParam(value = "browser", defaultValue = "") String browser,
-	  @RequestParam(value = "ipAddress", defaultValue = "") String ipAddress,
-	  @RequestParam(value = "country", defaultValue = "") String country,
-	  @RequestParam(value = "city", defaultValue = "") String city,
-	  @RequestParam(value = "operatingSystem", defaultValue = "") String operatingSystem) {
+			@RequestParam(value = "browser", defaultValue = "") String browser,
+			@RequestParam(value = "ipAddress", defaultValue = "") String ipAddress,
+			@RequestParam(value = "country", defaultValue = "") String country,
+			@RequestParam(value = "city", defaultValue = "") String city,
+			@RequestParam(value = "operatingSystem", defaultValue = "") String operatingSystem) {
 		logger.debug("Received request to add new visit");
 		Visit visit = new Visit();
 		visit.setBrowser(browser);
@@ -208,7 +184,7 @@ public class MainController {
 
 	/**
 	 * Returns all songs
-	 *
+	 * 
 	 * @return all songs
 	 */
 	@RequestMapping(value = "admin/songOfTheDay/all", method = RequestMethod.GET)
@@ -228,7 +204,7 @@ public class MainController {
 
 	/**
 	 * Gets all visits
-	 *
+	 * 
 	 * @return list with all visits
 	 */
 	/*
@@ -240,7 +216,7 @@ public class MainController {
 
 	/**
 	 * Gets all searchInstructions
-	 *
+	 * 
 	 * @return list with all searchInstructions
 	 */
 	@RequestMapping(value = "admin/searchInstruction/all", method = RequestMethod.GET)
