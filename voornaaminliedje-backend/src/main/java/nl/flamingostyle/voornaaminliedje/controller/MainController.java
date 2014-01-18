@@ -55,7 +55,7 @@ public class MainController {
 	public Song randomSong() {
 		return songOfTheDayService.getSongOfTheDay();
 	}
-	
+
 	/**
 	 * Gets a dummy song
 	 * 
