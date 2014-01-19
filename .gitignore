@@ -1,3 +1,6 @@
+.SyncID
+.SyncIgnore
+
 voornaaminliedje-backend/logs
 voornaaminliedje-backend/project/project
 voornaaminliedje-backend/project/target
