@@ -198,6 +198,7 @@ public class SongServiceImpl implements SongService {
 		// Session session = sessionFactory.getCurrentSession();
 		// Save
 		// session.save(song);
+		getCurrentSession().save(song);
 	}
 
 	/**

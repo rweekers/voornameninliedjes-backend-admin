@@ -151,6 +151,12 @@ public class MainController {
 	public Song getById(@PathVariable int id) {
 		return (Song) songService.get(id);
 	}
+	
+	@RequestMapping("song/add")
+	@ResponseBody
+	public void addSong(Song song){
+		songService.add(song);
+	}
 
 	/**
 	 * Adds a new searchInstruction by delegating the processing to
