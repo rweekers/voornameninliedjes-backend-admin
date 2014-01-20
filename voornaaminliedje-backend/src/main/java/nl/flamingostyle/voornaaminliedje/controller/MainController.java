@@ -78,7 +78,7 @@ public class MainController {
 	 * 
 	 * @return the random song
 	 */
-	@RequestMapping(value = "admin/song/al", method = RequestMethod.GET)
+	@RequestMapping(value = "song/al", method = RequestMethod.GET)
 	@ResponseBody
 	public Song songAll2() {
 		return songService.getYouCanCallMeAl();
@@ -113,7 +113,7 @@ public class MainController {
 	 * 
 	 * @return all songs
 	 */
-	@RequestMapping(value = "admin/song/all", method = RequestMethod.GET)
+	@RequestMapping(value = "song/all", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Song> allSongs(
 			@RequestParam(value = "count", required = false) Integer count,

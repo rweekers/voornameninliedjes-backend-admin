@@ -15,6 +15,14 @@ songControllers.controller('VisitCtrl', ['$scope', '$http', 'GeoIP',
     }
 ]);
 
+songControllers.controller('SongOfTheDayCtrl', ['$scope', 'SongOfTheDay',
+    function($scope, SongOfTheDay) {
+
+        $scope.songOfTheDay = SongOfTheDay.query();
+        // songOTD = $scope.songOfTheDay;
+    }
+]);
+
 
 function store($http, ipAddress, country, city) {
     var browser = BrowserDetect.browser + BrowserDetect.version;

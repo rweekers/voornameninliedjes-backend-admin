@@ -64,8 +64,17 @@
                     <td data-title="'IP adres'">
                         {{visit.ipAddress}}
                     </td>
+                    <td data-title="'Stad'">
+                        {{visit.city}}
+                    </td>
                     <td data-title="'Land'">
                         {{visit.country}}
+                    </td>
+                    <td data-title="'Browser'">
+                        {{visit.browser}}
+                    </td>
+                    <td data-title="'Besturingssysteem'">
+                        {{visit.operatingSystem}}
                     </td>
                     <td data-title="'Datum'">
                         {{visit.dateInserted | date:'dd-MM-yyyy HH:mm:ss'}}
@@ -79,7 +88,6 @@
         <script type='text/JavaScript' src="../../resources/js/app.js"></script>
         <script type='text/JavaScript' src="../../resources/js/controllers.js"></script>
         <script>
-        
         function isNumber(n) {
             return !isNaN(parseFloat(n)) && isFinite(n);
         }
