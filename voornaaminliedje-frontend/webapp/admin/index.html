@@ -67,6 +67,9 @@
                     <td data-title="'Land'">
                         {{visit.country}}
                     </td>
+                    <td data-title="'Datum'">
+                        {{visit.dateInserted | date:'dd-MM-yyyy HH:mm:ss'}}
+                    </td>
                 </tr>
             </table>
         </div>
@@ -76,9 +79,17 @@
         <script type='text/JavaScript' src="../../resources/js/app.js"></script>
         <script type='text/JavaScript' src="../../resources/js/controllers.js"></script>
         <script>
+        
         function isNumber(n) {
             return !isNaN(parseFloat(n)) && isFinite(n);
         }
+
+        function toDate(d) {
+            var time = new Date().getTime();
+            var d = new Date(time);
+            console.log("Datum " + d.toString());
+        }
+
         var app = angular.module('main', ['ngTable', 'ngResource', 'ngMockE2E', 'songControllers', 'songServices', 'ngCookies']).
         run(function($httpBackend, $filter, $log, ngTableParams, Visit) {
             $httpBackend.whenGET(/.*/).passThrough();
@@ -117,91 +128,22 @@
                         console.log("tableParams filterartist " + $scope.tableParams.$params.filter.artist);
                         console.log("tableParams filtertitle " + $scope.tableParams.$params.filter.title);
 
-                        console.log("Header: " + 'Basic ' + Base64.encode('admin' + ':' + 'admin'));
+                        $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
 
-/*
-                        $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + 'admin');
-
-                        console.log("Header: " + 'Basic ' + Base64.encode('admin' + ':' + 'admin'));
+                        console.log("Header: " + 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe'));
 
                         $http({
                             method: 'GET',
-                            url: 'http://127.0.0.1:8080/voornaaminliedje/api/visit/all',
+                            // url: 'http://127.0.0.1:8180/voornaaminliedje/api/admin/visit/all',
+                            url: 'http://www.voornaaminliedje.nl/voornaaminliedje/api/admin/visit/all',
                         }).success(function(visits) {
                             data = visits;
                             params.total(700);
                             $defer.resolve(data);
-                        });*/
-
-                        /*
-                        var config = {
-                            headers: {
-                                'Authorization': 'Basic d2VudHdvcnRobWFuOkNoYW5nZV9tZQ==',
-                                'Accept': 'application/json;odata=verbose'
-                            }
-                        };
-
-                        $http.get("http://127.0.0.1:8080/voornaaminliedje/api/visit/all", config).success(function(visits) {
-                            data = visits;
-                            params.total(700);
-                            $defer.resolve(data);
-                        });*/
-
-
-                        data = Visit.query({
-                            count: $scope.tableParams.$params.count,
-                            page: $scope.tableParams.$params.page - 1,
-                            sortingArtist: $scope.tableParams.$params.sorting.artist,
-                            sortingTitle: $scope.tableParams.$params.sorting.title,
-                            filterArtist: $scope.tableParams.$params.filter.artist,
-                            filterTitle: $scope.tableParams.$params.filter.title
                         });
-                        params.total(700);
-                        $defer.resolve(data);
-
-                        // params.total(700);
-                        // $defer.resolve(data);
                     }
                 });
             })
-        /*
-        .controller('DemoCtrl', function($scope, $timeout, $resource, ngTableParams, Visit, Base64) {
-            console.log("Nummers ophalen...");
-            var Api = $resource('/data');
-
-            $scope.tableParams = new ngTableParams({
-                page: 1, // show first page
-                count: 10, // count per page
-                sorting: {
-                    artist: 'asc' // initial sorting
-                }
-            }, {
-                total: 0, // length of data
-                getData: function($defer, params) {
-                    // ajax request to api
-
-                    console.log("tableParams count " + $scope.tableParams.$params.count);
-                    console.log("tableParams order " + $scope.tableParams.$params.sorting.artist);
-                    console.log("tableParams filterartist " + $scope.tableParams.$params.filter.artist);
-                    console.log("tableParams filtertitle " + $scope.tableParams.$params.filter.title);
-
-                    // filterArtist = 
-                    console.log("Username en wachtwoord:*" + Base64.encode('Aladdin:open sesame') + '*');
-
-                    // Onderstaande vervangen
-                    data = Visit.query({
-                        count: $scope.tableParams.$params.count,
-                        page: $scope.tableParams.$params.page - 1,
-                        sortingArtist: $scope.tableParams.$params.sorting.artist,
-                        sortingTitle: $scope.tableParams.$params.sorting.title,
-                        filterArtist: $scope.tableParams.$params.filter.artist,
-                        filterTitle: $scope.tableParams.$params.filter.title
-                    });
-                    params.total(700);
-                    $defer.resolve(data);
-                }
-            });
-        })*/
         </script>
 
     </div>

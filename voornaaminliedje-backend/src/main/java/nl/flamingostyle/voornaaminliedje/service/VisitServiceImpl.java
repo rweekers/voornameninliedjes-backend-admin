@@ -41,7 +41,7 @@ public class VisitServiceImpl implements VisitService {
 
 		// Create a Hibernate query (HQL)
 		Query query = getCurrentSession().createQuery(
-				"FROM  Visit visit order by visit.id");
+				"FROM  Visit visit order by visit.id desc");
 
 		// Retrieve all
 		return query.list();

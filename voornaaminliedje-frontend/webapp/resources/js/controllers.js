@@ -23,7 +23,7 @@ function store($http, ipAddress, country, city) {
 
 
     $http({
-        url: 'http://127.0.0.1/voornaaminliedje/api/visit/add',
+        url: 'http://127.0.0.1:8180/voornaaminliedje/api/visit/add',
         method: "POST",
         params: {
             ipAddress: ipAddress,
