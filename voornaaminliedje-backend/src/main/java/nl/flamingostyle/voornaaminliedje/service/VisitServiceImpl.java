@@ -2,8 +2,11 @@ package nl.flamingostyle.voornaaminliedje.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import net.sf.uadetector.ReadableUserAgent;
 import net.sf.uadetector.UserAgentStringParser;
@@ -21,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
-import com.maxmind.geoip2.model.CountryResponse;
 
 /**
  * Service for processing Songs
@@ -79,38 +81,50 @@ public class VisitServiceImpl implements VisitService {
 	 * @param visit
 	 *            the visit to add
 	 */
-	public void add(Visit visit) {
+	public void add(Visit visit, HttpServletRequest request) {
 		logger.debug("Adding new visit");
 		UserAgentStringParser parser = UADetectorServiceFactory
 				.getResourceModuleParser();
 		ReadableUserAgent agent = parser.parse(visit.getUserAgent());
-		visit.setBrowser(agent.getProducer() + " " + agent.getName() + " " + agent.getVersionNumber().toVersionString());
-		visit.setOperatingSystem(agent.getOperatingSystem().getProducer() + " " + agent.getOperatingSystem().getName());
-		location(visit.getIpAddress());
+		visit.setBrowser(agent.getProducer() + " " + agent.getName() + " "
+				+ agent.getVersionNumber().toVersionString());
+		visit.setOperatingSystem(agent.getOperatingSystem().getProducer() + " "
+				+ agent.getOperatingSystem().getName());
+		location(visit, request);
 		// Retrieve session from Hibernate
 		Session session = getCurrentSession();
 		// Save
 		session.save(visit);
 	}
-	
-	private void location(String ipAddress){
+
+	private void location(Visit visit, HttpServletRequest request) {
 		// A File object pointing to your GeoIP2 or GeoLite2 database
-		File database = new File("G:\\GeoLite2-City.mmdb");
+		File database = new File(request.getServletContext().getRealPath("/")
+				+ "GeoLite2-City.mmdb");
 
 		// This creates the DatabaseReader object, which should be reused across
 		// lookups.
 		DatabaseReader reader;
 		try {
 			reader = new DatabaseReader.Builder(database).build();
-			// Replace "city" with the appropriate method for your database, e.g.,
+			// Replace "city" with the appropriate method for your database,
+			// e.g.,
 			// "country".
-			// CityResponse response = reader.city(InetAddress.getByName("128.101.101.101"));
-			CityResponse response = reader.city(InetAddress.getByName(ipAddress));
-			
-			System.out.println(response.getCountry().getName()); // 'United States'
-			System.out.println(response.getCity().getName()); // 'Minneapolis'
-			System.out.println(response.getLocation().getLatitude()); // 44.9733
-			System.out.println(response.getLocation().getLongitude()); // -93.2323
+			// CityResponse response =
+			// reader.city(InetAddress.getByName("128.101.101.101"));
+			CityResponse response = reader.city(InetAddress.getByName(visit
+					.getIpAddress()));
+
+			visit.setCountryCode(response.getCountry().getIsoCode());
+			visit.setCountry(response.getCountry().getName());
+			visit.setCity(response.getCity().getName());
+			visit.setLatitude(new BigDecimal(response.getLocation()
+					.getLatitude()));
+			visit.setLongitude(new BigDecimal(response.getLocation()
+					.getLongitude()));
+
+			logger.debug(response.getLocation().getLatitude()); // 44.9733
+			logger.debug(response.getLocation().getLongitude()); // -93.2323
 		} catch (IOException | GeoIp2Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -3,6 +3,8 @@ package nl.flamingostyle.voornaaminliedje.controller;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import nl.flamingostyle.voornaaminliedje.domain.SearchInstruction;
 import nl.flamingostyle.voornaaminliedje.domain.Song;
 import nl.flamingostyle.voornaaminliedje.domain.SongOfTheDay;
@@ -151,10 +153,10 @@ public class MainController {
 	public Song getById(@PathVariable int id) {
 		return (Song) songService.get(id);
 	}
-	
+
 	@RequestMapping("song/add")
 	@ResponseBody
-	public void addSong(Song song){
+	public void addSong(Song song) {
 		songService.add(song);
 	}
 
@@ -185,47 +187,33 @@ public class MainController {
 	 * @param argument
 	 *            the search argument
 	 */
-	@RequestMapping(value = "visit/add2", method = RequestMethod.POST)
-	@ResponseBody
-	public Visit addVisit(
-			@RequestParam(value = "browser", defaultValue = "") String browser,
-			@RequestParam(value = "ipAddress", defaultValue = "") String ipAddress,
-			@RequestParam(value = "country", defaultValue = "") String country,
-			@RequestParam(value = "city", defaultValue = "") String city,
-			@RequestParam(value = "operatingSystem", defaultValue = "") String operatingSystem) {
-		logger.debug("Received request to add new visit");
-		Visit visit = new Visit();
-		visit.setBrowser(browser);
-		visit.setIpAddress(ipAddress);
-		visit.setCountry(country);
-		visit.setCity(city);
-		visit.setOperatingSystem(operatingSystem);
-		visit.setDateInserted(new Timestamp(System.currentTimeMillis()));
-		visitService.add(visit);
-		return visit;
-	}
-
-	/**
-	 * Adds a new visit by delegating the processing to VisitService.
-	 * 
-	 * @param argument
-	 *            the search argument
-	 */
 	@RequestMapping(value = "visit/add", method = RequestMethod.POST)
 	@ResponseBody
 	public Visit addVisit(
 			@RequestParam(value = "ipAddress", defaultValue = "") String ipAddress,
-			@RequestParam(value = "userAgent", defaultValue = "") String userAgent) {
-		logger.debug("Received request to add new visit");	
-		logger.debug("Receveid ipAddress " + ipAddress + " and userAgent " + userAgent);
+			@RequestParam(value = "userAgent", defaultValue = "") String userAgent,
+			HttpServletRequest request) {
+
+		String ipAddress2 = request.getHeader("X-FORWARDED-FOR");
+		if (ipAddress == null) {
+			ipAddress = request.getRemoteAddr();
+		}
+		System.out.println("ipAddress:" + ipAddress);
+
+		logger.debug("Received request ip address " + request.getRemoteAddr()
+				+ " local " + request.getLocalAddr() + " other method "
+				+ ipAddress2);
+		logger.debug("Received request to add new visit");
+		logger.debug("Receveid ipAddress " + ipAddress + " and userAgent "
+				+ userAgent);
 		Visit visit = new Visit();
 		visit.setIpAddress(ipAddress);
 		visit.setUserAgent(userAgent);
 		visit.setDateInserted(new Timestamp(System.currentTimeMillis()));
-		visitService.add(visit);
+		visitService.add(visit, request);
 		return visit;
 	}
-	
+
 	/**
 	 * Returns all songs
 	 * 
