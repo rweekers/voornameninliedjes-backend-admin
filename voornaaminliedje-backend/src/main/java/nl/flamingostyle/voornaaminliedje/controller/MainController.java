@@ -185,7 +185,7 @@ public class MainController {
 	 * @param argument
 	 *            the search argument
 	 */
-	@RequestMapping(value = "visit/add", method = RequestMethod.POST)
+	@RequestMapping(value = "visit/add2", method = RequestMethod.POST)
 	@ResponseBody
 	public Visit addVisit(
 			@RequestParam(value = "browser", defaultValue = "") String browser,
@@ -205,6 +205,27 @@ public class MainController {
 		return visit;
 	}
 
+	/**
+	 * Adds a new visit by delegating the processing to VisitService.
+	 * 
+	 * @param argument
+	 *            the search argument
+	 */
+	@RequestMapping(value = "visit/add", method = RequestMethod.POST)
+	@ResponseBody
+	public Visit addVisit(
+			@RequestParam(value = "ipAddress", defaultValue = "") String ipAddress,
+			@RequestParam(value = "userAgent", defaultValue = "") String userAgent) {
+		logger.debug("Received request to add new visit");	
+		logger.debug("Receveid ipAddress " + ipAddress + " and userAgent " + userAgent);
+		Visit visit = new Visit();
+		visit.setIpAddress(ipAddress);
+		visit.setUserAgent(userAgent);
+		visit.setDateInserted(new Timestamp(System.currentTimeMillis()));
+		visitService.add(visit);
+		return visit;
+	}
+	
 	/**
 	 * Returns all songs
 	 * 

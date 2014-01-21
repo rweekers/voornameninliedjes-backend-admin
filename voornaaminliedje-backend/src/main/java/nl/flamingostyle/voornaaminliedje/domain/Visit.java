@@ -41,6 +41,9 @@ public class Visit implements Serializable {
 
     @Column(name = "operatingSystem")
     private String operatingSystem;
+    
+    @Column(name = "userAgent")
+    private String userAgent;
 
     @Column(name = "date_inserted")
     private Timestamp dateInserted;
@@ -91,6 +94,14 @@ public class Visit implements Serializable {
 
     public void setOperatingSystem(String operatingSystem) {
         this.operatingSystem = operatingSystem;
+    }
+    
+    public String getUserAgent() {
+        return userAgent;
+    }
+
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
     }
 
     public Timestamp getDateInserted() {

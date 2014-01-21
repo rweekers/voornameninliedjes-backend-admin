@@ -23,13 +23,23 @@ songControllers.controller('SongOfTheDayCtrl', ['$scope', 'SongOfTheDay',
     }
 ]);
 
-
 function store($http, ipAddress, country, city) {
     var browser = BrowserDetect.browser + BrowserDetect.version;
     var operatingSystem = BrowserDetect.OS;
 
+    console.log("Useragent " + navigator.userAgent);
 
+    $http({
+        url: 'http://127.0.0.1:8180/voornaaminliedje/api/visit/add',
+        method: "POST",
+        params: {
+            ipAddress: ipAddress,
+            userAgent: navigator.userAgent
+        }
+    }).success(function(data) {})
+        .error(function(data) {});
 
+    /*
     $http({
         url: 'http://127.0.0.1:8180/voornaaminliedje/api/visit/add',
         method: "POST",
@@ -42,4 +52,5 @@ function store($http, ipAddress, country, city) {
         }
     }).success(function(data) {})
         .error(function(data) {});
+        */
 }

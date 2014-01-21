@@ -2,6 +2,9 @@ package nl.flamingostyle.voornaaminliedje.service;
 
 import java.util.List;
 
+import net.sf.uadetector.ReadableUserAgent;
+import net.sf.uadetector.UserAgentStringParser;
+import net.sf.uadetector.service.UADetectorServiceFactory;
 import nl.flamingostyle.voornaaminliedje.domain.Visit;
 
 import org.apache.log4j.Logger;
@@ -70,7 +73,11 @@ public class VisitServiceImpl implements VisitService {
 	 */
 	public void add(Visit visit) {
 		logger.debug("Adding new visit");
-
+		UserAgentStringParser parser = UADetectorServiceFactory
+				.getResourceModuleParser();
+		ReadableUserAgent agent = parser.parse(visit.getUserAgent());
+		visit.setBrowser(agent.getProducer() + " " + agent.getName() + " " + agent.getVersionNumber().toVersionString());
+		visit.setOperatingSystem(agent.getOperatingSystem().getProducer() + " " + agent.getOperatingSystem().getName());
 		// Retrieve session from Hibernate
 		Session session = getCurrentSession();
 		// Save
