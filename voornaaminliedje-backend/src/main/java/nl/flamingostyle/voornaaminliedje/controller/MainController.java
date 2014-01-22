@@ -190,22 +190,13 @@ public class MainController {
 	@RequestMapping(value = "visit/add", method = RequestMethod.POST)
 	@ResponseBody
 	public Visit addVisit(
-			@RequestParam(value = "ipAddress", defaultValue = "") String ipAddress,
 			@RequestParam(value = "userAgent", defaultValue = "") String userAgent,
 			HttpServletRequest request) {
 
-		String ipAddress2 = request.getHeader("X-FORWARDED-FOR");
+		String ipAddress = request.getHeader("X-FORWARDED-FOR");
 		if (ipAddress == null) {
 			ipAddress = request.getRemoteAddr();
 		}
-		System.out.println("ipAddress:" + ipAddress);
-
-		logger.debug("Received request ip address " + request.getRemoteAddr()
-				+ " local " + request.getLocalAddr() + " other method "
-				+ ipAddress2);
-		logger.debug("Received request to add new visit");
-		logger.debug("Receveid ipAddress " + ipAddress + " and userAgent "
-				+ userAgent);
 		Visit visit = new Visit();
 		visit.setIpAddress(ipAddress);
 		visit.setUserAgent(userAgent);

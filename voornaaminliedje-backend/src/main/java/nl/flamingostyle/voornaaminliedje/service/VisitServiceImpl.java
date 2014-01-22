@@ -112,8 +112,16 @@ public class VisitServiceImpl implements VisitService {
 			// "country".
 			// CityResponse response =
 			// reader.city(InetAddress.getByName("128.101.101.101"));
-			CityResponse response = reader.city(InetAddress.getByName(visit
-					.getIpAddress()));
+			logger.info("Het ipadres is " + visit.getIpAddress());
+			CityResponse response;
+			if (visit.getIpAddress().equals("127.0.0.1")) {
+				response = reader
+						.city(InetAddress.getByName("128.101.101.101"));
+				logger.error("Ipaddres bepaling mislukt! Voor positiebepaling dummy 128.101.101.101 genomen.");
+			} else {
+				response = reader.city(InetAddress.getByName(visit
+						.getIpAddress()));
+			}
 
 			visit.setCountryCode(response.getCountry().getIsoCode());
 			visit.setCountry(response.getCountry().getName());
@@ -122,11 +130,9 @@ public class VisitServiceImpl implements VisitService {
 					.getLatitude()));
 			visit.setLongitude(new BigDecimal(response.getLocation()
 					.getLongitude()));
-
-			logger.debug(response.getLocation().getLatitude()); // 44.9733
-			logger.debug(response.getLocation().getLongitude()); // -93.2323
 		} catch (IOException | GeoIp2Exception e) {
 			// TODO Auto-generated catch block
+			logger.error("GeoIp2Location mislukt " + e.getMessage());
 			e.printStackTrace();
 		}
 
