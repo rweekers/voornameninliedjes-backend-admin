@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+
+      Search: <input ng-model="query">
+      Sort by:
+      <select ng-model="orderProp">
+        <option value="ipAddress">Alphabetical</option>
+        <option value="dateInserted">Newest</option>
+      </select>
+
+    </div>
+    <div class="span10">
+      <!--Body content-->
+
+      <ul class="phones">
+        <li ng-repeat="visit in phones | filter:query | orderBy:orderProp" class="thumbnail">
+          <a href="#/visits/{{visit.id}}" class="thumb">{{visit.ipAddress}}</a>
+          <p>{{visit.country}}</p>
+          <p>{{visit.browser}}</p>
+          <p>{{visit.operatingSystem}}</p>
+          <p>{{visit.dateInserted | date:'dd-MM-yyyy HH:mm:ss'}}</p>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>

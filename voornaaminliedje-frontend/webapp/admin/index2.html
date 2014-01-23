@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <link href="../../resources/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+    <!--link rel="stylesheet" href="css/bootstrap.min.css"-->
+    <!--[if lt IE 9]>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-resource.min.js"></script>
+    <!--script src="js/angular.min.js"></script>
+    <script src="js/angular-resource.min.js"></script-->
+    <script type='text/JavaScript' src="../../resources/js/libs/angular-mocks.js"></script>
+    <script type='text/JavaScript' src="../../resources/js/libs/angular-cookies.js"></script>
+    <script type='text/JavaScript' src="../../resources/js/libs/ng-table.js"></script>
+    <!--script src="js/angular-mocks.js"></script-->
+    <!--script src="../ng-table.js"></script-->
+
+    <title>Voornaaminliedje beheer</title>
+
+    <link rel="stylesheet" href="../../resources/css/ng-table.css">
+    <!--link rel="stylesheet" href="../ng-table.css"-->
+    <style>
+    .loading-container {
+        position: relative;
+    }
+    .loading-container .loading:before, .loading-container .loading:after {
+        content:" ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        min-height: 50px;
+        min-width: 50px;
+    }
+    .loading-container .loading:before {
+        background-color: white;
+        opacity: 0.5;
+    }
+    </style>
+</head>
+
+<body ng-app="main">
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Voornaaminliedje beheer</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Liedjes</a>
+                </li>
+                <li class="active"><a href="#">Bezoeken</a>
+                </li>
+                <li><a href="#">Zoekopdrachten</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Webpagina bezoeken</h2>
+
+    <div ng-controller="DemoCtrl">
+
+        <button ng-click="tableParams.reload()" class="btn pull-right">Reload</button>
+        <button ng-click="tableParams.sorting({})" class="btn pull-right">Clear sorting</button>
+        <div class="clearfix"></div>
+
+        <div loading-container="tableParams.settings().$loading">
+            <table ng-table="tableParams" show-filter="true" class="table">
+                <tr ng-repeat="visit in $data">
+                    <td data-title="'id'">
+                        {{visit.id}}
+                    </td>
+                    <td data-title="'IP adres'">
+                        {{visit.ipAddress}}
+                    </td>
+                    <td data-title="'Stad'">
+                        {{visit.city}}
+                    </td>
+                    <td data-title="'Land'">
+                        {{visit.country}}
+                    </td>
+                    <td data-title="'Browser'">
+                        {{visit.browser}}
+                    </td>
+                    <td data-title="'Besturingssysteem'">
+                        {{visit.operatingSystem}}
+                    </td>
+                    <td data-title="'Datum'">
+                        {{visit.dateInserted | date:'dd-MM-yyyy HH:mm:ss'}}
+                    </td>
+                    <td data-title="'Latitude'">
+                        {{visit.latitude}}
+                    </td>
+                    <td data-title="'Longitude'">
+                        {{visit.longitude}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <script type='text/JavaScript' src="../../resources/js/services.js"></script>
+        <script type='text/JavaScript' src="../../resources/js/app.js"></script>
+        <script type='text/JavaScript' src="../../resources/js/controllers.js"></script>
+        <script>
+        function isNumber(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+
+        function toDate(d) {
+            var time = new Date().getTime();
+            var d = new Date(time);
+            console.log("Datum " + d.toString());
+        }
+
+        var app = angular.module('main', ['ngTable', 'ngResource', 'ngMockE2E', 'songControllers', 'songServices', 'ngCookies']).
+        run(function($httpBackend, $filter, $log, ngTableParams, Visit) {
+            $httpBackend.whenGET(/.*/).passThrough();
+        })
+            .directive('loadingContainer', function() {
+                return {
+                    restrict: 'A',
+                    scope: false,
+                    link: function(scope, element, attrs) {
+                        var loadingLayer = angular.element('<div class="loading"></div>');
+                        element.append(loadingLayer);
+                        element.addClass('loading-container');
+                        scope.$watch(attrs.loadingContainer, function(value) {
+                            loadingLayer.toggleClass('ng-hide', !value);
+                        });
+                    }
+                };
+            })
+            .controller('DemoCtrl', function($scope, $timeout, $resource, ngTableParams, $http, Visit, Base64) {
+                console.log("Nummers ophalen...");
+                var Api = $resource('/data');
+
+                $scope.tableParams = new ngTableParams({
+                    page: 1, // show first page
+                    count: 10, // count per page
+                    sorting: {
+                        artist: 'asc' // initial sorting
+                    }
+                }, {
+                    total: 0, // length of data
+                    getData: function($defer, params) {
+                        // ajax request to api
+
+                        console.log("tableParams count " + $scope.tableParams.$params.count);
+                        console.log("tableParams order " + $scope.tableParams.$params.sorting.artist);
+                        console.log("tableParams filterartist " + $scope.tableParams.$params.filter.artist);
+                        console.log("tableParams filtertitle " + $scope.tableParams.$params.filter.title);
+
+                        $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
+
+                        console.log("Header: " + 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe'));
+
+                        $http({
+                            method: 'GET',
+                            // url: 'http://127.0.0.1:8180/voornaaminliedje/api/admin/visit/all',
+                            url: 'http://www.voornaaminliedje.nl/voornaaminliedje/api/admin/visit/all',
+                        }).success(function(visits) {
+                            data = visits;
+                            params.total(700);
+                            $defer.resolve(data);
+                        });
+                    }
+                });
+            })
+        </script>
+
+    </div>
+
+
+</body>
+
+</html>
