@@ -4,6 +4,7 @@
 
 var phonecatApp = angular.module('adminApp', [
   'ngRoute',
+  'ngCookies',
   'phonecatControllers',
   'visitServices'
 ]);

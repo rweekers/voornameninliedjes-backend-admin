@@ -4,7 +4,7 @@
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatControllers.controller('VisitListCtrl', ['$scope', 'Visit',
+phonecatControllers.controller('VisitListCtrl', ['$scope', 'Visit', 'Auth',
     function($scope, Visit) {
 
         $scope.phones = Visit.query();

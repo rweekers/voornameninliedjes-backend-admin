@@ -4,13 +4,15 @@
 
 var visitServices = angular.module('visitServices', ['ngResource']);
 
-visitServices.factory('Visit', ['Base64', '$resource',
-    function(Base64, $resource) {
+visitServices.factory('Visit', ['Base64', '$http', '$resource',
+    function(Base64, $http, $resource) {
 
 
         // $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
         var encoded = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
         console.log("Header " + encoded);
+
+        // $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
 
         return $resource('http://www.voornaaminliedje.nl/voornaaminliedje/api/admin/visit/all', {}, {
             // return $resource('http://localhost:8080/voornaaminliedje/api/admin/visit/all', {}, {
@@ -19,14 +21,40 @@ visitServices.factory('Visit', ['Base64', '$resource',
                 params: {
                     phoneId: 'phones'
                 },
-                isArray: true,
-                headers: {
-                    'Authorization': encoded
-                }
+                isArray: true
+                //headers: {
+                //    'Authorization': encoded
+                //}
             }
         });
     }
 ]);
+
+ visitServices.factory('Auth', ['Base64', '$cookieStore', '$http',
+     function(Base64, $cookieStore, $http) {
+         // initialize to whatever is in the cookie, if anything
+         $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
+         var encoded = Base64.encode('admin:5095df0e6547e2647d5bc40f1ecd9afe');
+         console.log("Encoded string is " + encoded);
+         $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
+         $cookieStore.put('authdata', encoded);
+         console.log("Blabla");
+
+         return {
+             setCredentials: function(username, password) {
+                 var encoded = Base64.encode(username + ':' + password);
+                 // var encoded = Base64.encode('admin:admin');
+                 $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
+                 $cookieStore.put('authdata', encoded);
+             },
+             clearCredentials: function() {
+                 document.execCommand("ClearAuthenticationCache");
+                 $cookieStore.remove('authdata');
+                 $http.defaults.headers.common.Authorization = 'Basic ';
+             }
+         };
+     }
+ ]);
 
 visitServices.factory('Base64', function() {
     var keyStr = 'ABCDEFGHIJKLMNOP' +
