@@ -4,14 +4,10 @@
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatControllers.controller('VisitListCtrl', ['$scope', '$http',
-    function($scope, $http) {
+phonecatControllers.controller('VisitListCtrl', ['$scope', 'Visit',
+    function($scope, Visit) {
 
-        // $http.get('visits/visits.json').success(function(data) {
-        $http.get('http://localhost:8080/voornaaminliedje/api/visit/all').success(function(data) {
-            $scope.phones = data;
-        });
-
+        $scope.phones = Visit.query();
         $scope.orderProp = 'ipAddress';
     }
 ]);
