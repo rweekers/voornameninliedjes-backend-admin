@@ -9,8 +9,8 @@ visitServices.factory('Visit', ['Base64', '$http', '$resource',
 
 
         // $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
-        var encoded = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
-        console.log("Header " + encoded);
+        // var encoded = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
+        // console.log("Header " + encoded);
 
         // $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
 
@@ -34,11 +34,11 @@ visitServices.factory('Visit', ['Base64', '$http', '$resource',
      function(Base64, $cookieStore, $http) {
          // initialize to whatever is in the cookie, if anything
          $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
-         var encoded = Base64.encode('admin:5095df0e6547e2647d5bc40f1ecd9afe');
-         console.log("Encoded string is " + encoded);
-         $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
-         $cookieStore.put('authdata', encoded);
-         console.log("Blabla");
+         // var encoded = Base64.encode('admin:5095df0e6547e2647d5bc40f1ecd9afe');
+         // console.log("Encoded string is " + encoded);
+         // $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
+         // $cookieStore.put('authdata', encoded);
+         // console.log("Blabla");
 
          return {
              setCredentials: function(username, password) {
