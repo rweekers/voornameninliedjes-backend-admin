@@ -167,7 +167,7 @@ public class MainController {
 		return (Song) songService.get(id);
 	}
 
-	@RequestMapping("song/add")
+	@RequestMapping("admin/song/add")
 	@ResponseBody
 	public void addSong(Song song) {
 		songService.add(song);
@@ -237,18 +237,6 @@ public class MainController {
 	public void initializeSongsOfTheDay() {
 		songOfTheDayService.initialize();
 	}
-
-	/**
-	 * Gets all visits
-	 * 
-	 * @return list with all visits
-	 */
-	/*
-	 * @RequestMapping(value = "admin/visit/all", method = RequestMethod.GET)
-	 * 
-	 * @ResponseBody public List<Visit> allVisits() { return
-	 * visitService.getAll(); }
-	 */
 
 	/**
 	 * Gets all searchInstructions

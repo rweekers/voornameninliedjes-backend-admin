@@ -14,8 +14,8 @@ visitServices.factory('Visit', ['Base64', '$http', '$resource',
 
         // $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
 
-        // return $resource('http://www.voornaaminliedje.nl/voornaaminliedje/api/admin/visit/all', {}, {
-        return $resource('http://localhost:8080/voornaaminliedje/api/admin/visit/all', {}, {
+        return $resource('http://www.voornaaminliedje.nl/voornaaminliedje/api/admin/visit/all', {}, {
+        // return $resource('http://localhost:8080/voornaaminliedje/api/admin/visit/all', {}, {
             query: {
                 method: 'GET',
                 params: {
@@ -33,7 +33,8 @@ visitServices.factory('Visit', ['Base64', '$http', '$resource',
 visitServices.factory('VisitDetail', ['Base64', '$http', '$resource',
     function(Base64, $http, $resource) {
 
-        return $resource('http://localhost:8080/voornaaminliedje/api/admin/visit/:id', {}, {
+        return $resource('http://www.voornaaminliedje.nl/voornaaminliedje/api/admin/visit/:id', {}, {
+        // return $resource('http://localhost:8080/voornaaminliedje/api/admin/visit/:id', {}, {
             get: {
                 method: 'GET',
                 params: {
