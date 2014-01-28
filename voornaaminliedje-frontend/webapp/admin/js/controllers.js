@@ -3,8 +3,6 @@
 /* Controllers */
 
 var phonecatControllers = angular.module('phonecatControllers', []);
-var la;
-var lo;
 
 phonecatControllers.controller('VisitListCtrl', ['$scope', 'Visit', 'Auth',
     function($scope, Visit, Auth) {
@@ -26,27 +24,20 @@ phonecatControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', 'Vi
         });
 
         $scope.phone.$promise.then(function(data) {
-            console.log("Latitude " + $scope.phone.latitude);
-            console.log("Longitude " + $scope.phone.longitude);
 
-            la = $scope.phone.latitude;
-            lo = $scope.phone.longitude;
-
-            console.log("Latitude2 " + la);
-            console.log("Longitude2 " + lo);
-
-
+            $scope.map = {
+                center: {
+                    latitude: $scope.phone.latitude,
+                    longitude: $scope.phone.longitude
+                },
+                zoom: 8
+            };
         });
-
-        console.log("Latitude3 " + la);
-        console.log("Longitude3 " + lo);
 
         $scope.map = {
             center: {
-                // latitude: 45,
-                // longitude: -73
-                latitude: la,
-                longitude: lo
+                latitude: 51,
+                longitude: 0
             },
             zoom: 8
         };
