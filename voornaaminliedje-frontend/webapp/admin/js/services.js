@@ -14,8 +14,8 @@ visitServices.factory('Visit', ['Base64', '$http', '$resource',
 
         // $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
 
-        return $resource('http://www.voornaaminliedje.nl/voornaaminliedje/api/admin/visit/all', {}, {
-            // return $resource('http://localhost:8080/voornaaminliedje/api/admin/visit/all', {}, {
+        // return $resource('http://www.voornaaminliedje.nl/voornaaminliedje/api/admin/visit/all', {}, {
+        return $resource('http://localhost:8080/voornaaminliedje/api/admin/visit/all', {}, {
             query: {
                 method: 'GET',
                 params: {
@@ -30,31 +30,45 @@ visitServices.factory('Visit', ['Base64', '$http', '$resource',
     }
 ]);
 
- visitServices.factory('Auth', ['Base64', '$cookieStore', '$http',
-     function(Base64, $cookieStore, $http) {
-         // initialize to whatever is in the cookie, if anything
-         $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
-         // var encoded = Base64.encode('admin:5095df0e6547e2647d5bc40f1ecd9afe');
-         // console.log("Encoded string is " + encoded);
-         // $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
-         // $cookieStore.put('authdata', encoded);
-         // console.log("Blabla");
+visitServices.factory('VisitDetail', ['Base64', '$http', '$resource',
+    function(Base64, $http, $resource) {
 
-         return {
-             setCredentials: function(username, password) {
-                 var encoded = Base64.encode(username + ':' + password);
-                 // var encoded = Base64.encode('admin:admin');
-                 $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
-                 $cookieStore.put('authdata', encoded);
-             },
-             clearCredentials: function() {
-                 document.execCommand("ClearAuthenticationCache");
-                 $cookieStore.remove('authdata');
-                 $http.defaults.headers.common.Authorization = 'Basic ';
-             }
-         };
-     }
- ]);
+        return $resource('http://localhost:8080/voornaaminliedje/api/visit/:id', {}, {
+            get: {
+                method: 'GET',
+                params: {
+                    id: ''
+                }
+            }
+        });
+    }
+]);
+
+visitServices.factory('Auth', ['Base64', '$cookieStore', '$http',
+    function(Base64, $cookieStore, $http) {
+        // initialize to whatever is in the cookie, if anything
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
+        // var encoded = Base64.encode('admin:5095df0e6547e2647d5bc40f1ecd9afe');
+        // console.log("Encoded string is " + encoded);
+        // $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
+        // $cookieStore.put('authdata', encoded);
+        // console.log("Blabla");
+
+        return {
+            setCredentials: function(username, password) {
+                var encoded = Base64.encode(username + ':' + password);
+                // var encoded = Base64.encode('admin:admin');
+                $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
+                $cookieStore.put('authdata', encoded);
+            },
+            clearCredentials: function() {
+                document.execCommand("ClearAuthenticationCache");
+                $cookieStore.remove('authdata');
+                $http.defaults.headers.common.Authorization = 'Basic ';
+            }
+        };
+    }
+]);
 
 visitServices.factory('Base64', function() {
     var keyStr = 'ABCDEFGHIJKLMNOP' +

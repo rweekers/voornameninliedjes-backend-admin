@@ -14,8 +14,11 @@ phonecatControllers.controller('VisitListCtrl', ['$scope', 'Visit', 'Auth',
     }
 ]);
 
-phonecatControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams',
-    function($scope, $routeParams) {
-        $scope.phoneId = $routeParams.phoneId;
+phonecatControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$http', 'VisitDetail',
+    function($scope, $routeParams, $http, VisitDetail) {
+
+        $scope.phone = VisitDetail.get({
+            id: $routeParams.phoneId
+        });
     }
 ]);
