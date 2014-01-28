@@ -14,8 +14,10 @@ phonecatControllers.controller('VisitListCtrl', ['$scope', 'Visit', 'Auth',
     }
 ]);
 
-phonecatControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$http', 'VisitDetail',
-    function($scope, $routeParams, $http, VisitDetail) {
+phonecatControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', 'VisitDetail', 'Auth',
+    function($scope, $routeParams, VisitDetail, Auth) {
+
+        Auth.setCredentials('admin', '5095df0e6547e2647d5bc40f1ecd9afe')
 
         $scope.phone = VisitDetail.get({
             id: $routeParams.phoneId

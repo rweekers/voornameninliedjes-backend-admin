@@ -33,7 +33,7 @@ visitServices.factory('Visit', ['Base64', '$http', '$resource',
 visitServices.factory('VisitDetail', ['Base64', '$http', '$resource',
     function(Base64, $http, $resource) {
 
-        return $resource('http://localhost:8080/voornaaminliedje/api/visit/:id', {}, {
+        return $resource('http://localhost:8080/voornaaminliedje/api/admin/visit/:id', {}, {
             get: {
                 method: 'GET',
                 params: {

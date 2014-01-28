@@ -1,7 +1,6 @@
 package nl.flamingostyle.voornaaminliedje.controller;
 
 import java.io.IOException;
-import java.util.Enumeration;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -40,22 +39,14 @@ public class CorsFilter extends OncePerRequestFilter {
 			HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 
-		// if (request.getHeader("Access-Control-Request-Method") != null
-		// && "OPTIONS".equals(request.getMethod())) {
-		// CORS "pre-flight" request
-
-		Enumeration<String> headerNames = request.getHeaderNames();
-		while (headerNames.hasMoreElements()) {
-			String headerName = (String) headerNames.nextElement();
-			logger.info("" + headerName);
-			logger.info("" + request.getHeader(headerName));
-		}
+		logger.info("Origin " + request.getHeader("origin"));
 
 		logger.info("Request method header: "
 				+ request.getHeader("Access-Control-Request-Method"));
 		logger.info("Request method: " + request.getMethod());
 		if (request.getHeader("Access-Control-Request-Method") != null
 				&& "OPTIONS".equals(request.getMethod())) {
+			// CORS "pre-flight" request
 			response.setHeader("Access-Control-Allow-Origin", "*");
 			response.setHeader("Access-Control-Allow-Credentials", "true");
 			response.setHeader("Access-Control-Allow-Methods",

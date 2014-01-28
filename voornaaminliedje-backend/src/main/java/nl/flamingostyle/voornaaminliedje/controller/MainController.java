@@ -140,7 +140,7 @@ public class MainController {
 			@RequestParam(value = "page", required = false) Integer page) {
 		return visitService.getAll();
 	}
-	
+
 	/**
 	 * Gets a visit by id
 	 * 
@@ -148,7 +148,7 @@ public class MainController {
 	 *            the id of the visit
 	 * @return the visit
 	 */
-	@RequestMapping("visit/{id}")
+	@RequestMapping("admin/visit/{id}")
 	@ResponseBody
 	public Visit getVisitById(@PathVariable int id) {
 		return (Visit) visitService.get(id);
