@@ -12,7 +12,9 @@
     <!-- default header name is X-CSRF-TOKEN -->
     <meta name="_csrf_header" content="${_csrf.headerName}" />
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script-->
+    <script type='text/JavaScript' src="../../resources/js/libs/angular.js"></script>
+    <script type='text/JavaScript' src="../../resources/js/libs/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-resource.min.js"></script>
     <script type='text/JavaScript' src="../../resources/js/libs/browserDetect.js"></script>
     <script type='text/JavaScript' src="../../resources/js/services.js"></script>
@@ -21,13 +23,18 @@
 
 </head>
 
-<body ng-controller="VisitCtrl">
-    <h1 align="center">In aanbouw</h1>
-    <h3>Waar werken we aan?</h3>
-    <h4 align="left">11-01-2014</h4>
-    <p>Laatste nummers toevoegen in de database.</p>
-    <p>Website layout.</p>
-    <p>Functionaliteit "Lied van de dag".</p>
+<body>
+    <div ng-controller="VisitCtrl">
+        <h1 align="center">In aanbouw</h1>
+        <h3>Waar werken we aan?</h3>
+        <h4 align="left">11-01-2014</h4>
+        <p>Laatste nummers toevoegen in de database.</p>
+        <p>Website layout.</p>
+        <p>Functionaliteit "Lied van de dag".</p>
+    </div>
+    <div ng-controller="SongOfTheDayCtrl">
+        <p>{{songOfTheDay.title}}</p>
+    </div>
 </body>
 
 </html>

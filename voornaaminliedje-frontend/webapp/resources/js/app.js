@@ -2,6 +2,7 @@
 
 /* App Module */
 var songApp = angular.module('songApp', [
+  'ngRoute',
   'songControllers',
   'songServices'
 ]);
