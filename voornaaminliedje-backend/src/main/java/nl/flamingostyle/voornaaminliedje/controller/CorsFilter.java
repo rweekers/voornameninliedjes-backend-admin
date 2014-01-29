@@ -48,6 +48,7 @@ public class CorsFilter extends OncePerRequestFilter {
 				&& "OPTIONS".equals(request.getMethod())) {
 			// CORS "pre-flight" request
 			response.setHeader("Access-Control-Allow-Origin", "*");
+			// response.setHeader("Access-Control-Allow-Origin", "http://localhost:8180");
 			response.setHeader("Access-Control-Allow-Credentials", "true");
 			response.setHeader("Access-Control-Allow-Methods",
 					"POST, PUT, GET, DELETE, OPTIONS");
@@ -56,6 +57,7 @@ public class CorsFilter extends OncePerRequestFilter {
 					"x-requested-with, Content-Type, Authorization, x-domain-token, _csrf_header");
 		}
 		response.setHeader("Access-Control-Allow-Origin", "*");
+		// response.setHeader("Access-Control-Allow-Origin", "http://localhost:8180");
 		filterChain.doFilter(request, response);
 	}
 }
