@@ -2,33 +2,33 @@
 
 /* Controllers */
 
-var phonecatControllers = angular.module('phonecatControllers', []);
+var adminControllers = angular.module('adminControllers', []);
 
-phonecatControllers.controller('VisitListCtrl', ['$scope', 'Visit', 'Auth',
+adminControllers.controller('VisitListCtrl', ['$scope', 'Visit', 'Auth',
     function($scope, Visit, Auth) {
 
         Auth.setCredentials('admin', '5095df0e6547e2647d5bc40f1ecd9afe')
 
-        $scope.phones = Visit.query();
+        $scope.visits = Visit.query();
         $scope.orderProp = 'ipAddress';
     }
 ]);
 
-phonecatControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', 'VisitDetail', 'Auth',
+adminControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', 'VisitDetail', 'Auth',
     function($scope, $routeParams, VisitDetail, Auth) {
 
         Auth.setCredentials('admin', '5095df0e6547e2647d5bc40f1ecd9afe')
 
-        $scope.phone = VisitDetail.get({
-            id: $routeParams.phoneId
+        $scope.visit = VisitDetail.get({
+            id: $routeParams.visitId
         });
 
-        $scope.phone.$promise.then(function(data) {
+        $scope.visit.$promise.then(function(data) {
 
             $scope.map = {
                 center: {
-                    latitude: $scope.phone.latitude,
-                    longitude: $scope.phone.longitude
+                    latitude: $scope.visit.latitude,
+                    longitude: $scope.visit.longitude
                 },
                 zoom: 8
             };

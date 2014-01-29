@@ -51,8 +51,9 @@ ul.specs {
 }
 ul.specs > li {
     display: inline-block;
-    width: 200px;
+    width: 250px;
     vertical-align: top;
+    margin-left: 1em;
 }
 ul.specs > li > span {
     font-weight: bold;
@@ -67,4 +68,5 @@ h1 {
 .angular-google-map-container {
     height: 400px;
     width: 400px;
+    margin-left: 1em;
 }

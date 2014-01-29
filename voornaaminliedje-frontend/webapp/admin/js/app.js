@@ -2,22 +2,22 @@
 
 /* App Module */
 
-var phonecatApp = angular.module('adminApp', [
+var adminApp = angular.module('adminApp', [
   'ngRoute',
   'ngCookies',
   'google-maps',
-  'phonecatControllers',
+  'adminControllers',
   'visitServices'
 ]);
 
-phonecatApp.config(['$routeProvider',
+adminApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/visits', {
         templateUrl: 'partials/visit-list.html',
         controller: 'VisitListCtrl'
       }).
-      when('/visits/:phoneId', {
+      when('/visits/:visitId', {
         templateUrl: 'partials/visit-detail.html',
         controller: 'VisitDetailCtrl'
       }).

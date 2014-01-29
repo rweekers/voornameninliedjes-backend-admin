@@ -1,25 +1,26 @@
-<h1>{{phone.ipAddress}}</h1>
+<h1>{{visit.ipAddress}}</h1>
 
-<p>{{phone.country}}</p>
+<p>{{visit.dateInserted | date:'dd-MM-yyyy HH:mm:ss'}}</p>
 
 <ul class="specs">
     <li>
-        <span>Details</span>
+        <span>Geo</span>
         <dl>
-            <dt>Type</dt>
-            <dd>{{phone.dateInserted}}</dd>
-            <dt>{{phone.city}}</dt>
-            <dd>{{phone.latitude}}</dd>
-            <dd>{{phone.longitude}}</dd>
+            <dt>Locatie</dt>
+            <dd>{{visit.city}}</dd>
+            <dd>{{visit.country}}</dd>
+            <dt>Coördinaten</dt>
+            <dd>{{visit.latitude}}</dd>
+            <dd>{{visit.longitude}}</dd>
         </dl>
     </li>
     <li>
         <span>Bezoeker</span>
         <dl>
             <dt>Besturingssysteem</dt>
-            <dd>{{phone.operatingSystem}}</dd>
+            <dd>{{visit.operatingSystem}}</dd>
             <dt>Browser</dt>
-            <dd>{{phone.browser}}</dd>
+            <dd>{{visit.browser}}</dd>
         </dl>
     </li>
 </ul>

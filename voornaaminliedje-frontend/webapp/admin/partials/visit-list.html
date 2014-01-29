@@ -15,7 +15,7 @@
       <!--Body content-->
 
       <ul class="phones">
-        <li ng-repeat="visit in phones | filter:query | orderBy:orderProp" class="thumbnail">
+        <li ng-repeat="visit in visits | filter:query | orderBy:orderProp" class="thumbnail">
           <a href="#/visits/{{visit.id}}" class="thumb">{{visit.ipAddress}}</a>
           <p>{{visit.country}}</p>
           <p>{{visit.browser}}</p>
