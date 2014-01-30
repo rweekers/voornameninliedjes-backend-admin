@@ -4,6 +4,16 @@
 
 var visitServices = angular.module('visitServices', ['ngResource']);
 
+visitServices.factory('Login', ['$location',
+    function($location) {
+        return {
+            isLoggedin: function() {
+                return true;
+            }
+        }
+    }
+]);
+
 visitServices.factory('Visit', ['Base64', '$http', '$resource',
     function(Base64, $http, $resource) {
 

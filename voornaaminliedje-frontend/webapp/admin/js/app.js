@@ -21,6 +21,9 @@ adminApp.config(['$routeProvider',
         templateUrl: 'partials/visit-detail.html',
         controller: 'VisitDetailCtrl'
       }).
+      when('/login', {
+        templateUrl: 'login.html'
+      }).
       otherwise({
         redirectTo: '/visits'
       });

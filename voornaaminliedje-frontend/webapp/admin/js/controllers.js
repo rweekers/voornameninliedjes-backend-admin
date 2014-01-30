@@ -4,8 +4,17 @@
 
 var adminControllers = angular.module('adminControllers', []);
 
-adminControllers.controller('VisitListCtrl', ['$scope', 'Visit', 'Auth',
-    function($scope, Visit, Auth) {
+adminControllers.controller('VisitListCtrl', ['$scope', '$location', 'Login', 'Visit', 'Auth',
+    function($scope, $location, Login, Visit, Auth) {
+
+        console.log('Login nodig: ' + Login.isLoggedin());
+        /*
+        $scope.$on('event:loginRequired', function() {
+            $location.path('/login');
+        });*/
+        console.log('Locatie ' + $location.path());
+        $location.path('/login');
+        console.log('Locatie2 ' + $location.path());
 
         Auth.setCredentials('admin', '5095df0e6547e2647d5bc40f1ecd9afe')
 
