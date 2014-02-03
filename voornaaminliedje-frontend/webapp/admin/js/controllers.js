@@ -13,7 +13,7 @@ adminControllers.controller('VisitListCtrl', ['$scope', '$location', 'Login', 'V
             $location.path('/login');
         });*/
         console.log('Locatie ' + $location.path());
-        $location.path('/login');
+        // $location.path('/login');
         console.log('Locatie2 ' + $location.path());
 
         Auth.setCredentials('admin', '5095df0e6547e2647d5bc40f1ecd9afe')
@@ -23,8 +23,8 @@ adminControllers.controller('VisitListCtrl', ['$scope', '$location', 'Login', 'V
     }
 ]);
 
-adminControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', 'VisitDetail', 'Auth',
-    function($scope, $routeParams, VisitDetail, Auth) {
+adminControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$cookieStore', 'VisitDetail', 'Auth',
+    function($scope, $routeParams, $cookieStore, VisitDetail, Auth) {
 
         Auth.setCredentials('admin', '5095df0e6547e2647d5bc40f1ecd9afe')
 
