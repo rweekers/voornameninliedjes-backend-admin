@@ -179,3 +179,33 @@ visitServices.factory('errorService', function() {
         }
     };
 });
+
+// register the interceptor as a service
+visitServices.factory('errorHttpInterceptor', ['$q', '$location',
+    function($q, $location) {
+        return {
+
+            // optional method
+            'response': function(response) {
+                // do something on success
+                console.log("Interceptor met succes.");
+                return response || $q.when(response);
+            },
+
+            // optional method
+            'responseError': function(rejection) {
+                // do something on error
+                console.log("Interceptor mislukt " + rejection.status);
+                console.log("Bla");
+                if (rejection.status == 504) {
+                    $location.path('/login');
+                }
+                /*
+            if (canRecover(rejection)) {
+                return responseOrNewPromise
+            }*/
+                return $q.reject(rejection);
+            }
+        };
+    }
+]);
