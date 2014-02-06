@@ -13,10 +13,7 @@ adminControllers.controller('VisitListCtrl', ['$scope', '$location', 'Login', 'V
             $location.path('/login');
         });*/
         console.log('Locatie ' + $location.path());
-        // $location.path('/login');
         console.log('Locatie2 ' + $location.path());
-
-        Auth.setCredentials('admin', '5095df0e6547e2647d5bc40f1ecd9afe')
 
         $scope.visits = Visit.query();
         $scope.orderProp = 'ipAddress';
@@ -59,17 +56,14 @@ adminControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$cook
 adminControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$cookieStore', 'Auth', 'Base64',
     function($scope, $routeParams, $cookieStore, Auth, Base64) {
 
-        // Auth.setCredentials('admin', '5095df0e6547e2647d5bc40f1ecd9afe')
-
-        // var encoded = Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
-        // $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
-
         console.log('Hallo');
+        Auth.clearCredentials();
 
         $scope.login = function() {
             console.log("Hallo " + $scope.username);
-            var encoded = Base64.encode($scope.username + ':' + $scope.password);
-            $cookieStore.put('authdata2', encoded);
+            // var encoded = Base64.encode($scope.username + ':' + $scope.password);
+            // $cookieStore.put('authdata', encoded);
+            Auth.setCredentials($scope.username, $scope.password);
         };
 
     }

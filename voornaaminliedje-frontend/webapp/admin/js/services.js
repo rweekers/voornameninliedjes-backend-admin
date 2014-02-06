@@ -17,14 +17,6 @@ visitServices.factory('Login', ['$location',
 visitServices.factory('Visit', ['Base64', '$http', '$resource',
     function(Base64, $http, $resource) {
 
-
-        // $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
-        // var encoded = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
-        // console.log("Header " + encoded);
-
-        // $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
-
-        // return $resource('http://www.voornaaminliedje.nl/voornaaminliedje/api/admin/visit/all', {}, {
         return $resource('http://localhost:8180/voornaaminliedje/api/admin/visit/all', {}, {
             query: {
                 method: 'GET',
@@ -32,9 +24,6 @@ visitServices.factory('Visit', ['Base64', '$http', '$resource',
                     visitId: 'visits'
                 },
                 isArray: true
-                //headers: {
-                //    'Authorization': encoded
-                //}
             }
         });
     }
@@ -55,25 +44,23 @@ visitServices.factory('VisitDetail', ['Base64', '$http', '$resource',
     }
 ]);
 
-visitServices.factory('Auth', ['Base64', '$cookieStore', '$http',
-    function(Base64, $cookieStore, $http) {
+visitServices.factory('Auth', ['Base64', '$cookieStore', '$http', '$location',
+    function(Base64, $cookieStore, $http, $location) {
         // initialize to whatever is in the cookie, if anything
+        console.log("Zit er al iets in het cookie? " + $cookieStore.get('authdata'));
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
-        // var encoded = Base64.encode('admin:5095df0e6547e2647d5bc40f1ecd9afe');
-        // console.log("Encoded string is " + encoded);
-        // $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
-        // $cookieStore.put('authdata', encoded);
-        // console.log("Blabla");
 
         return {
             setCredentials: function(username, password) {
                 var encoded = Base64.encode(username + ':' + password);
-                // var encoded = Base64.encode('admin:admin');
+                console.log("Dit is de methode setCredentials.");
                 $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
                 $cookieStore.put('authdata', encoded);
+                $location.path('/visits');
             },
             clearCredentials: function() {
                 document.execCommand("ClearAuthenticationCache");
+                console.log("Clearing credentials...");
                 $cookieStore.remove('authdata');
                 $http.defaults.headers.common.Authorization = 'Basic ';
             }
@@ -196,8 +183,7 @@ visitServices.factory('errorHttpInterceptor', ['$q', '$location',
             'responseError': function(rejection) {
                 // do something on error
                 console.log("Interceptor mislukt " + rejection.status);
-                console.log("Bla");
-                if (rejection.status == 504) {
+                if (rejection.status == 401) {
                     $location.path('/login');
                 }
                 /*

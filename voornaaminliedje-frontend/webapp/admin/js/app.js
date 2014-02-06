@@ -31,7 +31,6 @@ adminApp.config(['$routeProvider',
     }
 ]);
 
-
 adminApp.config(['$httpProvider',
     function($httpProvider) {
         $httpProvider.interceptors.push('errorHttpInterceptor');
