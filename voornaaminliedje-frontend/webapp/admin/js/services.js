@@ -153,8 +153,6 @@ visitServices.factory('Base64', function() {
     };
 });
 
-// var servicesModule = angular.module('servicesModule', ['ngResource']);
-
 visitServices.factory('errorService', function() {
     return {
         errorMessage: null,
