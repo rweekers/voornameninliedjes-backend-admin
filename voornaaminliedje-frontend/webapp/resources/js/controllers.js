@@ -24,7 +24,7 @@ function store($http) {
 
     $http({
         // url: 'http://127.0.0.1:8180/voornaaminliedje/api/visit/add',
-        url: 'http://localhost:8180/voornaaminliedje/api/visit/add',
+        url: 'http://localhost/voornaaminliedje/api/visit/add',
         method: "POST",
         params: {
             userAgent: navigator.userAgent
