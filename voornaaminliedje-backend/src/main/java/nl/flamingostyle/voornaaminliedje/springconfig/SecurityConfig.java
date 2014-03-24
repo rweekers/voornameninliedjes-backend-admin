@@ -15,8 +15,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
-		auth.inMemoryAuthentication().withUser("admin").password("5095df0e6547e2647d5bc40f1ecd9afe")
-				.roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("admin")
+				.password("5095df0e6547e2647d5bc40f1ecd9afe").roles("ADMIN");
 	}
 
 	@Override
@@ -28,6 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/api/visit/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/api/visit/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/api/admin/**").hasRole("ADMIN")
-				.and().httpBasic().and().csrf().disable();
+				.and().httpBasic().and().requiresChannel().anyRequest()
+				.requiresSecure().and().csrf().disable();
+		// TODO https checken, portMapper?
 	}
 }
