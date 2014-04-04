@@ -1,4 +1,4 @@
-package nl.flamingostyle.voornaaminliedje.domain;
+package org.orangeflamingo.voornaaminliedje.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

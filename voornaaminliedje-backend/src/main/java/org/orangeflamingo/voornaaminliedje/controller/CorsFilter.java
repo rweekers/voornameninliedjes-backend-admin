@@ -1,4 +1,4 @@
-package nl.flamingostyle.voornaaminliedje.controller;
+package org.orangeflamingo.voornaaminliedje.controller;
 
 import java.io.IOException;
 

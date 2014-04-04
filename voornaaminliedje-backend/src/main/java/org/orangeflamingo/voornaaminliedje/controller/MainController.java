@@ -1,20 +1,19 @@
-package nl.flamingostyle.voornaaminliedje.controller;
+package org.orangeflamingo.voornaaminliedje.controller;
 
 import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import nl.flamingostyle.voornaaminliedje.domain.SearchInstruction;
-import nl.flamingostyle.voornaaminliedje.domain.Song;
-import nl.flamingostyle.voornaaminliedje.domain.SongOfTheDay;
-import nl.flamingostyle.voornaaminliedje.domain.Visit;
-import nl.flamingostyle.voornaaminliedje.service.SearchInstructionService;
-import nl.flamingostyle.voornaaminliedje.service.SongOfTheDayService;
-import nl.flamingostyle.voornaaminliedje.service.SongService;
-import nl.flamingostyle.voornaaminliedje.service.VisitService;
-
 import org.apache.log4j.Logger;
+import org.orangeflamingo.voornaaminliedje.domain.SearchInstruction;
+import org.orangeflamingo.voornaaminliedje.domain.Song;
+import org.orangeflamingo.voornaaminliedje.domain.SongOfTheDay;
+import org.orangeflamingo.voornaaminliedje.domain.Visit;
+import org.orangeflamingo.voornaaminliedje.service.SearchInstructionService;
+import org.orangeflamingo.voornaaminliedje.service.SongOfTheDayService;
+import org.orangeflamingo.voornaaminliedje.service.SongService;
+import org.orangeflamingo.voornaaminliedje.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

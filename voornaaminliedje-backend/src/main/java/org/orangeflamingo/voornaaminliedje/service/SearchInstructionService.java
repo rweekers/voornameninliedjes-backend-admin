@@ -1,8 +1,8 @@
-package nl.flamingostyle.voornaaminliedje.service;
+package org.orangeflamingo.voornaaminliedje.service;
 
 import java.util.List;
 
-import nl.flamingostyle.voornaaminliedje.domain.SearchInstruction;
+import org.orangeflamingo.voornaaminliedje.domain.SearchInstruction;
 
 public interface SearchInstructionService {
 

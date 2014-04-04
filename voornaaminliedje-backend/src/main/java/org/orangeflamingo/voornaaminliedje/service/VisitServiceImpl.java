@@ -1,4 +1,4 @@
-package nl.flamingostyle.voornaaminliedje.service;
+package org.orangeflamingo.voornaaminliedje.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import net.sf.uadetector.ReadableUserAgent;
 import net.sf.uadetector.UserAgentStringParser;
 import net.sf.uadetector.service.UADetectorServiceFactory;
-import nl.flamingostyle.voornaaminliedje.domain.Visit;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.orangeflamingo.voornaaminliedje.domain.Visit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

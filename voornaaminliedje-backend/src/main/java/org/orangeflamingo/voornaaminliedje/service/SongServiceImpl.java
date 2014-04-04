@@ -1,12 +1,12 @@
-package nl.flamingostyle.voornaaminliedje.service;
+package org.orangeflamingo.voornaaminliedje.service;
 
 import java.util.List;
-import nl.flamingostyle.voornaaminliedje.domain.Song;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.orangeflamingo.voornaaminliedje.domain.Song;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

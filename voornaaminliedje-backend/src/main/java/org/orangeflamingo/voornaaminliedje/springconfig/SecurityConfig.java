@@ -1,4 +1,4 @@
-package nl.flamingostyle.voornaaminliedje.springconfig;
+package org.orangeflamingo.voornaaminliedje.springconfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

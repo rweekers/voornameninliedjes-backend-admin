@@ -1,10 +1,10 @@
-package nl.flamingostyle.voornaaminliedje.service;
+package org.orangeflamingo.voornaaminliedje.service;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import nl.flamingostyle.voornaaminliedje.domain.Visit;
+import org.orangeflamingo.voornaaminliedje.domain.Visit;
 
 public interface VisitService {
 
