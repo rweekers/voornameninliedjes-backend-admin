@@ -1,4 +1,4 @@
-package nl.flamingostyle.voornaaminliedje.service;
+package org.orangeflamingo.voornaaminliedje.service;
 
 import org.junit.Before;
 import org.junit.Test;
