@@ -214,8 +214,6 @@
                 <configuration>
                     <path>/voornaaminliedje</path>
                     <port>8080</port>
-                    <httpsPort>8443</httpsPort>
-                    <keystorePass>changeit</keystorePass>
                 </configuration>
             </plugin>
         </plugins>
