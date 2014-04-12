@@ -20,36 +20,37 @@ adminControllers.controller('VisitListCtrl', ['$scope', '$location', 'Login', 'V
     }
 ]);
 
-adminControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$cookieStore', 'VisitDetail', 'Auth',
-    function($scope, $routeParams, $cookieStore, VisitDetail, Auth) {
+adminControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', 'VisitDetail', 'Auth',
+    function($scope, $routeParams, $cookieStore, $http, VisitDetail, Auth) {
 
-        Auth.setCredentials('admin', '5095df0e6547e2647d5bc40f1ecd9afe')
+        console.log("blabla1");
 
-        console.log("Credentials uit cookie: " + $cookieStore.get('authdata2'));
-
-        $scope.visit = VisitDetail.get({
+        VisitDetail.get({
             id: $routeParams.visitId
+        }).$promise.then(function(data) {
+            console.log("blabladiebla");
+            $scope.visit = data;
+            console.log("Bla " + $scope.visit.ipAddress);
+            /*
+                $scope.map = {
+                    center: {
+                        latitude: $scope.visit.latitude,
+                        longitude: $scope.visit.longitude
+                    },
+                    zoom: 8
+                };*/
+        }, function(errorRespone) {
+            console.log("errortje...");
         });
 
-        $scope.visit.$promise.then(function(data) {
-
+        /*
             $scope.map = {
                 center: {
-                    latitude: $scope.visit.latitude,
-                    longitude: $scope.visit.longitude
+                    latitude: 51,
+                    longitude: 0
                 },
                 zoom: 8
-            };
-        });
-
-        $scope.map = {
-            center: {
-                latitude: 51,
-                longitude: 0
-            },
-            zoom: 8
-        };
-
+            };*/
     }
 ]);
 

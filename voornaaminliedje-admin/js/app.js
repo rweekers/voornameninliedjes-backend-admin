@@ -17,7 +17,7 @@ adminApp.config(['$routeProvider',
             templateUrl: 'partials/visit-list.html',
             controller: 'VisitListCtrl'
         }).
-        when('/visit/:visitId', {
+        when('/visits/:visitId', {
             templateUrl: 'partials/visit-detail.html',
             controller: 'VisitDetailCtrl'
         }).
@@ -30,9 +30,9 @@ adminApp.config(['$routeProvider',
         });
     }
 ]);
-
+/*
 adminApp.config(['$httpProvider',
     function($httpProvider) {
         $httpProvider.interceptors.push('errorHttpInterceptor');
     }
-]);
+]);*/
