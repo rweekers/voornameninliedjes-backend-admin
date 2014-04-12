@@ -2,7 +2,7 @@
 
 /* App Module */
 
-var adminApp = angular.module('adminApp', [
+var adminApp = angular.module('app', [
     'ngRoute',
     'ngCookies',
     'google-maps',
@@ -17,7 +17,7 @@ adminApp.config(['$routeProvider',
             templateUrl: 'partials/visit-list.html',
             controller: 'VisitListCtrl'
         }).
-        when('/visits/:visitId', {
+        when('/visit/:visitId', {
             templateUrl: 'partials/visit-detail.html',
             controller: 'VisitDetailCtrl'
         }).
