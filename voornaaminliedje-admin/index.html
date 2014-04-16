@@ -14,24 +14,22 @@
     <script src="../../js/controllers.js"></script>
     <script src="../../js/services.js"></script>
     <script src="../../js/underscore-min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxZmOGV-qSKFNAVxNvJEIMEvR-rSOvSFM&sensor=false"></script>
-    <script src="../../js/angular-google-maps.js"></script>
+    <!--script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxZmOGV-qSKFNAVxNvJEIMEvR-rSOvSFM&sensor=false"></script>
+    <script src="../../js/angular-google-maps.js"></script-->
 </head>
 
 <body>
 
     <div>
-        <ul class="nav nav-tabs" ng-controller="HeaderController">
-            <li ng-class="{ active: isActive('/visits')}"><a href="#/visits">Visits</a>
+        <ul class="nav nav-pills nav-justified" ng-controller="HeaderController">
+            <li ng-class="{ active: isActive('/visits')}"><a href="#/visits">Bezoeken</a>
             </li>
-            <li ng-class="{ active: isActive('/songs')}"><a href="#/songs">Songs</a>
+            <li ng-class="{ active: isActive('/songs')}"><a href="#/songs">Liedjes</a>
             </li>
             <li ng-class="{ active: isActive('/login')}"><a href="#/login">Login</a>
             </li>
         </ul>
     </div>
-
-    <!--li class="active"-->
 
     <div ng-view></div>
 

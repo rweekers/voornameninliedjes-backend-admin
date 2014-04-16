@@ -4,9 +4,8 @@
 
 var adminControllers = angular.module('adminControllers', []);
 
-function HeaderController($scope, $location) 
-{ 
-    $scope.isActive = function (viewLocation) { 
+function HeaderController($scope, $location) {
+    $scope.isActive = function(viewLocation) {
         return viewLocation === $location.path();
     };
 }
@@ -68,6 +67,23 @@ adminControllers.controller('SongListCtrl', ['$scope', '$location', 'Song',
         console.log('Locatie2 ' + $location.path());
 
         $scope.songs = Song.query();
+    }
+]);
+
+adminControllers.controller('SongDetailCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', 'SongDetail', 'Auth',
+    function($scope, $routeParams, $cookieStore, $http, SongDetail, Auth) {
+
+        console.log("blabla1");
+
+        SongDetail.get({
+            id: $routeParams.visitId
+        }).$promise.then(function(data) {
+            console.log("blabladiebla");
+            $scope.song = data;
+            console.log("Bla " + $scope.song.title);
+        }, function(errorRespone) {
+            console.log("errortje...");
+        });
     }
 ]);
 
