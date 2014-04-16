@@ -4,6 +4,13 @@
 
 var adminControllers = angular.module('adminControllers', []);
 
+function HeaderController($scope, $location) 
+{ 
+    $scope.isActive = function (viewLocation) { 
+        return viewLocation === $location.path();
+    };
+}
+
 adminControllers.controller('VisitListCtrl', ['$scope', '$location', 'Login', 'Visit', 'Auth',
     function($scope, $location, Login, Visit, Auth) {
 
