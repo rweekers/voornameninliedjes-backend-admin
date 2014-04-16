@@ -54,6 +54,16 @@ adminControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$cook
     }
 ]);
 
+adminControllers.controller('SongListCtrl', ['$scope', '$location', 'Song',
+    function($scope, $location, Song) {
+
+        console.log('Locatie ' + $location.path());
+        console.log('Locatie2 ' + $location.path());
+
+        $scope.songs = Song.query();
+    }
+]);
+
 adminControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$cookieStore', 'Auth', 'Base64',
     function($scope, $routeParams, $cookieStore, Auth, Base64) {
 

@@ -3,6 +3,7 @@
 /* Services */
 
 var visitServices = angular.module('visitServices', ['ngResource']);
+var songServices = angular.module('songServices', ['ngResource']);
 
 visitServices.factory('Login', ['$location',
     function($location) {
@@ -13,6 +14,25 @@ visitServices.factory('Login', ['$location',
         }
     }
 ]);
+
+songServices.factory('Song', ['$resource',
+     function($resource) {
+         return $resource('http://localhost/voornaaminliedje/api/song/all', {}, {
+             query: {
+                 method: 'GET',
+                 params: {
+                     page: '',
+                     count: '',
+                     sortingArtist: '',
+                     sortingTitle: '',
+                     filterArtist: '',
+                     filterTitle: ''
+                 },
+                 isArray: true
+             }
+         });
+     }
+ ]);
 
 visitServices.factory('Visit', ['Base64', '$http', '$resource',
     function(Base64, $http, $resource) {

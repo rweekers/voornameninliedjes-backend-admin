@@ -7,7 +7,8 @@ var adminApp = angular.module('app', [
     'ngCookies',
     'google-maps',
     'adminControllers',
-    'visitServices'
+    'visitServices',
+    'songServices'
 ]);
 
 adminApp.config(['$routeProvider',
@@ -21,6 +22,10 @@ adminApp.config(['$routeProvider',
             templateUrl: 'partials/visit-detail.html',
             controller: 'VisitDetailCtrl'
         }).
+        when('/songs', {
+            templateUrl: 'partials/song-list.html',
+            controller: 'SongListCtrl'
+        }).
         when('/login', {
             templateUrl: 'login.html',
             controller: 'LoginCtrl'
@@ -30,9 +35,9 @@ adminApp.config(['$routeProvider',
         });
     }
 ]);
-/*
+
 adminApp.config(['$httpProvider',
     function($httpProvider) {
         $httpProvider.interceptors.push('errorHttpInterceptor');
     }
-]);*/
+]);
