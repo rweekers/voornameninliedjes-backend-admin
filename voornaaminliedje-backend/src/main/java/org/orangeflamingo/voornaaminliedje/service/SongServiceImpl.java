@@ -193,11 +193,7 @@ public class SongServiceImpl implements SongService {
 	 */
 	public void add(Song song) {
 		logger.debug("Adding new song");
-
-		// Retrieve session from Hibernate
-		// Session session = sessionFactory.getCurrentSession();
-		// Save
-		// session.save(song);
+		// Retrieve session from Hibernate and save song
 		getCurrentSession().save(song);
 	}
 
@@ -225,14 +221,14 @@ public class SongServiceImpl implements SongService {
 		logger.debug("Editing existing song");
 
 		// Retrieve session from Hibernate
-		// Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		// Retrieve existing song via id
-		// Song existingSong = (Song) session.get(Song.class, song.getId());
+		Song existingSong = (Song) session.get(Song.class, song.getId());
 		// Assign updated values to this song
-		// existingSong.setArtist(song.getArtist());
-		// existingSong.setTitle(song.getTitle());
-		// existingSong.setFirstname(song.getFirstname());
+		existingSong.setArtist(song.getArtist());
+		existingSong.setTitle(song.getTitle());
+		existingSong.setFirstname(song.getFirstname());
 		// Save updates
-		// session.save(existingSong);
+		session.save(existingSong);
 	}
 }

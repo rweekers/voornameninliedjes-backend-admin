@@ -166,9 +166,24 @@ public class MainController {
 		return (Song) songService.get(id);
 	}
 
-	@RequestMapping("admin/song/add")
+	@RequestMapping(value = "song/add", method = RequestMethod.PUT)
 	@ResponseBody
-	public void addSong(Song song) {
+	public void addSong(
+			@RequestParam(value = "artist", required = true) String artist,
+			@RequestParam(value = "title", required = true) String title,
+			@RequestParam(value = "firstname", required = true) String firstname,
+			@RequestParam(value = "nameIndex", required = true) Integer nameIndex,
+			@RequestParam(value = "nameLength", required = true) Integer nameLength,
+			@RequestParam(value = "userInserted", required = true) String userInserted) {
+		Song song = new Song();
+		song.setArtist(artist);
+		song.setTitle(title);
+		song.setFirstname(firstname);
+		song.setNameIndex(nameIndex);
+		song.setNameLength(nameLength);
+		song.setDateInserted(new Timestamp(System
+				.currentTimeMillis()));
+		song.setUserInserted(userInserted);
 		songService.add(song);
 	}
 
