@@ -186,6 +186,29 @@ public class MainController {
 		song.setUserInserted(userInserted);
 		songService.add(song);
 	}
+	
+	@RequestMapping(value = "song/{id}/edit", method = RequestMethod.PUT)
+	@ResponseBody
+	public void editSong(
+			@PathVariable int id,
+			@RequestParam(value = "artist", required = true) String artist,
+			@RequestParam(value = "title", required = true) String title,
+			@RequestParam(value = "firstname", required = true) String firstname,
+			@RequestParam(value = "nameIndex", required = true) Integer nameIndex,
+			@RequestParam(value = "nameLength", required = true) Integer nameLength,
+			@RequestParam(value = "userModified", required = true) String userModified) {
+		Song song = new Song();
+		song.setId(id);
+		song.setArtist(artist);
+		song.setTitle(title);
+		song.setFirstname(firstname);
+		song.setNameIndex(nameIndex);
+		song.setNameLength(nameLength);
+		song.setDateModified(new Timestamp(System
+				.currentTimeMillis()));
+		song.setUserModified(userModified);
+		songService.edit(song);
+	}
 
 	/**
 	 * Adds a new searchInstruction by delegating the processing to

@@ -228,6 +228,8 @@ public class SongServiceImpl implements SongService {
 		existingSong.setArtist(song.getArtist());
 		existingSong.setTitle(song.getTitle());
 		existingSong.setFirstname(song.getFirstname());
+		existingSong.setDateModified(song.getDateModified());
+		existingSong.setUserModified(song.getUserModified());
 		// Save updates
 		session.save(existingSong);
 	}
