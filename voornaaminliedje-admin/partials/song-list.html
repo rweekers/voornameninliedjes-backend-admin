@@ -14,9 +14,12 @@
     <div class="span10">
       <!--Body content-->
 
+      <a href="#/songs/add" class="thumb">Add song.</a>
+
       <ul class="phones">
         <li ng-repeat="song in songs | filter:query | orderBy:orderProp" class="thumbnail">
-          <a href="#/song/{{song.id}}" class="thumb">{{song.title}}</a>
+          <a href="#/songs/{{song.id}}" class="thumb">{{song.title}}</a>
+          <a href="#/songs/edit/{{song.id}}" class="thumb">Edit {{song.title}}</a>
           <p>{{song.artist}}</p>
         </li>
       </ul>

@@ -76,7 +76,7 @@ adminControllers.controller('SongDetailCtrl', ['$scope', '$routeParams', '$cooki
         console.log("blabla1");
 
         SongDetail.get({
-            id: $routeParams.visitId
+            id: $routeParams.songId
         }).$promise.then(function(data) {
             console.log("blabladiebla");
             $scope.song = data;
@@ -84,6 +84,14 @@ adminControllers.controller('SongDetailCtrl', ['$scope', '$routeParams', '$cooki
         }, function(errorRespone) {
             console.log("errortje...");
         });
+    }
+]);
+
+adminControllers.controller('SongAddCtrl', [
+    function() {
+
+        console.log("Adding blabla1");
+
     }
 ]);
 
