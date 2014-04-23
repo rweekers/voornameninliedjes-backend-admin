@@ -110,13 +110,13 @@ public class MainController {
 	}
 
 	/**
-	 * Returns all songs
+	 * Returns all songs with pagination
 	 * 
 	 * @return all songs
 	 */
 	@RequestMapping(value = "song/all", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Song> allSongs(
+	public List<Song> allSongsLimited(
 			@RequestParam(value = "count", required = false) Integer count,
 			@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "sortingArtist", required = false) String sortingArtist,
@@ -125,6 +125,17 @@ public class MainController {
 			@RequestParam(value = "filterTitle", required = false) String filterTitle) {
 		return songService.getAll(count, page, sortingArtist, sortingTitle,
 				filterArtist, filterTitle);
+	}
+	
+	/**
+	 * Returns all songs
+	 * 
+	 * @return all songs
+	 */
+	@RequestMapping(value = "admin/song/all", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Song> allSongs() {
+		return songService.getAll();
 	}
 
 	/**
