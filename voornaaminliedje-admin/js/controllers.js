@@ -87,11 +87,12 @@ adminControllers.controller('SongDetailCtrl', ['$scope', '$routeParams', '$cooki
     }
 ]);
 
-adminControllers.controller('SongAddCtrl', [
-    function() {
+adminControllers.controller('SongAddCtrl', ['$scope', '$location', 'Login', 'Visit', 'Auth',
+    function($scope, $location, Login, Visit, Auth) {
 
-        console.log("Adding blabla1");
+        console.log('Login nodig: ' + Login.isLoggedin());
 
+        console.log('Locatie ' + $location.path());
     }
 ]);
 
