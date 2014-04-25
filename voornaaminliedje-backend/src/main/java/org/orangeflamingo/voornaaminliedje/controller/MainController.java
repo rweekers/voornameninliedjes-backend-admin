@@ -132,7 +132,7 @@ public class MainController {
 	 * 
 	 * @return all songs
 	 */
-	@RequestMapping(value = "admin/song/all", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/songs", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Song> allSongs() {
 		return songService.getAll();
@@ -171,13 +171,13 @@ public class MainController {
 	 *            the id of the song
 	 * @return the song
 	 */
-	@RequestMapping("admin/song/{id}")
+	@RequestMapping("admin/songs/{id}")
 	@ResponseBody
 	public Song getById(@PathVariable int id) {
 		return (Song) songService.get(id);
 	}
 
-	@RequestMapping(value = "song/add", method = RequestMethod.PUT)
+	@RequestMapping(value = "admin/songs", method = RequestMethod.POST)
 	@ResponseBody
 	public void addSong(
 			@RequestParam(value = "artist", required = true) String artist,
@@ -198,7 +198,7 @@ public class MainController {
 		songService.add(song);
 	}
 	
-	@RequestMapping(value = "song/{id}/edit", method = RequestMethod.PUT)
+	@RequestMapping(value = "admin/songs/{id}", method = RequestMethod.PUT)
 	@ResponseBody
 	public void editSong(
 			@PathVariable int id,

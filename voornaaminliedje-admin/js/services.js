@@ -17,7 +17,7 @@ visitServices.factory('Login', ['$location',
 
 songServices.factory('Song', ['$resource',
      function($resource) {
-         return $resource('https://admin.voornaaminliedje.dev/voornaaminliedje/api/admin/song/all', {}, {
+         return $resource('https://admin.voornaaminliedje.dev/voornaaminliedje/api/admin/songs', {}, {
              query: {
                  method: 'GET',
                  params: {
@@ -68,7 +68,7 @@ visitServices.factory('SongDetail', ['Base64', '$http', '$resource',
     function(Base64, $http, $resource) {
 
         // return $resource('http://www.voornaaminliedje.nl/voornaaminliedje/api/admin/visit/:id', {}, {
-        return $resource('https://admin.voornaaminliedje.dev/voornaaminliedje/api/admin/song/:id', {}, {
+        return $resource('https://admin.voornaaminliedje.dev/voornaaminliedje/api/admin/songs/:id', {}, {
             get: {
                 method: 'GET',
                 params: {
