@@ -126,7 +126,7 @@ public class MainController {
 		return songService.getAll(count, page, sortingArtist, sortingTitle,
 				filterArtist, filterTitle);
 	}
-	
+
 	/**
 	 * Returns all songs
 	 * 
@@ -192,12 +192,11 @@ public class MainController {
 		song.setFirstname(firstname);
 		song.setNameIndex(nameIndex);
 		song.setNameLength(nameLength);
-		song.setDateInserted(new Timestamp(System
-				.currentTimeMillis()));
+		song.setDateInserted(new Timestamp(System.currentTimeMillis()));
 		song.setUserInserted(userInserted);
 		songService.add(song);
 	}
-	
+
 	@RequestMapping(value = "admin/songs/{id}", method = RequestMethod.PUT)
 	@ResponseBody
 	public void editSong(
@@ -215,9 +214,14 @@ public class MainController {
 		song.setFirstname(firstname);
 		song.setNameIndex(nameIndex);
 		song.setNameLength(nameLength);
-		song.setDateModified(new Timestamp(System
-				.currentTimeMillis()));
+		song.setDateModified(new Timestamp(System.currentTimeMillis()));
 		song.setUserModified(userModified);
+		songService.edit(song);
+	}
+
+	@RequestMapping(value = "admin/songs/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public void updateSong(@PathVariable int id, Song song) {
 		songService.edit(song);
 	}
 

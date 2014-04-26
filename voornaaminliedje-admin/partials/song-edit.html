@@ -1,0 +1,10 @@
+<h1>Editing...</h1>
+
+<h1>{{song.title}}</h1>
+
+<p>{{song.artist}}</p>
+
+<input type="text" name="name" ng-model="song.title" required>
+
+<button ng-click="save()" ng-disabled="isClean() || myForm.$invalid"
+                class="btn btn-primary">Save</button>

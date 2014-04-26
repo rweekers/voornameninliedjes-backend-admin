@@ -70,24 +70,38 @@ adminControllers.controller('SongListCtrl', ['$scope', '$location', 'Song',
     }
 ]);
 
-adminControllers.controller('SongDetailCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', 'SongDetail', 'Auth',
-    function($scope, $routeParams, $cookieStore, $http, SongDetail, Auth) {
+adminControllers.controller('SongDetailCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', 'Song', 'Auth',
+    function($scope, $routeParams, $cookieStore, $http, Song, Auth) {
 
         console.log("blabla1");
 
-        SongDetail.get({
+        $scope.song = Song.get({
             id: $routeParams.songId
-        }).$promise.then(function(data) {
-            console.log("blabladiebla");
-            $scope.song = data;
-            console.log("Bla " + $scope.song.title);
-        }, function(errorRespone) {
-            console.log("errortje...");
         });
     }
 ]);
 
-adminControllers.controller('SongAddCtrl', ['$scope', '$location', 'Login', 'Visit', 'Auth',
+adminControllers.controller('SongEditCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', 'Song', 'Auth',
+    function($scope, $routeParams, $cookieStore, $http, Song, Auth) {
+
+        console.log("blabla1 editing en zo... op id " + $routeParams.songId);
+
+        $scope.song = Song.get({
+            id: $routeParams.songId
+        });
+
+        $scope.save = function() {
+            console.log("Saving...");
+            /*$scope.project.put().then(function() {
+                $location.path('/');
+            });*/
+            $scope.song.$save();
+        };
+
+    }
+]);
+
+adminControllers.controller('SongAddCtrl', ['$scope', '$location', 'Login', 'Song', 'Auth',
     function($scope, $location, Login, Visit, Auth) {
 
         console.log('Login nodig: ' + Login.isLoggedin());

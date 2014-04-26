@@ -31,8 +31,8 @@ adminApp.config(['$routeProvider',
             controller: 'SongDetailCtrl'
         }).
         when('/songs/edit/:songId', {
-            templateUrl: 'partials/song-detail-edit.html',
-            controller: 'SongDetailCtrl'
+            templateUrl: 'partials/song-edit.html',
+            controller: 'SongEditCtrl'
         }).
         when('/song/add', {
             // templateUrl: 'partials/visit-list.html',
