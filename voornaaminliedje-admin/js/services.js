@@ -17,7 +17,9 @@ visitServices.factory('Login', ['$location',
 
 songServices.factory('Song', ['$resource',
     function($resource) {
-        return $resource('https://admin.voornaaminliedje.dev/voornaaminliedje/api/admin/songs/:id', {}, {
+        return $resource('https://admin.voornaaminliedje.dev/voornaaminliedje/api/admin/songs/:id', {
+            id: '@id'
+        }, {
             query: {
                 method: 'GET',
                 params: {
