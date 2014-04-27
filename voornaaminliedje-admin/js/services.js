@@ -39,8 +39,18 @@ songServices.factory('Song', ['$resource',
                 },
                 isArray: false
             },
+            save: {
+                method: 'POST',
+                params: {
+                    title: ''
+                }
+            },
             update: {
-                method: 'PUT'
+                method: 'PUT',
+                params: {
+                    artist: '',
+                    title: ''
+                }
             }
         });
     }

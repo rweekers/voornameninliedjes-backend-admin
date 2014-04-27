@@ -201,12 +201,12 @@ public class MainController {
 	@ResponseBody
 	public void editSong(
 			@PathVariable int id,
-			@RequestParam(value = "artist", required = true) String artist,
-			@RequestParam(value = "title", required = true) String title,
-			@RequestParam(value = "firstname", required = true) String firstname,
-			@RequestParam(value = "nameIndex", required = true) Integer nameIndex,
-			@RequestParam(value = "nameLength", required = true) Integer nameLength,
-			@RequestParam(value = "userModified", required = true) String userModified) {
+			@RequestParam(value = "artist", required = false) String artist,
+			@RequestParam(value = "title", required = false) String title,
+			@RequestParam(value = "firstname", required = false) String firstname,
+			@RequestParam(value = "nameIndex", required = false) Integer nameIndex,
+			@RequestParam(value = "nameLength", required = false) Integer nameLength,
+			@RequestParam(value = "userModified", required = false) String userModified) {
 		Song song = new Song();
 		song.setId(id);
 		song.setArtist(artist);
@@ -216,12 +216,29 @@ public class MainController {
 		song.setNameLength(nameLength);
 		song.setDateModified(new Timestamp(System.currentTimeMillis()));
 		song.setUserModified(userModified);
+		logger.info("Song to edit to: " + song);
 		songService.edit(song);
 	}
 
 	@RequestMapping(value = "admin/songs/{id}", method = RequestMethod.POST)
 	@ResponseBody
-	public void updateSong(@PathVariable int id, Song song) {
+	public void updateSong(
+			@PathVariable int id,
+			@RequestParam(value = "artist", required = false) String artist,
+			@RequestParam(value = "title", required = false) String title,
+			@RequestParam(value = "firstname", required = false) String firstname,
+			@RequestParam(value = "nameIndex", required = false) Integer nameIndex,
+			@RequestParam(value = "nameLength", required = false) Integer nameLength,
+			@RequestParam(value = "userModified", required = false) String userModified) {
+		Song song = new Song();
+		song.setId(id);
+		song.setArtist(artist);
+		song.setTitle(title);
+		song.setFirstname(firstname);
+		song.setNameIndex(nameIndex);
+		song.setNameLength(nameLength);
+		song.setDateModified(new Timestamp(System.currentTimeMillis()));
+		song.setUserModified(userModified);
 		songService.edit(song);
 	}
 

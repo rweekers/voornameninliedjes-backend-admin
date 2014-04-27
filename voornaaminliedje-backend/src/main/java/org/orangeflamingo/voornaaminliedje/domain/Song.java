@@ -40,10 +40,10 @@ public class Song implements Serializable {
 
 	@Column(name = "name_length")
 	private Integer nameLength;
-	
+
 	@Column(name = "date_inserted")
 	private Timestamp dateInserted;
-	
+
 	@Column(name = "date_modified")
 	private Timestamp dateModified;
 
@@ -52,7 +52,7 @@ public class Song implements Serializable {
 
 	@Column(name = "user_modified")
 	private String userModified;
-	
+
 	@Column(name = "background")
 	private String background;
 
@@ -114,7 +114,7 @@ public class Song implements Serializable {
 	public void setDateInserted(Timestamp dateInserted) {
 		this.dateInserted = dateInserted;
 	}
-	
+
 	public Timestamp getDateModified() {
 		return dateModified;
 	}
@@ -122,7 +122,6 @@ public class Song implements Serializable {
 	public void setDateModified(Timestamp dateModified) {
 		this.dateModified = dateModified;
 	}
-
 
 	public String getUserInserted() {
 		return userInserted;
@@ -139,7 +138,7 @@ public class Song implements Serializable {
 	public void setUserModified(String userModified) {
 		this.userModified = userModified;
 	}
-	
+
 	public String getBackground() {
 		return background;
 	}
@@ -154,5 +153,9 @@ public class Song implements Serializable {
 
 	public void setYoutube(String youtube) {
 		this.youtube = youtube;
+	}
+
+	public String toString() {
+		return getArtist() + " - " + getTitle() + " - " + getFirstname();
 	}
 }

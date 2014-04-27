@@ -93,7 +93,9 @@ adminControllers.controller('SongEditCtrl', ['$scope', '$routeParams', '$cookieS
         $scope.save = function() {
             console.log("Saving...");
             $scope.song.$save();
-            // $scope.song.$update();
+            // $scope.song.$update({
+            //     title: $scope.song.title
+            // });
         };
 
     }
