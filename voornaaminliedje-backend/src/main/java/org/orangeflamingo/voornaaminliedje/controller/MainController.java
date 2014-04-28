@@ -17,6 +17,7 @@ import org.orangeflamingo.voornaaminliedje.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -222,23 +223,9 @@ public class MainController {
 
 	@RequestMapping(value = "admin/songs/{id}", method = RequestMethod.POST)
 	@ResponseBody
-	public void updateSong(
-			@PathVariable int id,
-			@RequestParam(value = "artist", required = false) String artist,
-			@RequestParam(value = "title", required = false) String title,
-			@RequestParam(value = "firstname", required = false) String firstname,
-			@RequestParam(value = "nameIndex", required = false) Integer nameIndex,
-			@RequestParam(value = "nameLength", required = false) Integer nameLength,
-			@RequestParam(value = "userModified", required = false) String userModified) {
-		Song song = new Song();
-		song.setId(id);
-		song.setArtist(artist);
-		song.setTitle(title);
-		song.setFirstname(firstname);
-		song.setNameIndex(nameIndex);
-		song.setNameLength(nameLength);
-		song.setDateModified(new Timestamp(System.currentTimeMillis()));
-		song.setUserModified(userModified);
+	public void updateSong(@PathVariable int id,
+			@RequestBody(required = true) Song song) {
+		logger.info("Het nummer is " + song);
 		songService.edit(song);
 	}
 

@@ -39,12 +39,12 @@ songServices.factory('Song', ['$resource',
                 },
                 isArray: false
             },
-            save: {
+            /*save: {
                 method: 'POST',
                 params: {
                     title: ''
                 }
-            },
+            },*/
             update: {
                 method: 'PUT',
                 params: {
