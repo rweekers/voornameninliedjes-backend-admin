@@ -166,7 +166,8 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.2-1003-jdbc4</version>
+            <!-- version>9.2-1003-jdbc4</version-->
+            <version>9.3-1101-jdbc4</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
