@@ -29,6 +29,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/visit/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/api/admin/**").hasRole("ADMIN")
 				.and().httpBasic().and().csrf().disable();
-		// TODO https checken, portMapper?
 	}
 }
