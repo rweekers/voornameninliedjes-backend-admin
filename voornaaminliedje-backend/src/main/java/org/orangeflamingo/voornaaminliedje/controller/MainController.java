@@ -83,6 +83,7 @@ public class MainController {
 	@RequestMapping(value = "song/al", method = RequestMethod.GET)
 	@ResponseBody
 	public Song songAll2() {
+		logger.info("Calling random song (Al) function..."); 
 		return songService.getYouCanCallMeAl();
 	}
 

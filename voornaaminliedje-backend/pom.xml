@@ -11,6 +11,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jackson.version>2.2.2</jackson.version>
 		<jaxb-api.version>2.2.9</jaxb-api.version>
+		<jetty.version>9.0.2.v20130417</jetty.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -209,13 +210,19 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			<!-- plugin> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> 
-				<version>2.1</version> <configuration> <path>/voornaaminliedje</path> <port>8080</port> 
-				</configuration> </plugin -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<path>/voornaaminliedje</path>
+					<port>8080</port>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.0.2.v20130417</version>
+				<version>${jetty.version}</version>
 				<configuration>
 					<path>/voornaaminliedje</path>
 					<port>8080</port>
