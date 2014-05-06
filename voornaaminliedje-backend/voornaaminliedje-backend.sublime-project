@@ -4,7 +4,7 @@
 		{
 			"path": ".",
 			"folder_exclude_patterns": ["target", ".settings"],
-			"file_exclude_patterns": [".classpath", ".project", "voornaaminliedje-backend.sublime-workspace", ".springBeans"]
+			"file_exclude_patterns": [".classpath", ".project", "voornaaminliedje-backend.sublime-workspace", ".springBeans", "deployAndRun.bat"]
 		}
 	]
 }
