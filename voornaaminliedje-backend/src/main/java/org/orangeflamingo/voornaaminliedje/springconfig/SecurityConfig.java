@@ -17,6 +17,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			throws Exception {
 		auth.inMemoryAuthentication().withUser("admin")
 				.password("5095df0e6547e2647d5bc40f1ecd9afe").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("Remco").password("ccafbc2f4c5e0d2b262ff070476678b7")
+				.roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("Nadja").password("82adbb3e824d6e62038273b8e6ac3eb4")
+		.roles("ADMIN");
 	}
 
 	@Override
