@@ -4,7 +4,14 @@
 
 <p>{{song.artist}}</p>
 
-<input type="text" name="name" ng-model="song.title" required>
+<input type="text" name="title" ng-model="song.title" required>
+<input type="text" name="artist" ng-model="song.artist" required>
+<input type="text" name="firstname" ng-model="song.firstname" required>
+<select ng-model="song.userModified">
+    <option value="Remco" selected="selected">Remco</option>
+    <option value="Nadja">Nadja</option>
+</select>
 
-<button ng-click="save()" ng-disabled="isClean() || myForm.$invalid"
-                class="btn btn-primary">Save</button>
+<button ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btn-primary">Save</button>
+
+<button ng-click="cancel()" ng-disabled="isClean() || myForm.$invalid" class="btn btn-primary">Cancel</button>

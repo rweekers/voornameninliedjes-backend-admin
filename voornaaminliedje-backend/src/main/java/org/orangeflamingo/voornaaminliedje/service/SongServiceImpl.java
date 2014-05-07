@@ -1,5 +1,6 @@
 package org.orangeflamingo.voornaaminliedje.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -217,7 +218,7 @@ public class SongServiceImpl implements SongService {
 	/**
 	 * Edits an existing song
 	 */
-	public void edit(Song song) {
+	public void update(Song song) {
 		logger.debug("Editing existing song");
 
 		// Retrieve session from Hibernate
@@ -228,7 +229,7 @@ public class SongServiceImpl implements SongService {
 		existingSong.setArtist(song.getArtist());
 		existingSong.setTitle(song.getTitle());
 		existingSong.setFirstname(song.getFirstname());
-		existingSong.setDateModified(song.getDateModified());
+		existingSong.setDateModified(new Timestamp(System.currentTimeMillis()));
 		existingSong.setUserModified(song.getUserModified());
 		// Save updates
 		session.save(existingSong);

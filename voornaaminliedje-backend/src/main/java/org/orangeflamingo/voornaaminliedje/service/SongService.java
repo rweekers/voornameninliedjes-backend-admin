@@ -25,5 +25,5 @@ public interface SongService {
 
 	public Object get(Integer id);
 
-	public void edit(Song song);
+	public void update(Song song);
 }

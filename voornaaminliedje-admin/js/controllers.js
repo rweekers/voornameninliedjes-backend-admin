@@ -81,8 +81,8 @@ adminControllers.controller('SongDetailCtrl', ['$scope', '$routeParams', '$cooki
     }
 ]);
 
-adminControllers.controller('SongEditCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', 'Song', 'Auth',
-    function($scope, $routeParams, $cookieStore, $http, Song, Auth) {
+adminControllers.controller('SongEditCtrl', ['$scope', '$location', '$routeParams', '$cookieStore', '$http', 'Song', 'Auth',
+    function($scope, $location, $routeParams, $cookieStore, $http, Song, Auth) {
 
         console.log("blabla1 editing en zo... op id " + $routeParams.songId);
 
@@ -93,6 +93,15 @@ adminControllers.controller('SongEditCtrl', ['$scope', '$routeParams', '$cookieS
         $scope.save = function() {
             console.log("Saving...");
             $scope.song.$save();
+            $location.path('/songs');
+            // $scope.song.$update({
+            //     title: $scope.song.title
+            // });
+        };
+
+        $scope.cancel = function() {
+            console.log("Canceling...");
+            $location.path('/songs');
             // $scope.song.$update({
             //     title: $scope.song.title
             // });
