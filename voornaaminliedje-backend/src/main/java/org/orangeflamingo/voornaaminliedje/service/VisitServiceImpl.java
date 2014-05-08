@@ -130,8 +130,11 @@ public class VisitServiceImpl implements VisitService {
 					.getLatitude()));
 			visit.setLongitude(new BigDecimal(response.getLocation()
 					.getLongitude()));
-		} catch (IOException | GeoIp2Exception e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			logger.error("IO voor GeoIp2Location mislukt " + e.getMessage());
+			e.printStackTrace();
+		} catch (GeoIp2Exception e) {
 			logger.error("GeoIp2Location mislukt " + e.getMessage());
 			e.printStackTrace();
 		}
