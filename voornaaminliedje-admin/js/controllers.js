@@ -91,7 +91,8 @@ adminControllers.controller('SongEditCtrl', ['$scope', '$location', '$routeParam
         });
 
         $scope.save = function() {
-            console.log("Saving...");
+            console.log("Saving song by user " + $cookieStore.get('user'));
+            $scope.song.userModified = $cookieStore.get('user');
             $scope.song.$save();
             $location.path('/songs');
             // $scope.song.$update({
@@ -101,7 +102,7 @@ adminControllers.controller('SongEditCtrl', ['$scope', '$location', '$routeParam
 
         $scope.cancel = function() {
             console.log("Canceling...");
-            $location.path('/songs');
+            $location.path('#/songs');
             // $scope.song.$update({
             //     title: $scope.song.title
             // });

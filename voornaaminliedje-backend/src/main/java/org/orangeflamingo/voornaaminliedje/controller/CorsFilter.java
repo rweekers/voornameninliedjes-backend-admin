@@ -48,8 +48,8 @@ public class CorsFilter extends OncePerRequestFilter {
 				&& "OPTIONS".equals(request.getMethod())) {
 			// CORS "pre-flight" request
 			// response.setHeader("Access-Control-Allow-Origin", "*");
-			response.setHeader("Access-Control-Allow-Origin", "voornaaminliedje.nl");
-			// response.setHeader("Access-Control-Allow-Origin", "voornaaminliedje.dev");
+			// response.setHeader("Access-Control-Allow-Origin", "voornaaminliedje.nl");
+			response.setHeader("Access-Control-Allow-Origin", "voornaaminliedje.dev");
 			response.setHeader("Access-Control-Allow-Credentials", "true");
 			response.setHeader("Access-Control-Allow-Methods",
 					"POST, PUT, GET, DELETE, OPTIONS");

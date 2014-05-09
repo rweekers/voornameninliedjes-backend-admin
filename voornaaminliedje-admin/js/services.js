@@ -113,12 +113,14 @@ visitServices.factory('Auth', ['Base64', '$cookieStore', '$http', '$location',
                 console.log("Dit is de methode setCredentials.");
                 $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
                 $cookieStore.put('authdata', encoded);
+                $cookieStore.put('user', username);
                 $location.path('/visits');
             },
             clearCredentials: function() {
                 document.execCommand("ClearAuthenticationCache");
                 console.log("Clearing credentials...");
                 $cookieStore.remove('authdata');
+                $cookieStore.remove('user');
                 $http.defaults.headers.common.Authorization = 'Basic ';
             }
         };

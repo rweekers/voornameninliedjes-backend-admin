@@ -4,16 +4,37 @@
 
 <p>{{song.artist}}</p>
 
-<input type="text" name="title" ng-model="song.title" required>
-<input type="text" name="artist" ng-model="song.artist" required>
-<input type="text" name="firstname" ng-model="song.firstname" required>
-<input type="text" name="youtube" ng-model="song.youtube" required>
-<input type="text" name="background" ng-model="song.background" required>
-<select ng-model="song.userModified">
-    <option value="Remco" selected="selected">Remco</option>
-    <option value="Nadja">Nadja</option>
-</select>
+<div class="input-group">
+    <input type="text" class="form-control" placeholder="titel" ng-model="song.title" required>
+    <input type="text" class="form-control" placeholder="artiest" ng-model="song.artist" required>
+</div>
 
-<button ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btn-primary">Save</button>
+<div class="input-group">
+    <input type="text" class="form-control" placeholder="voornaam" ng-model="song.firstname" required>
+</div>
 
-<button ng-click="cancel()" ng-disabled="isClean() || myForm.$invalid" class="btn btn-primary">Cancel</button>
+<form name="myForm">
+    <div class="control-group" ng-class="{error: myForm.name.$invalid}">
+        <label>Artiest</label>
+        <input type="text" name="artist" ng-model="song.artist" required>
+        <span ng-show="myForm.artist.$error.required" class="help-inline">
+            Required</span>
+    </div>
+
+    <div class="control-group" ng-class="{error: myForm.site.$invalid}">
+        <label>Titel</label>
+        <input type="text" name="title" ng-model="song.title" required>
+        <span ng-show="myForm.title.$error.required" class="help-inline">
+            Required</span>
+        <span ng-show="myForm.title.$error.url" class="help-inline">
+            Not a URL</span>
+    </div>
+
+    <label>Achtergrond</label>
+    <textarea name="background" ng-model="song.background"></textarea>
+
+    <br>
+    <a href="#/" class="btn">Cancel</a>
+    <button ng-click="save()" ng-disabled="isClean() || myForm.$invalid" class="btn btn-primary">Save</button>
+    <!--button ng-click="destroy()" ng-show="project._id" class="btn btn-danger">Delete</button-->
+</form>
