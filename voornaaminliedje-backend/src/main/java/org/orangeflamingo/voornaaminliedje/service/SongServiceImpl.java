@@ -231,7 +231,7 @@ public class SongServiceImpl implements SongService {
 		existingSong.setFirstname(song.getFirstname());
 		existingSong.setDateModified(new Timestamp(System.currentTimeMillis()));
 		existingSong.setUserModified(song.getUserModified());
-		existingSong.setBackground(song.getUserModified());
+		existingSong.setBackground(song.getBackground());
 		existingSong.setYoutube(song.getYoutube());
 		// Save updates
 		session.save(existingSong);
