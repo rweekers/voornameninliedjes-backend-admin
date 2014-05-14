@@ -10,10 +10,10 @@ function HeaderController($scope, $location) {
     };
 }
 
-adminControllers.controller('VisitListCtrl', ['$scope', '$location', 'Login', 'Visit', 'Auth',
-    function($scope, $location, Login, Visit, Auth) {
+adminControllers.controller('VisitListCtrl', ['$scope', '$location', 'Visit', 'Auth',
+    function($scope, $location, Visit, Auth) {
 
-        console.log('Login nodig: ' + Login.isLoggedin());
+        // console.log('Login nodig: ' + !Login.isLoggedin());
         /*
         $scope.$on('event:loginRequired', function() {
             $location.path('/login');

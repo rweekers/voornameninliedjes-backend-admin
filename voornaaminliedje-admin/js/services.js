@@ -5,11 +5,34 @@
 var visitServices = angular.module('visitServices', ['ngResource']);
 var songServices = angular.module('songServices', ['ngResource']);
 
-visitServices.factory('Login', ['$location',
-    function($location) {
+visitServices.factory('Login', ['$http', '$location',
+    function($http, $location) {
+
+        console.log("Login service...");
+        var isLoggedin = false;
+
+        $http({
+            method: 'GET',
+            url: '/voornaaminliedje/api/admin/songs/12080'
+        }).
+        success(function(data, status, headers, config) {
+            // this callback will be called asynchronously
+            // when the response is available
+            console.log("Succesvolle call in login service...");
+            isLoggedin = true;
+        }).
+        error(function(data, status, headers, config) {
+            console.log("Mislukte call in login service...");
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+
+
+
+
         return {
             isLoggedin: function() {
-                return true;
+                return isLoggedin;
             }
         }
     }
@@ -225,30 +248,42 @@ visitServices.factory('errorService', function() {
 });
 
 // register the interceptor as a service
-visitServices.factory('errorHttpInterceptor', ['$q', '$location',
-    function($q, $location) {
-        return {
+visitServices.factory('errorHttpInterceptor', function($q, $location) {
+    return {
+      // optional method
+      'request': function(config) {
+        // do something on success
+        console.log("Request succesvol...");
+        return config || $q.when(config);
+      },
 
-            // optional method
-            'response': function(response) {
-                // do something on success
-                console.log("Interceptor met succes.");
-                return response || $q.when(response);
-            },
+      // optional method
+     'requestError': function(rejection) {
+        // do something on error
+        console.log("Request error is " + rejection.status);
 
-            // optional method
-            'responseError': function(rejection) {
-                // do something on error
-                console.log("Interceptor mislukt " + rejection.status);
-                if (rejection.status == 401) {
-                    $location.path('/login');
-                }
-                /*
-            if (canRecover(rejection)) {
-                return responseOrNewPromise
-            }*/
-                return $q.reject(rejection);
-            }
-        };
-    }
-]);
+        if (canRecover(rejection)) {
+          return responseOrNewPromise
+        }
+        return $q.reject(rejection);
+      },
+
+      // optional method
+      'response': function(response) {
+        // do something on success
+        return response || $q.when(response);
+      },
+
+      // optional method
+     'responseError': function(rejection) {
+        // do something on error
+        console.log("Response error is " + rejection.status);
+        $location.path('/login');
+
+        if (canRecover(rejection)) {
+          return responseOrNewPromise
+        }
+        return $q.reject(rejection);
+      }
+    };
+  });
