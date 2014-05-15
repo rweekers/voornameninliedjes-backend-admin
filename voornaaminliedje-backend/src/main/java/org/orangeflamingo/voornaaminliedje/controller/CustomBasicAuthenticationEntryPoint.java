@@ -13,8 +13,6 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
 /**
  * Does not add header that requires a username and password via a popup
  * 
- * @author bchild
- * 
  */
 public class CustomBasicAuthenticationEntryPoint extends
 		BasicAuthenticationEntryPoint {
