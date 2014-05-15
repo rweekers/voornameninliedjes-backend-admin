@@ -34,10 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		logger.info("Configuring securityconfig...");
 
-		// TODO Check if http.exceptionHandling weg kan (https://jira.spring.io/browse/SEC-2198)
-		
-		http.exceptionHandling().authenticationEntryPoint(entryPoint()).and()
-				.authorizeRequests()
+		// TODO Check if http.exceptionHandling weg kan
+		// (https://jira.spring.io/browse/SEC-2198)
+
+		// http.exceptionHandling().authenticationEntryPoint(entryPoint()).and()
+		http.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS, "/api/admin/**").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/song/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/api/song/**").permitAll()
