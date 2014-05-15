@@ -18,9 +18,6 @@ adminControllers.controller('VisitListCtrl', ['$scope', '$location', 'Visit', 'A
         $scope.$on('event:loginRequired', function() {
             $location.path('/login');
         });*/
-        console.log('Locatie ' + $location.path());
-        console.log('Locatie2 ' + $location.path());
-
         $scope.visits = Visit.query();
         $scope.orderProp = 'ipAddress';
     }
@@ -63,17 +60,12 @@ adminControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$cook
 adminControllers.controller('SongListCtrl', ['$scope', '$location', 'Song',
     function($scope, $location, Song) {
 
-        console.log('Locatie ' + $location.path());
-        console.log('Locatie2 ' + $location.path());
-
         $scope.songs = Song.query();
     }
 ]);
 
 adminControllers.controller('SongDetailCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', 'Song', 'Auth',
     function($scope, $routeParams, $cookieStore, $http, Song, Auth) {
-
-        console.log("blabla1");
 
         $scope.song = Song.get({
             id: $routeParams.songId
@@ -84,8 +76,6 @@ adminControllers.controller('SongDetailCtrl', ['$scope', '$routeParams', '$cooki
 adminControllers.controller('SongEditCtrl', ['$scope', '$location', '$routeParams', '$cookieStore', '$http', 'Song', 'Auth',
     function($scope, $location, $routeParams, $cookieStore, $http, Song, Auth) {
 
-        console.log("blabla1 editing en zo... op id " + $routeParams.songId);
-
         $scope.song = Song.get({
             id: $routeParams.songId
         });
@@ -95,17 +85,11 @@ adminControllers.controller('SongEditCtrl', ['$scope', '$location', '$routeParam
             $scope.song.userModified = $cookieStore.get('user');
             $scope.song.$save();
             $location.path('/songs');
-            // $scope.song.$update({
-            //     title: $scope.song.title
-            // });
         };
 
         $scope.cancel = function() {
             console.log("Canceling...");
             $location.path('#/songs');
-            // $scope.song.$update({
-            //     title: $scope.song.title
-            // });
         };
 
     }
@@ -123,13 +107,9 @@ adminControllers.controller('SongAddCtrl', ['$scope', '$location', 'Login', 'Son
 adminControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$cookieStore', 'Auth', 'Base64',
     function($scope, $routeParams, $cookieStore, Auth, Base64) {
 
-        console.log('Hallo');
-        Auth.clearCredentials();
-
         $scope.login = function() {
-            console.log("Hallo " + $scope.username);
-            // var encoded = Base64.encode($scope.username + ':' + $scope.password);
-            // $cookieStore.put('authdata', encoded);
+            Auth.clearCredentials();
+            console.log("Logging in for " + $scope.username);
             Auth.setCredentials($scope.username, $scope.password);
         };
 

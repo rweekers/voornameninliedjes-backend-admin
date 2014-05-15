@@ -5,42 +5,9 @@
 var visitServices = angular.module('visitServices', ['ngResource']);
 var songServices = angular.module('songServices', ['ngResource']);
 
-visitServices.factory('Login', ['$http', '$location',
-    function($http, $location) {
-
-        console.log("Login service...");
-        var isLoggedin = false;
-
-        $http({
-            method: 'GET',
-            url: '/voornaaminliedje/api/admin/songs/12080'
-        }).
-        success(function(data, status, headers, config) {
-            // this callback will be called asynchronously
-            // when the response is available
-            console.log("Succesvolle call in login service...");
-            isLoggedin = true;
-        }).
-        error(function(data, status, headers, config) {
-            console.log("Mislukte call in login service...");
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });
-
-
-
-
-        return {
-            isLoggedin: function() {
-                return isLoggedin;
-            }
-        }
-    }
-]);
-
 songServices.factory('Song', ['$resource',
     function($resource) {
-        return $resource('https://admin.voornaaminliedje.dev/voornaaminliedje/api/admin/songs/:id', {
+        return $resource('/voornaaminliedje/api/admin/songs/:id', {
             id: '@id'
         }, {
             query: {
@@ -82,7 +49,7 @@ songServices.factory('Song', ['$resource',
 visitServices.factory('Visit', ['Base64', '$http', '$resource',
     function(Base64, $http, $resource) {
 
-        return $resource('https://admin.voornaaminliedje.dev/voornaaminliedje/api/admin/visit/all', {}, {
+        return $resource('/voornaaminliedje/api/admin/visit/all', {}, {
             query: {
                 method: 'GET',
                 params: {
@@ -96,9 +63,7 @@ visitServices.factory('Visit', ['Base64', '$http', '$resource',
 
 visitServices.factory('VisitDetail', ['Base64', '$http', '$resource',
     function(Base64, $http, $resource) {
-
-        // return $resource('http://www.voornaaminliedje.nl/voornaaminliedje/api/admin/visit/:id', {}, {
-        return $resource('https://admin.voornaaminliedje.dev/voornaaminliedje/api/admin/visit/:id', {}, {
+        return $resource('/voornaaminliedje/api/admin/visit/:id', {}, {
             get: {
                 method: 'GET',
                 params: {
@@ -111,9 +76,7 @@ visitServices.factory('VisitDetail', ['Base64', '$http', '$resource',
 
 visitServices.factory('SongDetail', ['Base64', '$http', '$resource',
     function(Base64, $http, $resource) {
-
-        // return $resource('http://www.voornaaminliedje.nl/voornaaminliedje/api/admin/visit/:id', {}, {
-        return $resource('https://admin.voornaaminliedje.dev/voornaaminliedje/api/admin/songs/:id', {}, {
+        return $resource('/voornaaminliedje/api/admin/songs/:id', {}, {
             get: {
                 method: 'GET',
                 params: {
@@ -127,13 +90,12 @@ visitServices.factory('SongDetail', ['Base64', '$http', '$resource',
 visitServices.factory('Auth', ['Base64', '$cookieStore', '$http', '$location',
     function(Base64, $cookieStore, $http, $location) {
         // initialize to whatever is in the cookie, if anything
-        console.log("Zit er al iets in het cookie? " + $cookieStore.get('authdata'));
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
 
         return {
             setCredentials: function(username, password) {
                 var encoded = Base64.encode(username + ':' + password);
-                console.log("Dit is de methode setCredentials.");
+                console.log("Settings credentials...");
                 $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
                 $cookieStore.put('authdata', encoded);
                 $cookieStore.put('user', username);
@@ -253,7 +215,6 @@ visitServices.factory('errorHttpInterceptor', function($q, $location) {
       // optional method
       'request': function(config) {
         // do something on success
-        console.log("Request succesvol...");
         return config || $q.when(config);
       },
 
@@ -261,10 +222,6 @@ visitServices.factory('errorHttpInterceptor', function($q, $location) {
      'requestError': function(rejection) {
         // do something on error
         console.log("Request error is " + rejection.status);
-
-        if (canRecover(rejection)) {
-          return responseOrNewPromise
-        }
         return $q.reject(rejection);
       },
 
@@ -279,10 +236,6 @@ visitServices.factory('errorHttpInterceptor', function($q, $location) {
         // do something on error
         console.log("Response error is " + rejection.status);
         $location.path('/login');
-
-        if (canRecover(rejection)) {
-          return responseOrNewPromise
-        }
         return $q.reject(rejection);
       }
     };
