@@ -212,31 +212,35 @@ visitServices.factory('errorService', function() {
 // register the interceptor as a service
 visitServices.factory('errorHttpInterceptor', function($q, $location) {
     return {
-      // optional method
-      'request': function(config) {
-        // do something on success
-        return config || $q.when(config);
-      },
+        // optional method
+        'request': function(config) {
+            // do something on success
+            return config || $q.when(config);
+        },
 
-      // optional method
-     'requestError': function(rejection) {
-        // do something on error
-        console.log("Request error is " + rejection.status);
-        return $q.reject(rejection);
-      },
+        // optional method
+        'requestError': function(rejection) {
+            // do something on error
+            console.log("Request error is " + rejection.status);
+            return $q.reject(rejection);
+        },
 
-      // optional method
-      'response': function(response) {
-        // do something on success
-        return response || $q.when(response);
-      },
+        // optional method
+        'response': function(response) {
+            // do something on success
+            return response || $q.when(response);
+        },
 
-      // optional method
-     'responseError': function(rejection) {
-        // do something on error
-        console.log("Response error is " + rejection.status);
-        $location.path('/login');
-        return $q.reject(rejection);
-      }
+        // optional method
+        'responseError': function(rejection) {
+            // do something on error
+            console.log("Response error is " + rejection.status);
+            if (rejection.status == 401) {
+                $location.path('/login');
+            } else {
+                $location.path('/error')
+            }
+            return $q.reject(rejection);
+        }
     };
-  });
+});

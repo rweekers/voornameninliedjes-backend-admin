@@ -44,6 +44,10 @@ adminApp.config(['$routeProvider',
             templateUrl: 'partials/login.html',
             controller: 'LoginCtrl'
         }).
+                when('/error', {
+            templateUrl: 'partials/error.html',
+            controller: 'ErrorCtrl'
+        }).
         otherwise({
             redirectTo: '/visits'
         });
