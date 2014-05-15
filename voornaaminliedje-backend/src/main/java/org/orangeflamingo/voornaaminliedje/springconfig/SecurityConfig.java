@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	protected static Logger logger = Logger.getLogger("service");
-	
+
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
@@ -31,14 +31,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
+
+		logger.info("Configuring securityconfig...");
+
+		// TODO Check if http.exceptionHandling weg kan (https://jira.spring.io/browse/SEC-2198)
+		
+		http.exceptionHandling().authenticationEntryPoint(entryPoint()).and()
+				.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS, "/api/admin/**").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/song/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/api/song/**").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/visit/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/api/visit/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/api/admin/**").hasRole("ADMIN")
-				.and().httpBasic().and().csrf().disable();
+				.and().httpBasic().and().csrf().disable().httpBasic()
+				.authenticationEntryPoint(entryPoint());
 	}
 
 	@Bean
@@ -46,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		BasicAuthenticationEntryPoint basicAuthenticationEntryPoint = new CustomBasicAuthenticationEntryPoint(
 				"RealmName");
 		logger.info("bladiebladiebla.");
-		// basicAuthenticationEntryPoint.setRealmName("Basic WF Realm");
+		basicAuthenticationEntryPoint.setRealmName("Basic WF Realm");
 		return basicAuthenticationEntryPoint;
 	}
 }

@@ -20,6 +20,7 @@ public class CustomBasicAuthenticationEntryPoint extends
 	protected static Logger logger = Logger.getLogger("service");
 
 	public CustomBasicAuthenticationEntryPoint(String realmName) {
+		logger.info("Creating customBasicAuthenticationEntryPoint...");
 		setRealmName(realmName);
 	}
 
