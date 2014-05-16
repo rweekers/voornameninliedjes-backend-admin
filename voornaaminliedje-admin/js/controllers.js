@@ -119,7 +119,13 @@ adminControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$cookieStor
 adminControllers.controller('ErrorCtrl', ['$scope', '$routeParams', '$cookieStore', 'Auth', 'Base64',
     function($scope, $routeParams, $cookieStore, Auth, Base64) {
 
-        
 
+
+    }
+]);
+
+adminControllers.controller('RootController', ['$scope', 'ErrorService',
+    function($scope, ErrorService) {
+        $scope.errorService = ErrorService;
     }
 ]);

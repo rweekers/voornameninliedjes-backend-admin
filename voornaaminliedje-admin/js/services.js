@@ -201,6 +201,7 @@ visitServices.factory('errorService', function() {
     return {
         errorMessage: null,
         setError: function(msg) {
+            console.log("Setting error " + msg);
             this.errorMessage = msg;
         },
         clear: function() {
@@ -210,7 +211,7 @@ visitServices.factory('errorService', function() {
 });
 
 // register the interceptor as a service
-visitServices.factory('errorHttpInterceptor', function($q, $location) {
+visitServices.factory('errorHttpInterceptor', function($q, $location, errorService) {
     return {
         // optional method
         'request': function(config) {
@@ -235,6 +236,8 @@ visitServices.factory('errorHttpInterceptor', function($q, $location) {
         'responseError': function(rejection) {
             // do something on error
             console.log("Response error is " + rejection.status);
+            errorService.setError('Fout is ' + rejection.status);
+            console.log("Response error is set?");
             if (rejection.status == 401) {
                 $location.path('/login');
             } else {

@@ -8,7 +8,8 @@ var adminApp = angular.module('app', [
     //'google-maps',
     'adminControllers',
     'visitServices',
-    'songServices'
+    'songServices',
+    'songDirectives'
 ]);
 
 adminApp.config(['$routeProvider',
