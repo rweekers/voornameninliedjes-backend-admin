@@ -104,8 +104,10 @@ adminControllers.controller('SongAddCtrl', ['$scope', '$location', 'Login', 'Son
     }
 ]);
 
-adminControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$cookieStore', 'Auth', 'Base64',
-    function($scope, $routeParams, $cookieStore, Auth, Base64) {
+adminControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$cookieStore', 'Auth', 'Base64', 'ErrorService',
+    function($scope, $routeParams, $cookieStore, Auth, Base64, ErrorService) {
+
+        $scope.errorService = ErrorService;
 
         $scope.login = function() {
             Auth.clearCredentials();
@@ -121,11 +123,5 @@ adminControllers.controller('ErrorCtrl', ['$scope', '$routeParams', '$cookieStor
 
 
 
-    }
-]);
-
-adminControllers.controller('RootController', ['$scope', 'ErrorService',
-    function($scope, ErrorService) {
-        $scope.errorService = ErrorService;
     }
 ]);

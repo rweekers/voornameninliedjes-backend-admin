@@ -9,18 +9,18 @@ songDirectives.directive('alertBar', ['$parse',
     function($parse) {
         return {
             restrict: 'A',
-            template: '<div class="alert alert-error alert-bar"' + 'ng-show="errorMessage">' + '<button type="button" class="close" ng-click="hideAlert()">' + 'x</button>' + '{{errorMessage}}</div>',
+            template: '<div class="alert alert-error alert-bar"' + 'ng-show="errorService.errorMessage">' + '<button type="button" class="close" ng-click="hideAlert()">' + 'x</button>' + '{{errorService.errorMessage}}</div>',
 
             link: function(scope, elem, attrs) {
                 var alertMessageAttr =
                     attrs['alertMessage'];
-                scope.errorMessage = null;
+                scope.errorService.errorMessage = null;
 
                 scope.$watch(alertMessageAttr, function(newVal) {
-                    scope.errorMessage = newVal;
+                    scope.errorService.errorMessage = newVal;
                 });
                 scope.hideAlert = function() {
-                    scope.errorMessage = null;
+                    scope.errorService.errorMessage = null;
                     $parse(alertMessageAttr).assign(scope, null);
                 };
             }

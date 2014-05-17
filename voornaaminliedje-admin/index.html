@@ -33,9 +33,9 @@
         </ul>
     </div>
 
-    <div alert-bar alertMessage="errorService.errorMessage"></div>
-
-    {{errorService.errorMessage}}
+    <div ng-controller="LoginCtrl">
+        <div alert-bar alertMessage="errorService.errorMessage"></div>
+    </div>
 
     <div ng-view></div>
 
