@@ -211,7 +211,7 @@ visitServices.factory('ErrorService', function() {
 });
 
 // register the interceptor as a service
-visitServices.factory('errorHttpInterceptor', function($q, $location, ErrorService) {
+visitServices.factory('errorHttpInterceptor', function($q, $location, $cookieStore, ErrorService) {
     return {
         // optional method
         'request': function(config) {
@@ -238,6 +238,7 @@ visitServices.factory('errorHttpInterceptor', function($q, $location, ErrorServi
             console.log("Response error is " + rejection.status);
             ErrorService.setError('Fout is ' + rejection.status);
             console.log("Response error is set? " + ErrorService.errorMessage);
+            console.log("Cookie aanwezig? " + $cookieStore.get('authdata'));
             if (rejection.status == 401) {
                 $location.path('/login');
             } else {
