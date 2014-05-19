@@ -236,14 +236,19 @@ visitServices.factory('errorHttpInterceptor', function($q, $location, $cookieSto
         'responseError': function(rejection) {
             // do something on error
             console.log("Response error is " + rejection.status);
-            ErrorService.setError('Fout is ' + rejection.status);
-            console.log("Response error is set? " + ErrorService.errorMessage);
             console.log("Cookie aanwezig? " + $cookieStore.get('authdata'));
             if (rejection.status == 401) {
+                if ($cookieStore.get('authdata')) {
+                    ErrorService.setError('Gebruikersnaam en/of wachtwoord onjuist');
+                } else {
+                    ErrorService.setError('Je moet ingelogd zijn om de pagina te raadplegen');
+                }
                 $location.path('/login');
             } else {
+                ErrorService.setError('Meld admin@voornaaminliedje de volgende fout: ' + rejection.status);
                 $location.path('/error')
             }
+            console.log("Response error is set? " + ErrorService.errorMessage);
             return $q.reject(rejection);
         }
     };
