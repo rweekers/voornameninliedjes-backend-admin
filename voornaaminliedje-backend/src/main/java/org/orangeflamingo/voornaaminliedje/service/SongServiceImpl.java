@@ -73,7 +73,7 @@ public class SongServiceImpl implements SongService {
 		// Retrieve existing song 'You can call me Al'
 		int id = 12070;
 		Song song = (Song) getCurrentSession().get(Song.class, id);
-		logger.debug("Gotten song " + song.getTitle());
+		logger.info("Gotten song " + song.getTitle());
 
 		return song;
 	}
