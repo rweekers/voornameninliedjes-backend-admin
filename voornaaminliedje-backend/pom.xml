@@ -11,7 +11,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jackson.version>2.2.2</jackson.version>
 		<jaxb-api.version>2.2.9</jaxb-api.version>
-		<jetty.version>8.1.15.v20140411</jetty.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -222,7 +221,7 @@
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${project.version}</version>
+				<version>9.0.5.v20130815</version>
 			</plugin>
 		</plugins>
 	</build>

@@ -50,7 +50,7 @@ public class VisitServiceImpl implements VisitService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Visit> getAll() {
-		logger.debug("Retrieving all visits");
+		logger.info("Retrieving all visits");
 
 		// Create a Hibernate query (HQL)
 		Query query = getCurrentSession().createQuery(
