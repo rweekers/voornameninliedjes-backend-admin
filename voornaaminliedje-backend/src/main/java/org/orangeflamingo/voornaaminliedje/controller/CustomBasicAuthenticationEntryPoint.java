@@ -17,10 +17,10 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
 public class CustomBasicAuthenticationEntryPoint extends
 		BasicAuthenticationEntryPoint {
 
-	protected static Logger logger = Logger.getLogger("service");
+	protected static Logger logger = Logger.getLogger(CustomBasicAuthenticationEntryPoint.class);
 
 	public CustomBasicAuthenticationEntryPoint(String realmName) {
-		logger.info("Creating customBasicAuthenticationEntryPoint...");
+		logger.debug("Creating customBasicAuthenticationEntryPoint...");
 		setRealmName(realmName);
 	}
 
@@ -29,7 +29,9 @@ public class CustomBasicAuthenticationEntryPoint extends
 			final HttpServletResponse response,
 			final AuthenticationException authException) throws IOException,
 			ServletException {
-		logger.info("CustomBasicAuthenticaition blabla...");
+		logger.info("CustomBasicAuthentication ontvangt request: "
+				+ request.getRequestURL() + " met methode: "
+				+ request.getMethod());
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
 				authException.getMessage());
 	}
