@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	protected static Logger logger = Logger.getLogger("service");
+	protected static Logger logger = Logger.getLogger(SecurityConfig.class);
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public BasicAuthenticationEntryPoint entryPoint() {
 		BasicAuthenticationEntryPoint basicAuthenticationEntryPoint = new CustomBasicAuthenticationEntryPoint(
 				"RealmName");
-		logger.info("bladiebladiebla.");
+		logger.info("Creating BasicAuthenticationEntryPoint bean");
 		basicAuthenticationEntryPoint.setRealmName("Basic WF Realm");
 		return basicAuthenticationEntryPoint;
 	}

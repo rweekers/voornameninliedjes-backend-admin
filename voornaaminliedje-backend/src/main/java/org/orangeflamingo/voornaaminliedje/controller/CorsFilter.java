@@ -20,7 +20,7 @@ public class CorsFilter extends OncePerRequestFilter {
 	/**
 	 * The logger
 	 */
-	protected static final Logger logger = Logger.getLogger("service");
+	protected static final Logger logger = Logger.getLogger(CorsFilter.class);
 
 	/**
 	 * The method that implements the filter

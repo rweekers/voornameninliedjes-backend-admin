@@ -23,7 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class SongOfTheDayServiceImpl implements SongOfTheDayService {
 
-	protected static final Logger logger = Logger.getLogger("service");
+	protected static final Logger logger = Logger
+			.getLogger(SongOfTheDayServiceImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -58,7 +59,7 @@ public class SongOfTheDayServiceImpl implements SongOfTheDayService {
 	 */
 	public void initialize() {
 		int numberOfSongsOfTheDay = getAll().size();
-		logger.debug("Aantal songsOfTheDay in database: "
+		logger.debug("Number of songsOfTheDay in database: "
 				+ numberOfSongsOfTheDay);
 
 		if (numberOfSongsOfTheDay == 0) {
@@ -84,19 +85,21 @@ public class SongOfTheDayServiceImpl implements SongOfTheDayService {
 	/**
 	 * Returns the song for today
 	 * 
-	 * @param today today
+	 * @param today
+	 *            today
 	 * @return the song that is due for today
 	 */
 	public Song getSongOfTheDay() {
 		Date today = new Date(Calendar.getInstance().getTimeInMillis());
 		// Create a Hibernate query (HQL)
-		Query query = getCurrentSession().createQuery(
-				"FROM  SongOfTheDay songOfTheDay where songOfTheDay.day = :today");
+		Query query = getCurrentSession()
+				.createQuery(
+						"FROM  SongOfTheDay songOfTheDay where songOfTheDay.day = :today");
 		query.setParameter("today", today);
 		SongOfTheDay songOfTheDay = (SongOfTheDay) query.list().get(0);
 		return songOfTheDay.getSong();
 	}
-	
+
 	/**
 	 * Retrieves a single songOfTheDay
 	 * 
@@ -106,7 +109,7 @@ public class SongOfTheDayServiceImpl implements SongOfTheDayService {
 	 */
 	public SongOfTheDay get(Integer id) {
 		// Retrieve existing visit first
-		logger.debug("Calling get with the id " + id);
+		logger.debug("Calling get songOfTheDay with the id " + id);
 		SongOfTheDay songOfTheDay = (SongOfTheDay) getCurrentSession().get(
 				SongOfTheDay.class, id);
 		return songOfTheDay;

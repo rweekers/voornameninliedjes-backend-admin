@@ -33,8 +33,9 @@ public class MainController {
 	/**
 	 * The logger
 	 */
-	protected static final Logger logger = Logger.getLogger("controller");
-	
+	protected static final Logger logger = Logger
+			.getLogger(MainController.class);
+
 	@Autowired
 	SongService songService;
 
@@ -83,7 +84,7 @@ public class MainController {
 	@RequestMapping(value = "song/al", method = RequestMethod.GET)
 	@ResponseBody
 	public Song songAll2() {
-		logger.info("Calling random song (Al) function..."); 
+		logger.info("Calling dummy random song function for song/al");
 		return songService.getYouCanCallMeAl();
 	}
 
@@ -203,7 +204,8 @@ public class MainController {
 	@ResponseBody
 	public void updateSong(@PathVariable int id,
 			@RequestBody(required = true) Song song) {
-		logger.info("Het nummer is " + song);
+		logger.info("Update request for admin/songs/" + song.getId()
+				+ " with description: " + song);
 		songService.update(song);
 	}
 

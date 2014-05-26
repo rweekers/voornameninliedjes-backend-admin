@@ -33,7 +33,7 @@ import com.maxmind.geoip2.model.CityResponse;
 @Transactional
 public class VisitServiceImpl implements VisitService {
 
-	protected static final Logger logger = Logger.getLogger("service");
+	protected static final Logger logger = Logger.getLogger(VisitServiceImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;

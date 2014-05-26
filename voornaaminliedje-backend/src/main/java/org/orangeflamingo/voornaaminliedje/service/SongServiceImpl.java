@@ -20,7 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class SongServiceImpl implements SongService {
 
-	protected static final Logger logger = Logger.getLogger("service");
+	protected static final Logger logger = Logger
+			.getLogger(SongServiceImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -36,7 +37,7 @@ public class SongServiceImpl implements SongService {
 	 */
 	@Override
 	public long getMax() {
-		logger.debug("Getting max");
+		logger.debug("Getting max number of songs");
 
 		Query query = getCurrentSession().createQuery(
 				"SELECT COUNT(*) FROM  Song song");
@@ -56,7 +57,7 @@ public class SongServiceImpl implements SongService {
 		// TODO Implement with songOfTheDay
 		int id = 12070;
 		Song song = (Song) getCurrentSession().get(Song.class, id);
-		logger.debug("Gotten song " + song.getTitle());
+		logger.debug("Gotten song from getRandom(): " + song.getTitle());
 
 		return song;
 	}
@@ -73,7 +74,7 @@ public class SongServiceImpl implements SongService {
 		// Retrieve existing song 'You can call me Al'
 		int id = 12070;
 		Song song = (Song) getCurrentSession().get(Song.class, id);
-		logger.info("Gotten song " + song.getTitle());
+		logger.debug("Gotten song " + song.getTitle());
 
 		return song;
 	}
@@ -87,7 +88,7 @@ public class SongServiceImpl implements SongService {
 	@Override
 	public List<Song> getAll(Integer count, Integer page, String sortingArtist,
 			String sortingTitle, String filterArtist, String filterTitle) {
-		logger.info("Retrieving all songs with params");
+		logger.debug("Retrieving all songs with params");
 
 		if (count == null || count > 25) {
 			count = 25;
@@ -143,7 +144,7 @@ public class SongServiceImpl implements SongService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Song> getAll() {
-		logger.info("Retrieving all songs");
+		logger.debug("Retrieving all songs");
 
 		// Create a Hibernate query (HQL)
 		Query query = getCurrentSession().createQuery(
@@ -158,7 +159,7 @@ public class SongServiceImpl implements SongService {
 	 */
 	public Song get(Integer id) {
 		// Retrieve existing song first
-		logger.debug("Calling get with the id " + id);
+		logger.debug("Calling getSong() with the id " + id);
 		Song song = (Song) getCurrentSession().get(Song.class, id);
 		logger.debug("Gotten song " + song.getTitle());
 		return song;

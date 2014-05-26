@@ -16,7 +16,8 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 public class ApplicationInitializer implements WebApplicationInitializer {
 
-	protected static Logger logger = Logger.getLogger("service");
+	protected static Logger logger = Logger
+			.getLogger(ApplicationInitializer.class);
 
 	@Override
 	public void onStartup(ServletContext container) throws ServletException {
@@ -42,7 +43,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 
 		// Register Spring security filter
 		FilterRegistration.Dynamic corsFilter = container.addFilter(
-				 "corsFilter", CorsFilter.class);
+				"corsFilter", CorsFilter.class);
 		corsFilter.addMappingForUrlPatterns(null, false, "/*");
 
 		configureSpringSecurity(container, rootContext);
