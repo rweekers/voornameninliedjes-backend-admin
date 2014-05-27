@@ -88,7 +88,7 @@ public class SongServiceImpl implements SongService {
 	@Override
 	public List<Song> getAll(Integer count, Integer page, String sortingArtist,
 			String sortingTitle, String filterArtist, String filterTitle) {
-		logger.debug("Retrieving all songs with params");
+		logger.info("Retrieving all songs with params");
 
 		if (count == null || count > 25) {
 			count = 25;
@@ -144,7 +144,7 @@ public class SongServiceImpl implements SongService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Song> getAll() {
-		logger.debug("Retrieving all songs");
+		logger.info("Retrieving all songs");
 
 		// Create a Hibernate query (HQL)
 		Query query = getCurrentSession().createQuery(
