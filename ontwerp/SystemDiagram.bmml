@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="2076" measuredH="819" mockupW="2057" mockupH="814">
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="2076" measuredH="1258" mockupW="2057" mockupH="1253">
   <controls>
     <control controlID="11" controlTypeID="com.balsamiq.mockups::RoundButton" x="1462" y="239" w="430" h="424" measuredW="32" measuredH="32" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
@@ -107,6 +107,16 @@
     <control controlID="28" controlTypeID="com.balsamiq.mockups::Label" x="22" y="82" w="-1" h="-1" measuredW="53" measuredH="21" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Services</text>
+      </controlProperties>
+    </control>
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::DataGrid" x="19" y="591" w="-1" h="-1" measuredW="1049" measuredH="667" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Controllernaam%2C%20Parameters%2C%20Functie%2C%20Gebruikte%20service%28s%29%2C%20Te%20verwijderen%20services%0AVisitListCtrl%2C%20%24scope%20%5Cr%24location%20%5CrVisit%20%5CrAuth%2C%20Haalt%20alle%20visits%20op%20en%20zet%20deze%20in%20%24scope.visits%2C%20Visit%2C%20%24location%20%5CrAuth%0AVisitDetailCtrl%2C%20%24scope%20%5Cr%24routeParams%20%5Cr%24cookieStore%20%5Cr%24http%20%5CrVisitDetail%20%5CrAuth%2C%20Haalt%20details%20van%20de%20visit%20op%5C%2C%20op%20basis%20van%20%24routeParams.visitId%20en%20zet%20deze%20in%20%24scope.visit%2C%20VisitDetail%2C%20%24cookieStore%20%5Cr%24http%0ASongListCtrl%2C%20%24scope%20%5Cr%24location%20%5CrSong%2C%20Haalt%20alle%20songs%20op%20en%20zet%20deze%20in%20%24scope.songs%2C%20Song%2C%20%24location%0ASongDetailCtrl%2C%20%24scope%20%5Cr%24routeParams%20%5Cr%24cookieStore%20%5Cr%24http%20%5CrSong%20%5CrAuth%2C%20Haalt%20details%20van%20de%20song%20op%5C%2C%20op%20basis%20van%20%24routeParams.songId%20en%20zet%20deze%20in%20%24scope.song%2C%20Song%2C%20%24cookieStore%20%5Cr%24http%20%5CrAuth%0ASongEditCtrl%2C%20%24scope%20%5Cr%24location%20%5Cr%24routeParams%20%5Cr%24cookieStore%20%5Cr%24http%20%5CrSong%20%5CrAuth%2C%20Wijzigt%20details%20van%20de%20song%20%5C%2C%20op%20basis%20van%20%24routeParams.songId%2C%20Song%2C%20%24cookieStore%20%5Cr%24http%20%5CrAuth%0ASongAddCtrl%2C%20%24scope%20%5Cr%24location%20%5CrLogin%20%5CrSong%20%5CrAuth%2C%20Voegt%20een%20song%20toe%2C%20Song%2C%20Login%20%5Cr%20Auth%0ALoginCtrl%2C%20%24scope%20%5Cr%24routeParams%20%5Cr%24cookieStore%20%5CrAuth%20%5CrBase64%2C%20Logt%20de%20gebruiker%20in%2C%20Auth%2C%20%24routeParams%20%5Cr%24cookieStore%20%5CrBase64%0AErrorCtrl%2C%20%24scope%20%5Cr%24routeParams%20%5Cr%24cookieStore%20%5CrAuth%20%5CrBase64%2C%20%3F%2C%20%2C%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::Label" x="26" y="559" w="-1" h="-1" measuredW="65" measuredH="21" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Controllers</text>
       </controlProperties>
     </control>
   </controls>
