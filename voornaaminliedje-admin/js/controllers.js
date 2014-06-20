@@ -10,16 +10,12 @@ function HeaderController($scope, $location) {
     };
 }
 
-adminControllers.controller('VisitListCtrl', ['$scope', '$location', 'Visit', 'Auth',
-    function($scope, $location, Visit, Auth) {
+adminControllers.controller('VisitListCtrl', ['$scope', 'Visit', 
+    function($scope, Visit) {
 
-        // console.log('Login nodig: ' + !Login.isLoggedin());
-        /*
-        $scope.$on('event:loginRequired', function() {
-            $location.path('/login');
-        });*/
         $scope.visits = Visit.query();
         $scope.orderProp = 'ipAddress';
+
     }
 ]);
 
