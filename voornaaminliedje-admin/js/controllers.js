@@ -81,8 +81,8 @@ adminControllers.controller('SongAddCtrl', ['$scope', '$location', 'Song',
     }
 ]);
 
-adminControllers.controller('LoginCtrl', ['$scope', '$routeParams', '$cookieStore', 'Auth', 'Base64', 'ErrorService',
-    function($scope, $routeParams, $cookieStore, Auth, Base64, ErrorService) {
+adminControllers.controller('LoginCtrl', ['$scope', 'Auth', 'ErrorService',
+    function($scope, Auth, ErrorService) {
 
         $scope.errorService = ErrorService;
 
