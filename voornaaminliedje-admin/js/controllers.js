@@ -19,37 +19,17 @@ adminControllers.controller('VisitListCtrl', ['$scope', 'Visit',
     }
 ]);
 
-adminControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', 'VisitDetail', 'Auth',
-    function($scope, $routeParams, $cookieStore, $http, VisitDetail, Auth) {
-
-        console.log("blabla1");
+adminControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', 'VisitDetail', 'Auth',
+    function($scope, $routeParams, VisitDetail, Auth) {
 
         VisitDetail.get({
             id: $routeParams.visitId
         }).$promise.then(function(data) {
-            console.log("blabladiebla");
             $scope.visit = data;
-            console.log("Bla " + $scope.visit.ipAddress);
-            /*
-                $scope.map = {
-                    center: {
-                        latitude: $scope.visit.latitude,
-                        longitude: $scope.visit.longitude
-                    },
-                    zoom: 8
-                };*/
-        }, function(errorRespone) {
-            console.log("errortje...");
+        }, function(errorResponse) {
+            console.log("Error...");
         });
 
-        /*
-            $scope.map = {
-                center: {
-                    latitude: 51,
-                    longitude: 0
-                },
-                zoom: 8
-            };*/
     }
 ]);
 
