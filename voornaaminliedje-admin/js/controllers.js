@@ -33,10 +33,11 @@ adminControllers.controller('VisitDetailCtrl', ['$scope', '$routeParams', 'Visit
     }
 ]);
 
-adminControllers.controller('SongListCtrl', ['$scope', '$location', 'Song',
-    function($scope, $location, Song) {
+adminControllers.controller('SongListCtrl', ['$scope', 'Song',
+    function($scope, Song) {
 
         $scope.songs = Song.query();
+
     }
 ]);
 
