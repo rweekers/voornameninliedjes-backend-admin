@@ -73,12 +73,11 @@ adminControllers.controller('SongEditCtrl', ['$scope', '$location', '$routeParam
     }
 ]);
 
-adminControllers.controller('SongAddCtrl', ['$scope', '$location', 'Login', 'Song', 'Auth',
-    function($scope, $location, Login, Visit, Auth) {
-
-        console.log('Login nodig: ' + Login.isLoggedin());
+adminControllers.controller('SongAddCtrl', ['$scope', '$location', 'Song', 
+    function($scope, $location, Song) {
 
         console.log('Locatie ' + $location.path());
+
     }
 ]);
 
