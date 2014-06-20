@@ -41,12 +41,13 @@ adminControllers.controller('SongListCtrl', ['$scope', 'Song',
     }
 ]);
 
-adminControllers.controller('SongDetailCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', 'Song', 'Auth',
-    function($scope, $routeParams, $cookieStore, $http, Song, Auth) {
+adminControllers.controller('SongDetailCtrl', ['$scope', '$routeParams', 'Song', 
+    function($scope, $routeParams, Song) {
 
         $scope.song = Song.get({
             id: $routeParams.songId
         });
+
     }
 ]);
 
