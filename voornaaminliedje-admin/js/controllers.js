@@ -51,8 +51,8 @@ adminControllers.controller('SongDetailCtrl', ['$scope', '$routeParams', 'Song',
     }
 ]);
 
-adminControllers.controller('SongEditCtrl', ['$scope', '$location', '$routeParams', '$cookieStore', '$http', 'Song', 'Auth',
-    function($scope, $location, $routeParams, $cookieStore, $http, Song, Auth) {
+adminControllers.controller('SongEditCtrl', ['$scope', '$location', '$routeParams', '$cookieStore', 'Song', 
+    function($scope, $location, $routeParams, $cookieStore, Song) {
 
         $scope.song = Song.get({
             id: $routeParams.songId
