@@ -5,7 +5,6 @@
 var adminApp = angular.module('app', [
     'ngRoute',
     'ngCookies',
-    //'google-maps',
     'adminControllers',
     'visitServices',
     'songServices',
@@ -36,16 +35,14 @@ adminApp.config(['$routeProvider',
             controller: 'SongEditCtrl'
         }).
         when('/song/add', {
-            // templateUrl: 'partials/visit-list.html',
             templateUrl: 'partials/song-add.html',
-            // controller: 'VisitListCtrl'
             controller: 'SongAddCtrl'
         }).
         when('/login', {
             templateUrl: 'partials/login.html',
             controller: 'LoginCtrl'
         }).
-                when('/error', {
+        when('/error', {
             templateUrl: 'partials/error.html',
             controller: 'ErrorCtrl'
         }).

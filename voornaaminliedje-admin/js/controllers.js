@@ -37,7 +37,6 @@ adminControllers.controller('SongListCtrl', ['$scope', 'Song',
     function($scope, Song) {
 
         $scope.songs = Song.query();
-
     }
 ]);
 
