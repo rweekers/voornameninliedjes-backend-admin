@@ -8,7 +8,7 @@
          var encoded = Base64.encode('admin:admin');
          console.log("Blabla " + encoded);
 
-         return $resource('http://127.0.0.1/voornaaminliedje/api/admin/visit/all', {}, {
+         return $resource('http://127.0.0.1/namesandsongs/api/admin/visit/all', {}, {
              query: {
                  method: 'GET',
                  params: {
@@ -27,7 +27,7 @@
 
  songServices.factory('SongOfTheDay', ['$resource',
      function($resource) {
-         return $resource('http://localhost/voornaaminliedje/api/song/al', {}, {
+         return $resource('http://localhost/namesandsongs/api/song/al', {}, {
              query: {
                  method: 'GET',
                  isArray: false
@@ -38,7 +38,7 @@
 
  songServices.factory('Song2', ['$resource',
      function($resource) {
-         return $resource('http://localhost/voornaaminliedje/api/song/all', {}, {
+         return $resource('http://localhost/namesandsongs/api/song/all', {}, {
              query: {
                  method: 'GET',
                  params: {
