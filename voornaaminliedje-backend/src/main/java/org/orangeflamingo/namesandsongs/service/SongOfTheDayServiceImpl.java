@@ -1,4 +1,4 @@
-package org.orangeflamingo.voornaaminliedje.service;
+package org.orangeflamingo.namesandsongs.service;
 
 import java.sql.Date;
 import java.util.Calendar;
@@ -9,8 +9,8 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.orangeflamingo.voornaaminliedje.domain.Song;
-import org.orangeflamingo.voornaaminliedje.domain.SongOfTheDay;
+import org.orangeflamingo.namesandsongs.domain.Song;
+import org.orangeflamingo.namesandsongs.domain.SongOfTheDay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

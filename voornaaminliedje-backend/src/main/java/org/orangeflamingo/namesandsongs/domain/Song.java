@@ -1,4 +1,4 @@
-package org.orangeflamingo.voornaaminliedje.domain;
+package org.orangeflamingo.namesandsongs.domain;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

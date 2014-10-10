@@ -1,9 +1,9 @@
-package org.orangeflamingo.voornaaminliedje.service;
+package org.orangeflamingo.namesandsongs.service;
 
 import java.util.List;
 
-import org.orangeflamingo.voornaaminliedje.domain.Song;
-import org.orangeflamingo.voornaaminliedje.domain.SongOfTheDay;
+import org.orangeflamingo.namesandsongs.domain.Song;
+import org.orangeflamingo.namesandsongs.domain.SongOfTheDay;
 
 public interface SongOfTheDayService {
 

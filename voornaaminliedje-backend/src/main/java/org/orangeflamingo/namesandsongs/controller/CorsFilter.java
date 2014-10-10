@@ -1,4 +1,4 @@
-package org.orangeflamingo.voornaaminliedje.controller;
+package org.orangeflamingo.namesandsongs.controller;
 
 import java.io.IOException;
 
@@ -47,8 +47,8 @@ public class CorsFilter extends OncePerRequestFilter {
 		if (request.getHeader("Access-Control-Request-Method") != null
 				&& "OPTIONS".equals(request.getMethod())) {
 			// CORS "pre-flight" request
-			// response.setHeader("Access-Control-Allow-Origin", "voornaaminliedje.nl");
-			response.setHeader("Access-Control-Allow-Origin", "voornaaminliedje.dev");
+			// response.setHeader("Access-Control-Allow-Origin", "namesandsongs.nl");
+			response.setHeader("Access-Control-Allow-Origin", "namesandsongs.dev");
 			response.setHeader("Access-Control-Allow-Credentials", "true");
 			response.setHeader("Access-Control-Allow-Methods",
 					"POST, PUT, GET, DELETE, OPTIONS");

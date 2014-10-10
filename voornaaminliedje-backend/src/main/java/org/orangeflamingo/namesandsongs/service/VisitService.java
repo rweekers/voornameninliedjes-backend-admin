@@ -1,10 +1,10 @@
-package org.orangeflamingo.voornaaminliedje.service;
+package org.orangeflamingo.namesandsongs.service;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.orangeflamingo.voornaaminliedje.domain.Visit;
+import org.orangeflamingo.namesandsongs.domain.Visit;
 
 public interface VisitService {
 

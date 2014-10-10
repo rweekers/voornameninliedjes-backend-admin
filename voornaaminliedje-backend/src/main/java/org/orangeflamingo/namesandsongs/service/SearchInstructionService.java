@@ -1,8 +1,8 @@
-package org.orangeflamingo.voornaaminliedje.service;
+package org.orangeflamingo.namesandsongs.service;
 
 import java.util.List;
 
-import org.orangeflamingo.voornaaminliedje.domain.SearchInstruction;
+import org.orangeflamingo.namesandsongs.domain.SearchInstruction;
 
 public interface SearchInstructionService {
 

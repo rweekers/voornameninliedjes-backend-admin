@@ -1,7 +1,7 @@
-package org.orangeflamingo.voornaaminliedje.springconfig;
+package org.orangeflamingo.namesandsongs.springconfig;
 
 import org.apache.log4j.Logger;
-import org.orangeflamingo.voornaaminliedje.controller.CustomBasicAuthenticationEntryPoint;
+import org.orangeflamingo.namesandsongs.controller.CustomBasicAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

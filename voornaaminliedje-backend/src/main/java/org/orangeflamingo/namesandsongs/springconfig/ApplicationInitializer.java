@@ -1,4 +1,4 @@
-package org.orangeflamingo.voornaaminliedje.springconfig;
+package org.orangeflamingo.namesandsongs.springconfig;
 
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 import org.apache.log4j.Logger;
-import org.orangeflamingo.voornaaminliedje.controller.CorsFilter;
+import org.orangeflamingo.namesandsongs.controller.CorsFilter;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
