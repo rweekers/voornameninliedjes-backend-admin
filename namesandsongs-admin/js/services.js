@@ -7,7 +7,7 @@ var songServices = angular.module('songServices', ['ngResource']);
 
 songServices.factory('Song', ['$resource',
     function($resource) {
-        return $resource('/voornaaminliedje/api/admin/songs/:id', {
+        return $resource('/namesandsongs/api/admin/songs/:id', {
             id: '@id'
         }, {
             query: {
@@ -49,7 +49,7 @@ songServices.factory('Song', ['$resource',
 visitServices.factory('Visit', ['Base64', '$http', '$resource',
     function(Base64, $http, $resource) {
 
-        return $resource('/voornaaminliedje/api/admin/visit/all', {}, {
+        return $resource('/namesandsongs/api/admin/visit/all', {}, {
             query: {
                 method: 'GET',
                 params: {
@@ -63,7 +63,7 @@ visitServices.factory('Visit', ['Base64', '$http', '$resource',
 
 visitServices.factory('VisitDetail', ['Base64', '$http', '$resource',
     function(Base64, $http, $resource) {
-        return $resource('/voornaaminliedje/api/admin/visit/:id', {}, {
+        return $resource('/namesandsongs/api/admin/visit/:id', {}, {
             get: {
                 method: 'GET',
                 params: {
@@ -76,7 +76,7 @@ visitServices.factory('VisitDetail', ['Base64', '$http', '$resource',
 
 visitServices.factory('SongDetail', ['Base64', '$http', '$resource',
     function(Base64, $http, $resource) {
-        return $resource('/voornaaminliedje/api/admin/songs/:id', {}, {
+        return $resource('/namesandsongs/api/admin/songs/:id', {}, {
             get: {
                 method: 'GET',
                 params: {
@@ -245,7 +245,7 @@ visitServices.factory('errorHttpInterceptor', function($q, $location, $cookieSto
                 }
                 $location.path('/login');
             } else {
-                ErrorService.setError('Meld admin@voornaaminliedje de volgende fout: ' + rejection.status);
+                ErrorService.setError('Meld admin@namesandsongs.com de volgende fout: ' + rejection.status);
                 $location.path('/error')
             }
             console.log("Response error is set? " + ErrorService.errorMessage);
