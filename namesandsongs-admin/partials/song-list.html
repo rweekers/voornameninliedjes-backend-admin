@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+
+      Search: <input ng-model="query">
+      Sort by:
+      <select ng-model="orderProp">
+        <option value="ipAddress">Alphabetical</option>
+        <option value="dateInserted">Newest</option>
+      </select>
+
+    </div>
+    <div class="span10">
+      <!--Body content-->
+
+      <a href="#/song/add" class="thumb">Add song.</a>
+
+      <ul class="phones">
+        <li ng-repeat="song in songs | filter:query | orderBy:orderProp" class="thumbnail">
+          <a href="#/songs/{{song.id}}" class="thumb">{{song.title}}</a>
+          <a href="#/songs/edit/{{song.id}}" class="thumb">Edit {{song.title}}</a>
+          <p>{{song.artist}}</p>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
