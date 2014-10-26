@@ -1,0 +1,424 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"cookie",
+				"cookieStore"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"country",
+				"country_name"
+			],
+			[
+				"MyCTRL",
+				"MyCtrl2"
+			],
+			[
+				"angular",
+				"angular-resource"
+			],
+			[
+				"f",
+				"font-size"
+			],
+			[
+				"m",
+				"min-height"
+			],
+			[
+				"te",
+				"text"
+			],
+			[
+				"paddi",
+				"padding-bottom"
+			],
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"ou",
+				"border-image-outset"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"min-",
+				"margin-bottom"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 58.0,
+		"selected_items":
+		[
+			[
+				"Package Control: instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: remove package",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"package control",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: r",
+				"Package Control: Remove Package"
+			],
+			[
+				"git",
+				"Git: Gitk"
+			],
+			[
+				"gut",
+				"Git: Status"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Install PAckage",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Install package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 520.0
+	},
+	"console":
+	{
+		"height": 125.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
+			"cd ~/.config/sublime-text-2/Packages/Javascript\\ Beautify/libs",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/Projects/namesandsongs/frontend",
+		"/D/Projects/namesandsongs/frontend/app",
+		"/D/Projects/namesandsongs/frontend/app/bower_components",
+		"/D/Projects/namesandsongs/frontend/app/bower_components/html5-boilerplate",
+		"/D/Projects/namesandsongs/frontend/app/components",
+		"/D/Projects/namesandsongs/frontend/app/components/version",
+		"/D/Projects/namesandsongs/frontend/e2e-tests"
+	],
+	"file_history":
+	[
+		"/D/Projects/namesandsongs/frontend/frontend.sublime-project",
+		"/D/Projects/namesandsongs/namesandsongs-frontend/namesandsongs-frontend.sublime-project",
+		"/D/Projects/namesandsongs/namesandsongs-admin/namesandsongs-admin.sublime-project",
+		"/C/Users/remcow/Downloads/pset8/js/service.js",
+		"/D/Projects/namesandsongs/namesandsongs-backend/deployAndRun.bat",
+		"/C/Users/remcow/AppData/Roaming/Sublime Text 3/Packages/Javascript Beautify/JavascriptBeautify.sublime-settings",
+		"/C/Users/remcow/Downloads/pset8/index.html",
+		"/C/Users/remcow/Downloads/pset8/js/math3d.js",
+		"/C/Users/remcow/Downloads/pset8/js/houses.js",
+		"/C/Users/remcow/Downloads/pset8/js/shuttle.js",
+		"/G/Projects/flamingostyle/flamingostyle-frontend/index.html",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin/songs.html",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin/login.html",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin/index.html",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/app.js",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin/js/app.js",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin/js/services.js",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/songServices.js",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/index.html",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin/css/style.css",
+		"/G/Projects/404/index.html",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin/js/controllers.js",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/controllers.js",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/services.js",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin/css/app.css",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin/partials/visit-detail.html",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin/partials/visit-list.html",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/underConstruction.html",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin/lib/angular/angular-resource.js",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin/partials/visits.html",
+		"/C/Users/remcow/Downloads/92401_20130702_152923285.dat",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/build.sh",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/servicesFull.js",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/controllersFull.js",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/voornaaminliedje-frontend.sublime-project",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/log.js",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/appFull.js",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/stub/underConstruction.html",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/stub/index.html",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin.html",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/index2.html",
+		"/G/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/index3.html",
+		"/C/Users/remcow/Downloads/FAHF-336.sql",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/libs/angular-cookies.js",
+		"/C/Users/remcow/Downloads/3329507579D.TXT",
+		"/G/Famed/Analyses/COV/131100282/97185_20131118_0007250211.asc",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/index.html",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/libs/ng-table.js",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/index2.html",
+		"/M/Famed/Documenten/LH304/99999_4enDEMO_LH307_multiple_GEWENST.xml",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-backend/log.txt",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/controllers.js",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/largeLoad.json",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/services.js",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/app.js",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/css/style.css",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/largeLoad.js",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/loadingContainer.js",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/logSearchInstruction.js",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/js/logVisits.js",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/admin.html",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/webapp/resources/css/ng-grid.css",
+		"/D/Projects/voornaaminliedje/voornaaminliedje-frontend/voornaaminliedje-frontend.sublime-project",
+		"/C/Users/remcow/Desktop/99999_4enDEMO_LH307_multiple.xml",
+		"/C/Users/remcow/Desktop/99999_LH_Demo_Validaties.ASC",
+		"/C/Users/remcow/Downloads/97186284.not",
+		"/C/Users/remcow/AppData/Roaming/Sublime Text 3/Packages/User/Git.sublime-settings",
+		"/C/Users/remcow/AppData/Roaming/Sublime Text 3/Packages/User/Nodejs.sublime-settings",
+		"/C/Users/remcow/AppData/Roaming/Sublime Text 3/Packages/Git/Git.sublime-settings",
+		"/C/Users/remcow/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/C/Users/remcow/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
+		"/C/Users/remcow/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/C/Users/remcow/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/remcow/AppData/Roaming/Sublime Text 3/Packages/User/Git.sublime-package",
+		"/C/Users/remcow/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/D/Projects/voornaaminliedje/dbScripts/dbScripts.sublime-project",
+		"/C/Users/remcow/Desktop/invoice.xml",
+		"//famed-fs01/homedirs$/remkow/AP304/FL0000N.001",
+		"/C/Documents/dev06.sql",
+		"/C/Documents/index.html",
+		"/C/Documents/Projects/voornaaminliedje/dbScripts/sequence.sql",
+		"/C/Documents/Projects/voornaaminliedje/dbScripts/song.ddl",
+		"//famed-fs01/homedirs$/remkow/HandigeQueries/990spul.sql"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"D:\\Projects\\voornaaminliedje\\voornaaminliedje-frontend\\webapp"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"function pickup()",
+			"earth",
+			"background",
+			"resour",
+			"8180",
+			"ctrl",
+			"cookies",
+			"logVisit.js",
+			"logVisit",
+			"encode",
+			"song2",
+			"isnumber",
+			"count",
+			"ajax req",
+			"params",
+			"getdata",
+			"directive",
+			"myctrl",
+			"text",
+			"color",
+			"5",
+			"table",
+			"row",
+			"col",
+			"bladeren",
+			"song/random",
+			"foot",
+			"zoek"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "frontend.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"D:\\Projects\\namesandsongs\\dbScripts\\dbScripts.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 368.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

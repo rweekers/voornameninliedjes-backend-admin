@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <link href="../../admin/lib/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+    <!--link rel="stylesheet" href="css/bootstrap.min.css"-->
+    <!--[if lt IE 9]>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-resource.min.js"></script>
+    <!--script src="js/angular.min.js"></script>
+    <script src="js/angular-resource.min.js"></script-->
+    <script type='text/JavaScript' src="../../admin/lib/angular/angular-mocks.js"></script>
+    <script type='text/JavaScript' src="../../admin/lib/angular/angular-cookies.js"></script>
+    <script type='text/JavaScript' src="../../admin/lib/angular/ng-table.js"></script>
+    <!--script src="js/angular-mocks.js"></script-->
+    <!--script src="../ng-table.js"></script-->
+    <link rel="stylesheet" href="../../admin/css/ng-table.css">
+    <!--link rel="stylesheet" href="../ng-table.css"-->
+    <style>
+    .loading-container {
+        position: relative;
+    }
+    .loading-container .loading:before, .loading-container .loading:after {
+        content:" ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        min-height: 50px;
+        min-width: 50px;
+    }
+    .loading-container .loading:before {
+        background-color: white;
+        opacity: 0.5;
+    }
+    </style>
+</head>
+
+<body ng-app="main">
+
+    <h1>AJAX Data Loading</h1>
+
+    <div ng-controller="DemoCtrl">
+
+        <button ng-click="tableParams.reload()" class="btn pull-right">Reload</button>
+        <button ng-click="tableParams.sorting({})" class="btn pull-right">Clear sorting</button>
+        <div class="clearfix"></div>
+
+        <div>
+            Voeg nummer toe:
+
+            <text value="Artiest" /><input value="{{newSong.title}}" />
+
+            <text value="Test" /><text value="{{newSong.title}}" />
+
+        </div>
+
+        <div loading-container="tableParams.settings().$loading">
+            <table ng-table="tableParams" show-filter="true" class="table">
+                <tr ng-repeat="song in $data">
+                    <td data-title="'Artiest'">
+                        {{song.artist}}
+                    </td>
+                    <td data-title="'Titel'">
+                        {{song.title}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <script type='text/JavaScript' src="../../admin/js/songServices.js"></script>
+        <script type='text/JavaScript' src="../../admin/js/songApp.js"></script>
+        <script type='text/JavaScript' src="../../admin/js/songControllers.js"></script>
+        <script>
+        function isNumber(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+
+        var app = angular.module('main', ['ngTable', 'ngResource', 'ngMockE2E', 'songControllers', 'songServices', 'ngCookies']).
+        run(function($httpBackend, $filter, $log, ngTableParams, Visit) {
+            $httpBackend.whenGET(/.*/).passThrough();
+        })
+            .directive('loadingContainer', function() {
+                return {
+                    restrict: 'A',
+                    scope: false,
+                    link: function(scope, element, attrs) {
+                        var loadingLayer = angular.element('<div class="loading"></div>');
+                        element.append(loadingLayer);
+                        element.addClass('loading-container');
+                        scope.$watch(attrs.loadingContainer, function(value) {
+                            loadingLayer.toggleClass('ng-hide', !value);
+                        });
+                    }
+                };
+            })
+            .controller('DemoCtrl', function($scope, $timeout, $resource, ngTableParams, $http, Visit, Base64) {
+                console.log("Nummers ophalen...");
+                var Api = $resource('/data');
+
+                $scope.tableParams = new ngTableParams({
+                    page: 1, // show first page
+                    count: 10, // count per page
+                    sorting: {
+                        artist: 'asc' // initial sorting
+                    }
+                }, {
+                    total: 0, // length of data
+                    getData: function($defer, params) {
+                        // ajax request to api
+
+                        console.log("tableParams count " + $scope.tableParams.$params.count);
+                        console.log("tableParams order " + $scope.tableParams.$params.sorting.artist);
+                        console.log("tableParams filterartist " + $scope.tableParams.$params.filter.artist);
+                        console.log("tableParams filtertitle " + $scope.tableParams.$params.filter.title);
+
+                        $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe');
+
+                        console.log("Header: " + 'Basic ' + Base64.encode('admin' + ':' + '5095df0e6547e2647d5bc40f1ecd9afe'));
+
+                        $http({
+                            method: 'GET',
+                            // url: 'http://127.0.0.1:8180/voornaaminliedje/api/admin/visit/all',
+                            url: 'http://www.voornaaminliedje.nl/voornaaminliedje/api/admin/song/all',
+                        }).success(function(visits) {
+                            data = visits;
+                            params.total(700);
+                            $defer.resolve(data);
+                        });
+                    }
+                });
+            })
+        </script>
+
+    </div>
+
+
+</body>
+
+</html>
