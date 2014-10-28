@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.songs', ['ngRoute'])
+angular.module('myApp.songs', ['ngRoute', 'ngResource'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/songs', {
@@ -9,13 +9,27 @@ angular.module('myApp.songs', ['ngRoute'])
   });
 }])
 
-.controller('SongsCtrl', ['$scope', '$location', 
-    function($scope, $location, Login, Visit, Auth) {
+.controller('SongsCtrl', ['$scope', '$location', 'Song',
+    function($scope, $location, Song) {
 
         console.log('Locatie ' + $location.path());
         console.log('Locatie2 ' + $location.path());
 
-        // $scope.visits = Visit.query();
+        $scope.songs = Song.query();
+        console.log('Blabla ' + $scope.songs.size);
         // $scope.orderProp = 'ipAddress';
     }
-]);
+])
+
+.factory('Song', ['$resource',
+     function($resource) {
+         return $resource('http://namesandsongs.dev/namesandsongs/api/song/all', {}, {
+             query: {
+                 method: 'GET',
+                 isArray: true
+             }
+         });
+     }
+ ]);
+
+// var songServices = angular.module('songServices', ['ngResource']);

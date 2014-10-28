@@ -71,7 +71,15 @@
 			"file": "app/index.html",
 			"settings":
 			{
-				"buffer_size": 4357,
+				"buffer_size": 4250,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/songs/songs.html",
+			"settings":
+			{
+				"buffer_size": 797,
 				"line_ending": "Windows"
 			}
 		},
@@ -79,7 +87,7 @@
 			"file": "app/songs/songs.js",
 			"settings":
 			{
-				"buffer_size": 529,
+				"buffer_size": 923,
 				"line_ending": "Windows"
 			}
 		}
@@ -359,7 +367,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -368,15 +376,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4357,
+						"buffer_size": 4250,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2370,
-								2370
+								3411,
+								3411
 							]
 						],
 						"settings":
@@ -386,7 +394,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 252.0,
+						"translation.y": 644.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -394,24 +402,55 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app/songs/songs.js",
+					"file": "app/songs/songs.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 529,
+						"buffer_size": 797,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								518,
-								434
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Better JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/songs/songs.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 923,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								506,
+								506
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Better JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
