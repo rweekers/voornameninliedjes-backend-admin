@@ -74,6 +74,14 @@
 				"buffer_size": 4357,
 				"line_ending": "Windows"
 			}
+		},
+		{
+			"file": "app/songs/songs.js",
+			"settings":
+			{
+				"buffer_size": 529,
+				"line_ending": "Windows"
+			}
 		}
 	],
 	"build_system": "",
@@ -188,7 +196,6 @@
 	[
 		"/D/Projects/namesandsongs/frontend",
 		"/D/Projects/namesandsongs/frontend/app",
-		"/D/Projects/namesandsongs/frontend/app/components/version",
 		"/D/Projects/namesandsongs/frontend/app/contact",
 		"/D/Projects/namesandsongs/frontend/app/songs"
 	],
@@ -352,7 +359,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -380,6 +387,34 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 252.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/songs/songs.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 529,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								518,
+								434
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Better JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -444,7 +479,7 @@
 		[
 			[
 				"",
-				"D:\\Projects\\namesandsongs\\dbScripts\\dbScripts.sublime-project"
+				"D:\\Projects\\namesandsongs\\namesandsongs-frontend\\namesandsongs-frontend.sublime-project"
 			]
 		],
 		"width": 380.0

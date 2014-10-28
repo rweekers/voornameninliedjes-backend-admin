@@ -9,6 +9,13 @@ angular.module('myApp.songs', ['ngRoute'])
   });
 }])
 
-.controller('SongsCtrl', [function() {
+.controller('SongsCtrl', ['$scope', '$location', 
+    function($scope, $location, Login, Visit, Auth) {
 
-}]);
+        console.log('Locatie ' + $location.path());
+        console.log('Locatie2 ' + $location.path());
+
+        // $scope.visits = Visit.query();
+        // $scope.orderProp = 'ipAddress';
+    }
+]);
