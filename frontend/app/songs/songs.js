@@ -16,7 +16,6 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         console.log('Locatie2 ' + $location.path());
 
         $scope.songs = Song.query();
-        console.log('Blabla ' + $scope.songs.size);
         // $scope.orderProp = 'ipAddress';
     }
 ])
@@ -31,5 +30,3 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
          });
      }
  ]);
-
-// var songServices = angular.module('songServices', ['ngResource']);

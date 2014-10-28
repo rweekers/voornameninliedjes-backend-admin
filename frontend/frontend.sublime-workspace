@@ -79,7 +79,7 @@
 			"file": "app/songs/songs.html",
 			"settings":
 			{
-				"buffer_size": 797,
+				"buffer_size": 499,
 				"line_ending": "Windows"
 			}
 		},
@@ -367,7 +367,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -394,7 +394,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 644.0,
+						"translation.y": 448.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -406,15 +406,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 797,
+						"buffer_size": 499,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								266,
+								266
 							]
 						],
 						"settings":
@@ -426,7 +426,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -456,7 +456,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
