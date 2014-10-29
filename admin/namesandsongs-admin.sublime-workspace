@@ -76,10 +76,10 @@
 			}
 		},
 		{
-			"file": "js/app.js",
+			"file": "js/controllers.js",
 			"settings":
 			{
-				"buffer_size": 1556,
+				"buffer_size": 2600,
 				"line_ending": "Windows"
 			}
 		}
@@ -194,8 +194,8 @@
 	},
 	"expanded_folders":
 	[
-		"/D/Projects/namesandsongs/namesandsongs-admin",
-		"/D/Projects/namesandsongs/namesandsongs-admin/js"
+		"/D/Projects/namesandsongs/admin",
+		"/D/Projects/namesandsongs/admin/js"
 	],
 	"file_history":
 	[
@@ -343,7 +343,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -370,19 +370,19 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2962.0,
+						"translation.y": 462.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "js/app.js",
+					"file": "js/controllers.js",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 1556,
+						"buffer_size": 2600,
 						"regions":
 						{
 						},
@@ -399,11 +399,11 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -465,7 +465,7 @@
 		[
 			[
 				"",
-				"D:\\Projects\\namesandsongs\\namesandsongs-frontend\\namesandsongs-frontend.sublime-project"
+				"D:\\Projects\\namesandsongs\\frontend\\frontend.sublime-project"
 			]
 		],
 		"width": 380.0

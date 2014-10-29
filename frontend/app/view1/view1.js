@@ -9,6 +9,6 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
-
+.controller('View1Ctrl', ['$location', function($location) {
+	console.log('Blabla ' + $location.path());
 }]);

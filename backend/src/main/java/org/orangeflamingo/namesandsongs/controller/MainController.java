@@ -166,6 +166,19 @@ public class MainController {
 	public Visit getVisitById(@PathVariable int id) {
 		return (Visit) visitService.get(id);
 	}
+	
+	/**
+	 * Gets a song by id
+	 * 
+	 * @param id
+	 *            the id of the song
+	 * @return the song
+	 */
+	@RequestMapping("song/{id}")
+	@ResponseBody
+	public Song getSongById(@PathVariable int id) {
+		return (Song) songService.get(id);
+	}
 
 	/**
 	 * Gets a song by id

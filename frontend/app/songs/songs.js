@@ -13,7 +13,6 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
     function($scope, $location, Song) {
 
         console.log('Locatie ' + $location.path());
-        console.log('Locatie2 ' + $location.path());
 
         $scope.songs = Song.query();
         // $scope.orderProp = 'ipAddress';
@@ -22,7 +21,7 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
 
 .factory('Song', ['$resource',
      function($resource) {
-         return $resource('http://namesandsongs.dev/namesandsongs/api/song/all', {}, {
+         return $resource('/namesandsongs/api/song/all', {}, {
              query: {
                  method: 'GET',
                  isArray: true

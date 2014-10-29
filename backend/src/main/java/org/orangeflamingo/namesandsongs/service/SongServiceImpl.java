@@ -161,7 +161,7 @@ public class SongServiceImpl implements SongService {
 		// Retrieve existing song first
 		logger.debug("Calling getSong() with the id " + id);
 		Song song = (Song) getCurrentSession().get(Song.class, id);
-		logger.debug("Gotten song " + song.getTitle());
+		logger.info("Gotten song " + song.getTitle());
 		return song;
 	}
 

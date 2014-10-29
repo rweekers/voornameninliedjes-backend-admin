@@ -8,6 +8,7 @@ angular.module('myApp', [
   'myApp.about',
   'myApp.contact',
   'myApp.songs',
+  'myApp.song',
   'myApp.version'
 ]).
 config(['$routeProvider', function($routeProvider) {
