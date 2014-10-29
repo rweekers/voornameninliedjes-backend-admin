@@ -111,7 +111,7 @@
 			"file": "app/song/song.js",
 			"settings":
 			{
-				"buffer_size": 828,
+				"buffer_size": 1821,
 				"line_ending": "Windows"
 			}
 		},
@@ -401,7 +401,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -549,7 +549,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -558,15 +558,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 828,
+						"buffer_size": 1821,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								523,
-								523
+								962,
+								962
 							]
 						],
 						"settings":
@@ -579,7 +579,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -669,7 +669,7 @@
 		[
 			[
 				"",
-				"D:\\Projects\\namesandsongs\\namesandsongs-frontend\\namesandsongs-frontend.sublime-project"
+				"D:\\Projects\\namesandsongs\\admin\\namesandsongs-admin.sublime-project"
 			]
 		],
 		"width": 380.0
