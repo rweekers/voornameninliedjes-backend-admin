@@ -103,7 +103,7 @@
 			"file": "app/song/song.html",
 			"settings":
 			{
-				"buffer_size": 72,
+				"buffer_size": 120,
 				"line_ending": "Windows"
 			}
 		},
@@ -243,6 +243,8 @@
 	],
 	"file_history":
 	[
+		"/D/Projects/musicbrainz/musicbrainzws2-java/musicbrainzws2-java/INSTALL.txt",
+		"/D/Projects/musicbrainz/musicbrainzws2-java/README.windows",
 		"/D/Projects/namesandsongs/frontend/app/app.js",
 		"/D/Projects/namesandsongs/frontend/app/songs/songs.js",
 		"/D/Projects/namesandsongs/frontend/app/contact/contact.html",
@@ -401,7 +403,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -529,15 +531,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 72,
+						"buffer_size": 120,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								67,
-								67
+								120,
+								120
 							]
 						],
 						"settings":
@@ -549,7 +551,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -579,7 +581,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{

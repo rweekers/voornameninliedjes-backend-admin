@@ -42,9 +42,9 @@
             <text>day%0A-</text>
           </controlProperties>
         </control>
-        <control controlID="427" controlTypeID="com.balsamiq.mockups::Button" x="374" y="316" w="149" h="-1" measuredW="52" measuredH="27" zOrder="8" locked="false" isInGroup="0">
+        <control controlID="427" controlTypeID="com.balsamiq.mockups::Button" x="374" y="316" w="149" h="-1" measuredW="116" measuredH="27" zOrder="8" locked="false" isInGroup="0">
           <controlProperties>
-            <text>Work</text>
+            <text>Work%20%28Nummer%29</text>
           </controlProperties>
         </control>
         <control controlID="428" controlTypeID="com.balsamiq.mockups::Menu" x="374" y="344" w="149" h="-1" measuredW="150" measuredH="246" zOrder="9" locked="false" isInGroup="0">
@@ -72,9 +72,9 @@
             <text>artist%0Atitle%0Afirstname%0AnameIndex%0AnameLength%0AdateInserted%0AdateModified%0AuserInserted%0AuserModified%0Ayoutube%0Abackground%0A-</text>
           </controlProperties>
         </control>
-        <control controlID="433" controlTypeID="com.balsamiq.mockups::Button" x="575" y="300" w="149" h="-1" measuredW="71" measuredH="27" zOrder="14" locked="false" isInGroup="0">
+        <control controlID="433" controlTypeID="com.balsamiq.mockups::Button" x="575" y="300" w="149" h="-1" measuredW="120" measuredH="27" zOrder="14" locked="false" isInGroup="0">
           <controlProperties>
-            <text>Release</text>
+            <text>Release%20%28Album%29</text>
           </controlProperties>
         </control>
         <control controlID="434" controlTypeID="com.balsamiq.mockups::Menu" x="575" y="328" w="149" h="-1" measuredW="150" measuredH="246" zOrder="15" locked="false" isInGroup="0">
