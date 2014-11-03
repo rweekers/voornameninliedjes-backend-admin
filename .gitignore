@@ -1,20 +1,20 @@
 .SyncID
 .SyncIgnore
 
-namesandsongs-backend/logs
-namesandsongs-backend/project/project
-namesandsongs-backend/project/target
-namesandsongs-backend/target/
-namesandsongs-backend/tmp
-namesandsongs-backend/.history
-namesandsongs-backend/dist
-namesandsongs-backend/.classpath
-namesandsongs-backend/.project
-namesandsongs-backend/.settings/
-namesandsongs-backend/.springBeans
-namesandsongs-backend/.idea/
-namesandsongs-backend/namesandsongs-backend.iml
-namesandsongs-backend/deployAndRun.bat
+backend/logs
+backend/project/project
+backend/project/target
+backend/target/
+backend/tmp
+backend/.history
+backend/dist
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/.springBeans
+backend/.idea/
+backend/namesandsongs-backend.iml
+backend/deployAndRun.bat
 
 namesandsongs-frontend/logs
 namesandsongs-frontend/project/project
@@ -37,3 +37,6 @@ namesandsongs-admin/namesandsongs-admin.sublime-workspace
 frontend/frontend.sublime-workspace
 npm-debug.log
 backend/target
+frontend/node_modules
+frontend/LICENCE
+frontend/README.md
