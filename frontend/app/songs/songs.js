@@ -12,13 +12,25 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
 .controller('SongsCtrl', ['$scope', '$location', 'Song',
     function($scope, $location, Song) {
 
-        console.log('Locatie ' + $location.path());
+        $scope.sizes = [ {code: 5, name: '5'}, {code: 10, name: '10'}, {code: 20, name: '20'}, {code: 50, name: '50'}];
+        $scope.count = 10;
 
         $scope.songs = Song.query({
-                                    count: 5,
+                                    count: $scope.count,
                                     page: 1,
                                     filterArtist: 'Bob'
         });
+
+        $scope.update = function() {
+            console.log($scope.item.code, $scope.item.name);
+            $scope.count = $scope.item.code;
+            $scope.songs = Song.query({
+                                    count: $scope.count,
+                                    page: 1,
+                                    filterArtist: 'Bob'
+            });
+        }
+
         // $scope.orderProp = 'ipAddress';
     }
 ])
