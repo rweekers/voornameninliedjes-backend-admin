@@ -131,6 +131,19 @@ public class MainController {
 	}
 
 	/**
+	 * Returns the number of songs for the given filtercriteria
+	 * 
+	 * @return number of songs
+	 */
+	@RequestMapping(value = "song/count", method = RequestMethod.GET)
+	@ResponseBody
+	public long songCount(
+			@RequestParam(value = "filterArtist", required = false) String filterArtist,
+			@RequestParam(value = "filterTitle", required = false) String filterTitle) {
+		return songService.getCount(filterArtist, filterTitle);
+	}
+
+	/**
 	 * Returns all songs
 	 * 
 	 * @return all songs
@@ -166,7 +179,7 @@ public class MainController {
 	public Visit getVisitById(@PathVariable int id) {
 		return (Visit) visitService.get(id);
 	}
-	
+
 	/**
 	 * Gets a song by id
 	 * 

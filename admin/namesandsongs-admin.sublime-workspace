@@ -195,7 +195,8 @@
 	"expanded_folders":
 	[
 		"/D/Projects/namesandsongs/admin",
-		"/D/Projects/namesandsongs/admin/js"
+		"/D/Projects/namesandsongs/admin/js",
+		"/D/Projects/namesandsongs/admin/partials"
 	],
 	"file_history":
 	[
@@ -343,7 +344,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -359,8 +360,8 @@
 						"selection":
 						[
 							[
-								7857,
-								7857
+								1640,
+								1640
 							]
 						],
 						"settings":
@@ -373,7 +374,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -389,8 +390,8 @@
 						"selection":
 						[
 							[
-								817,
-								817
+								1012,
+								1012
 							]
 						],
 						"settings":
@@ -399,11 +400,11 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
-						"translation.y": 210.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -465,7 +466,7 @@
 		[
 			[
 				"",
-				"D:\\Projects\\namesandsongs\\frontend\\frontend.sublime-project"
+				"D:\\Projects\\namesandsongs\\namesandsongs-frontend\\namesandsongs-frontend.sublime-project"
 			]
 		],
 		"width": 380.0

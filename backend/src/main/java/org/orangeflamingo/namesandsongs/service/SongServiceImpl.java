@@ -88,7 +88,8 @@ public class SongServiceImpl implements SongService {
 	@Override
 	public List<Song> getAll(Integer count, Integer page, String sortingArtist,
 			String sortingTitle, String filterArtist, String filterTitle) {
-		logger.info("Retrieving all songs with params count " + count + " and page " + page);
+		logger.info("Retrieving all songs with params count " + count
+				+ " and page " + page);
 
 		if (count == null || count > 50) {
 			count = 50;
@@ -134,6 +135,40 @@ public class SongServiceImpl implements SongService {
 
 		List<Song> songs = query.list();
 		return songs;
+	}
+
+	/**
+	 * Gets the maximum number of songs from the database with the given filter
+	 * 
+	 * @return the max number of songs
+	 */
+	@Override
+	public long getCount(String filterArtist, String filterTitle) {
+		logger.info("Getting max number of songs with artist " + filterArtist
+				+ " and title " + filterTitle);
+
+		// Create a Hibernate query (HQL)
+		String queryString = "SELECT COUNT(1) FROM  Song song WHERE 1 = 1 ";
+
+		if (filterArtist != null && filterArtist.trim() != "") {
+			queryString = queryString + " AND lower(song.artist) like :artist";
+		}
+
+		if (filterTitle != null && filterTitle.trim() != "") {
+			queryString = queryString + " AND lower(song.title) like :title";
+		}
+
+		Query query = getCurrentSession().createQuery(queryString);
+		if (filterArtist != null && filterArtist.trim() != "") {
+			query.setParameter("artist", "%" + filterArtist.toLowerCase() + "%");
+		}
+		if (filterTitle != null && filterTitle.trim() != "") {
+			query.setParameter("title", "%" + filterTitle.toLowerCase() + "%");
+		}
+		long result = (Long) query.list().get(0);
+		logger.info("Number of songs is " + result);
+		return result;
+		// return (Long) query.list().get(0);
 	}
 
 	/**

@@ -26,4 +26,6 @@ public interface SongService {
 	public Object get(Integer id);
 
 	public void update(Song song);
+
+	long getCount(String filterArtist, String filterTitle);
 }
