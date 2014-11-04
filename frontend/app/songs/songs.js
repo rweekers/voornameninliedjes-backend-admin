@@ -9,8 +9,8 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
   });
 }])
 
-.controller('SongsCtrl', ['$scope', '$location', '$resource', 'Song', 'SongDetail', 
-    function($scope, $location, $resource, Song, SongDetail) {
+.controller('SongsCtrl', ['$scope', '$location', '$resource', '$http', 'Song',  
+    function($scope, $location, $resource, $http, Song) {
 
         $scope.sizes = [ {code: 5, name: '5'}, {code: 10, name: '10'}, {code: 20, name: '20'}, {code: 50, name: '50'}];
         $scope.count = $scope.sizes[1];
@@ -32,35 +32,11 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             });
         }
 
-        /*$scope.count = SongDetail.get({
-                                    filterArtist: 'Bob'
-        });*/
-
-        SongDetail.get({
-            filterArtist: 'Bob'
-        }).$promise.then(function(data) {
-            $scope.count = data;
-            console.log("Tweede test " + data);
-        }, function(errorResponse) {
-            console.log("Error...");
+        $http.get('/namesandsongs/api/song/count', {params: {filterArtist: 'Bob'}})
+            .success(function(data) {
+            $scope.max = data;
+            console.log("Count is " + data);
         });
-
-        /*
-        var User = $resource('/namesandsongs/api/song/count', {filterArtist:'@filterArtist'});
-        User.get({filterArtist:'Bob'})
-            .$promise.then(function(user) {
-            $scope.count = user;
-
-            var output = '';
-            for (var property in user) {
-                output += property + ': ' + user[property]+'; ';
-            }
-            console.log(output);
-
-            // console.log("Count is " + user);
-
-
-        });*/
 
         $scope.bla = function() {
             if ($scope.page == 0)
@@ -69,6 +45,14 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             }
             return false;
         };
+
+        $scope.bla2 = function() {
+            if (($scope.page + 1) * $scope.count > $scope.max )
+            {
+                return true;
+            }
+            return false;
+        }
 
         $scope.first = function() {
             // $scope.spice = 'chili';
@@ -92,7 +76,7 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
 
         $scope.next = function() {
             // $scope.spice = 'chili';
-            console.log("Called next");
+            console.log("Called next " + $scope.max);
             $scope.page++;
             $scope.update();
         };
@@ -101,11 +85,6 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             // $scope.spice = 'chili';
             console.log("Called last");
         };
-
-        // $scope.orderProp = 'ipAddress';
-        $scope.count.$promise.then(function (result){
-            console.log("Aantal records " + result);
-        });
     }
 ])
 
@@ -126,17 +105,4 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
              }
          });
      }
- ])
-
-.factory('SongDetail', ['$resource',
-    function($resource) {
-        return $resource('/namesandsongs/api/song/count', {}, {
-            get: {
-                method: 'GET',
-                params: {
-                    filterArtist: ''
-                }
-            }
-        });
-    }
-]);
+ ]);
