@@ -21,11 +21,11 @@
         <!--div class="dropdown"-->
         <div>
         	Items per page:
-  			<select class="form-control" ng-options="size as size.name for size in sizes " ng-model="item" ng-change="update()"></select>
+  			<select class="form-control" ng-options="size as size.name for size in sizes " ng-model="count" ng-change="update()"></select>
 		</div>
 		<div class="btn-group">
-  			<button type="button" class="btn btn-default" ng-click="first()">First</button>
-  			<button type="button" class="btn btn-default" ng-click="previous()">Previous</button>
+  			<button type="button" class="btn btn-default" ng-click="first()" ng-disabled="bla()">First</button>
+  			<button type="button" class="btn btn-default" ng-click="previous()" ng-disabled="bla()">Previous</button>
   			<button type="button" class="btn btn-default" ng-click="next()">Next</button>
   			<button type="button" class="btn btn-default" ng-click="last()">Last</button>
 		</div>

@@ -13,37 +13,58 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
     function($scope, $location, Song) {
 
         $scope.sizes = [ {code: 5, name: '5'}, {code: 10, name: '10'}, {code: 20, name: '20'}, {code: 50, name: '50'}];
-        $scope.count = 10;
+        $scope.count = $scope.sizes[1];
+        $scope.page = 0;
 
         $scope.songs = Song.query({
-                                    count: $scope.count,
-                                    page: 0,
+                                    count: $scope.count.code,
+                                    page: $scope.page,
                                     filterArtist: 'Bob'
         });
 
         $scope.update = function() {
-            console.log($scope.item.code, $scope.item.name);
-            $scope.count = $scope.item.code;
+            // console.log($scope.item.code, $scope.item.name);
+            // $scope.count = $scope.item.code;
             $scope.songs = Song.query({
-                                    count: $scope.count,
-                                    page: 0,
+                                    count: $scope.count.code,
+                                    page: $scope.page,
                                     filterArtist: 'Bob'
             });
         }
 
+        $scope.bla = function() {
+            if ($scope.page == 0)
+            {
+                return true;
+            }
+            return false;
+        };
+
         $scope.first = function() {
             // $scope.spice = 'chili';
             console.log("Called first");
+            if ($scope.page != 0)
+            {
+                $scope.page = 0;
+                $scope.update();
+            }
         };
 
         $scope.previous = function() {
             // $scope.spice = 'chili';
             console.log("Called previous");
+            if ($scope.page > 0)
+            {
+                $scope.page--;
+                $scope.update();
+            }
         };
 
         $scope.next = function() {
             // $scope.spice = 'chili';
             console.log("Called next");
+            $scope.page++;
+            $scope.update();
         };
 
         $scope.last = function() {
