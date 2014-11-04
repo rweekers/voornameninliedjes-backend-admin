@@ -17,7 +17,7 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
 
         $scope.songs = Song.query({
                                     count: $scope.count,
-                                    page: 1,
+                                    page: 0,
                                     filterArtist: 'Bob'
         });
 
@@ -26,10 +26,30 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             $scope.count = $scope.item.code;
             $scope.songs = Song.query({
                                     count: $scope.count,
-                                    page: 1,
+                                    page: 0,
                                     filterArtist: 'Bob'
             });
         }
+
+        $scope.first = function() {
+            // $scope.spice = 'chili';
+            console.log("Called first");
+        };
+
+        $scope.previous = function() {
+            // $scope.spice = 'chili';
+            console.log("Called previous");
+        };
+
+        $scope.next = function() {
+            // $scope.spice = 'chili';
+            console.log("Called next");
+        };
+
+        $scope.last = function() {
+            // $scope.spice = 'chili';
+            console.log("Called last");
+        };
 
         // $scope.orderProp = 'ipAddress';
     }

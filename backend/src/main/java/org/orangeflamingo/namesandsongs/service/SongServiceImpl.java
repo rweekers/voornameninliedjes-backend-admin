@@ -88,10 +88,10 @@ public class SongServiceImpl implements SongService {
 	@Override
 	public List<Song> getAll(Integer count, Integer page, String sortingArtist,
 			String sortingTitle, String filterArtist, String filterTitle) {
-		logger.info("Retrieving all songs with params");
+		logger.info("Retrieving all songs with params count " + count + " and page " + page);
 
-		if (count == null || count > 25) {
-			count = 25;
+		if (count == null || count > 50) {
+			count = 50;
 		}
 
 		int offset = 0;
