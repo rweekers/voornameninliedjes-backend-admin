@@ -47,7 +47,7 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         };
 
         $scope.bla2 = function() {
-            if (($scope.page + 1) * $scope.count > $scope.max )
+            if (($scope.page + 1) * $scope.count.code > $scope.max )
             {
                 return true;
             }
@@ -76,13 +76,15 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
 
         $scope.next = function() {
             // $scope.spice = 'chili';
-            console.log("Called next " + $scope.max);
+            console.log("Called next with max " + $scope.max + " and count " + $scope.count.code + " and page " + ($scope.page + 1));
             $scope.page++;
             $scope.update();
         };
 
         $scope.last = function() {
             // $scope.spice = 'chili';
+            $scope.page = Math.floor($scope.max / $scope.count.code);
+            $scope.update();
             console.log("Called last");
         };
     }
