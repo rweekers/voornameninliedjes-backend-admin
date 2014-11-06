@@ -19,7 +19,8 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         $scope.songs = Song.query({
                                     count: $scope.count.code,
                                     page: $scope.page,
-                                    filterArtist: 'Bob'
+                                    filterArtist: '',
+                                    filterTitle: ''
         });
 
         $scope.update = function() {
@@ -28,15 +29,38 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             $scope.songs = Song.query({
                                     count: $scope.count.code,
                                     page: $scope.page,
-                                    filterArtist: 'Bob'
+                                    filterArtist: $scope.artist,
+                                    filterTitle: $scope.title
             });
         }
 
-        $http.get('/namesandsongs/api/song/count', {params: {filterArtist: 'Bob'}})
+        $http.get('/namesandsongs/api/song/count', {params: {filterArtist: $scope.artist, filterTitle: $scope.title}})
             .success(function(data) {
             $scope.max = data;
             console.log("Count is " + data);
         });
+
+        $scope.filterArtist = function() {
+          console.log("The filter is " + $scope.artist);
+          $http.get('/namesandsongs/api/song/count', {params: {filterArtist: $scope.artist, filterTitle: $scope.title}})
+            .success(function(data) {
+            $scope.max = data;
+            console.log("Count is " + data);
+          });
+
+          $scope.update();
+        }
+
+        $scope.filterTitle = function() {
+          console.log("The filter is " + $scope.title);
+          $http.get('/namesandsongs/api/song/count', {params: {filterArtist: $scope.artist, filterTitle: $scope.title}})
+            .success(function(data) {
+            $scope.max = data;
+            console.log("Count is " + data);
+          });
+
+          $scope.update();
+        }
 
         $scope.bla = function() {
             if ($scope.page == 0)
