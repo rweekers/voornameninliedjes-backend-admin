@@ -89,7 +89,8 @@ public class SongServiceImpl implements SongService {
 	public List<Song> getAll(Integer count, Integer page, String sortingArtist,
 			String sortingTitle, String filterArtist, String filterTitle) {
 		logger.info("Retrieving all songs with params count " + count
-				+ " and page " + page);
+				+ " and page " + page + " and sortingArtist " + sortingArtist
+				+ " and sortingTitle " + sortingTitle);
 
 		if (count == null || count > 50) {
 			count = 50;
@@ -112,23 +113,30 @@ public class SongServiceImpl implements SongService {
 			queryString = queryString + " AND lower(song.title) like :title";
 		}
 
-		if (sortingArtist != null) {
-			queryString = queryString + " order by song.artist "
-					+ sortingArtist;
-		} else {
-			if (sortingTitle != null) {
-				queryString = queryString + " order by song.title  "
-						+ sortingTitle;
-			}
+		if (sortingArtist != null || sortingTitle != null) {
+			queryString = queryString + " order by ";
 		}
 
+		if (sortingArtist != null && !sortingArtist.trim().equals("")) {
+			queryString = queryString + " song.artist " + sortingArtist;
+		}
+		if (sortingTitle != null && !sortingTitle.trim().equals("")) {
+			if (sortingArtist != null && !sortingArtist.trim().equals("")) {
+				queryString = queryString + ", ";
+			}
+			queryString = queryString + " song.title  " + sortingTitle;
+		}
+
+		logger.info("QueryString: " + queryString);
 		Query query = getCurrentSession().createQuery(queryString);
+		logger.info("Query1: " + query.getQueryString());
 		if (filterArtist != null && filterArtist.trim() != "") {
 			query.setParameter("artist", "%" + filterArtist.toLowerCase() + "%");
 		}
 		if (filterTitle != null && filterTitle.trim() != "") {
 			query.setParameter("title", "%" + filterTitle.toLowerCase() + "%");
 		}
+		logger.info("Query2: " + query.getQueryString());
 
 		query.setFirstResult(offset);
 		query.setMaxResults(count);

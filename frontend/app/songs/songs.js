@@ -15,12 +15,14 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         $scope.sizes = [ {code: 5, name: '5'}, {code: 10, name: '10'}, {code: 20, name: '20'}, {code: 50, name: '50'}];
         $scope.count = $scope.sizes[1];
         $scope.page = 0;
+        $scope.sortTitle = 'asc';
 
         $scope.songs = Song.query({
                                     count: $scope.count.code,
                                     page: $scope.page,
                                     filterArtist: '',
-                                    filterTitle: ''
+                                    filterTitle: '',
+                                    sortingTitle: $scope.sortTitle
         });
 
         $scope.update = function() {
@@ -30,7 +32,8 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
                                     count: $scope.count.code,
                                     page: $scope.page,
                                     filterArtist: $scope.artist,
-                                    filterTitle: $scope.title
+                                    filterTitle: $scope.title,
+                                    sortingTitle: $scope.sortTitle
             });
         }
 
@@ -77,6 +80,20 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             }
             return false;
         }
+
+        $scope.sort = function() {
+            // $scope.spice = 'chili';
+            console.log("Sort " + $scope.sortTitle);
+            if ($scope.sortTitle == 'asc')
+            {
+              $scope.sortTitle = 'desc';
+            }
+            else
+            {
+              $scope.sortTitle = 'asc';
+            }
+            $scope.update();
+        };
 
         $scope.first = function() {
             // $scope.spice = 'chili';

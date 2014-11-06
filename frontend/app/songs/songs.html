@@ -10,7 +10,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<td><input type="text" class="form-control" name="title" id="title" ng-model="title" ng-change="filterTitle()"></td>
+				<td><input type="text" class="form-control" name="title" id="title" ng-model="title" ng-change="filterTitle()"><button type="button" class="btn btn-default" ng-click="sort()">Sort</button></td>
 				<td><input type="text" class="form-control" name="artist" id="artist" ng-model="artist" ng-blur="filterArtist()"></td>
 				<tr ng-repeat="song in songs">
 					<td><a href="#/song/{{song.id}}" class="thumb">{{song.title}}</a></td>
