@@ -19,6 +19,7 @@ angular.module('myApp.song', ['ngRoute', 'ngResource'])
         }).$promise.then(function(data) {
             $scope.song = data;
             console.log("Gotten song " + $scope.song.title);
+            /*
             $scope.mb = MBDetail.get()
             .$promise.then(function(data) {
                 var output = '';
@@ -28,7 +29,7 @@ angular.module('myApp.song', ['ngRoute', 'ngResource'])
                 console.log("Mmkay " + output);
             }, function(errorResponse) {
                 console.log("Error with MB...");
-            });
+            });*/
         }, function(errorResponse) {
             console.log("Error...");
         });
