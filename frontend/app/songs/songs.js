@@ -16,6 +16,7 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         $scope.count = $scope.sizes[1];
         $scope.page = 0;
         $scope.sortTitle = 'asc';
+        $scope.sortArtist = '';
 
         $scope.songs = Song.query({
                                     count: $scope.count.code,
@@ -33,7 +34,8 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
                                     page: $scope.page,
                                     filterArtist: $scope.artist,
                                     filterTitle: $scope.title,
-                                    sortingTitle: $scope.sortTitle
+                                    sortingTitle: $scope.sortTitle,
+                                    sortingArtist: $scope.sortArtist
             });
         }
 
@@ -81,9 +83,9 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             return false;
         }
 
-        $scope.sort = function() {
-            // $scope.spice = 'chili';
-            console.log("Sort " + $scope.sortTitle);
+        $scope.srtTitle = function() {
+            console.log("Sorting on title " + $scope.sortTitle);
+            $scope.sortArtist = '';
             if ($scope.sortTitle == 'asc')
             {
               $scope.sortTitle = 'desc';
@@ -92,6 +94,22 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             {
               $scope.sortTitle = 'asc';
             }
+            console.log("Sorting on title2 " + $scope.sortTitle);
+            $scope.update();
+        };
+
+        $scope.srtArtist = function() {
+            console.log("Sorting on artist");
+            $scope.sortTitle = '';
+            if ($scope.sortArtist == 'asc')
+            {
+              $scope.sortArtist = 'desc';
+            }
+            else
+            {
+              $scope.sortArtist = 'asc';
+            }
+            console.log("Sorting on artist2");
             $scope.update();
         };
 
