@@ -3,16 +3,15 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
   'myApp.about',
   'myApp.contact',
+  'myApp.home',
   'myApp.songs',
   'myApp.song',
   'myApp.version'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({redirectTo: '/home'});
 }])
 .controller('HeaderCtrl', function($scope, $location) {
     $scope.isActive = function(route) {
