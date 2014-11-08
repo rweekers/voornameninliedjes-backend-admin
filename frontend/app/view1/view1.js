@@ -9,6 +9,15 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$location', function($location) {
-	console.log('Blabla ' + $location.path());
+.controller('View1Ctrl', ['$location', '$http', '$scope', function($location, $http, $scope) {
+	var yetVisited = sessionStorage ? sessionStorage['visited'] : $.cookie('visited');
+    if (!yetVisited) 
+    {
+        // console.log('Storing visit ' + $location.path());
+		store($http);
+    }
+
+    // store visit for session
+    sessionStorage ? sessionStorage['visited'] = 'yes' : $.cookie('visited', 'yes');
+
 }]);

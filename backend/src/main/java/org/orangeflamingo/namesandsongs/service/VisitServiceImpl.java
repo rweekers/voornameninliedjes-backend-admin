@@ -100,7 +100,7 @@ public class VisitServiceImpl implements VisitService {
 	private void location(Visit visit, HttpServletRequest request) {
 		// A File object pointing to your GeoIP2 or GeoLite2 database
 		File database = new File(request.getServletContext().getRealPath("/")
-				+ "GeoLite2-City.mmdb");
+				+ "/GeoLite2-City.mmdb");
 
 		// This creates the DatabaseReader object, which should be reused across
 		// lookups.

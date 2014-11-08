@@ -19,3 +19,16 @@ config(['$routeProvider', function($routeProvider) {
         return route === $location.path();
     }
 });
+
+function store($http) {
+
+    $http({
+        // url: 'http://127.0.0.1:8180/voornaaminliedje/api/visit/add',
+        url: '/namesandsongs/api/visit/add',
+        method: "POST",
+        params: {
+            userAgent: navigator.userAgent
+        }
+    }).success(function(data) {})
+        .error(function(data) {});
+}
