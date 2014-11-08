@@ -16,7 +16,9 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         $scope.count = $scope.sizes[1];
         $scope.page = 0;
         $scope.sortTitle = 'asc';
+        $scope.sortT = 'glyphicon-sort-by-alphabet';
         $scope.sortArtist = '';
+        $scope.sortA = 'glyphicon-sort';
 
         $scope.songs = Song.query({
                                     count: $scope.count.code,
@@ -42,26 +44,24 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         $http.get('/namesandsongs/api/song/count', {params: {filterArtist: $scope.artist, filterTitle: $scope.title}})
             .success(function(data) {
             $scope.max = data;
-            console.log("Count is " + data);
+            // console.log("Count is " + data);
         });
 
         $scope.filterArtist = function() {
-          console.log("The filter is " + $scope.artist);
           $http.get('/namesandsongs/api/song/count', {params: {filterArtist: $scope.artist, filterTitle: $scope.title}})
             .success(function(data) {
             $scope.max = data;
-            console.log("Count is " + data);
+            // console.log("Count is " + data);
           });
 
           $scope.update();
         }
 
         $scope.filterTitle = function() {
-          console.log("The filter is " + $scope.title);
           $http.get('/namesandsongs/api/song/count', {params: {filterArtist: $scope.artist, filterTitle: $scope.title}})
             .success(function(data) {
             $scope.max = data;
-            console.log("Count is " + data);
+            // console.log("Count is " + data);
           });
 
           $scope.update();
@@ -84,38 +84,39 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         }
 
         $scope.srtTitle = function() {
-            console.log("Sorting on title " + $scope.sortTitle);
             $scope.sortArtist = '';
+            $scope.sortA = 'glyphicon-sort';
             if ($scope.sortTitle == 'asc')
             {
               $scope.sortTitle = 'desc';
+              $scope.sortT = 'glyphicon-sort-by-alphabet-alt';
             }
             else
             {
               $scope.sortTitle = 'asc';
+              $scope.sortT = 'glyphicon-sort-by-alphabet';
             }
-            console.log("Sorting on title2 " + $scope.sortTitle);
             $scope.update();
         };
 
         $scope.srtArtist = function() {
-            console.log("Sorting on artist");
             $scope.sortTitle = '';
+            $scope.sortT = 'glyphicon-sort';
             if ($scope.sortArtist == 'asc')
             {
               $scope.sortArtist = 'desc';
+              $scope.sortA = 'glyphicon-sort-by-alphabet-alt';
             }
             else
             {
               $scope.sortArtist = 'asc';
+              $scope.sortA = 'glyphicon-sort-by-alphabet';
             }
-            console.log("Sorting on artist2");
             $scope.update();
         };
 
         $scope.first = function() {
             // $scope.spice = 'chili';
-            console.log("Called first");
             if ($scope.page != 0)
             {
                 $scope.page = 0;
@@ -125,7 +126,6 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
 
         $scope.previous = function() {
             // $scope.spice = 'chili';
-            console.log("Called previous");
             if ($scope.page > 0)
             {
                 $scope.page--;
@@ -135,7 +135,6 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
 
         $scope.next = function() {
             // $scope.spice = 'chili';
-            console.log("Called next with max " + $scope.max + " and count " + $scope.count.code + " and page " + ($scope.page + 1));
             $scope.page++;
             $scope.update();
         };
@@ -143,8 +142,11 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         $scope.last = function() {
             // $scope.spice = 'chili';
             $scope.page = Math.floor($scope.max / $scope.count.code);
+            if ($scope.max % $scope.count.code == 0)
+            {
+              $scope.page--;
+            }
             $scope.update();
-            console.log("Called last");
         };
     }
 ])
