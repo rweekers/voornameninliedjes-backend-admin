@@ -9,6 +9,7 @@ angular.module('myApp.contact', ['ngRoute'])
   });
 }])
 
-.controller('ContactCtrl', [function() {
-
+.controller('ContactCtrl', ['$scope', function($scope) {
+	// console.log("Message " + e("info","namesandsongs",0,""));
+	$scope.email = e("info","namesandsongs",0,"");
 }]);

@@ -36,7 +36,7 @@
   <![endif]-->
 
   <h1 class="text-center">Names and Songs</h1>
-  <h1 class="text-center"><small>The collection songs with names in songtitles</small></h1>
+  <h1 class="text-center"><small>The collection of popsongs with names in songtitles</small></h1>
   <!-- Fixed navbar -->
   <div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="HeaderCtrl">
     <div class="container">
@@ -62,7 +62,9 @@
 
   <div ng-view></div>
 
-  <div>Angular seed app: v<span app-version></span></div>
+  <div class="footer text-center">
+    <p>&copy; 2014 by Remco Weekers</p>
+  </div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
@@ -76,6 +78,7 @@
   <script src="home/home.js"></script>
   <script src="song/song.js"></script>
   <script src="songs/songs.js"></script>
+  <script src="lib/email.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
