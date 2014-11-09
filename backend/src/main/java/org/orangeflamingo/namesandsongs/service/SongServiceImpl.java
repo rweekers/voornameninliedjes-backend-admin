@@ -88,9 +88,8 @@ public class SongServiceImpl implements SongService {
 	@Override
 	public List<Song> getAll(Integer count, Integer page, String sortingArtist,
 			String sortingTitle, String filterArtist, String filterTitle) {
-		logger.info("Retrieving all songs with params count " + count
-				+ " and page " + page + " and sortingArtist " + sortingArtist
-				+ " and sortingTitle " + sortingTitle);
+		logger.info("Retrieving all songs with filterArtist " + filterArtist
+				+ " and filterTitle " + filterTitle);
 
 		if (count == null || count > 50) {
 			count = 50;
@@ -127,16 +126,16 @@ public class SongServiceImpl implements SongService {
 			queryString = queryString + " song.title  " + sortingTitle;
 		}
 
-		logger.info("QueryString: " + queryString);
+		logger.debug("QueryString: " + queryString);
 		Query query = getCurrentSession().createQuery(queryString);
-		logger.info("Query1: " + query.getQueryString());
+		logger.debug("Query1: " + query.getQueryString());
 		if (filterArtist != null && filterArtist.trim() != "") {
 			query.setParameter("artist", "%" + filterArtist.toLowerCase() + "%");
 		}
 		if (filterTitle != null && filterTitle.trim() != "") {
 			query.setParameter("title", "%" + filterTitle.toLowerCase() + "%");
 		}
-		logger.info("Query2: " + query.getQueryString());
+		logger.debug("Query2: " + query.getQueryString());
 
 		query.setFirstResult(offset);
 		query.setMaxResults(count);
@@ -152,7 +151,7 @@ public class SongServiceImpl implements SongService {
 	 */
 	@Override
 	public long getCount(String filterArtist, String filterTitle) {
-		logger.info("Getting max number of songs with artist " + filterArtist
+		logger.debug("Getting max number of songs with artist " + filterArtist
 				+ " and title " + filterTitle);
 
 		// Create a Hibernate query (HQL)
@@ -174,7 +173,7 @@ public class SongServiceImpl implements SongService {
 			query.setParameter("title", "%" + filterTitle.toLowerCase() + "%");
 		}
 		long result = (Long) query.list().get(0);
-		logger.info("Number of songs is " + result);
+		logger.debug("Number of songs is " + result);
 		return result;
 		// return (Long) query.list().get(0);
 	}
@@ -187,7 +186,7 @@ public class SongServiceImpl implements SongService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Song> getAll() {
-		logger.info("Retrieving all songs");
+		logger.debug("Retrieving all songs");
 
 		// Create a Hibernate query (HQL)
 		Query query = getCurrentSession().createQuery(
@@ -204,7 +203,7 @@ public class SongServiceImpl implements SongService {
 		// Retrieve existing song first
 		logger.debug("Calling getSong() with the id " + id);
 		Song song = (Song) getCurrentSession().get(Song.class, id);
-		logger.info("Gotten song " + song.getTitle());
+		logger.debug("Gotten song " + song.getTitle());
 		return song;
 	}
 

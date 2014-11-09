@@ -50,7 +50,7 @@ public class VisitServiceImpl implements VisitService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Visit> getAll() {
-		logger.info("Retrieving all visits");
+		logger.debug("Retrieving all visits");
 
 		// Create a Hibernate query (HQL)
 		Query query = getCurrentSession().createQuery(
@@ -112,7 +112,7 @@ public class VisitServiceImpl implements VisitService {
 			// "country".
 			// CityResponse response =
 			// reader.city(InetAddress.getByName("128.101.101.101"));
-			logger.info("Het ipadres is " + visit.getIpAddress());
+			logger.debug("Het ipadres is " + visit.getIpAddress());
 			CityResponse response;
 			if (visit.getIpAddress().equals("127.0.0.1")) {
 				response = reader

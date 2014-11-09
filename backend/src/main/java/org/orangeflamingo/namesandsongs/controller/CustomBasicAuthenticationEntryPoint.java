@@ -29,7 +29,7 @@ public class CustomBasicAuthenticationEntryPoint extends
 			final HttpServletResponse response,
 			final AuthenticationException authException) throws IOException,
 			ServletException {
-		logger.info("CustomBasicAuthentication ontvangt request: "
+		logger.debug("CustomBasicAuthentication ontvangt request: "
 				+ request.getRequestURL() + " met methode: "
 				+ request.getMethod());
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED,

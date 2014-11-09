@@ -84,7 +84,7 @@ public class MainController {
 	@RequestMapping(value = "song/al", method = RequestMethod.GET)
 	@ResponseBody
 	public Song songAll2() {
-		logger.info("Calling dummy random song function for song/al");
+		logger.debug("Calling dummy random song function for song/al");
 		return songService.getYouCanCallMeAl();
 	}
 
@@ -242,18 +242,23 @@ public class MainController {
 	 * @param argument
 	 *            the search argument
 	 */
-	@RequestMapping(value = "admin/searchInstruction/add", method = RequestMethod.GET)
+	@RequestMapping(value = "searchInstruction/add", method = RequestMethod.POST)
 	@ResponseBody
-	public void addSearchInstruction(
+	public SearchInstruction addSearchInstruction(
 			@RequestParam(value = "argument") String argument,
-			@RequestParam(value = "ipAddress", defaultValue = "") String ipAddress) {
+			HttpServletRequest request) {
 		logger.debug("Received request to add new searchInstruction");
+		String ipAddress = request.getHeader("X-FORWARDED-FOR");
+		if (ipAddress == null) {
+			ipAddress = request.getRemoteAddr();
+		}
 		SearchInstruction searchInstruction = new SearchInstruction();
 		searchInstruction.setArgument(argument);
 		searchInstruction.setIpAddress(ipAddress);
 		searchInstruction.setDateInserted(new Timestamp(System
 				.currentTimeMillis()));
 		searchInstructionService.add(searchInstruction);
+		return searchInstruction;
 	}
 
 	/**

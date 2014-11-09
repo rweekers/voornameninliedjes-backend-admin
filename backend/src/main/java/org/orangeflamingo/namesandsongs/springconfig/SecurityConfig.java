@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		logger.info("Configuring securityconfig...");
+		logger.debug("Configuring securityconfig...");
 
 		// TODO Check if http.exceptionHandling weg kan
 		// (https://jira.spring.io/browse/SEC-2198)
@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public BasicAuthenticationEntryPoint entryPoint() {
 		BasicAuthenticationEntryPoint basicAuthenticationEntryPoint = new CustomBasicAuthenticationEntryPoint(
 				"RealmName");
-		logger.info("Creating BasicAuthenticationEntryPoint bean");
+		logger.debug("Creating BasicAuthenticationEntryPoint bean");
 		basicAuthenticationEntryPoint.setRealmName("Basic WF Realm");
 		return basicAuthenticationEntryPoint;
 	}

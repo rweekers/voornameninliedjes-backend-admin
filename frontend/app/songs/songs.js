@@ -53,7 +53,11 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             $scope.max = data;
             // console.log("Count is " + data);
           });
-
+          if ($scope.artist)
+          {
+            storeSearchInstruction($http, 'Artist: ' + $scope.artist);
+          }
+          $scope.page = 0;
           $scope.update();
         }
 
@@ -63,7 +67,11 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             $scope.max = data;
             // console.log("Count is " + data);
           });
-
+          if ($scope.title)
+          {
+            storeSearchInstruction($http, 'Title: ' + $scope.title);
+          }
+          $scope.page = 0;
           $scope.update();
         }
 

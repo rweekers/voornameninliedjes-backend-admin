@@ -31,3 +31,14 @@ function store($http) {
     }).success(function(data) {})
         .error(function(data) {});
 }
+
+function storeSearchInstruction($http, argument) {
+    $http({
+        url: '/namesandsongs/api/searchInstruction/add',
+        method: 'POST',
+        params: {
+            argument: argument
+        }
+    }).success(function(data) {})
+    .error(function(data) {});
+}
