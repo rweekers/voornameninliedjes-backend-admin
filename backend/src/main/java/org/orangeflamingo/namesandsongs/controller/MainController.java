@@ -164,6 +164,7 @@ public class MainController {
 	public List<Visit> allVisits(
 			@RequestParam(value = "count", required = false) Integer count,
 			@RequestParam(value = "page", required = false) Integer page) {
+		logger.debug("Retrieving visits...");
 		return visitService.getAll();
 	}
 
