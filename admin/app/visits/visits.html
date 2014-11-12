@@ -6,37 +6,18 @@
 			<thead>
 				<tr>
 					<td>IP Address</td>
-					<th>Country</th>
 					<th>Browser</th>
 					<th>Operating system</th>
-					<th>Date</th>
-					<!--th>Artist</th-->
 				</tr>
 			</thead>
 			<tbody>
-				<!--td><div class="input-group"><input type="text" class="form-control" name="title" id="title" ng-model="title" ng-blur="filterTitle()">
-				<span class="input-group-btn"><button type="button" class="btn btn-default" ng-click="srtTitle()"><span class="glyphicon {{sortT}}"></span></button></span></div></td>
-				<td><div class="input-group"><input type="text" class="form-control" name="artist" id="artist" ng-model="artist" ng-blur="filterArtist()"><span class="input-group-btn"><button type="button" class="btn btn-default" ng-click="srtArtist()"><span class="glyphicon {{sortA}}"></span></button></span></div></td-->
 				<tr ng-repeat="visit in visits">
 					<td><a href="#/visits/{{visit.id}}" class="thumb">{{visit.ipAddress}}</a></td>
-          			<td>{{visit.country}}</td>
 		          	<td>{{visit.browser}}</td>
         		  	<td>{{visit.operatingSystem}}</td>
-          		  	<td>{{visit.dateInserted | date:'dd-MM-yyyy HH:mm:ss'}}</td>
-
+          		  	<!--td>{{visit.dateInserted | date:'dd-MM-yyyy HH:mm:ss'}}</td-->
 				</tr>
 			</tbody>
 		</table>
-        <!--div class="dropdown"-->
-        <!--div>
-        	Items per page:
-  			<select class="form-control" ng-options="size as size.name for size in sizes " ng-model="count" ng-change="update()"></select>
-		</div>
-		<div class="btn-group">
-  			<button type="button" class="btn btn-default" ng-click="first()" ng-disabled="bla()">First</button>
-  			<button type="button" class="btn btn-default" ng-click="previous()" ng-disabled="bla()">Previous</button>
-  			<button type="button" class="btn btn-default" ng-click="next()" ng-disabled="bla2()">Next</button>
-  			<button type="button" class="btn btn-default" ng-click="last()" ng-disabled="bla2()">Last</button>
-		</div-->
 	</div>
 </div> <!-- /container -->

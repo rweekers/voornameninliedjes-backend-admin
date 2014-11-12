@@ -9,6 +9,7 @@ angular.module('myApp', [
   'myApp.searches',
   'myApp.suggestions',
   'myApp.login',
+  'myApp.error',
   'myApp.version'
 ]).
 config(['$routeProvider', function($routeProvider) {
@@ -136,8 +137,21 @@ config(['$routeProvider', function($routeProvider) {
     };
 })
 
+.factory('ErrorService', function() {
+    return {
+        errorMessage: null,
+        setError: function(msg) {
+            console.log("Setting error " + msg);
+            this.errorMessage = msg;
+        },
+        clear: function() {
+            this.errorMessage = null;
+        }
+    };
+})
+
 // register the interceptor as a service
-.factory('errorHttpInterceptor', function($q, $location, $cookieStore) {
+.factory('errorHttpInterceptor', function($q, $location, $cookieStore, ErrorService) {
     return {
         // optional method
         'responseError': function(rejection) {
@@ -146,16 +160,15 @@ config(['$routeProvider', function($routeProvider) {
             console.log("Cookie aanwezig? " + $cookieStore.get('authdata'));
             if (rejection.status == 401) {
                 if ($cookieStore.get('authdata')) {
-                    console.log('Gebruikersnaam en/of wachtwoord onjuist');
+                    ErrorService.setError('Code: ' + rejection.status + ' Please provide the correct username/password');
                 } else {
-                    console.log('Je moet ingelogd zijn om de pagina te raadplegen');
+                    ErrorService.setError('Code: ' + rejection.status + ' Please login');
                 }
                 $location.path('/login');
             } else {
-                console.log('Meld admin@namesandsongs.com de volgende fout: ' + rejection.status);
+                ErrorService.setError(rejection.status);
                 $location.path('/error')
             }
-            // console.log("Response error is set? " + ErrorService.errorMessage);
             return $q.reject(rejection);
         }
     };

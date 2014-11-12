@@ -9,7 +9,9 @@ angular.module('myApp.login', ['ngRoute'])
   });
 }])
 
-.controller('LoginCtrl', ['$scope', 'Auth', function($scope, Auth) {
+.controller('LoginCtrl', ['$scope', 'Auth', 'ErrorService', function($scope, Auth, ErrorService) {
+	$scope.b = ErrorService.errorMessage;
+
 	$scope.login = function() {
 		Auth.clearCredentials();
 		console.log("Logging in for " + $scope.username);
