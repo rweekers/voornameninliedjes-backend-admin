@@ -9,6 +9,10 @@ angular.module('myApp.login', ['ngRoute'])
   });
 }])
 
-.controller('LoginCtrl', [function() {
-
+.controller('LoginCtrl', ['$scope', 'Auth', function($scope, Auth) {
+	$scope.login = function() {
+		Auth.clearCredentials();
+		console.log("Logging in for " + $scope.username);
+		Auth.setCredentials($scope.username, $scope.password);
+	}
 }]);
