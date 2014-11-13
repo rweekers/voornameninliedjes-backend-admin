@@ -42,7 +42,7 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 		// Create a Hibernate query (HQL)
 		Query query = getCurrentSession()
 				.createQuery(
-						"FROM  SearchInstruction searchInstruction order by searchInstruction.id");
+						"FROM  SearchInstruction searchInstruction order by searchInstruction.id desc");
 
 		// Retrieve all
 		return query.list();

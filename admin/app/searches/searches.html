@@ -1,7 +1,22 @@
-<div class="container text-center">
-	<p>This is the partial for searches.</p>
-	<p>
-  	Showing of 'interpolate' filter:
-  	{{ 'Current version is v%VERSION%.' | interpolate }}
-	</p>
-</div>
+<div class="container">
+	<!-- Main component for a primary marketing message or call to action -->
+	<div class="jumbotron" ng-controller="SongsCtrl">
+		<h1>Searches</h1>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td>IP address</td>
+					<th>Argument</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="search in searches">
+					<td><a href="#/searches/{{search.id}}" class="thumb">{{search.ipAddress}}</a></td>
+		          	<td>{{search.argument}}</td>
+		          	<td>{{search.dateInserted | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div> <!-- /container -->

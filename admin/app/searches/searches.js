@@ -9,6 +9,21 @@ angular.module('myApp.searches', ['ngRoute'])
   });
 }])
 
-.controller('SearchesCtrl', [function() {
+.controller('SearchesCtrl', ['$scope', 'Search', 
+	function($scope, Search) {
 
-}]);
+		$scope.searches = Search.query();
+
+}])
+
+.factory('Search', ['Auth', '$http', '$resource',
+    function(Auth, $http, $resource) {
+
+        return $resource('/namesandsongs/api/admin/searchInstruction/all', {}, {
+            query: {
+                method: 'GET',
+                isArray: true
+            }
+        });
+    }
+]);
