@@ -37,6 +37,7 @@ namesandsongs-admin/namesandsongs-admin.sublime-workspace
 frontend/frontend.sublime-workspace
 npm-debug.log
 backend/target
+backend/backend.sublime-workspace
 frontend/node_modules
 frontend/LICENCE
 frontend/README.md
