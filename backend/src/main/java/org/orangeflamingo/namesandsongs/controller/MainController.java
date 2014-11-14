@@ -229,11 +229,12 @@ public class MainController {
 
 	@RequestMapping(value = "admin/songs/{id}", method = RequestMethod.POST)
 	@ResponseBody
-	public void updateSong(@PathVariable int id,
+	public Song updateSong(@PathVariable int id,
 			@RequestBody(required = true) Song song) {
 		logger.info("Update request for admin/songs/" + song.getId()
 				+ " with description: " + song);
 		songService.update(song);
+		return song;
 	}
 
 	/**
