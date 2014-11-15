@@ -6,6 +6,7 @@ angular.module('myApp', [
   'ngCookies',
   'myApp.visits',
   'myApp.songs',
+  'myApp.songAdd',
   'myApp.songEdit',
   'myApp.searches',
   'myApp.suggestions',
