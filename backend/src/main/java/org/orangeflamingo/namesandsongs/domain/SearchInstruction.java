@@ -11,60 +11,92 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * For a complete reference see
- * <a
- * href="http://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/">
- * Hibernate Annotations Communit Documentations</a>
+ * For a complete reference see <a href=
+ * "http://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/"
+ * > Hibernate Annotations Communit Documentations</a>
  */
 @Entity
 @Table(name = "searchInstruction")
 public class SearchInstruction implements Serializable {
 
-    private static final long serialVersionUID = -7149957706738879274L;
-    
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Integer id;
+	private static final long serialVersionUID = -7149957706738879274L;
 
-    @Column(name = "argument")
-    private String argument;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @Column(name = "ipAddress")
-    private String ipAddress;
+	@Column(name = "argument")
+	private String argument;
 
-    @Column(name = "date_inserted")
-    private Timestamp dateInserted;
+	@Column(name = "ipAddress")
+	private String ipAddress;
 
-    public Integer getId() {
-        return id;
-    }
+	@Column(name = "browser")
+	private String browser;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	@Column(name = "operatingSystem")
+	private String operatingSystem;
 
-    public String getArgument() {
-        return argument;
-    }
+	@Column(name = "userAgent")
+	private String userAgent;
 
-    public void setArgument(String argument) {
-        this.argument = argument;
-    }
+	@Column(name = "date_inserted")
+	private Timestamp dateInserted;
 
-    public String getIpAddress() {
-        return ipAddress;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Timestamp getDateInserted() {
-        return dateInserted;
-    }
+	public String getArgument() {
+		return argument;
+	}
 
-    public void setDateInserted(Timestamp dateInserted) {
-        this.dateInserted = dateInserted;
-    }
+	public void setArgument(String argument) {
+		this.argument = argument;
+	}
+
+	public String getIpAddress() {
+		return ipAddress;
+	}
+
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
+	}
+
+	public String getBrowser() {
+		return browser;
+	}
+
+	public void setBrowser(String browser) {
+		this.browser = browser;
+	}
+
+	public String getOperatingSystem() {
+		return operatingSystem;
+	}
+
+	public void setOperatingSystem(String operatingSystem) {
+		this.operatingSystem = operatingSystem;
+	}
+
+	public String getUserAgent() {
+		return userAgent;
+	}
+
+	public void setUserAgent(String userAgent) {
+		this.userAgent = userAgent;
+	}
+
+	public Timestamp getDateInserted() {
+		return dateInserted;
+	}
+
+	public void setDateInserted(Timestamp dateInserted) {
+		this.dateInserted = dateInserted;
+	}
 }

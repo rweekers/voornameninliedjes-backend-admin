@@ -248,6 +248,7 @@ public class MainController {
 	@ResponseBody
 	public SearchInstruction addSearchInstruction(
 			@RequestParam(value = "argument") String argument,
+			@RequestParam(value = "userAgent", defaultValue = "") String userAgent,
 			HttpServletRequest request) {
 		logger.debug("Received request to add new searchInstruction");
 		String ipAddress = request.getHeader("X-FORWARDED-FOR");
@@ -257,6 +258,7 @@ public class MainController {
 		SearchInstruction searchInstruction = new SearchInstruction();
 		searchInstruction.setArgument(argument);
 		searchInstruction.setIpAddress(ipAddress);
+		searchInstruction.setUserAgent(userAgent);
 		searchInstruction.setDateInserted(new Timestamp(System
 				.currentTimeMillis()));
 		searchInstructionService.add(searchInstruction);

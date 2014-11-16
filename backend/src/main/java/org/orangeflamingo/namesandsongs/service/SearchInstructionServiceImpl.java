@@ -2,6 +2,10 @@ package org.orangeflamingo.namesandsongs.service;
 
 import java.util.List;
 
+import net.sf.uadetector.ReadableUserAgent;
+import net.sf.uadetector.UserAgentStringParser;
+import net.sf.uadetector.service.UADetectorServiceFactory;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -74,6 +78,14 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 	public void add(SearchInstruction searchInstruction) {
 		logger.debug("Adding new searchInstruction");
 
+		UserAgentStringParser parser = UADetectorServiceFactory
+				.getResourceModuleParser();
+		ReadableUserAgent agent = parser.parse(searchInstruction.getUserAgent());
+		searchInstruction.setBrowser(agent.getProducer() + " " + agent.getName() + " "
+				+ agent.getVersionNumber().toVersionString());
+		searchInstruction.setOperatingSystem(agent.getOperatingSystem().getProducer() + " "
+				+ agent.getOperatingSystem().getName());
+		
 		// Retrieve session from Hibernate
 		Session session = getCurrentSession();
 		// Save

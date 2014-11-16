@@ -37,7 +37,8 @@ function storeSearchInstruction($http, argument) {
         url: '/namesandsongs/api/searchInstruction/add',
         method: 'POST',
         params: {
-            argument: argument
+            argument: argument,
+            userAgent: navigator.userAgent
         }
     }).success(function(data) {})
     .error(function(data) {});
