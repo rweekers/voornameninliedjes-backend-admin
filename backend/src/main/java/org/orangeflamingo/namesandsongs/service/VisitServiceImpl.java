@@ -82,7 +82,7 @@ public class VisitServiceImpl implements VisitService {
 	 *            the visit to add
 	 */
 	public void add(Visit visit, HttpServletRequest request) {
-		logger.debug("Adding new visit");
+		logger.debug("Adding new visit " + visit.getUserAgent());
 		UserAgentStringParser parser = UADetectorServiceFactory
 				.getResourceModuleParser();
 		ReadableUserAgent agent = parser.parse(visit.getUserAgent());

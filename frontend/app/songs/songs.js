@@ -29,8 +29,6 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         });
 
         $scope.update = function() {
-            // console.log($scope.item.code, $scope.item.name);
-            // $scope.count = $scope.item.code;
             $scope.songs = Song.query({
                                     count: $scope.count.code,
                                     page: $scope.page,
@@ -44,14 +42,12 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         $http.get('/namesandsongs/api/song/count', {params: {filterArtist: $scope.artist, filterTitle: $scope.title}})
             .success(function(data) {
             $scope.max = data;
-            // console.log("Count is " + data);
         });
 
         $scope.filterArtist = function() {
           $http.get('/namesandsongs/api/song/count', {params: {filterArtist: $scope.artist, filterTitle: $scope.title}})
             .success(function(data) {
             $scope.max = data;
-            // console.log("Count is " + data);
           });
           if ($scope.artist)
           {
@@ -65,7 +61,6 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
           $http.get('/namesandsongs/api/song/count', {params: {filterArtist: $scope.artist, filterTitle: $scope.title}})
             .success(function(data) {
             $scope.max = data;
-            // console.log("Count is " + data);
           });
           if ($scope.title)
           {
@@ -124,7 +119,6 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         };
 
         $scope.first = function() {
-            // $scope.spice = 'chili';
             if ($scope.page != 0)
             {
                 $scope.page = 0;
@@ -133,7 +127,6 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         };
 
         $scope.previous = function() {
-            // $scope.spice = 'chili';
             if ($scope.page > 0)
             {
                 $scope.page--;
@@ -142,13 +135,11 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         };
 
         $scope.next = function() {
-            // $scope.spice = 'chili';
             $scope.page++;
             $scope.update();
         };
 
         $scope.last = function() {
-            // $scope.spice = 'chili';
             $scope.page = Math.floor($scope.max / $scope.count.code);
             if ($scope.max % $scope.count.code == 0)
             {
