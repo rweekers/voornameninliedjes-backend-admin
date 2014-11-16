@@ -12,7 +12,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="visit in visits">
-					<td><a href="#/visits/{{visit.id}}" class="thumb">{{visit.ipAddress}}</a></td>
+					<td><a href="#/visit/{{visit.id}}" class="thumb">{{visit.ipAddress}}</a></td>
 		          	<td>{{visit.browser}} - {{visit.operatingSystem}}</td>
           		  	<td>{{visit.dateInserted | date:'dd-MM-yyyy HH:mm:ss'}}</td>
 				</tr>

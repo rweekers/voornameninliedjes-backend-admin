@@ -4,6 +4,7 @@
 angular.module('myApp', [
   'ngRoute',
   'ngCookies',
+  'myApp.visit',
   'myApp.visits',
   'myApp.songs',
   'myApp.songAdd',
