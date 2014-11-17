@@ -16,7 +16,7 @@ angular.module('myApp.songs', ['ngRoute'])
 
 .factory('Song', ['$resource',
     function($resource) {
-        return $resource('/namesandsongs/api/admin/songs/:id', {
+        return $resource('/namesandsongs/api/admin/song/:id', {
             id: '@id'
         }, {
             query: {

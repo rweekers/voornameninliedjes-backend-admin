@@ -148,7 +148,7 @@ public class MainController {
 	 * 
 	 * @return all songs
 	 */
-	@RequestMapping(value = "admin/songs", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/song", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Song> allSongs() {
 		return songService.getAll();
@@ -201,13 +201,13 @@ public class MainController {
 	 *            the id of the song
 	 * @return the song
 	 */
-	@RequestMapping("admin/songs/{id}")
+	@RequestMapping("admin/song/{id}")
 	@ResponseBody
 	public Song getById(@PathVariable int id) {
 		return (Song) songService.get(id);
 	}
 
-	@RequestMapping(value = "admin/songs", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/song", method = RequestMethod.POST)
 	@ResponseBody
 	public void addSong(
 			@RequestParam(value = "artist", required = true) String artist,
@@ -227,7 +227,7 @@ public class MainController {
 		songService.add(song);
 	}
 
-	@RequestMapping(value = "admin/songs/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/song/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public Song updateSong(@PathVariable int id,
 			@RequestBody(required = true) Song song) {
@@ -314,7 +314,7 @@ public class MainController {
 	 * 
 	 * @return list with all searchInstructions
 	 */
-	@RequestMapping(value = "admin/searchInstruction/all", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/searchInstruction", method = RequestMethod.GET)
 	@ResponseBody
 	public List<SearchInstruction> allSearchInstructions() {
 		return searchInstructionService.getAll();
