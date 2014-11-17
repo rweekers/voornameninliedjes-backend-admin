@@ -159,7 +159,7 @@ public class MainController {
 	 * 
 	 * @return all visits
 	 */
-	@RequestMapping(value = "admin/visit/all", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/visit", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Visit> allVisits(
 			@RequestParam(value = "count", required = false) Integer count,

@@ -15,8 +15,6 @@ angular.module('myApp.songEdit', ['ngRoute'])
             id: $routeParams.songId
         });
 
-        console.log("Opening ctrl page");
-
         $scope.save = function() {
             console.log("Saving song by user " + $cookieStore.get('user'));
             $scope.song.userModified = $cookieStore.get('user');

@@ -9,24 +9,9 @@ angular.module('myApp.visit', ['ngRoute'])
   });
 }])
 
-.controller('VisitCtrl', ['$scope', '$location', '$cookieStore', 'Visit', 
+.controller('VisitCtrl', ['$scope', '$location', '$routeParams', '$cookieStore', 'Visit', 
     function($scope, $location, $routeParams, $cookieStore, Visit) {
-
-        console.log("Opening ctrl page for visitdetails");
-
-}]);
-
-/**.factory('VisitDetail', ['Auth', '$http', '$resource',
-    function(Auth, $http, $resource) {
-
-        return $resource('/namesandsongs/api/admin/visit/all', {}, {
-            query: {
-                method: 'GET',
-                params: {
-                    visitId: 'visits'
-                },
-                isArray: true
-            }
+        $scope.visit = Visit.get({
+            id: $routeParams.visitId
         });
-    }
-]);*/
+}]);
