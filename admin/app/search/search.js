@@ -9,7 +9,7 @@ angular.module('myApp.search', ['ngRoute'])
   });
 }])
 
-.controller('SearchCtrl', ['$scope', '$location', '$routeParams', '$cookieStore', 'Visit', 
+.controller('SearchCtrl', ['$scope', '$location', '$routeParams', '$cookieStore', 'Search', 
     function($scope, $location, $routeParams, $cookieStore, Search) {
         $scope.search = Search.get({
             id: $routeParams.searchId
