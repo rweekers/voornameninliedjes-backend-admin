@@ -51,7 +51,6 @@ function storeSearchInstruction($http, argument) {
 function storeVisit($location, $http) {
     var yetVisited = sessionStorage ? sessionStorage['visited'] : $.cookie('visited');
     if (!yetVisited) {
-        console.log('Storing visit ' + $location.path());
         store($http);
     }
 

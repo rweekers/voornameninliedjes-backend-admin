@@ -3,6 +3,7 @@ package org.orangeflamingo.namesandsongs.controller;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.naming.directory.SearchResult;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -318,5 +319,18 @@ public class MainController {
 	@ResponseBody
 	public List<SearchInstruction> allSearchInstructions() {
 		return searchInstructionService.getAll();
+	}
+
+	/**
+	 * Gets a searchInstruction by id
+	 * 
+	 * @param id
+	 *            the id of the searchInstruction
+	 * @return the searchInstruction
+	 */
+	@RequestMapping("admin/searchInstruction/{id}")
+	@ResponseBody
+	public SearchInstruction getSearchInstruction(@PathVariable int id) {
+		return (SearchInstruction) searchInstructionService.get(id);
 	}
 }

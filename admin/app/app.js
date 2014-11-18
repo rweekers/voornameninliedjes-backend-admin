@@ -9,6 +9,7 @@ angular.module('myApp', [
   'myApp.songs',
   'myApp.songAdd',
   'myApp.songEdit',
+  'myApp.search',
   'myApp.searches',
   'myApp.suggestions',
   'myApp.login',
