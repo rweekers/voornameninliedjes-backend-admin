@@ -12,6 +12,8 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
 .controller('SongsCtrl', ['$scope', '$location', '$resource', '$http', 'Song',  
     function($scope, $location, $resource, $http, Song) {
 
+        storeVisit($location, $http);
+
         $scope.sizes = [ {code: 5, name: '5'}, {code: 10, name: '10'}, {code: 20, name: '20'}, {code: 50, name: '50'}];
         $scope.count = $scope.sizes[1];
         $scope.page = 0;

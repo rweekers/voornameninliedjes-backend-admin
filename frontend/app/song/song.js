@@ -9,8 +9,10 @@ angular.module('myApp.song', ['ngRoute', 'ngResource'])
   });
 }])
 
-.controller('SongCtrl', ['$scope', '$location', '$routeParams', 'SongDetail', 'MBDetail',
-    function($scope, $location, $routeParams, SongDetail, MBDetail) {
+.controller('SongCtrl', ['$scope', '$location', '$http', '$routeParams', 'SongDetail', 'MBDetail',
+    function($scope, $location, $http, $routeParams, SongDetail, MBDetail) {
+
+        storeVisit($location, $http);
 
         console.log('Locatie song ' + $location.path());
 
