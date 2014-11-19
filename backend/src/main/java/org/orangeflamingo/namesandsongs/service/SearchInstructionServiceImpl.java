@@ -76,7 +76,7 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 	 * @param searchInstruction
 	 *            the searchInstruction to add
 	 */
-	public void add(SearchInstruction searchInstruction, Visit visit) {
+	public SearchInstruction add(SearchInstruction searchInstruction, Visit visit) {
 		logger.debug("Adding new searchInstruction");
 
 		UserAgentStringParser parser = UADetectorServiceFactory
@@ -93,5 +93,7 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 		Session session = getCurrentSession();
 		// Save
 		session.save(searchInstruction);
+		
+		return searchInstruction;
 	}
 }

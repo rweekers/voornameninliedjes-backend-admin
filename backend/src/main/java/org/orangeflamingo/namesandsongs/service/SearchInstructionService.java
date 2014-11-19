@@ -9,7 +9,7 @@ public interface SearchInstructionService {
 
 	public List<SearchInstruction> getAll();
 
-	public void add(SearchInstruction searchInstruction, Visit visit);
+	public SearchInstruction add(SearchInstruction searchInstruction, Visit visit);
 
 	public Object get(Integer id);
 }

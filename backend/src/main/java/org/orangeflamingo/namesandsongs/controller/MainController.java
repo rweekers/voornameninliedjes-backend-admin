@@ -3,7 +3,6 @@ package org.orangeflamingo.namesandsongs.controller;
 import java.sql.Timestamp;
 import java.util.List;
 
-import javax.naming.directory.SearchResult;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -267,8 +266,7 @@ public class MainController {
 		logger.info("Visit from country " + visit.getCity() + " and country "
 				+ visit.getCountry() + " found for searchInstruction.");
 
-		searchInstructionService.add(searchInstruction, visit);
-		return searchInstruction;
+		return searchInstructionService.add(searchInstruction, visit);
 	}
 
 	/**
