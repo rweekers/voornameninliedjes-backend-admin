@@ -262,6 +262,11 @@ public class MainController {
 		searchInstruction.setUserAgent(userAgent);
 		searchInstruction.setDateInserted(new Timestamp(System
 				.currentTimeMillis()));
+
+		Visit visit = visitService.findVisit(searchInstruction);
+		logger.info("Visit from country " + visit.getCity() + " and country "
+				+ visit.getCountry() + " found for searchInstruction.");
+
 		searchInstructionService.add(searchInstruction);
 		return searchInstruction;
 	}

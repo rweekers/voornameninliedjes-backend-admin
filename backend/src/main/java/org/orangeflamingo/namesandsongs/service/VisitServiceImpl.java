@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.orangeflamingo.namesandsongs.domain.SearchInstruction;
 import org.orangeflamingo.namesandsongs.domain.Visit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -95,6 +96,24 @@ public class VisitServiceImpl implements VisitService {
 		Session session = getCurrentSession();
 		// Save
 		session.save(visit);
+	}
+	
+	public Visit findVisit(SearchInstruction searchInstruction){
+		String queryString = "FROM  Visit visit WHERE 1 = 1 ";
+		
+		queryString = queryString + " AND visit.ipAddress = :ipAddress";
+		queryString = queryString + " AND visit.userAgent = :userAgent";
+
+		queryString = queryString + " order by visit.id desc";
+		
+		// Create a Hibernate query (HQL)
+		Query query = getCurrentSession().createQuery(queryString);
+		query.setParameter("ipAddress", searchInstruction.getIpAddress());
+		query.setParameter("userAgent", searchInstruction.getUserAgent());
+		query.setMaxResults(1);
+
+		// Retrieve Visit
+		return (Visit) query.list().get(0);
 	}
 
 	private void location(Visit visit, HttpServletRequest request) {
