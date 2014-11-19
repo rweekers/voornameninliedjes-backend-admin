@@ -1,4 +1,26 @@
-<p>Details van een liedje en zo, {{song.artist}} met {{song.title}}.</p>
-
-<h2>Background</h2>
-<p>{{song.background}}</p>
+<div class="container text-center" ng-controller="SongCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Details of <i> {{song.artist}} - {{song.title}}</i>
+            </h3>
+            <table class="table table-striped">
+                <tr>
+                    <td>Artist</td>
+                    <td>{{song.artist}}</td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>{{song.title}}</td>
+                </tr>
+                <tr>
+                    <td>Background</td>
+                    <td>{{song.background}}</td>
+                </tr>
+                <tr>
+                    <td>Youtube</td>
+                    <td>{{song.youtube}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

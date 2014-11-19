@@ -14,7 +14,7 @@
 				<span class="input-group-btn"><button type="button" class="btn btn-default" ng-click="srtTitle()"><span class="glyphicon {{sortT}}"></span></button></span></div></td>
 				<td><div class="input-group"><input type="text" class="form-control" name="artist" id="artist" ng-model="artist" ng-blur="filterArtist()"><span class="input-group-btn"><button type="button" class="btn btn-default" ng-click="srtArtist()"><span class="glyphicon {{sortA}}"></span></button></span></div></td>
 				<tr ng-repeat="song in songs">
-					<td><!--a href="#/song/{{song.id}}" class="thumb"-->{{song.title}}<!--/a--></td>
+					<td><a href="#/song/{{song.id}}" class="thumb">{{song.title}}</a></td>
 					<td>{{song.artist}}</td>
 				</tr>
 			</tbody>
