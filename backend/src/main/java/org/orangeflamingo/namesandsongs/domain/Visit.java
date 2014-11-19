@@ -3,12 +3,16 @@ package org.orangeflamingo.namesandsongs.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +30,9 @@ public class Visit implements Serializable {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
+	@OneToMany
+	private List<SearchInstruction> searchInstructions;
 
 	@Column(name = "ipAddress")
 	private String ipAddress;
@@ -63,6 +70,14 @@ public class Visit implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public List<SearchInstruction> getSearchInstructions() {
+		return searchInstructions;
+	}
+
+	public void setSearchInstructions(List<SearchInstruction> searchInstructions) {
+		this.searchInstructions = searchInstructions;
 	}
 
 	public String getIpAddress() {

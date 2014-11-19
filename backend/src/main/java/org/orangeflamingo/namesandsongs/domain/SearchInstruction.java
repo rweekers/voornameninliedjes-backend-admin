@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,6 +28,10 @@ public class SearchInstruction implements Serializable {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@ManyToOne
+	@JoinColumn(name = "visit_id")
+	private Visit visit;
 
 	@Column(name = "argument")
 	private String argument;
@@ -52,6 +59,14 @@ public class SearchInstruction implements Serializable {
 		this.id = id;
 	}
 
+	public Visit getVisit() {
+		return visit;
+	}
+
+	public void setVisit(Visit visit) {
+		this.visit = visit;
+	}
+	
 	public String getArgument() {
 		return argument;
 	}

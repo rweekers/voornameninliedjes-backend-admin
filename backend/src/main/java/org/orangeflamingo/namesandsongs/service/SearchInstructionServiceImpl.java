@@ -11,6 +11,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.orangeflamingo.namesandsongs.domain.SearchInstruction;
+import org.orangeflamingo.namesandsongs.domain.Visit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,7 +76,7 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 	 * @param searchInstruction
 	 *            the searchInstruction to add
 	 */
-	public void add(SearchInstruction searchInstruction) {
+	public void add(SearchInstruction searchInstruction, Visit visit) {
 		logger.debug("Adding new searchInstruction");
 
 		UserAgentStringParser parser = UADetectorServiceFactory
@@ -85,6 +86,8 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 				+ agent.getVersionNumber().toVersionString());
 		searchInstruction.setOperatingSystem(agent.getOperatingSystem().getProducer() + " "
 				+ agent.getOperatingSystem().getName());
+		
+		searchInstruction.setVisit(visit);
 		
 		// Retrieve session from Hibernate
 		Session session = getCurrentSession();
