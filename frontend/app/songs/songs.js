@@ -153,20 +153,42 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
 ])
 
 .factory('Song', ['$resource',
-     function($resource) {
-         return $resource('/namesandsongs/api/song/all', {}, {
-             query: {
-                 method: 'GET',
-                 params: {
-                     page: '',
-                     count: '',
-                     sortingArtist: '',
-                     sortingTitle: '',
-                     filterArtist: '',
-                     filterTitle: ''
-                 },
-                 isArray: true
-             }
-         });
-     }
- ]);
+    function($resource) {
+        return $resource('/namesandsongs/api/song/:id', {
+            id: '@id'
+        }, {
+            query: {
+                method: 'GET',
+                params: {
+                    page: '',
+                    count: '',
+                    sortingArtist: '',
+                    sortingTitle: '',
+                    filterArtist: '',
+                    filterTitle: ''
+                },
+                isArray: true
+            },
+            get: {
+                method: 'GET',
+                params: {
+                    id: ''
+                },
+                isArray: false
+            },
+            /*save: {
+                method: 'POST',
+                params: {
+                    title: ''
+                }
+            },*/
+            update: {
+                method: 'PUT',
+                params: {
+                    artist: '',
+                    title: ''
+                }
+            }
+        });
+    }
+]);

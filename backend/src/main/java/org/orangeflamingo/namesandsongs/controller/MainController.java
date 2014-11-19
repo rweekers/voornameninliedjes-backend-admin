@@ -118,7 +118,7 @@ public class MainController {
 	 * 
 	 * @return all songs
 	 */
-	@RequestMapping(value = "song/all", method = RequestMethod.GET)
+	@RequestMapping(value = "song", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Song> allSongsLimited(
 			@RequestParam(value = "count", required = false) Integer count,
