@@ -249,6 +249,7 @@ public class MainController {
 	public SearchInstruction addSearchInstruction(
 			@RequestParam(value = "argument") String argument,
 			@RequestParam(value = "userAgent", defaultValue = "") String userAgent,
+			Visit visit,
 			HttpServletRequest request) {
 		logger.debug("Received request to add new searchInstruction");
 		String ipAddress = request.getHeader("X-FORWARDED-FOR");
@@ -262,11 +263,12 @@ public class MainController {
 		searchInstruction.setDateInserted(new Timestamp(System
 				.currentTimeMillis()));
 
-		Visit visit = visitService.findVisit(searchInstruction);
+		// Visit visit = visitService.findVisit(searchInstruction);
 		logger.info("Visit from country " + visit.getCity() + " and country "
 				+ visit.getCountry() + " found for searchInstruction.");
+		searchInstruction.setVisit(visit);
 
-		return searchInstructionService.add(searchInstruction, visit);
+		return searchInstructionService.add(searchInstruction);
 	}
 
 	/**

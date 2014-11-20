@@ -76,7 +76,7 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 	 * @param searchInstruction
 	 *            the searchInstruction to add
 	 */
-	public SearchInstruction add(SearchInstruction searchInstruction, Visit visit) {
+	public SearchInstruction add(SearchInstruction searchInstruction) {
 		logger.debug("Adding new searchInstruction");
 
 		UserAgentStringParser parser = UADetectorServiceFactory
@@ -87,7 +87,7 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 		searchInstruction.setOperatingSystem(agent.getOperatingSystem().getProducer() + " "
 				+ agent.getOperatingSystem().getName());
 		
-		searchInstruction.setVisit(visit);
+		// searchInstruction.setVisit(visit);
 		
 		// Retrieve session from Hibernate
 		Session session = getCurrentSession();

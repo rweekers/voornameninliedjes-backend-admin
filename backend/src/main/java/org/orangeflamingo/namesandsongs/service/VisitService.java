@@ -11,7 +11,7 @@ public interface VisitService {
 
 	public List<Visit> getAll();
 
-	public void add(Visit visit, HttpServletRequest request);
+	public Visit add(Visit visit, HttpServletRequest request);
 	
 	public Visit findVisit(SearchInstruction searchInstruction);
 

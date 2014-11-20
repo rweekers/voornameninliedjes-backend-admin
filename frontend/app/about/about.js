@@ -11,8 +11,9 @@ angular.module('myApp.about', ['ngRoute'])
     }
 ])
 
-.controller('AboutCtrl', ['$location', '$http',
-    function($location, $http) {
+.controller('AboutCtrl', ['$location', '$http', 'Data', 
+    function($location, $http, Data) {
+        console.log("Check visit " + Data.visit.browser);
         storeVisit($location, $http);
     }
 ]);

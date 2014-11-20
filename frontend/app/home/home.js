@@ -11,8 +11,8 @@ angular.module('myApp.home', ['ngRoute'])
     }
 ])
 
-.controller('HomeCtrl', ['$location', '$http', '$scope',
-    function($location, $http, $scope) {
-        storeVisit($location, $http);
+.controller('HomeCtrl', ['$location', '$http', '$scope', 'Data',
+    function($location, $http, $scope, Data) {
+        storeVisit($location, $http, Data);
     }
 ]);

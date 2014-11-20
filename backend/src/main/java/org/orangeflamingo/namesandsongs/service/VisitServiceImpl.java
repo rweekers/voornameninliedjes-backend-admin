@@ -82,7 +82,7 @@ public class VisitServiceImpl implements VisitService {
 	 * @param visit
 	 *            the visit to add
 	 */
-	public void add(Visit visit, HttpServletRequest request) {
+	public Visit add(Visit visit, HttpServletRequest request) {
 		logger.debug("Adding new visit " + visit.getUserAgent());
 		UserAgentStringParser parser = UADetectorServiceFactory
 				.getResourceModuleParser();
@@ -96,6 +96,7 @@ public class VisitServiceImpl implements VisitService {
 		Session session = getCurrentSession();
 		// Save
 		session.save(visit);
+		return visit;
 	}
 	
 	public Visit findVisit(SearchInstruction searchInstruction){

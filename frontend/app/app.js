@@ -21,9 +21,22 @@ config(['$routeProvider',
         $scope.isActive = function(route) {
             return route === $location.path();
         }
+    })
+    .factory('Data', function() {
+        return {
+            visit: null,
+            setVisit: function(msg) {
+                console.log("Setting visit...");
+                this.visit = msg;
+            },
+            clear: function() {
+                console.log("Clearing visit");
+                this.visit = null;
+            }
+        };
     });
 
-function store($http) {
+function store($http, Data) {
 
     $http({
         // url: 'http://127.0.0.1:8180/voornaaminliedje/api/visit/add',
@@ -32,7 +45,10 @@ function store($http) {
         params: {
             userAgent: navigator.userAgent
         }
-    }).success(function(data) {})
+    }).success(function(data) {
+        console.log("Stored visit for " + data.ipAddress);
+        Data.setVisit(data);
+    })
         .error(function(data) {});
 }
 
@@ -45,13 +61,15 @@ function storeSearchInstruction($http, argument) {
             userAgent: navigator.userAgent
         }
     }).success(function(data) {})
-        .error(function(data) {});
+        .error(function(data) {
+            console.log("Error: " + data);
+        });
 }
 
-function storeVisit($location, $http) {
+function storeVisit($location, $http, Data) {
     var yetVisited = sessionStorage ? sessionStorage['visited'] : $.cookie('visited');
     if (!yetVisited) {
-        store($http);
+        store($http, Data);
     }
 
     // store visit for session
