@@ -12,13 +12,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * For a complete reference see <a href=
  * "http://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/"
  * > Hibernate Annotations Communit Documentations</a>
  */
 @Entity
-@Table(name = "searchInstruction")
+@Table(name = "searchinstruction")
 public class SearchInstruction implements Serializable {
 
 	private static final long serialVersionUID = -7149957706738879274L;
@@ -29,6 +31,7 @@ public class SearchInstruction implements Serializable {
 	private Integer id;
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "visit_id")
 	private Visit visit;
 

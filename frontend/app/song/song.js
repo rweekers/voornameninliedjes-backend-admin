@@ -2,17 +2,23 @@
 
 angular.module('myApp.song', ['ngRoute', 'ngResource'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/song/:songId', {
-    templateUrl: 'song/song.html',
-    controller: 'SongCtrl'
-  });
-}])
+.config(['$routeProvider',
+    function($routeProvider) {
+        $routeProvider.when('/song/:songId', {
+            templateUrl: 'song/song.html',
+            controller: 'SongCtrl'
+        });
+    }
+])
 
-.controller('SongCtrl', ['$scope', '$location', '$http', '$routeParams', 'SongDetail', 'MBDetail',
-    function($scope, $location, $http, $routeParams, SongDetail, MBDetail) {
+.controller('SongCtrl', ['$scope', '$location', '$http', '$routeParams', 'SongDetail', 'MBDetail', 'Data',
+    function($scope, $location, $http, $routeParams, SongDetail, MBDetail, Data) {
 
-        storeVisit($location, $http);
+        if (!Data.visit) {
+            storeVisit($http, Data);
+        }
+
+        console.log("Visit is " + Data.visit.browser);
 
         console.log('Locatie song ' + $location.path());
 
@@ -39,27 +45,28 @@ angular.module('myApp.song', ['ngRoute', 'ngResource'])
 ])
 
 .factory('SongDetail', ['$resource',
-     function($resource) {
-         return $resource('/namesandsongs/api/song/:id', {}, {
-             query: {
-                 method: 'GET',
-                 params: {
+    function($resource) {
+        return $resource('/namesandsongs/api/song/:id', {}, {
+            query: {
+                method: 'GET',
+                params: {
                     id: ''
-                 }
-             }
-         });
-     }
- ])
+                }
+            }
+        });
+    }
+])
 
 .factory('MBDetail', ['$resource',
-     function($resource) {
-         return $resource('http://musicbrainz.org/ws/2/work/?query=work:you%20can%20call%20me%20al&artist:paul%20simon', {}, {
-             query: {
-                 method: 'GET'/*,
+    function($resource) {
+        return $resource('http://musicbrainz.org/ws/2/work/?query=work:you%20can%20call%20me%20al&artist:paul%20simon', {}, {
+            query: {
+                method: 'GET'
+                /*,
                  params: {
                     id: ''
                  }*/
-             }
-         });
-     }
- ]);
+            }
+        });
+    }
+]);

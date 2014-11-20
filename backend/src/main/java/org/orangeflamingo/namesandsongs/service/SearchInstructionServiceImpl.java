@@ -29,6 +29,9 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Autowired
+	VisitService visitService;
 
 	private Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
@@ -76,7 +79,7 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 	 * @param searchInstruction
 	 *            the searchInstruction to add
 	 */
-	public SearchInstruction add(SearchInstruction searchInstruction) {
+	public SearchInstruction add(SearchInstruction searchInstruction, Integer visitId) {
 		logger.debug("Adding new searchInstruction");
 
 		UserAgentStringParser parser = UADetectorServiceFactory
@@ -87,13 +90,17 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 		searchInstruction.setOperatingSystem(agent.getOperatingSystem().getProducer() + " "
 				+ agent.getOperatingSystem().getName());
 		
-		// searchInstruction.setVisit(visit);
-		
 		// Retrieve session from Hibernate
-		Session session = getCurrentSession();
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		// searchInstruction.setVisit(visit);
+		// Visit v = (Visit)visitService.get(visitId);
+		Visit visit = (Visit) session.get(Visit.class, visitId);
+		searchInstruction.setVisit(visit);
 		// Save
 		session.save(searchInstruction);
-		
+		session.getTransaction().commit();
 		return searchInstruction;
 	}
 }

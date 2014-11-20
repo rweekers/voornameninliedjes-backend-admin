@@ -11,9 +11,12 @@ angular.module('myApp.about', ['ngRoute'])
     }
 ])
 
-.controller('AboutCtrl', ['$location', '$http', 'Data', 
+.controller('AboutCtrl', ['$location', '$http', 'Data',
     function($location, $http, Data) {
-        console.log("Check visit " + Data.visit.browser);
-        storeVisit($location, $http);
+        if (!Data.visit) {
+            storeVisit($http, Data);
+        }
+
+        console.log("Visit is " + Data.visit.browser + " with id " + Data.visit.id);
     }
 ]);

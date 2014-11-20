@@ -36,7 +36,7 @@ config(['$routeProvider',
         };
     });
 
-function store($http, Data) {
+function storeVisit($http, Data) {
 
     $http({
         // url: 'http://127.0.0.1:8180/voornaaminliedje/api/visit/add',
@@ -52,13 +52,17 @@ function store($http, Data) {
         .error(function(data) {});
 }
 
-function storeSearchInstruction($http, argument) {
+function storeSearchInstruction($http, argument, visit) {
+
+    console.log("Storing for searchinstruction " + visit.id);
+
     $http({
         url: '/namesandsongs/api/searchInstruction/add',
         method: 'POST',
         params: {
             argument: argument,
-            userAgent: navigator.userAgent
+            userAgent: navigator.userAgent,
+            visitId: visit.id
         }
     }).success(function(data) {})
         .error(function(data) {
@@ -66,6 +70,7 @@ function storeSearchInstruction($http, argument) {
         });
 }
 
+/*
 function storeVisit($location, $http, Data) {
     var yetVisited = sessionStorage ? sessionStorage['visited'] : $.cookie('visited');
     if (!yetVisited) {
@@ -74,4 +79,4 @@ function storeVisit($location, $http, Data) {
 
     // store visit for session
     sessionStorage ? sessionStorage['visited'] = 'yes' : $.cookie('visited', 'yes');
-}
+}*/

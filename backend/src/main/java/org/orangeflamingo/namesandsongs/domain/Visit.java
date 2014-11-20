@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * For a complete reference see <a href=
  * "http://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/"
@@ -29,7 +31,8 @@ public class Visit implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToMany
+	@OneToMany(mappedBy = "visit")
+	@JsonManagedReference
 	private List<SearchInstruction> searchInstructions;
 
 	@Column(name = "ipAddress")
