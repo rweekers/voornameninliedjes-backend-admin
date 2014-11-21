@@ -14,10 +14,14 @@ angular.module('myApp.contact', ['ngRoute'])
 .controller('ContactCtrl', ['$location', '$http', '$scope', 'Data', 
     function($location, $http, $scope, Data) {
         if (!Data.visit) {
-            storeVisit($http, Data);
+            if (!checkVisit()) {
+                storeVisit($http, Data);
+            } else {
+                // this can occur with a page refresh (checkVisit returns true but Data.visit is gone)
+                // find Visit
+                findVisit($http, Data);
+            }
         }
-
-        console.log("Visit is " + Data.visit.browser);
 
         // console.log("Message " + e("info","namesandsongs",0,""));
         $scope.email = e("info", "namesandsongs", 0, "");

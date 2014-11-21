@@ -22,6 +22,5 @@ angular.module('myApp.home', ['ngRoute'])
                 findVisit($http, Data);
             }
         }
-        $scope.visit = Data.visit;
     }
 ]);

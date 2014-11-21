@@ -15,12 +15,14 @@ angular.module('myApp.song', ['ngRoute', 'ngResource'])
     function($scope, $location, $http, $routeParams, SongDetail, MBDetail, Data) {
 
         if (!Data.visit) {
-            storeVisit($http, Data);
+            if (!checkVisit()) {
+                storeVisit($http, Data);
+            } else {
+                // this can occur with a page refresh (checkVisit returns true but Data.visit is gone)
+                // find Visit
+                findVisit($http, Data);
+            }
         }
-
-        console.log("Visit is " + Data.visit.browser);
-
-        console.log('Locatie song ' + $location.path());
 
         $scope.song = SongDetail.get({
             id: $routeParams.songId
