@@ -70,7 +70,9 @@ public class VisitServiceImpl implements VisitService {
 	public Visit get(Integer id) {
 		// Retrieve existing visit first
 		logger.debug("Calling get with the id " + id);
-		Visit visit = (Visit) getCurrentSession().get(Visit.class, id);
+		Session session = sessionFactory.openSession();
+		// Visit visit = (Visit) getCurrentSession().get(Visit.class, id);
+		Visit visit = (Visit) session.get(Visit.class, id);
 		logger.debug("Gotten visit " + visit.getIpAddress());
 		return visit;
 	}

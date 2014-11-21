@@ -65,11 +65,12 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 	 */
 	public SearchInstruction get(Integer id) {
 		// Retrieve existing searchInstruction first
-		logger.debug("Calling get searchInstruction with the id " + id);
+		logger.info("Calling get searchInstruction with the id " + id);
 		SearchInstruction searchInstruction = (SearchInstruction) getCurrentSession()
 				.get(SearchInstruction.class, id);
-		logger.debug("Gotten searchInstruction "
+		logger.info("Gotten searchInstruction "
 				+ searchInstruction.getArgument());
+		logger.info("Visit is " + searchInstruction.getVisit().getBrowser());
 		return searchInstruction;
 	}
 

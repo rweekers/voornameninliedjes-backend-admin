@@ -352,6 +352,9 @@ public class MainController {
 	@RequestMapping("admin/searchInstruction/{id}")
 	@ResponseBody
 	public SearchInstruction getSearchInstruction(@PathVariable int id) {
-		return (SearchInstruction) searchInstructionService.get(id);
+		SearchInstruction search = (SearchInstruction) searchInstructionService.get(id);
+		logger.info("Visit is " + search.getVisit().getBrowser());
+		return search;
+		// return (SearchInstruction) searchInstructionService.get(id);
 	}
 }
