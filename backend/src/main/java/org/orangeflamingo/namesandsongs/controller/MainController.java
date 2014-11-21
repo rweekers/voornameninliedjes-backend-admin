@@ -182,6 +182,27 @@ public class MainController {
 	}
 
 	/**
+	 * Gets a visit by ip address and useragent
+	 * 
+	 * @param ipAddress
+	 *            the ip address of the session
+	 * @param userAgent
+	 *            the useragent of the session
+	 * @return the visit
+	 */
+	@RequestMapping("visit/find")
+	@ResponseBody
+	public Visit findVisit(
+			@RequestParam(value = "userAgent", defaultValue = "") String userAgent,
+			HttpServletRequest request) {
+		String ipAddress = request.getHeader("X-FORWARDED-FOR");
+		if (ipAddress == null) {
+			ipAddress = request.getRemoteAddr();
+		}
+		return (Visit) visitService.findVisit(ipAddress, userAgent);
+	}
+
+	/**
 	 * Gets a song by id
 	 * 
 	 * @param id

@@ -70,13 +70,32 @@ function storeSearchInstruction($http, argument, visit) {
         });
 }
 
-/*
-function storeVisit($location, $http, Data) {
+function checkVisit() {
     var yetVisited = sessionStorage ? sessionStorage['visited'] : $.cookie('visited');
-    if (!yetVisited) {
-        store($http, Data);
-    }
 
     // store visit for session
     sessionStorage ? sessionStorage['visited'] = 'yes' : $.cookie('visited', 'yes');
-}*/
+
+    if (!yetVisited) {
+        console.log("Not yet visited");
+        return false;
+    }
+    return true;
+}
+
+function findVisit($http, Data) {
+    console.log("Finding visit...");
+
+    $http({
+        url: '/namesandsongs/api/visit/find',
+        method: 'GET',
+        params: {
+            userAgent: navigator.userAgent
+        }
+    }).success(function(data) {
+        Data.visit = data;
+    })
+        .error(function(data) {
+            console.log("Error: " + data);
+        });
+}
