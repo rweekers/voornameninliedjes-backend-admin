@@ -54,8 +54,6 @@ function storeVisit($http, Data) {
 
 function storeSearchInstruction($http, argument, visit) {
 
-    console.log("Storing for searchinstruction " + visit.id);
-
     $http({
         url: '/namesandsongs/api/searchInstruction/add',
         method: 'POST',

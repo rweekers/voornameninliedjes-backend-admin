@@ -24,8 +24,6 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             }
         }
 
-        console.log("Visit is " + Data.visit.browser);
-
         $scope.sizes = [{
             code: 5,
             name: '5'
