@@ -13,7 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+// import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * For a complete reference see <a href=
@@ -22,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
  */
 @Entity
 @Table(name = "visit")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Visit implements Serializable {
 
 	private static final long serialVersionUID = -7149957706738879275L;
@@ -32,7 +35,7 @@ public class Visit implements Serializable {
 	private Integer id;
 
 	@OneToMany(mappedBy = "visit")
-	@JsonManagedReference
+	// @JsonManagedReference
 	private List<SearchInstruction> searchInstructions;
 
 	@Column(name = "ipAddress")

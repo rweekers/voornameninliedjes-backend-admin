@@ -29,13 +29,9 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@Autowired
 	VisitService visitService;
-
-	private Session getCurrentSession() {
-		return sessionFactory.getCurrentSession();
-	}
 
 	/**
 	 * Retrieves all searchInstructions
@@ -47,10 +43,11 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 	public List<SearchInstruction> getAll() {
 		logger.debug("Retrieving all searchInstructions");
 
+		Session session = sessionFactory.openSession();
+
 		// Create a Hibernate query (HQL)
-		Query query = getCurrentSession()
-				.createQuery(
-						"FROM  SearchInstruction searchInstruction order by searchInstruction.id desc");
+		Query query = session
+				.createQuery("FROM  SearchInstruction searchInstruction order by searchInstruction.id desc");
 
 		// Retrieve all
 		return query.list();
@@ -65,12 +62,13 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 	 */
 	public SearchInstruction get(Integer id) {
 		// Retrieve existing searchInstruction first
-		logger.info("Calling get searchInstruction with the id " + id);
-		SearchInstruction searchInstruction = (SearchInstruction) getCurrentSession()
-				.get(SearchInstruction.class, id);
-		logger.info("Gotten searchInstruction "
+		logger.debug("Calling get searchInstruction with the id " + id);
+		Session session = sessionFactory.openSession();
+		SearchInstruction searchInstruction = (SearchInstruction) session.get(
+				SearchInstruction.class, id);
+		logger.debug("Gotten searchInstruction "
 				+ searchInstruction.getArgument());
-		logger.info("Visit is " + searchInstruction.getVisit().getBrowser());
+		logger.debug("Visit is " + searchInstruction.getVisit().getBrowser());
 		return searchInstruction;
 	}
 
@@ -80,21 +78,24 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 	 * @param searchInstruction
 	 *            the searchInstruction to add
 	 */
-	public SearchInstruction add(SearchInstruction searchInstruction, Integer visitId) {
+	public SearchInstruction add(SearchInstruction searchInstruction,
+			Integer visitId) {
 		logger.debug("Adding new searchInstruction");
 
 		UserAgentStringParser parser = UADetectorServiceFactory
 				.getResourceModuleParser();
-		ReadableUserAgent agent = parser.parse(searchInstruction.getUserAgent());
-		searchInstruction.setBrowser(agent.getProducer() + " " + agent.getName() + " "
+		ReadableUserAgent agent = parser
+				.parse(searchInstruction.getUserAgent());
+		searchInstruction.setBrowser(agent.getProducer() + " "
+				+ agent.getName() + " "
 				+ agent.getVersionNumber().toVersionString());
-		searchInstruction.setOperatingSystem(agent.getOperatingSystem().getProducer() + " "
-				+ agent.getOperatingSystem().getName());
-		
+		searchInstruction.setOperatingSystem(agent.getOperatingSystem()
+				.getProducer() + " " + agent.getOperatingSystem().getName());
+
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		
+
 		// searchInstruction.setVisit(visit);
 		// Visit v = (Visit)visitService.get(visitId);
 		Visit visit = (Visit) session.get(Visit.class, visitId);

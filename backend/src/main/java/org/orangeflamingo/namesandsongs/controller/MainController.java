@@ -353,7 +353,7 @@ public class MainController {
 	@ResponseBody
 	public SearchInstruction getSearchInstruction(@PathVariable int id) {
 		SearchInstruction search = (SearchInstruction) searchInstructionService.get(id);
-		logger.info("Visit is " + search.getVisit().getBrowser());
+		logger.debug("Visit is " + search.getVisit().getBrowser());
 		return search;
 		// return (SearchInstruction) searchInstructionService.get(id);
 	}

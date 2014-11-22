@@ -88,7 +88,7 @@ public class SongServiceImpl implements SongService {
 	@Override
 	public List<Song> getAll(Integer count, Integer page, String sortingArtist,
 			String sortingTitle, String filterArtist, String filterTitle) {
-		logger.info("Retrieving all songs with filterArtist " + filterArtist
+		logger.debug("Retrieving all songs with filterArtist " + filterArtist
 				+ " and filterTitle " + filterTitle);
 
 		if (count == null || count > 50) {

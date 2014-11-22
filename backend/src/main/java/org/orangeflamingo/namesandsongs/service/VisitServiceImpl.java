@@ -33,7 +33,8 @@ import com.maxmind.geoip2.model.CityResponse;
 @Transactional
 public class VisitServiceImpl implements VisitService {
 
-	protected static final Logger logger = Logger.getLogger(VisitServiceImpl.class);
+	protected static final Logger logger = Logger
+			.getLogger(VisitServiceImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -51,10 +52,11 @@ public class VisitServiceImpl implements VisitService {
 	@Override
 	public List<Visit> getAll() {
 		logger.debug("Retrieving all visits");
+		Session session = sessionFactory.openSession();
 
 		// Create a Hibernate query (HQL)
-		Query query = getCurrentSession().createQuery(
-				"FROM  Visit visit order by visit.id desc");
+		Query query = session
+				.createQuery("FROM  Visit visit order by visit.id desc");
 
 		// Retrieve all
 		return query.list();
@@ -99,15 +101,15 @@ public class VisitServiceImpl implements VisitService {
 		session.save(visit);
 		return visit;
 	}
-	
-	public Visit findVisit(String ipAddress, String userAgent){
+
+	public Visit findVisit(String ipAddress, String userAgent) {
 		String queryString = "FROM  Visit visit WHERE 1 = 1 ";
-		
+
 		queryString = queryString + " AND visit.ipAddress = :ipAddress";
 		queryString = queryString + " AND visit.userAgent = :userAgent";
 
 		queryString = queryString + " order by visit.id desc";
-		
+
 		// Create a Hibernate query (HQL)
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery(queryString);
