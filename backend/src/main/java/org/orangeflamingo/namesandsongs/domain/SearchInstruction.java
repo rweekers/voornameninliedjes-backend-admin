@@ -12,9 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-// import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  * For a complete reference see <a href=
@@ -23,7 +21,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 @Table(name = "searchinstruction")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class SearchInstruction implements Serializable {
 
 	private static final long serialVersionUID = -7149957706738879274L;
@@ -34,7 +31,7 @@ public class SearchInstruction implements Serializable {
 	private Integer id;
 	
 	@ManyToOne
-	// @JsonBackReference
+	@JsonBackReference
 	@JoinColumn(name = "visit_id")
 	private Visit visit;
 
