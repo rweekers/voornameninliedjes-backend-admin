@@ -1,0 +1,1 @@
+CREATE SEQUENCE remark_id_seq;

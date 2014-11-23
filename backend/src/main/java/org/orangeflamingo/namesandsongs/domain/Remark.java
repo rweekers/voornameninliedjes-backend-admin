@@ -1,0 +1,144 @@
+package org.orangeflamingo.namesandsongs.domain;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+/**
+ * For a complete reference see <a href=
+ * "http://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/"
+ * > Hibernate Annotations Communit Documentations</a>
+ */
+@Entity
+@Table(name = "remark")
+public class Remark implements Serializable {
+
+	private static final long serialVersionUID = 3031153761604281591L;
+
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name = "visit_id")
+	private Visit visit;
+
+	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name = "song_id")
+	private Song song;
+
+	@Column(name = "background")
+	private String background;
+
+	@Column(name = "youtube")
+	private String youtube;
+
+	@Column(name = "commentary")
+	private String commentary;
+
+	@Column(name = "email")
+	private String email;
+
+	@Column(name = "observer")
+	private String observer;
+
+	@Column(name = "date")
+	private Timestamp date;
+
+	@Column(name = "status")
+	private String status;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Visit getVisit() {
+		return visit;
+	}
+
+	public void setVisit(Visit visit) {
+		this.visit = visit;
+	}
+
+	public Song getSong() {
+		return song;
+	}
+
+	public void setSong(Song song) {
+		this.song = song;
+	}
+
+	public String getBackground() {
+		return background;
+	}
+
+	public void setBackground(String background) {
+		this.background = background;
+	}
+
+	public String getYoutube() {
+		return youtube;
+	}
+
+	public void setYoutube(String youtube) {
+		this.youtube = youtube;
+	}
+
+	public String getCommentary() {
+		return commentary;
+	}
+
+	public void setCommentary(String commentary) {
+		this.commentary = commentary;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getUser() {
+		return observer;
+	}
+
+	public void setUser(String user) {
+		this.observer = user;
+	}
+
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+}
