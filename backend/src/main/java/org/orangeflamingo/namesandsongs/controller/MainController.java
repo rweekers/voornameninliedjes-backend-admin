@@ -230,22 +230,16 @@ public class MainController {
 
 	@RequestMapping(value = "admin/song", method = RequestMethod.POST)
 	@ResponseBody
-	public void addSong(
-			@RequestParam(value = "artist", required = true) String artist,
-			@RequestParam(value = "title", required = true) String title,
-			@RequestParam(value = "firstname", required = true) String firstname,
-			@RequestParam(value = "nameIndex", required = true) Integer nameIndex,
-			@RequestParam(value = "nameLength", required = true) Integer nameLength,
-			@RequestParam(value = "userInserted", required = true) String userInserted) {
-		Song song = new Song();
-		song.setArtist(artist);
-		song.setTitle(title);
-		song.setFirstname(firstname);
+	public Song addSong(@RequestBody(required = true) Song song) {
+		int nameIndex = song.getTitle().indexOf(song.getFirstname());
+		if (nameIndex == -1) {
+			return null;
+		}
+		int nameLength = song.getFirstname().length();
 		song.setNameIndex(nameIndex);
 		song.setNameLength(nameLength);
 		song.setDateInserted(new Timestamp(System.currentTimeMillis()));
-		song.setUserInserted(userInserted);
-		songService.add(song);
+		return songService.add(song);
 	}
 
 	@RequestMapping(value = "admin/song/{id}", method = RequestMethod.POST)
@@ -352,7 +346,8 @@ public class MainController {
 	@RequestMapping("admin/searchInstruction/{id}")
 	@ResponseBody
 	public SearchInstruction getSearchInstruction(@PathVariable int id) {
-		SearchInstruction search = (SearchInstruction) searchInstructionService.get(id);
+		SearchInstruction search = (SearchInstruction) searchInstructionService
+				.get(id);
 		logger.debug("Visit is " + search.getVisit().getBrowser());
 		return search;
 		// return (SearchInstruction) searchInstructionService.get(id);

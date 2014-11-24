@@ -19,7 +19,7 @@ public interface SongService {
 
 	public long getMax();
 
-	public void add(Song song);
+	public Song add(Song song);
 
 	public void delete(Integer id);
 

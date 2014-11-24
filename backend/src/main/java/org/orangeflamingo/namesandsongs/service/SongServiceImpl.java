@@ -235,10 +235,11 @@ public class SongServiceImpl implements SongService {
 	/**
 	 * Adds a new song
 	 */
-	public void add(Song song) {
+	public Song add(Song song) {
 		logger.debug("Adding new song");
 		// Retrieve session from Hibernate and save song
 		getCurrentSession().save(song);
+		return song;
 	}
 
 	/**
