@@ -6,6 +6,7 @@ angular.module('myApp', [
     'myApp.about',
     'myApp.contact',
     'myApp.home',
+    'myApp.remark',
     'myApp.songs',
     'myApp.song',
     'myApp.version'
@@ -26,11 +27,9 @@ config(['$routeProvider',
         return {
             visit: null,
             setVisit: function(msg) {
-                console.log("Setting visit...");
                 this.visit = msg;
             },
             clear: function() {
-                console.log("Clearing visit");
                 this.visit = null;
             }
         };
@@ -75,15 +74,12 @@ function checkVisit() {
     sessionStorage ? sessionStorage['visited'] = 'yes' : $.cookie('visited', 'yes');
 
     if (!yetVisited) {
-        console.log("Not yet visited");
         return false;
     }
     return true;
 }
 
 function findVisit($http, Data) {
-    console.log("Finding visit...");
-
     $http({
         url: '/namesandsongs/api/visit/find',
         method: 'GET',
