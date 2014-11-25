@@ -26,8 +26,6 @@ angular.module('myApp.songAdd', ['ngRoute'])
         $scope.save = function() {
             console.log("Saving song by user " + $cookieStore.get('user'));
             $scope.song.userInserted = $cookieStore.get('user');
-            // $scope.song.$save();
-            // console.log("Song saved is " + $scope.song.title);
 
             $scope.song.$save(function(user) {
                 if (user.id) {
@@ -35,9 +33,7 @@ angular.module('myApp.songAdd', ['ngRoute'])
                     $location.path('/songs');
                 } else {
                     console.log("Song could not be saved");
-                    $scope.result = 'Blabla';
-                    // TODO keep on page
-                    // ??? $location.path('/songAdd');
+                    $scope.result = 'Please enter the firstname that is found in the title (case-sensitive)';
                 }
             });
 

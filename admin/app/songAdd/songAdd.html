@@ -1,10 +1,11 @@
 <div class="container" ng-controller="SongAddCtrl">
     <div class="row">
-        <div class="col-md-12">
-            <h3>Add song {{result}}</i>
-            </h3>
+        <div class="col-md-12 text-center">
+            <h2><i>Add song</i>
+            </h2>
         </div>
     </div>
+    <div ng-if="result" class="alert alert-warning text-center" role="alert">{{result}}.</a></div>
     <form class="form-horizontal" role="form" name="myForm">
         <div class="form-group">
             <label for="artist" class="col-sm-2 control-label">Artiest</label>
@@ -45,7 +46,8 @@
         <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
-                <a href="#/songs" ng-click="save()" ng-disabled="myForm.$invalid" class="btn btn-default">Opslaan</a>
+                <!--a href="#/songs" ng-click="save()" ng-disabled="myForm.$invalid" class="btn btn-default">Opslaan</a-->
+                <button type="button" ng-click="save()" ng-disabled="myForm.$invalid" class="btn btn-default">Opslaan</button>
                 <a href="#/songs" class="btn btn-default">Annuleren</a>
             </div>
         </div>
