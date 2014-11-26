@@ -29,6 +29,7 @@ angular.module('myApp.song', ['ngRoute', 'ngResource'])
         }).$promise.then(function(data) {
             $scope.song = data;
             console.log("Gotten song " + $scope.song.title);
+            $scope.theBestVideo = 'sMKoNBRZM1M';
         }, function(errorResponse) {
             console.log("Error...");
         });
