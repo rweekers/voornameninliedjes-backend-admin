@@ -6,10 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.orangeflamingo.namesandsongs.domain.Remark;
 import org.orangeflamingo.namesandsongs.domain.SearchInstruction;
 import org.orangeflamingo.namesandsongs.domain.Song;
 import org.orangeflamingo.namesandsongs.domain.SongOfTheDay;
 import org.orangeflamingo.namesandsongs.domain.Visit;
+import org.orangeflamingo.namesandsongs.service.RemarkService;
 import org.orangeflamingo.namesandsongs.service.SearchInstructionService;
 import org.orangeflamingo.namesandsongs.service.SongOfTheDayService;
 import org.orangeflamingo.namesandsongs.service.SongService;
@@ -47,6 +49,9 @@ public class MainController {
 
 	@Autowired
 	SongOfTheDayService songOfTheDayService;
+	
+	@Autowired
+	RemarkService remarkService;
 
 	/**
 	 * Gets a random song
@@ -351,5 +356,12 @@ public class MainController {
 		logger.debug("Visit is " + search.getVisit().getBrowser());
 		return search;
 		// return (SearchInstruction) searchInstructionService.get(id);
+	}
+	
+	@RequestMapping(value = "remark", method = RequestMethod.POST)
+	@ResponseBody
+	public Remark addRemark(@RequestBody(required = true) Remark remark) {
+		remark.setDate(new Timestamp(System.currentTimeMillis()));
+		return remarkService.addRemark(remark);
 	}
 }
