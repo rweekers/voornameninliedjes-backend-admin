@@ -13,7 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * For a complete reference see <a href=
@@ -35,6 +37,11 @@ public class Visit implements Serializable {
 	@JsonManagedReference
 	private List<SearchInstruction> searchInstructions;
 
+	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, 
+            property = "@id")
+	@OneToMany(mappedBy = "visit")
+	private List<Remark> remarks;
+	
 	@Column(name = "ipAddress")
 	private String ipAddress;
 
@@ -79,6 +86,14 @@ public class Visit implements Serializable {
 
 	public void setSearchInstructions(List<SearchInstruction> searchInstructions) {
 		this.searchInstructions = searchInstructions;
+	}
+	
+	public List<Remark> getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(List<Remark> remarks) {
+		this.remarks = remarks;
 	}
 
 	public String getIpAddress() {

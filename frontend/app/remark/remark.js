@@ -11,7 +11,7 @@ angular.module('myApp.remark', ['ngRoute'])
     }
 ])
 
-.controller('RemarkCtrl', ['$scope', '$location', '$routeParams', 'SongDetail', 'Remark', 'Data', 
+.controller('RemarkCtrl', ['$scope', '$location', '$routeParams', 'SongDetail', 'Remark', 'Data',
     function($scope, $location, $routeParams, SongDetail, Remark, Data) {
 
         // Create service for remark, add new remark
@@ -52,14 +52,19 @@ angular.module('myApp.remark', ['ngRoute'])
         });
 
         $scope.save = function() {
-            $scope.remark.$save(function(user) {
-                if (user.id) {
-                    console.log("Remark saved is " + user.id);
-                    // $location.path('/songs');
-                } else {
-                    console.log("Remark could not be saved");
-                }
-            });
+            $scope.remark.$save({
+                    visitId: Data.visit.id,
+                    songId: $scope.song.id
+                },
+
+                function(user) {
+                    if (user.id) {
+                        console.log("Remark saved is " + user.id);
+                        // $location.path('/songs');
+                    } else {
+                        console.log("Remark could not be saved");
+                    }
+                });
 
 
         };

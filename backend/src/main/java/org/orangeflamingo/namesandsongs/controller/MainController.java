@@ -367,8 +367,11 @@ public class MainController {
 	 */
 	@RequestMapping(value = "remark", method = RequestMethod.POST)
 	@ResponseBody
-	public Remark addRemark(@RequestBody(required = true) Remark remark) {
-		logger.info("Saving remark " + remark.getCommentary());
+	public Remark addRemark(@RequestBody(required = true) Remark remark,
+			@RequestParam(value = "visitId", required = true) int visitId,
+			@RequestParam(value = "songId", required = true) int songId) {
+		logger.info("Saving remark " + remark.getCommentary()
+				+ " with visitId " + visitId + " and songId " + songId);
 		remark.setDate(new Timestamp(System.currentTimeMillis()));
 		return remarkService.addRemark(remark);
 	}

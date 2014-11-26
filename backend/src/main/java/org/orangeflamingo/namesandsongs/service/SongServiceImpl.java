@@ -127,7 +127,8 @@ public class SongServiceImpl implements SongService {
 		}
 
 		logger.debug("QueryString: " + queryString);
-		Query query = getCurrentSession().createQuery(queryString);
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery(queryString);
 		logger.debug("Query1: " + query.getQueryString());
 		if (filterArtist != null && filterArtist.trim() != "") {
 			query.setParameter("artist", "%" + filterArtist.toLowerCase() + "%");
@@ -189,8 +190,9 @@ public class SongServiceImpl implements SongService {
 		logger.debug("Retrieving all songs");
 
 		// Create a Hibernate query (HQL)
-		Query query = getCurrentSession().createQuery(
-				"FROM  Song song order by song.firstname");
+		Session session = sessionFactory.openSession();
+		Query query = session
+				.createQuery("FROM  Song song order by song.firstname");
 
 		// Retrieve all
 		return query.list();
@@ -202,7 +204,8 @@ public class SongServiceImpl implements SongService {
 	public Song get(Integer id) {
 		// Retrieve existing song first
 		logger.debug("Calling getSong() with the id " + id);
-		Song song = (Song) getCurrentSession().get(Song.class, id);
+		Session session = sessionFactory.openSession();
+		Song song = (Song) session.get(Song.class, id);
 		logger.debug("Gotten song " + song.getTitle());
 		return song;
 	}
