@@ -11,8 +11,8 @@ angular.module('myApp.remark', ['ngRoute'])
     }
 ])
 
-.controller('RemarkCtrl', ['$scope', '$location', '$routeParams', 'SongDetail', 'Data', 
-    function($scope, $location, $routeParams, SongDetail, Data) {
+.controller('RemarkCtrl', ['$scope', '$location', '$routeParams', 'SongDetail', 'Remark', 'Data', 
+    function($scope, $location, $routeParams, SongDetail, Remark, Data) {
 
         // Create service for remark, add new remark
         /*
@@ -41,21 +41,23 @@ angular.module('myApp.remark', ['ngRoute'])
         }).$promise.then(function(data) {
             $scope.song = data;
             console.log("Gotten song " + $scope.song.title);
+            console.log("Visit is with " + Data.visit.browser);
+            $scope.remark = new Remark();
+            $scope.remark.commentary = 'RemarkComment';
+            $scope.remark.status = 'New';
+            $scope.remark.song = $scope.song;
+            $scope.remark.visit = Data.visit;
         }, function(errorResponse) {
             console.log("Error...");
         });
 
         $scope.save = function() {
-            console.log("Saving song by user " + $cookieStore.get('user'));
-            $scope.song.userInserted = $cookieStore.get('user');
-
-            $scope.song.$save(function(user) {
+            $scope.remark.$save(function(user) {
                 if (user.id) {
-                    console.log("Song saved is " + user.id);
-                    $location.path('/songs');
+                    console.log("Remark saved is " + user.id);
+                    // $location.path('/songs');
                 } else {
-                    console.log("Song could not be saved");
-                    $scope.result = 'Please enter the firstname that is found in the title (case-sensitive)';
+                    console.log("Remark could not be saved");
                 }
             });
 
@@ -66,5 +68,34 @@ angular.module('myApp.remark', ['ngRoute'])
             console.log("Canceling...");
             $location.path('/songs');
         };
+    }
+])
+
+.factory('Remark', ['$resource',
+    function($resource) {
+        return $resource('/namesandsongs/api/remark/:id', {
+            id: '@id'
+        }, {
+            get: {
+                method: 'GET',
+                params: {
+                    id: ''
+                },
+                isArray: false
+            },
+            /*save: {
+                method: 'POST',
+                params: {
+                    title: ''
+                }
+            },*/
+            update: {
+                method: 'PUT',
+                params: {
+                    artist: '',
+                    title: ''
+                }
+            }
+        });
     }
 ]);

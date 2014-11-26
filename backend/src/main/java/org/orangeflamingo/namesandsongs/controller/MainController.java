@@ -49,7 +49,7 @@ public class MainController {
 
 	@Autowired
 	SongOfTheDayService songOfTheDayService;
-	
+
 	@Autowired
 	RemarkService remarkService;
 
@@ -357,10 +357,18 @@ public class MainController {
 		return search;
 		// return (SearchInstruction) searchInstructionService.get(id);
 	}
-	
+
+	/**
+	 * Saves a new remark
+	 * 
+	 * @param remark
+	 *            the remark to be saved
+	 * @return the remark
+	 */
 	@RequestMapping(value = "remark", method = RequestMethod.POST)
 	@ResponseBody
 	public Remark addRemark(@RequestBody(required = true) Remark remark) {
+		logger.info("Saving remark " + remark.getCommentary());
 		remark.setDate(new Timestamp(System.currentTimeMillis()));
 		return remarkService.addRemark(remark);
 	}
