@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 @Table(name = "song")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Song implements Serializable {
 
 	private static final long serialVersionUID = -5527566248002296042L;
@@ -32,8 +33,8 @@ public class Song implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
-	@OneToMany(mappedBy = "visit")
+	// @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
+	@OneToMany(mappedBy = "song")
 	private List<Remark> remarks;
 
 	@Column(name = "artist")

@@ -33,4 +33,28 @@
             Add remark</a>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Remarks</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Commentary</th>
+                        <th>Background</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="remark in song.remarks">
+                        <!--td><a href="#/search/{{search.id}}" class="thumb">{{search.ipAddress}}</a></td-->
+                        <td>{{remark.commentary}}</td>
+                        <td>{{remark.background}}</td>
+                        <td>{{remark.date | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+                        <td>{{remark.status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
