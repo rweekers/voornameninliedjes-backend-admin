@@ -32,11 +32,10 @@ public class RemarkController {
 	 * 
 	 * @return all remarks
 	 */
-	@RequestMapping(value = "remark", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/remark", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Remark> allRemarks() {
 		logger.info("Calling remark service...");
-		return null;
-		// return remarkService.getAll();
+		return remarkService.getAll();
 	}
 }
