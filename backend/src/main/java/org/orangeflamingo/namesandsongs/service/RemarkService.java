@@ -8,4 +8,6 @@ public interface RemarkService {
 	public Remark addRemark(Remark remark);
 	
 	public List<Remark> getAll();
+	
+	public Remark get(Integer id);
 }

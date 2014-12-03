@@ -51,4 +51,15 @@ public class RemarkServiceImpl implements RemarkService {
 		// Retrieve all
 		return query.list();
 	}
+	
+	/**
+	 * Retrieves a single remark
+	 */
+	public Remark get(Integer id) {
+		// Retrieve existing song first
+		logger.debug("Calling getRemark() with the id " + id);
+		Session session = sessionFactory.openSession();
+		Remark remark = (Remark) session.get(Remark.class, id);
+		return remark;
+	}
 }

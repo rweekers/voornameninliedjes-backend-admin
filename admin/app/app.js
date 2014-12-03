@@ -11,6 +11,7 @@ angular.module('myApp', [
   'myApp.songEdit',
   'myApp.search',
   'myApp.searches',
+  'myApp.remark',
   'myApp.remarks',
   'myApp.login',
   'myApp.error',

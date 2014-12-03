@@ -1,0 +1,23 @@
+<div class="container" ng-controller="SongEditCtrl">
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Edit <i>{{remark.song.artist}} - {{remark.song.title}}</i>
+			</h3>
+		</div>
+	</div>
+	<form class="form-horizontal" role="form" name="myForm">
+		<div class="form-group">
+			<label for="commentary" class="col-sm-2 control-label">Commentary</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="commentary" id="commentary" ng-model="remark.commentary">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputPassword3" class="col-sm-2 control-label"></label>
+			<div class="col-sm-10">
+				<a href="#/songs" ng-click="save()" ng-disabled="myForm.$invalid" class="btn btn-default">Opslaan</a>
+				<a href="#/songs" class="btn btn-default">Annuleren</a>
+			</div>
+		</div>
+	</form>
+</div>

@@ -7,6 +7,7 @@ import org.orangeflamingo.namesandsongs.domain.Remark;
 import org.orangeflamingo.namesandsongs.service.RemarkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,5 +38,18 @@ public class RemarkController {
 	public List<Remark> allRemarks() {
 		logger.info("Calling remark service...");
 		return remarkService.getAll();
+	}
+	
+	/**
+	 * Gets a remark by id
+	 * 
+	 * @param id
+	 *            the id of the remark
+	 * @return the remark
+	 */
+	@RequestMapping("admin/remark/{id}")
+	@ResponseBody
+	public Remark getById(@PathVariable int id) {
+		return (Remark) remarkService.get(id);
 	}
 }
