@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonView;
 // import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -31,6 +32,7 @@ public class Song implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(View.Summary.class)
 	private Integer id;
 
 	// @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
@@ -38,9 +40,11 @@ public class Song implements Serializable {
 	private List<Remark> remarks;
 
 	@Column(name = "artist")
+	@JsonView(View.Summary.class)
 	private String artist;
 
 	@Column(name = "title")
+	@JsonView(View.Summary.class)
 	private String title;
 
 	@Column(name = "firstname")

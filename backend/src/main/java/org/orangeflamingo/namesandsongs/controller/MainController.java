@@ -10,6 +10,7 @@ import org.orangeflamingo.namesandsongs.domain.Remark;
 import org.orangeflamingo.namesandsongs.domain.SearchInstruction;
 import org.orangeflamingo.namesandsongs.domain.Song;
 import org.orangeflamingo.namesandsongs.domain.SongOfTheDay;
+import org.orangeflamingo.namesandsongs.domain.View;
 import org.orangeflamingo.namesandsongs.domain.Visit;
 import org.orangeflamingo.namesandsongs.service.RemarkService;
 import org.orangeflamingo.namesandsongs.service.SearchInstructionService;
@@ -24,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 /**
  * Handles and retrieves song request
@@ -124,6 +127,7 @@ public class MainController {
 	 */
 	@RequestMapping(value = "song", method = RequestMethod.GET)
 	@ResponseBody
+	@JsonView(View.Summary.class)
 	public List<Song> allSongsLimited(
 			@RequestParam(value = "count", required = false) Integer count,
 			@RequestParam(value = "page", required = false) Integer page,
@@ -155,6 +159,7 @@ public class MainController {
 	 */
 	@RequestMapping(value = "admin/song", method = RequestMethod.GET)
 	@ResponseBody
+	@JsonView(View.Summary.class)
 	public List<Song> allSongs() {
 		return songService.getAll();
 	}
