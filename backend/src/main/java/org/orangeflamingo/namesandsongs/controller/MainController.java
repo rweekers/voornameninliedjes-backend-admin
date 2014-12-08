@@ -36,9 +36,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class MainController {
 
 	/**
-	 * The logger
+	 * The LOGGER
 	 */
-	protected static final Logger logger = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(MainController.class);
 
 	@Autowired
@@ -92,7 +92,7 @@ public class MainController {
 	@RequestMapping(value = "song/al", method = RequestMethod.GET)
 	@ResponseBody
 	public Song songAll2() {
-		logger.debug("Calling dummy random song function for song/al");
+		LOGGER.debug("Calling dummy random song function for song/al");
 		return songService.getYouCanCallMeAl();
 	}
 
@@ -171,10 +171,8 @@ public class MainController {
 	 */
 	@RequestMapping(value = "admin/visit", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Visit> allVisits(
-			@RequestParam(value = "count", required = false) Integer count,
-			@RequestParam(value = "page", required = false) Integer page) {
-		logger.debug("Retrieving visits...");
+	public List<Visit> allVisits() {
+		LOGGER.debug("Retrieving visits...");
 		return visitService.getAll();
 	}
 
@@ -254,9 +252,8 @@ public class MainController {
 
 	@RequestMapping(value = "admin/song/{id}", method = RequestMethod.POST)
 	@ResponseBody
-	public Song updateSong(@PathVariable int id,
-			@RequestBody(required = true) Song song) {
-		logger.info("Update request for admin/songs/" + song.getId()
+	public Song updateSong(@RequestBody(required = true) Song song) {
+		LOGGER.info("Update request for admin/songs/" + song.getId()
 				+ " with description: " + song);
 		songService.update(song);
 		return song;
@@ -276,7 +273,7 @@ public class MainController {
 			@RequestParam(value = "userAgent", defaultValue = "") String userAgent,
 			@RequestParam(value = "visitId") Integer visitId,
 			HttpServletRequest request) {
-		logger.debug("Received request to add new searchInstruction");
+		LOGGER.debug("Received request to add new searchInstruction");
 		String ipAddress = request.getHeader("X-FORWARDED-FOR");
 		if (ipAddress == null) {
 			ipAddress = request.getRemoteAddr();
@@ -358,10 +355,9 @@ public class MainController {
 	public SearchInstruction getSearchInstruction(@PathVariable int id) {
 		SearchInstruction search = (SearchInstruction) searchInstructionService
 				.get(id);
-		logger.debug("Visit is " + search.getVisit().getBrowser());
+		LOGGER.debug("Visit is " + search.getVisit().getBrowser());
 		return search;
-		// return (SearchInstruction) searchInstructionService.get(id);
-	}
+}
 
 	/**
 	 * Saves a new remark
@@ -375,7 +371,7 @@ public class MainController {
 	public Remark addRemark(@RequestBody(required = true) Remark remark,
 			@RequestParam(value = "visitId", required = true) int visitId,
 			@RequestParam(value = "songId", required = true) int songId) {
-		logger.info("Saving remark " + remark.getCommentary()
+		LOGGER.info("Saving remark " + remark.getCommentary()
 				+ " with visitId " + visitId + " and songId " + songId);
 		remark.setDate(new Timestamp(System.currentTimeMillis()));
 		return remarkService.addRemark(remark);

@@ -14,7 +14,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonView;
-// import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
@@ -35,7 +34,6 @@ public class Song implements Serializable {
 	@JsonView(View.Summary.class)
 	private Integer id;
 
-	// @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 	@OneToMany(mappedBy = "song")
 	private List<Remark> remarks;
 

@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-// import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
@@ -35,11 +34,8 @@ public class Visit implements Serializable {
 	private Integer id;
 
 	@OneToMany(mappedBy = "visit")
-	// @JsonManagedReference
 	private List<SearchInstruction> searchInstructions;
 
-	//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, 
-    //        property = "@id")
 	@OneToMany(mappedBy = "visit")
 	private List<Remark> remarks;
 	

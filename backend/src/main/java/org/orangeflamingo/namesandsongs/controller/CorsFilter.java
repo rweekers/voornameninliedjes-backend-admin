@@ -18,9 +18,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 public class CorsFilter extends OncePerRequestFilter {
 
 	/**
-	 * The logger
+	 * The LOGGER
 	 */
-	protected static final Logger logger = Logger.getLogger(CorsFilter.class);
+	private static final Logger LOGGER = Logger.getLogger(CorsFilter.class);
 
 	/**
 	 * The method that implements the filter
@@ -39,15 +39,14 @@ public class CorsFilter extends OncePerRequestFilter {
 			HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 
-		logger.debug("Origin " + request.getHeader("origin"));
+		LOGGER.debug("Origin " + request.getHeader("origin"));
 
-		logger.debug("Request method header: "
+		LOGGER.debug("Request method header: "
 				+ request.getHeader("Access-Control-Request-Method"));
-		logger.debug("Request method: " + request.getMethod());
+		LOGGER.debug("Request method: " + request.getMethod());
 		if (request.getHeader("Access-Control-Request-Method") != null
 				&& "OPTIONS".equals(request.getMethod())) {
 			// CORS "pre-flight" request
-			// response.setHeader("Access-Control-Allow-Origin", "namesandsongs.com");
 			response.setHeader("Access-Control-Allow-Origin", "namesandsongs.dev");
 			response.setHeader("Access-Control-Allow-Credentials", "true");
 			response.setHeader("Access-Control-Allow-Methods",

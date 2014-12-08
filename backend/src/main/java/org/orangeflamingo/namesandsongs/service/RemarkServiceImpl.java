@@ -19,14 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class RemarkServiceImpl implements RemarkService {
 
-	protected static final Logger logger = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(RemarkServiceImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	public Remark addRemark(Remark remark) {
-		logger.debug("Adding new remark");
+		LOGGER.debug("Adding new remark");
 		// Retrieve session from Hibernate and save song
 		Session session = sessionFactory.openSession();
 		session.save(remark);
@@ -41,7 +41,7 @@ public class RemarkServiceImpl implements RemarkService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Remark> getAll() {
-		logger.debug("Retrieving all songs");
+		LOGGER.debug("Retrieving all songs");
 
 		// Create a Hibernate query (HQL)
 		Session session = sessionFactory.openSession();
@@ -57,7 +57,7 @@ public class RemarkServiceImpl implements RemarkService {
 	 */
 	public Remark get(Integer id) {
 		// Retrieve existing song first
-		logger.debug("Calling getRemark() with the id " + id);
+		LOGGER.debug("Calling getRemark() with the id " + id);
 		Session session = sessionFactory.openSession();
 		Remark remark = (Remark) session.get(Remark.class, id);
 		return remark;

@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class SongOfTheDayServiceImpl implements SongOfTheDayService {
 
-	protected static final Logger logger = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(SongOfTheDayServiceImpl.class);
 
 	@Autowired
@@ -44,7 +44,7 @@ public class SongOfTheDayServiceImpl implements SongOfTheDayService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SongOfTheDay> getAll() {
-		logger.debug("Retrieving all songsOfTheDay");
+		LOGGER.debug("Retrieving all songsOfTheDay");
 
 		// Create a Hibernate query (HQL)
 		Query query = getCurrentSession().createQuery(
@@ -59,12 +59,12 @@ public class SongOfTheDayServiceImpl implements SongOfTheDayService {
 	 */
 	public void initialize() {
 		int numberOfSongsOfTheDay = getAll().size();
-		logger.debug("Number of songsOfTheDay in database: "
+		LOGGER.debug("Number of songsOfTheDay in database: "
 				+ numberOfSongsOfTheDay);
 
 		if (numberOfSongsOfTheDay == 0) {
 
-			logger.debug("Initalizing list with songs of the day...");
+			LOGGER.debug("Initalizing list with songs of the day...");
 			List<Song> songs = songService.getAll();
 			Collections.shuffle(songs);
 			Calendar calendarDay = Calendar.getInstance();
@@ -78,7 +78,7 @@ public class SongOfTheDayServiceImpl implements SongOfTheDayService {
 				getCurrentSession().save(songOfTheDay);
 			}
 		} else {
-			logger.debug("Initialize not necessary, already songsOfTheDay.");
+			LOGGER.debug("Initialize not necessary, already songsOfTheDay.");
 		}
 	}
 
@@ -109,7 +109,7 @@ public class SongOfTheDayServiceImpl implements SongOfTheDayService {
 	 */
 	public SongOfTheDay get(Integer id) {
 		// Retrieve existing visit first
-		logger.debug("Calling get songOfTheDay with the id " + id);
+		LOGGER.debug("Calling get songOfTheDay with the id " + id);
 		SongOfTheDay songOfTheDay = (SongOfTheDay) getCurrentSession().get(
 				SongOfTheDay.class, id);
 		return songOfTheDay;

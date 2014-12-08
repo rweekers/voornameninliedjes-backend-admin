@@ -16,7 +16,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 public class ApplicationInitializer implements WebApplicationInitializer {
 
-	protected static Logger logger = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(ApplicationInitializer.class);
 
 	@Override
@@ -39,7 +39,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");
 
-		logger.debug("WebapplicationInitializer started...");
+		LOGGER.debug("WebapplicationInitializer started...");
 
 		// Register Spring security filter
 		FilterRegistration.Dynamic corsFilter = container.addFilter(

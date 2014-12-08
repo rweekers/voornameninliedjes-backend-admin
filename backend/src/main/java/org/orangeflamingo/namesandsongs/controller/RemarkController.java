@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RemarkController {
 
 	/**
-	 * The logger
+	 * The LOGGER
 	 */
-	protected static final Logger logger = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(RemarkController.class);
 
 	@Autowired
@@ -36,7 +36,7 @@ public class RemarkController {
 	@RequestMapping(value = "admin/remark", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Remark> allRemarks() {
-		logger.info("Calling remark service...");
+		LOGGER.info("Calling remark service...");
 		return remarkService.getAll();
 	}
 	

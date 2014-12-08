@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class SearchInstructionServiceImpl implements SearchInstructionService {
 
-	protected static final Logger logger = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(SearchInstructionServiceImpl.class);
 
 	@Autowired
@@ -41,7 +41,7 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SearchInstruction> getAll() {
-		logger.debug("Retrieving all searchInstructions");
+		LOGGER.debug("Retrieving all searchInstructions");
 
 		Session session = sessionFactory.openSession();
 
@@ -62,13 +62,13 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 	 */
 	public SearchInstruction get(Integer id) {
 		// Retrieve existing searchInstruction first
-		logger.debug("Calling get searchInstruction with the id " + id);
+		LOGGER.debug("Calling get searchInstruction with the id " + id);
 		Session session = sessionFactory.openSession();
 		SearchInstruction searchInstruction = (SearchInstruction) session.get(
 				SearchInstruction.class, id);
-		logger.debug("Gotten searchInstruction "
+		LOGGER.debug("Gotten searchInstruction "
 				+ searchInstruction.getArgument());
-		logger.debug("Visit is " + searchInstruction.getVisit().getBrowser());
+		LOGGER.debug("Visit is " + searchInstruction.getVisit().getBrowser());
 		return searchInstruction;
 	}
 
@@ -80,7 +80,7 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 	 */
 	public SearchInstruction add(SearchInstruction searchInstruction,
 			Integer visitId) {
-		logger.debug("Adding new searchInstruction");
+		LOGGER.debug("Adding new searchInstruction");
 
 		UserAgentStringParser parser = UADetectorServiceFactory
 				.getResourceModuleParser();
@@ -96,8 +96,6 @@ public class SearchInstructionServiceImpl implements SearchInstructionService {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
-		// searchInstruction.setVisit(visit);
-		// Visit v = (Visit)visitService.get(visitId);
 		Visit visit = (Visit) session.get(Visit.class, visitId);
 		searchInstruction.setVisit(visit);
 		// Save

@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class SongServiceImpl implements SongService {
 
-	protected static final Logger logger = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(SongServiceImpl.class);
 
 	@Autowired
@@ -37,7 +37,7 @@ public class SongServiceImpl implements SongService {
 	 */
 	@Override
 	public long getMax() {
-		logger.debug("Getting max number of songs");
+		LOGGER.debug("Getting max number of songs");
 
 		Query query = getCurrentSession().createQuery(
 				"SELECT COUNT(*) FROM  Song song");
@@ -57,7 +57,7 @@ public class SongServiceImpl implements SongService {
 		// TODO Implement with songOfTheDay
 		int id = 12070;
 		Song song = (Song) getCurrentSession().get(Song.class, id);
-		logger.debug("Gotten song from getRandom(): " + song.getTitle());
+		LOGGER.debug("Gotten song from getRandom(): " + song.getTitle());
 
 		return song;
 	}
@@ -74,7 +74,7 @@ public class SongServiceImpl implements SongService {
 		// Retrieve existing song 'You can call me Al'
 		int id = 12070;
 		Song song = (Song) getCurrentSession().get(Song.class, id);
-		logger.debug("Gotten song " + song.getTitle());
+		LOGGER.debug("Gotten song " + song.getTitle());
 
 		return song;
 	}
@@ -88,7 +88,7 @@ public class SongServiceImpl implements SongService {
 	@Override
 	public List<Song> getAll(Integer count, Integer page, String sortingArtist,
 			String sortingTitle, String filterArtist, String filterTitle) {
-		logger.debug("Retrieving all songs with filterArtist " + filterArtist
+		LOGGER.debug("Retrieving all songs with filterArtist " + filterArtist
 				+ " and filterTitle " + filterTitle);
 
 		if (count == null || count > 50) {
@@ -116,27 +116,27 @@ public class SongServiceImpl implements SongService {
 			queryString = queryString + " order by ";
 		}
 
-		if (sortingArtist != null && !sortingArtist.trim().equals("")) {
+		if (sortingArtist != null && !"".equals(sortingArtist.trim())) {
 			queryString = queryString + " song.artist " + sortingArtist;
 		}
-		if (sortingTitle != null && !sortingTitle.trim().equals("")) {
-			if (sortingArtist != null && !sortingArtist.trim().equals("")) {
+		if (sortingTitle != null && !"".equals(sortingTitle.trim())) {
+			if (sortingArtist != null && !"".equals(sortingArtist.trim())) {
 				queryString = queryString + ", ";
 			}
 			queryString = queryString + " song.title  " + sortingTitle;
 		}
 
-		logger.debug("QueryString: " + queryString);
+		LOGGER.debug("QueryString: " + queryString);
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery(queryString);
-		logger.debug("Query1: " + query.getQueryString());
+		LOGGER.debug("Query1: " + query.getQueryString());
 		if (filterArtist != null && filterArtist.trim() != "") {
 			query.setParameter("artist", "%" + filterArtist.toLowerCase() + "%");
 		}
 		if (filterTitle != null && filterTitle.trim() != "") {
 			query.setParameter("title", "%" + filterTitle.toLowerCase() + "%");
 		}
-		logger.debug("Query2: " + query.getQueryString());
+		LOGGER.debug("Query2: " + query.getQueryString());
 
 		query.setFirstResult(offset);
 		query.setMaxResults(count);
@@ -152,7 +152,7 @@ public class SongServiceImpl implements SongService {
 	 */
 	@Override
 	public long getCount(String filterArtist, String filterTitle) {
-		logger.debug("Getting max number of songs with artist " + filterArtist
+		LOGGER.debug("Getting max number of songs with artist " + filterArtist
 				+ " and title " + filterTitle);
 
 		// Create a Hibernate query (HQL)
@@ -174,9 +174,8 @@ public class SongServiceImpl implements SongService {
 			query.setParameter("title", "%" + filterTitle.toLowerCase() + "%");
 		}
 		long result = (Long) query.list().get(0);
-		logger.debug("Number of songs is " + result);
+		LOGGER.debug("Number of songs is " + result);
 		return result;
-		// return (Long) query.list().get(0);
 	}
 
 	/**
@@ -187,7 +186,7 @@ public class SongServiceImpl implements SongService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Song> getAll() {
-		logger.debug("Retrieving all songs");
+		LOGGER.debug("Retrieving all songs");
 
 		// Create a Hibernate query (HQL)
 		Session session = sessionFactory.openSession();
@@ -203,10 +202,10 @@ public class SongServiceImpl implements SongService {
 	 */
 	public Song get(Integer id) {
 		// Retrieve existing song first
-		logger.debug("Calling getSong() with the id " + id);
+		LOGGER.debug("Calling getSong() with the id " + id);
 		Session session = sessionFactory.openSession();
 		Song song = (Song) session.get(Song.class, id);
-		logger.debug("Gotten song " + song.getTitle());
+		LOGGER.debug("Gotten song " + song.getTitle());
 		return song;
 	}
 
@@ -219,15 +218,12 @@ public class SongServiceImpl implements SongService {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Song> findByFirstname(String firstname) {
-		logger.debug("Finding songs with firstname " + firstname);
+		LOGGER.debug("Finding songs with firstname " + firstname);
 
 		String firstnameLowerCaseWithWildcards = "%" + firstname.toLowerCase()
 				+ "%";
 
 		// Create a Hibernate query (HQL)
-		// Query query =
-		// getCurrentSession().createQuery("FROM  Song where lower(firstname) like '%"
-		// + firstnameLowerCase + "%'");
 		Query query = getCurrentSession().createQuery(
 				"FROM  Song where lower(firstname) like :firstname");
 		query.setParameter("firstname", firstnameLowerCaseWithWildcards);
@@ -239,7 +235,7 @@ public class SongServiceImpl implements SongService {
 	 * Adds a new song
 	 */
 	public Song add(Song song) {
-		logger.debug("Adding new song");
+		LOGGER.debug("Adding new song");
 		// Retrieve session from Hibernate and save song
 		getCurrentSession().save(song);
 		return song;
@@ -252,21 +248,21 @@ public class SongServiceImpl implements SongService {
 	 *            the id of the existing song
 	 */
 	public void delete(Integer id) {
-		logger.debug("Deleting existing song");
+		LOGGER.debug("Deleting existing song");
 
 		// Retrieve session from Hibernate
-		// Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		// Retrieve existing song first
-		// Song song = (Song) session.get(Song.class, id);
+		Song song = (Song) session.get(Song.class, id);
 		// Delete
-		// session.delete(song);
+		session.delete(song);
 	}
 
 	/**
 	 * Edits an existing song
 	 */
 	public void update(Song song) {
-		logger.debug("Editing existing song");
+		LOGGER.debug("Editing existing song");
 
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();

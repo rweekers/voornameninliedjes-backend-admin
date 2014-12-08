@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	protected static Logger logger = Logger.getLogger(SecurityConfig.class);
+	private static final Logger LOGGER = Logger.getLogger(SecurityConfig.class);
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		logger.debug("Configuring securityconfig...");
+		LOGGER.debug("Configuring securityconfig...");
 
 		// TODO Check if http.exceptionHandling weg kan
 		// (https://jira.spring.io/browse/SEC-2198)
@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public BasicAuthenticationEntryPoint entryPoint() {
 		BasicAuthenticationEntryPoint basicAuthenticationEntryPoint = new CustomBasicAuthenticationEntryPoint(
 				"RealmName");
-		logger.debug("Creating BasicAuthenticationEntryPoint bean");
+		LOGGER.debug("Creating BasicAuthenticationEntryPoint bean");
 		basicAuthenticationEntryPoint.setRealmName("Basic WF Realm");
 		return basicAuthenticationEntryPoint;
 	}

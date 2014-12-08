@@ -33,11 +33,13 @@ import com.maxmind.geoip2.model.CityResponse;
 @Transactional
 public class VisitServiceImpl implements VisitService {
 
-	protected static final Logger logger = Logger
+	private static final Logger LOGGER = Logger
 			.getLogger(VisitServiceImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	private static final String LOCALHOST = "127.0.0.1";
 
 	private Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
@@ -51,7 +53,7 @@ public class VisitServiceImpl implements VisitService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Visit> getAll() {
-		logger.debug("Retrieving all visits");
+		LOGGER.debug("Retrieving all visits");
 		Session session = sessionFactory.openSession();
 
 		// Create a Hibernate query (HQL)
@@ -71,11 +73,10 @@ public class VisitServiceImpl implements VisitService {
 	 */
 	public Visit get(Integer id) {
 		// Retrieve existing visit first
-		logger.debug("Calling get with the id " + id);
+		LOGGER.debug("Calling get with the id " + id);
 		Session session = sessionFactory.openSession();
-		// Visit visit = (Visit) getCurrentSession().get(Visit.class, id);
 		Visit visit = (Visit) session.get(Visit.class, id);
-		logger.debug("Gotten visit " + visit.getIpAddress());
+		LOGGER.debug("Gotten visit " + visit.getIpAddress());
 		return visit;
 	}
 
@@ -86,7 +87,7 @@ public class VisitServiceImpl implements VisitService {
 	 *            the visit to add
 	 */
 	public Visit add(Visit visit, HttpServletRequest request) {
-		logger.debug("Adding new visit " + visit.getUserAgent());
+		LOGGER.debug("Adding new visit " + visit.getUserAgent());
 		UserAgentStringParser parser = UADetectorServiceFactory
 				.getResourceModuleParser();
 		ReadableUserAgent agent = parser.parse(visit.getUserAgent());
@@ -131,17 +132,12 @@ public class VisitServiceImpl implements VisitService {
 		DatabaseReader reader;
 		try {
 			reader = new DatabaseReader.Builder(database).build();
-			// Replace "city" with the appropriate method for your database,
-			// e.g.,
-			// "country".
-			// CityResponse response =
-			// reader.city(InetAddress.getByName("128.101.101.101"));
-			logger.debug("Het ipadres is " + visit.getIpAddress());
+			LOGGER.debug("Het ipadres is " + visit.getIpAddress());
 			CityResponse response;
-			if (visit.getIpAddress().equals("127.0.0.1")) {
+			if (visit.getIpAddress().equals(LOCALHOST)) {
 				response = reader
 						.city(InetAddress.getByName("128.101.101.101"));
-				logger.error("Ipaddres bepaling mislukt! Voor positiebepaling dummy 128.101.101.101 genomen.");
+				LOGGER.error("Ipaddres bepaling mislukt! Voor positiebepaling dummy 128.101.101.101 genomen.");
 			} else {
 				response = reader.city(InetAddress.getByName(visit
 						.getIpAddress()));
@@ -155,12 +151,9 @@ public class VisitServiceImpl implements VisitService {
 			visit.setLongitude(new BigDecimal(response.getLocation()
 					.getLongitude()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			logger.error("IO voor GeoIp2Location mislukt " + e.getMessage());
-			e.printStackTrace();
+			LOGGER.error("IO voor GeoIp2Location mislukt " + e.getMessage());
 		} catch (GeoIp2Exception e) {
-			logger.error("GeoIp2Location mislukt " + e.getMessage());
-			e.printStackTrace();
+			LOGGER.error("GeoIp2Location mislukt " + e.getMessage());
 		}
 
 	}
