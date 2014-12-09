@@ -8,6 +8,7 @@ import org.orangeflamingo.namesandsongs.service.RemarkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,6 +51,16 @@ public class RemarkController {
 	@RequestMapping("admin/remark/{id}")
 	@ResponseBody
 	public Remark getById(@PathVariable int id) {
+		LOGGER.info("Getting remark with id " + id);
 		return (Remark) remarkService.get(id);
+	}
+	
+	@RequestMapping(value = "admin/remark/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public Remark updateRemark(@RequestBody(required = true) Remark remark) {
+		LOGGER.info("Update request for admin/remark/" + remark.getId()
+				+ " with commentary: " + remark.getCommentary());
+		remarkService.update(remark);
+		return remark;
 	}
 }

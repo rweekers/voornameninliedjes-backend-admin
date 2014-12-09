@@ -23,6 +23,8 @@ angular.module('myApp.remark', ['ngRoute'])
             // $scope.song.userModified = $cookieStore.get('user');
             // $scope.song.$save();
             // $location.path('/songs');
+            console.log("Saving song " + $scope.remark.song.artist + " - " + $scope.remark.song.title);
+            $scope.remark.song.$save();
         };
 
         $scope.cancel = function() {

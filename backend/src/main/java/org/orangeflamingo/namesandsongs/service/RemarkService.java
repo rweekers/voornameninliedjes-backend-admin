@@ -10,4 +10,6 @@ public interface RemarkService {
 	public List<Remark> getAll();
 	
 	public Remark get(Integer id);
+	
+	public void update(Remark remark);
 }

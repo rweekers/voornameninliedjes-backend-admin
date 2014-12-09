@@ -62,4 +62,20 @@ public class RemarkServiceImpl implements RemarkService {
 		Remark remark = (Remark) session.get(Remark.class, id);
 		return remark;
 	}
+	
+	/**
+	 * Edits an existing song
+	 */
+	public void update(Remark remark) {
+		LOGGER.debug("Editing existing remark");
+
+		// Retrieve session from Hibernate
+		Session session = sessionFactory.openSession();
+		// Retrieve existing song via id
+		Remark existingRemark = (Remark) session.get(Remark.class, remark.getId());
+		// Assign updated values to this song
+		existingRemark.setStatus("In progress");
+		// Save updates
+		session.save(existingRemark);
+	}
 }
