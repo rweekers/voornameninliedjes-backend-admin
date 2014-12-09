@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
@@ -30,6 +31,7 @@ public class SearchInstruction implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(View.Summary.class)
 	private Integer id;
 
 	@ManyToOne
@@ -37,9 +39,11 @@ public class SearchInstruction implements Serializable {
 	private Visit visit;
 
 	@Column(name = "argument")
+	@JsonView(View.Summary.class)
 	private String argument;
 
 	@Column(name = "ipAddress")
+	@JsonView(View.Summary.class)
 	private String ipAddress;
 
 	@Column(name = "browser")
@@ -52,6 +56,7 @@ public class SearchInstruction implements Serializable {
 	private String userAgent;
 
 	@Column(name = "date_inserted")
+	@JsonView(View.Summary.class)
 	private Timestamp dateInserted;
 
 	public Integer getId() {

@@ -339,6 +339,7 @@ public class MainController {
 	 */
 	@RequestMapping(value = "admin/searchInstruction", method = RequestMethod.GET)
 	@ResponseBody
+	@JsonView(View.Summary.class)
 	public List<SearchInstruction> allSearchInstructions() {
 		return searchInstructionService.getAll();
 	}
