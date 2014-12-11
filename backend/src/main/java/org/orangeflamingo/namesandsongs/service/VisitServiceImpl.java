@@ -1,10 +1,14 @@
 package org.orangeflamingo.namesandsongs.service;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.util.List;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,8 +42,6 @@ public class VisitServiceImpl implements VisitService {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	private static final String LOCALHOST = "127.0.0.1";
 
 	private Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
@@ -134,10 +136,20 @@ public class VisitServiceImpl implements VisitService {
 			reader = new DatabaseReader.Builder(database).build();
 			LOGGER.debug("Het ipadres is " + visit.getIpAddress());
 			CityResponse response;
-			if (visit.getIpAddress().equals(LOCALHOST)) {
-				response = reader
-						.city(InetAddress.getByName("128.101.101.101"));
-				LOGGER.error("Ipaddres bepaling mislukt! Voor positiebepaling dummy 128.101.101.101 genomen.");
+
+			Properties props = new Properties();
+			FileInputStream in = new FileInputStream("/config.properties");
+			props.load(in);
+			in.close();
+
+			OutputStream out = new FileOutputStream("/test.txt");
+			out.close();
+
+			if (visit.getIpAddress().equals(props.getProperty("localhost"))) {
+				response = reader.city(InetAddress.getByName(props
+						.getProperty("google")));
+				LOGGER.error("Ipaddres bepaling mislukt! Voor positiebepaling dummy "
+						+ props.getProperty("google") + " genomen.");
 			} else {
 				response = reader.city(InetAddress.getByName(visit
 						.getIpAddress()));
