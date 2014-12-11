@@ -1,5 +1,10 @@
 package org.orangeflamingo.namesandsongs.springconfig;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.Properties;
+
 import org.apache.log4j.Logger;
 import org.orangeflamingo.namesandsongs.controller.CustomBasicAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +26,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
-		auth.inMemoryAuthentication().withUser("admin")
-				.password("5095df0e6547e2647d5bc40f1ecd9afe").roles("ADMIN");
-		auth.inMemoryAuthentication().withUser("Remco")
-				.password("ccafbc2f4c5e0d2b262ff070476678b7").roles("ADMIN");
-		auth.inMemoryAuthentication().withUser("Nadja")
-				.password("82adbb3e824d6e62038273b8e6ac3eb4").roles("ADMIN");
+		// create and load default properties
+		Properties props = new Properties();
+		FileInputStream in = new FileInputStream("/config.properties");
+		LOGGER.debug("Properties loaded...");
+		props.load(in);
+		in.close();
+		
+		OutputStream out = new FileOutputStream("/test.txt");
+		out.close();
+		
+		auth.inMemoryAuthentication().withUser(props.getProperty("userAdmin"))
+				.password(props.getProperty("passwordAdmin")).roles("ADMIN");
+		auth.inMemoryAuthentication().withUser(props.getProperty("userRemco"))
+				.password(props.getProperty("passwordRemco")).roles("ADMIN");
+		auth.inMemoryAuthentication().withUser(props.getProperty("userNadja"))
+				.password(props.getProperty("passwordNadja")).roles("ADMIN");
 	}
 
 	@Override
