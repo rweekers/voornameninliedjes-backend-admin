@@ -6,26 +6,24 @@ import org.orangeflamingo.namesandsongs.domain.Song;
 
 public interface SongService {
 
-	public Song getRandom();
+    public Song getYouCanCallMeAl();
 
-	public Song getYouCanCallMeAl();
+    public List<Song> getAll(Integer count, Integer page, String sortingArtist,
+            String sortingTitle, String filterArtist, String filterTitle);
 
-	public List<Song> getAll(Integer count, Integer page, String sortingArtist,
-			String sortingTitle, String filterArtist, String filterTitle);
+    public List<Song> getAll();
 
-	public List<Song> getAll();
+    public List<Song> findByFirstname(String firstname);
 
-	public List<Song> findByFirstname(String firstname);
+    public long getMax();
 
-	public long getMax();
+    public Song add(Song song);
 
-	public Song add(Song song);
+    public void delete(Integer id);
 
-	public void delete(Integer id);
+    public Object get(Integer id);
 
-	public Object get(Integer id);
+    public void update(Song song);
 
-	public void update(Song song);
-
-	long getCount(String filterArtist, String filterTitle);
+    long getCount(String filterArtist, String filterTitle);
 }

@@ -7,11 +7,11 @@ import org.orangeflamingo.namesandsongs.domain.Visit;
 
 public interface VisitService {
 
-	public List<Visit> getAll();
+    public List<Visit> getAll();
 
-	public Visit add(Visit visit, HttpServletRequest request);
-	
-	public Visit findVisit(String ipAddress, String userAgent);
+    public Visit add(Visit visit, HttpServletRequest request);
 
-	public Object get(Integer id);
+    public Visit findVisit(String ipAddress, String userAgent);
+
+    public Object get(Integer id);
 }

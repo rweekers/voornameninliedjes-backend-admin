@@ -21,41 +21,41 @@ import javax.persistence.Table;
 @Table(name = "songOfTheDay")
 public class SongOfTheDay implements Serializable {
 
-	private static final long serialVersionUID = -5527566248002296045L;
+    private static final long serialVersionUID = -5527566248002296045L;
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	@OneToOne
-	@JoinColumn(name = "song_id")
-	private Song song;
+    @OneToOne
+    @JoinColumn(name = "song_id")
+    private Song song;
 
-	@Column(name = "day")
-	private Date day;
+    @Column(name = "day")
+    private Date day;
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Song getSong() {
-		return song;
-	}
+    public Song getSong() {
+        return song;
+    }
 
-	public void setSong(Song song) {
-		this.song = song;
-	}
+    public void setSong(Song song) {
+        this.song = song;
+    }
 
-	public Date getDay() {
-		return day;
-	}
+    public Date getDay() {
+        return day;
+    }
 
-	public void setDay(Date day) {
-		this.day = day;
-	}
+    public void setDay(Date day) {
+        this.day = day;
+    }
 }

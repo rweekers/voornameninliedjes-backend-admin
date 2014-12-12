@@ -6,9 +6,10 @@ import org.orangeflamingo.namesandsongs.domain.SearchInstruction;
 
 public interface SearchInstructionService {
 
-	public List<SearchInstruction> getAll();
+    public List<SearchInstruction> getAll();
 
-	public SearchInstruction add(SearchInstruction searchInstruction, Integer visitId);
+    public SearchInstruction add(SearchInstruction searchInstruction,
+            Integer visitId);
 
-	public Object get(Integer id);
+    public Object get(Integer id);
 }

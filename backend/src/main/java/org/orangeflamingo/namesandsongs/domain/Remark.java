@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-
 /**
  * For a complete reference see <a href=
  * "http://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/"
@@ -23,123 +22,123 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 @Table(name = "remark")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Remark implements Serializable {
 
-	private static final long serialVersionUID = 3031153761604281591L;
+    private static final long serialVersionUID = 3031153761604281591L;
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	@ManyToOne
-	@JoinColumn(name = "visit_id")
-	private Visit visit;
+    @ManyToOne
+    @JoinColumn(name = "visit_id")
+    private Visit visit;
 
-	@ManyToOne
-	@JoinColumn(name = "song_id")
-	private Song song;
+    @ManyToOne
+    @JoinColumn(name = "song_id")
+    private Song song;
 
-	@Column(name = "background")
-	private String background;
+    @Column(name = "background")
+    private String background;
 
-	@Column(name = "youtube")
-	private String youtube;
+    @Column(name = "youtube")
+    private String youtube;
 
-	@Column(name = "commentary")
-	private String commentary;
+    @Column(name = "commentary")
+    private String commentary;
 
-	@Column(name = "email")
-	private String email;
+    @Column(name = "email")
+    private String email;
 
-	@Column(name = "observer")
-	private String observer;
+    @Column(name = "observer")
+    private String observer;
 
-	@Column(name = "date")
-	private Timestamp date;
+    @Column(name = "date")
+    private Timestamp date;
 
-	@Column(name = "status")
-	private String status;
+    @Column(name = "status")
+    private String status;
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Visit getVisit() {
-		return visit;
-	}
+    public Visit getVisit() {
+        return visit;
+    }
 
-	public void setVisit(Visit visit) {
-		this.visit = visit;
-	}
+    public void setVisit(Visit visit) {
+        this.visit = visit;
+    }
 
-	public Song getSong() {
-		return song;
-	}
+    public Song getSong() {
+        return song;
+    }
 
-	public void setSong(Song song) {
-		this.song = song;
-	}
+    public void setSong(Song song) {
+        this.song = song;
+    }
 
-	public String getBackground() {
-		return background;
-	}
+    public String getBackground() {
+        return background;
+    }
 
-	public void setBackground(String background) {
-		this.background = background;
-	}
+    public void setBackground(String background) {
+        this.background = background;
+    }
 
-	public String getYoutube() {
-		return youtube;
-	}
+    public String getYoutube() {
+        return youtube;
+    }
 
-	public void setYoutube(String youtube) {
-		this.youtube = youtube;
-	}
+    public void setYoutube(String youtube) {
+        this.youtube = youtube;
+    }
 
-	public String getCommentary() {
-		return commentary;
-	}
+    public String getCommentary() {
+        return commentary;
+    }
 
-	public void setCommentary(String commentary) {
-		this.commentary = commentary;
-	}
+    public void setCommentary(String commentary) {
+        this.commentary = commentary;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getUser() {
-		return observer;
-	}
+    public String getUser() {
+        return observer;
+    }
 
-	public void setUser(String user) {
-		this.observer = user;
-	}
+    public void setUser(String user) {
+        this.observer = user;
+    }
 
-	public Timestamp getDate() {
-		return date;
-	}
+    public Timestamp getDate() {
+        return date;
+    }
 
-	public void setDate(Timestamp date) {
-		this.date = date;
-	}
+    public void setDate(Timestamp date) {
+        this.date = date;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
 }

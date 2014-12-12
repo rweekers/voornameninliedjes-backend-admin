@@ -15,25 +15,26 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
  * 
  */
 public class CustomBasicAuthenticationEntryPoint extends
-		BasicAuthenticationEntryPoint {
+        BasicAuthenticationEntryPoint {
 
-	private static final Logger LOGGER = Logger.getLogger(CustomBasicAuthenticationEntryPoint.class);
+    private static final Logger LOGGER = Logger
+            .getLogger(CustomBasicAuthenticationEntryPoint.class);
 
-	public CustomBasicAuthenticationEntryPoint(String realmName) {
-		LOGGER.debug("Creating customBasicAuthenticationEntryPoint");
-		setRealmName(realmName);
-	}
+    public CustomBasicAuthenticationEntryPoint(String realmName) {
+        LOGGER.debug("Creating customBasicAuthenticationEntryPoint");
+        setRealmName(realmName);
+    }
 
-	@Override
-	public void commence(final HttpServletRequest request,
-			final HttpServletResponse response,
-			final AuthenticationException authException) throws IOException,
-			ServletException {
-		LOGGER.debug("CustomBasicAuthentication ontvangt request: "
-				+ request.getRequestURL() + " met methode: "
-				+ request.getMethod());
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
-				authException.getMessage());
-	}
+    @Override
+    public void commence(final HttpServletRequest request,
+            final HttpServletResponse response,
+            final AuthenticationException authException) throws IOException,
+            ServletException {
+        LOGGER.debug("CustomBasicAuthentication ontvangt request: "
+                + request.getRequestURL() + " met methode: "
+                + request.getMethod());
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
+                authException.getMessage());
+    }
 
 }

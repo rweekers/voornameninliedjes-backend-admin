@@ -14,26 +14,26 @@ import org.springframework.stereotype.Component;
 @Scope("singleton")
 public class PropertiesServiceImpl implements PropertiesService {
 
-	private static final Logger LOGGER = Logger
-			.getLogger(PropertiesServiceImpl.class);
-	
-	private static Properties props;
+    private static final Logger LOGGER = Logger
+            .getLogger(PropertiesServiceImpl.class);
 
-	public PropertiesServiceImpl() throws IOException {
-		LOGGER.info("Creating propertiesService...");
-		// create and load default properties
-		props = new Properties();
-		FileInputStream in = new FileInputStream("/config.properties");
-		LOGGER.info("Properties loaded...");
-		props.load(in);
-		in.close();
+    private static Properties props;
 
-		OutputStream out = new FileOutputStream("/test.txt");
-		out.close();
-	}
+    public PropertiesServiceImpl() throws IOException {
+        LOGGER.info("Creating propertiesService...");
+        // create and load default properties
+        props = new Properties();
+        FileInputStream in = new FileInputStream("/config.properties");
+        LOGGER.info("Properties loaded...");
+        props.load(in);
+        in.close();
 
-	public String get(String key) {
-		return props.getProperty(key);
-	}
+        OutputStream out = new FileOutputStream("/test.txt");
+        out.close();
+    }
+
+    public String get(String key) {
+        return props.getProperty(key);
+    }
 
 }

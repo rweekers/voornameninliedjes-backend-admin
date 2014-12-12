@@ -7,11 +7,11 @@ import org.orangeflamingo.namesandsongs.domain.SongOfTheDay;
 
 public interface SongOfTheDayService {
 
-	public List<SongOfTheDay> getAll();
+    public List<SongOfTheDay> getAll();
 
-	public Object get(Integer id);
-	
-	public void initialize();
-	
-	public Song getSongOfTheDay();
+    public Object get(Integer id);
+
+    public void initialize();
+
+    public Song getSongOfTheDay();
 }

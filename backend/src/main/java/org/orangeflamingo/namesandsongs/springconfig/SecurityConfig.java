@@ -17,49 +17,53 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private static final Logger LOGGER = Logger.getLogger(SecurityConfig.class);
-	
-	@Autowired
-	private PropertiesService propertiesService;
+    private static final Logger LOGGER = Logger.getLogger(SecurityConfig.class);
+    
+    private static final String ADMIN = "admin";
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth)
-			throws Exception {
-		
-		auth.inMemoryAuthentication().withUser(propertiesService.get("userAdmin"))
-				.password(propertiesService.get("passwordAdmin")).roles("ADMIN");
-		auth.inMemoryAuthentication().withUser(propertiesService.get("userRemco"))
-				.password(propertiesService.get("passwordRemco")).roles("ADMIN");
-		auth.inMemoryAuthentication().withUser(propertiesService.get("userNadja"))
-				.password(propertiesService.get("passwordNadja")).roles("ADMIN");
-	}
+    @Autowired
+    private PropertiesService propertiesService;
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth)
+            throws Exception {
 
-		LOGGER.debug("Configuring securityconfig...");
+        auth.inMemoryAuthentication()
+                .withUser(propertiesService.get("userAdmin"))
+                .password(propertiesService.get("passwordAdmin"))
+                .roles(ADMIN);
+        auth.inMemoryAuthentication()
+                .withUser(propertiesService.get("userRemco"))
+                .password(propertiesService.get("passwordRemco"))
+                .roles(ADMIN);
+        auth.inMemoryAuthentication()
+                .withUser(propertiesService.get("userNadja"))
+                .password(propertiesService.get("passwordNadja"))
+                .roles(ADMIN);
+    }
 
-		// TODO Check if http.exceptionHandling weg kan
-		// (https://jira.spring.io/browse/SEC-2198)
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
 
-		// http.exceptionHandling().authenticationEntryPoint(entryPoint()).and()
-		http.authorizeRequests()
-				.antMatchers(HttpMethod.OPTIONS, "/api/admin/**").permitAll()
-				.antMatchers(HttpMethod.POST, "/api/song/**").permitAll()
-				.antMatchers(HttpMethod.GET, "/api/song/**").permitAll()
-				.antMatchers(HttpMethod.POST, "/api/visit/**").permitAll()
-				.antMatchers(HttpMethod.GET, "/api/visit/**").permitAll()
-				.antMatchers(HttpMethod.GET, "/api/admin/**").hasRole("ADMIN")
-				.and().httpBasic().and().csrf().disable().httpBasic()
-				.authenticationEntryPoint(entryPoint());
-	}
+        LOGGER.debug("Configuring securityconfig...");
 
-	@Bean
-	public BasicAuthenticationEntryPoint entryPoint() {
-		BasicAuthenticationEntryPoint basicAuthenticationEntryPoint = new CustomBasicAuthenticationEntryPoint(
-				"RealmName");
-		LOGGER.debug("Creating BasicAuthenticationEntryPoint bean");
-		basicAuthenticationEntryPoint.setRealmName("Basic WF Realm");
-		return basicAuthenticationEntryPoint;
-	}
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS, "/api/admin/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/song/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/song/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/visit/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/visit/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/admin/**").hasRole("ADMIN")
+                .and().httpBasic().and().csrf().disable().httpBasic()
+                .authenticationEntryPoint(entryPoint());
+    }
+
+    @Bean
+    public BasicAuthenticationEntryPoint entryPoint() {
+        BasicAuthenticationEntryPoint basicAuthenticationEntryPoint = new CustomBasicAuthenticationEntryPoint(
+                "RealmName");
+        LOGGER.debug("Creating BasicAuthenticationEntryPoint bean");
+        basicAuthenticationEntryPoint.setRealmName("Basic WF Realm");
+        return basicAuthenticationEntryPoint;
+    }
 }

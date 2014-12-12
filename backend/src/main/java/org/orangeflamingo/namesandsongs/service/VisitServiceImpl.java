@@ -33,131 +33,131 @@ import com.maxmind.geoip2.model.CityResponse;
 @Transactional
 public class VisitServiceImpl implements VisitService {
 
-	private static final Logger LOGGER = Logger
-			.getLogger(VisitServiceImpl.class);
+    private static final Logger LOGGER = Logger
+            .getLogger(VisitServiceImpl.class);
 
-	@Autowired
-	private SessionFactory sessionFactory;
-	
-	@Autowired
-	private PropertiesService propertiesService;
+    @Autowired
+    private SessionFactory sessionFactory;
 
-	private Session getCurrentSession() {
-		return sessionFactory.getCurrentSession();
-	}
+    @Autowired
+    private PropertiesService propertiesService;
 
-	/**
-	 * Retrieves all visits
-	 * 
-	 * @return a list of visits
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Visit> getAll() {
-		LOGGER.debug("Retrieving all visits");
-		Session session = sessionFactory.openSession();
+    private Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
+    }
 
-		// Create a Hibernate query (HQL)
-		Query query = session
-				.createQuery("FROM  Visit visit order by visit.id desc");
+    /**
+     * Retrieves all visits
+     * 
+     * @return a list of visits
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Visit> getAll() {
+        LOGGER.debug("Retrieving all visits");
+        Session session = sessionFactory.openSession();
 
-		// Retrieve all
-		return query.list();
-	}
+        // Create a Hibernate query (HQL)
+        Query query = session
+                .createQuery("FROM  Visit visit order by visit.id desc");
 
-	/**
-	 * Retrieves a single visit
-	 * 
-	 * @return the visit
-	 * @param id
-	 *            the id of the visit
-	 */
-	public Visit get(Integer id) {
-		// Retrieve existing visit first
-		LOGGER.debug("Calling get with the id " + id);
-		Session session = sessionFactory.openSession();
-		Visit visit = (Visit) session.get(Visit.class, id);
-		LOGGER.debug("Gotten visit " + visit.getIpAddress());
-		return visit;
-	}
+        // Retrieve all
+        return query.list();
+    }
 
-	/**
-	 * Adds a new visit
-	 * 
-	 * @param visit
-	 *            the visit to add
-	 */
-	public Visit add(Visit visit, HttpServletRequest request) {
-		LOGGER.debug("Adding new visit " + visit.getUserAgent());
-		UserAgentStringParser parser = UADetectorServiceFactory
-				.getResourceModuleParser();
-		ReadableUserAgent agent = parser.parse(visit.getUserAgent());
-		visit.setBrowser(agent.getProducer() + " " + agent.getName() + " "
-				+ agent.getVersionNumber().toVersionString());
-		visit.setOperatingSystem(agent.getOperatingSystem().getProducer() + " "
-				+ agent.getOperatingSystem().getName());
-		location(visit, request);
-		// Retrieve session from Hibernate
-		Session session = getCurrentSession();
-		// Save
-		session.save(visit);
-		return visit;
-	}
+    /**
+     * Retrieves a single visit
+     * 
+     * @return the visit
+     * @param id
+     *            the id of the visit
+     */
+    public Visit get(Integer id) {
+        // Retrieve existing visit first
+        LOGGER.debug("Calling get with the id " + id);
+        Session session = sessionFactory.openSession();
+        Visit visit = (Visit) session.get(Visit.class, id);
+        LOGGER.debug("Gotten visit " + visit.getIpAddress());
+        return visit;
+    }
 
-	public Visit findVisit(String ipAddress, String userAgent) {
-		String queryString = "FROM  Visit visit WHERE 1 = 1 ";
+    /**
+     * Adds a new visit
+     * 
+     * @param visit
+     *            the visit to add
+     */
+    public Visit add(Visit visit, HttpServletRequest request) {
+        LOGGER.debug("Adding new visit " + visit.getUserAgent());
+        UserAgentStringParser parser = UADetectorServiceFactory
+                .getResourceModuleParser();
+        ReadableUserAgent agent = parser.parse(visit.getUserAgent());
+        visit.setBrowser(agent.getProducer() + " " + agent.getName() + " "
+                + agent.getVersionNumber().toVersionString());
+        visit.setOperatingSystem(agent.getOperatingSystem().getProducer() + " "
+                + agent.getOperatingSystem().getName());
+        location(visit, request);
+        // Retrieve session from Hibernate
+        Session session = getCurrentSession();
+        // Save
+        session.save(visit);
+        return visit;
+    }
 
-		queryString = queryString + " AND visit.ipAddress = :ipAddress";
-		queryString = queryString + " AND visit.userAgent = :userAgent";
+    public Visit findVisit(String ipAddress, String userAgent) {
+        String queryString = "FROM  Visit visit WHERE 1 = 1 ";
 
-		queryString = queryString + " order by visit.id desc";
+        queryString = queryString + " AND visit.ipAddress = :ipAddress";
+        queryString = queryString + " AND visit.userAgent = :userAgent";
 
-		// Create a Hibernate query (HQL)
-		Session session = sessionFactory.openSession();
-		Query query = session.createQuery(queryString);
-		query.setParameter("ipAddress", ipAddress);
-		query.setParameter("userAgent", userAgent);
-		query.setMaxResults(1);
+        queryString = queryString + " order by visit.id desc";
 
-		// Retrieve Visit
-		return (Visit) query.list().get(0);
-	}
+        // Create a Hibernate query (HQL)
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery(queryString);
+        query.setParameter("ipAddress", ipAddress);
+        query.setParameter("userAgent", userAgent);
+        query.setMaxResults(1);
 
-	private void location(Visit visit, HttpServletRequest request) {
-		// A File object pointing to your GeoIP2 or GeoLite2 database
-		File database = new File(request.getServletContext().getRealPath("/")
-				+ "/GeoLite2-City.mmdb");
+        // Retrieve Visit
+        return (Visit) query.list().get(0);
+    }
 
-		// This creates the DatabaseReader object, which should be reused across
-		// lookups.
-		DatabaseReader reader;
-		try {
-			reader = new DatabaseReader.Builder(database).build();
-			LOGGER.debug("Het ipadres is " + visit.getIpAddress());
-			CityResponse response;
+    private void location(Visit visit, HttpServletRequest request) {
+        // A File object pointing to your GeoIP2 or GeoLite2 database
+        File database = new File(request.getServletContext().getRealPath("/")
+                + "/GeoLite2-City.mmdb");
 
-			if (visit.getIpAddress().equals(propertiesService.get("localhost"))) {
-				response = reader.city(InetAddress.getByName(propertiesService
-						.get("google")));
-				LOGGER.error("Ipaddres bepaling mislukt! Voor positiebepaling dummy "
-						+ propertiesService.get("google") + " genomen.");
-			} else {
-				response = reader.city(InetAddress.getByName(visit
-						.getIpAddress()));
-			}
+        // This creates the DatabaseReader object, which should be reused across
+        // lookups.
+        DatabaseReader reader;
+        try {
+            reader = new DatabaseReader.Builder(database).build();
+            LOGGER.debug("Het ipadres is " + visit.getIpAddress());
+            CityResponse response;
 
-			visit.setCountryCode(response.getCountry().getIsoCode());
-			visit.setCountry(response.getCountry().getName());
-			visit.setCity(response.getCity().getName());
-			visit.setLatitude(new BigDecimal(response.getLocation()
-					.getLatitude()));
-			visit.setLongitude(new BigDecimal(response.getLocation()
-					.getLongitude()));
-		} catch (IOException e) {
-			LOGGER.error("IO voor GeoIp2Location mislukt " + e.getMessage());
-		} catch (GeoIp2Exception e) {
-			LOGGER.error("GeoIp2Location mislukt " + e.getMessage());
-		}
+            if (visit.getIpAddress().equals(propertiesService.get("localhost"))) {
+                response = reader.city(InetAddress.getByName(propertiesService
+                        .get("google")));
+                LOGGER.error("Ipaddres bepaling mislukt! Voor positiebepaling dummy "
+                        + propertiesService.get("google") + " genomen.");
+            } else {
+                response = reader.city(InetAddress.getByName(visit
+                        .getIpAddress()));
+            }
 
-	}
+            visit.setCountryCode(response.getCountry().getIsoCode());
+            visit.setCountry(response.getCountry().getName());
+            visit.setCity(response.getCity().getName());
+            visit.setLatitude(new BigDecimal(response.getLocation()
+                    .getLatitude()));
+            visit.setLongitude(new BigDecimal(response.getLocation()
+                    .getLongitude()));
+        } catch (IOException e) {
+            LOGGER.error("IO voor GeoIp2Location mislukt " + e.getMessage());
+        } catch (GeoIp2Exception e) {
+            LOGGER.error("GeoIp2Location mislukt " + e.getMessage());
+        }
+
+    }
 }

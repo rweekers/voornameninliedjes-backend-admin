@@ -17,44 +17,45 @@ import org.springframework.web.filter.OncePerRequestFilter;
  */
 public class CorsFilter extends OncePerRequestFilter {
 
-	/**
-	 * The LOGGER
-	 */
-	private static final Logger LOGGER = Logger.getLogger(CorsFilter.class);
+    /**
+     * The LOGGER
+     */
+    private static final Logger LOGGER = Logger.getLogger(CorsFilter.class);
 
-	/**
-	 * The method that implements the filter
-	 * 
-	 * @param request
-	 *            the request
-	 * @param response
-	 *            the response
-	 * @param filterChain
-	 *            the filterChain
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	@Override
-	protected void doFilterInternal(HttpServletRequest request,
-			HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
+    /**
+     * The method that implements the filter
+     * 
+     * @param request
+     *            the request
+     * @param response
+     *            the response
+     * @param filterChain
+     *            the filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
+    @Override
+    protected void doFilterInternal(HttpServletRequest request,
+            HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
 
-		LOGGER.debug("Origin " + request.getHeader("origin"));
+        LOGGER.debug("Origin " + request.getHeader("origin"));
 
-		LOGGER.debug("Request method header: "
-				+ request.getHeader("Access-Control-Request-Method"));
-		LOGGER.debug("Request method: " + request.getMethod());
-		if (request.getHeader("Access-Control-Request-Method") != null
-				&& "OPTIONS".equals(request.getMethod())) {
-			// CORS "pre-flight" request
-			response.setHeader("Access-Control-Allow-Origin", "namesandsongs.dev");
-			response.setHeader("Access-Control-Allow-Credentials", "true");
-			response.setHeader("Access-Control-Allow-Methods",
-					"POST, PUT, GET, DELETE, OPTIONS");
-			response.setHeader("Access-Control-Max-Age", "3600");
-			response.setHeader("Access-Control-Allow-Headers",
-					"x-requested-with, Content-Type, Authorization, x-domain-token, _csrf_header");
-		}
-		filterChain.doFilter(request, response);
-	}
+        LOGGER.debug("Request method header: "
+                + request.getHeader("Access-Control-Request-Method"));
+        LOGGER.debug("Request method: " + request.getMethod());
+        if (request.getHeader("Access-Control-Request-Method") != null
+                && "OPTIONS".equals(request.getMethod())) {
+            // CORS "pre-flight" request
+            response.setHeader("Access-Control-Allow-Origin",
+                    "namesandsongs.dev");
+            response.setHeader("Access-Control-Allow-Credentials", "true");
+            response.setHeader("Access-Control-Allow-Methods",
+                    "POST, PUT, GET, DELETE, OPTIONS");
+            response.setHeader("Access-Control-Max-Age", "3600");
+            response.setHeader("Access-Control-Allow-Headers",
+                    "x-requested-with, Content-Type, Authorization, x-domain-token, _csrf_header");
+        }
+        filterChain.doFilter(request, response);
+    }
 }

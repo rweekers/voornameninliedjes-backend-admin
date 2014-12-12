@@ -23,153 +23,153 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 @Table(name = "visit")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Visit implements Serializable {
 
-	private static final long serialVersionUID = -7149957706738879275L;
+    private static final long serialVersionUID = -7149957706738879275L;
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	@OneToMany(mappedBy = "visit")
-	private List<SearchInstruction> searchInstructions;
+    @OneToMany(mappedBy = "visit")
+    private List<SearchInstruction> searchInstructions;
 
-	@OneToMany(mappedBy = "visit")
-	private List<Remark> remarks;
-	
-	@Column(name = "ipAddress")
-	private String ipAddress;
+    @OneToMany(mappedBy = "visit")
+    private List<Remark> remarks;
 
-	@Column(name = "countryCode")
-	private String countryCode;
+    @Column(name = "ipAddress")
+    private String ipAddress;
 
-	@Column(name = "country")
-	private String country;
+    @Column(name = "countryCode")
+    private String countryCode;
 
-	@Column(name = "city")
-	private String city;
+    @Column(name = "country")
+    private String country;
 
-	@Column(name = "browser")
-	private String browser;
+    @Column(name = "city")
+    private String city;
 
-	@Column(name = "operatingSystem")
-	private String operatingSystem;
+    @Column(name = "browser")
+    private String browser;
 
-	@Column(name = "userAgent")
-	private String userAgent;
+    @Column(name = "operatingSystem")
+    private String operatingSystem;
 
-	@Column(precision = 10, scale = 4)
-	private BigDecimal latitude;
+    @Column(name = "userAgent")
+    private String userAgent;
 
-	@Column(precision = 10, scale = 4)
-	private BigDecimal longitude;
+    @Column(precision = 10, scale = 4)
+    private BigDecimal latitude;
 
-	@Column(name = "date_inserted")
-	private Timestamp dateInserted;
+    @Column(precision = 10, scale = 4)
+    private BigDecimal longitude;
 
-	public Integer getId() {
-		return id;
-	}
+    @Column(name = "date_inserted")
+    private Timestamp dateInserted;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public List<SearchInstruction> getSearchInstructions() {
-		return searchInstructions;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setSearchInstructions(List<SearchInstruction> searchInstructions) {
-		this.searchInstructions = searchInstructions;
-	}
-	
-	public List<Remark> getRemarks() {
-		return remarks;
-	}
+    public List<SearchInstruction> getSearchInstructions() {
+        return searchInstructions;
+    }
 
-	public void setRemarks(List<Remark> remarks) {
-		this.remarks = remarks;
-	}
+    public void setSearchInstructions(List<SearchInstruction> searchInstructions) {
+        this.searchInstructions = searchInstructions;
+    }
 
-	public String getIpAddress() {
-		return ipAddress;
-	}
+    public List<Remark> getRemarks() {
+        return remarks;
+    }
 
-	public void setIpAddress(String ipAddress) {
-		this.ipAddress = ipAddress;
-	}
+    public void setRemarks(List<Remark> remarks) {
+        this.remarks = remarks;
+    }
 
-	public String getCountryCode() {
-		return countryCode;
-	}
+    public String getIpAddress() {
+        return ipAddress;
+    }
 
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
-	}
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
 
-	public String getCountry() {
-		return country;
-	}
+    public String getCountryCode() {
+        return countryCode;
+    }
 
-	public void setCountry(String country) {
-		this.country = country;
-	}
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public String getCountry() {
+        return country;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
-	public String getBrowser() {
-		return browser;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public void setBrowser(String browser) {
-		this.browser = browser;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public String getOperatingSystem() {
-		return operatingSystem;
-	}
+    public String getBrowser() {
+        return browser;
+    }
 
-	public void setOperatingSystem(String operatingSystem) {
-		this.operatingSystem = operatingSystem;
-	}
+    public void setBrowser(String browser) {
+        this.browser = browser;
+    }
 
-	public String getUserAgent() {
-		return userAgent;
-	}
+    public String getOperatingSystem() {
+        return operatingSystem;
+    }
 
-	public void setUserAgent(String userAgent) {
-		this.userAgent = userAgent;
-	}
+    public void setOperatingSystem(String operatingSystem) {
+        this.operatingSystem = operatingSystem;
+    }
 
-	public BigDecimal getLatitude() {
-		return latitude;
-	}
+    public String getUserAgent() {
+        return userAgent;
+    }
 
-	public void setLatitude(BigDecimal latitude) {
-		this.latitude = latitude;
-	}
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
 
-	public BigDecimal getLongitude() {
-		return longitude;
-	}
+    public BigDecimal getLatitude() {
+        return latitude;
+    }
 
-	public void setLongitude(BigDecimal longitude) {
-		this.longitude = longitude;
-	}
+    public void setLatitude(BigDecimal latitude) {
+        this.latitude = latitude;
+    }
 
-	public Timestamp getDateInserted() {
-		return dateInserted;
-	}
+    public BigDecimal getLongitude() {
+        return longitude;
+    }
 
-	public void setDateInserted(Timestamp dateInserted) {
-		this.dateInserted = dateInserted;
-	}
+    public void setLongitude(BigDecimal longitude) {
+        this.longitude = longitude;
+    }
+
+    public Timestamp getDateInserted() {
+        return dateInserted;
+    }
+
+    public void setDateInserted(Timestamp dateInserted) {
+        this.dateInserted = dateInserted;
+    }
 }
