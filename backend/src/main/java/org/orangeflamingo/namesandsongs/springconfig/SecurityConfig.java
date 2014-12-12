@@ -1,12 +1,8 @@
 package org.orangeflamingo.namesandsongs.springconfig;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.Properties;
-
 import org.apache.log4j.Logger;
 import org.orangeflamingo.namesandsongs.controller.CustomBasicAuthenticationEntryPoint;
+import org.orangeflamingo.namesandsongs.service.PropertiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,26 +18,21 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private static final Logger LOGGER = Logger.getLogger(SecurityConfig.class);
+	
+	@Autowired
+	private PropertiesService propertiesService;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
-		// create and load default properties
-		Properties props = new Properties();
-		FileInputStream in = new FileInputStream("/config.properties");
-		LOGGER.debug("Properties loaded...");
-		props.load(in);
-		in.close();
+		LOGGER.info(propertiesService.get("userAdmin"));
 		
-		OutputStream out = new FileOutputStream("/test.txt");
-		out.close();
-		
-		auth.inMemoryAuthentication().withUser(props.getProperty("userAdmin"))
-				.password(props.getProperty("passwordAdmin")).roles("ADMIN");
-		auth.inMemoryAuthentication().withUser(props.getProperty("userRemco"))
-				.password(props.getProperty("passwordRemco")).roles("ADMIN");
-		auth.inMemoryAuthentication().withUser(props.getProperty("userNadja"))
-				.password(props.getProperty("passwordNadja")).roles("ADMIN");
+		auth.inMemoryAuthentication().withUser(propertiesService.get("userAdmin"))
+				.password(propertiesService.get("passwordAdmin")).roles("ADMIN");
+		auth.inMemoryAuthentication().withUser(propertiesService.get("userRemco"))
+				.password(propertiesService.get("passwordRemco")).roles("ADMIN");
+		auth.inMemoryAuthentication().withUser(propertiesService.get("userNadja"))
+				.password(propertiesService.get("passwordNadja")).roles("ADMIN");
 	}
 
 	@Override
