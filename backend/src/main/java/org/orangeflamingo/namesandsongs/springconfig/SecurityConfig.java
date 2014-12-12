@@ -25,7 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
-		LOGGER.info(propertiesService.get("userAdmin"));
 		
 		auth.inMemoryAuthentication().withUser(propertiesService.get("userAdmin"))
 				.password(propertiesService.get("passwordAdmin")).roles("ADMIN");

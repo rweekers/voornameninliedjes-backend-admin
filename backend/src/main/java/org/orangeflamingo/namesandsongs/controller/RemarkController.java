@@ -37,7 +37,7 @@ public class RemarkController {
 	@RequestMapping(value = "admin/remark", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Remark> allRemarks() {
-		LOGGER.info("Calling remark service...");
+		LOGGER.debug("Calling remark service...");
 		return remarkService.getAll();
 	}
 	
@@ -51,7 +51,7 @@ public class RemarkController {
 	@RequestMapping("admin/remark/{id}")
 	@ResponseBody
 	public Remark getById(@PathVariable int id) {
-		LOGGER.info("Getting remark with id " + id);
+		LOGGER.debug("Getting remark with id " + id);
 		return (Remark) remarkService.get(id);
 	}
 	
