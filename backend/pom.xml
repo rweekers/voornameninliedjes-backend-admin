@@ -4,7 +4,7 @@
 	<groupId>org.orangeflamingo.namesandsongs</groupId>
 	<artifactId>namesandsongs-backend</artifactId>
 	<packaging>war</packaging>
-	<version>0.2-SNAPSHOT</version>
+	<version>0.2</version>
 	<name>Names and Songs</name>
 	<url>http://maven.apache.org</url>
 	<properties>

@@ -38,6 +38,7 @@ frontend/frontend.sublime-workspace
 npm-debug.log
 backend/target
 backend/backend.sublime-workspace
+backend/.classpath
 frontend/node_modules
 frontend/LICENCE
 frontend/README.md
