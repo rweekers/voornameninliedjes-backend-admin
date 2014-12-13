@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final Logger LOGGER = Logger.getLogger(SecurityConfig.class);
     
-    private static final String ADMIN = "admin";
+    private static final String ADMIN = "ADMIN";
 
     @Autowired
     private PropertiesService propertiesService;

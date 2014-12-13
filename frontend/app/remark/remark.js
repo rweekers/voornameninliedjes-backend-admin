@@ -43,15 +43,17 @@ angular.module('myApp.remark', ['ngRoute'])
             console.log("Gotten song " + $scope.song.title);
             console.log("Visit is with " + Data.visit.browser);
             $scope.remark = new Remark();
-            $scope.remark.commentary = 'RemarkComment';
+            $scope.remark.commentary = 'RemarkComment1';
             $scope.remark.status = 'New';
-            $scope.remark.song = $scope.song;
-            $scope.remark.visit = Data.visit;
+            // $scope.remark.song = $scope.song;
+            // $scope.remark.visit = Data.visit;
         }, function(errorResponse) {
             console.log("Error...");
         });
 
         $scope.save = function() {
+            console.log("Saving remark...");
+
             $scope.remark.$save({
                     visitId: Data.visit.id,
                     songId: $scope.song.id

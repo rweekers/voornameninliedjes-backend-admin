@@ -376,6 +376,6 @@ public class MainController {
         LOGGER.info("Saving remark " + remark.getCommentary()
                 + " with visitId " + visitId + " and songId " + songId);
         remark.setDate(new Timestamp(System.currentTimeMillis()));
-        return remarkService.addRemark(remark);
+        return remarkService.addRemark(remark, visitId, songId);
     }
 }

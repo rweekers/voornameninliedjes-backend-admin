@@ -7,6 +7,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.orangeflamingo.namesandsongs.domain.Remark;
+import org.orangeflamingo.namesandsongs.domain.Song;
+import org.orangeflamingo.namesandsongs.domain.Visit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,11 +26,19 @@ public class RemarkServiceImpl implements RemarkService {
 
     @Autowired
     private SessionFactory sessionFactory;
+    
+    @Autowired
+    private VisitService visitService;
+    
+    @Autowired
+    private SongService songService;
 
-    public Remark addRemark(Remark remark) {
+    public Remark addRemark(Remark remark, int visitId, int songId) {
         LOGGER.debug("Adding new remark");
         // Retrieve session from Hibernate and save song
         Session session = sessionFactory.openSession();
+        remark.setVisit((Visit) visitService.get(visitId));
+        remark.setSong((Song) songService.get(songId));
         session.save(remark);
         return remark;
     }
