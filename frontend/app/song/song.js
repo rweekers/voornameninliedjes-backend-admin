@@ -28,8 +28,9 @@ angular.module('myApp.song', ['ngRoute', 'ngResource'])
             id: $routeParams.songId
         }).$promise.then(function(data) {
             $scope.song = data;
-            console.log("Gotten song " + $scope.song.title);
             $scope.theBestVideo = 'sMKoNBRZM1M';
+            // scroll to top
+            $("html, body").animate({ scrollTop: 0 }, "slow");
         }, function(errorResponse) {
             console.log("Error...");
         });
