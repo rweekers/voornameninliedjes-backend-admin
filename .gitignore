@@ -46,3 +46,9 @@ admin/admin.sublime-workspace
 admin/node_modules
 admin/LICENCE
 admin/README.md
+admin/.sonar/
+admin/sonar-project.properties
+backend/.sonar
+backend/sonar-project.properties
+frontend/.sonar
+frontend/sonar-project.properties
