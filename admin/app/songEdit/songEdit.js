@@ -14,6 +14,7 @@ angular.module('myApp.songEdit', ['ngRoute'])
         $scope.song = Song.get({
             id: $routeParams.songId
         });
+        $("html, body").animate({ scrollTop: 0 }, "slow");
 
         $scope.save = function() {
             console.log("Saving song by user " + $cookieStore.get('user'));

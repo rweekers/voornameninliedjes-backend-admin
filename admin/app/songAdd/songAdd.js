@@ -23,6 +23,8 @@ angular.module('myApp.songAdd', ['ngRoute'])
         });
         $scope.song.title = 'Test Title';
 
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+
         $scope.save = function() {
             console.log("Saving song by user " + $cookieStore.get('user'));
             $scope.song.userInserted = $cookieStore.get('user');

@@ -14,4 +14,5 @@ angular.module('myApp.search', ['ngRoute'])
         $scope.search = Search.get({
             id: $routeParams.searchId
         });
+        $("html, body").animate({ scrollTop: 0 }, "slow");
 }]);
