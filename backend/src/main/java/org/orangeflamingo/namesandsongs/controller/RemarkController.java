@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.orangeflamingo.namesandsongs.domain.Remark;
+import org.orangeflamingo.namesandsongs.domain.Song;
 import org.orangeflamingo.namesandsongs.domain.View;
 import org.orangeflamingo.namesandsongs.service.RemarkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class RemarkController {
      */
     @RequestMapping("admin/remark/{id}")
     @ResponseBody
-    @JsonView(View.Summary.class)
+    @JsonView(View.Detail.class)
     public Remark getById(@PathVariable int id) {
         LOGGER.debug("Getting remark with id " + id);
         return (Remark) remarkService.get(id);
@@ -68,4 +69,18 @@ public class RemarkController {
         remarkService.update(remark);
         return remark;
     }
+    
+    /**
+     * Gets a song by remarkId
+     * 
+     * @param id
+     *            the id of the remark
+     * @return the song of the remark
+     */
+    @RequestMapping("admin/remark/song/{id}")
+    @ResponseBody
+    public Song getSongByRemarkId(@PathVariable int id) {
+        LOGGER.debug("Getting song of remark with id " + id);
+        return (Song) remarkService.getSong(id);
+    }    
 }

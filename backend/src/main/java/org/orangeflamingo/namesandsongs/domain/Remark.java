@@ -31,7 +31,7 @@ public class Remark implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Detail.class})
     private Integer id;
 
     @ManyToOne
@@ -40,35 +40,35 @@ public class Remark implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "song_id")
-    @JsonView(View.Summary.class)
+    @JsonView(View.Detail.class)
     private Song song;
 
     @Column(name = "background")
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Detail.class})
     private String background;
 
     @Column(name = "youtube")
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Detail.class})
     private String youtube;
 
     @Column(name = "commentary")
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Detail.class})
     private String commentary;
 
     @Column(name = "email")
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Detail.class})
     private String email;
 
     @Column(name = "observer")
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Detail.class})
     private String observer;
 
     @Column(name = "date")
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Detail.class})
     private Timestamp date;
 
     @Column(name = "status")
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Detail.class})
     private String status;
 
     public Integer getId() {

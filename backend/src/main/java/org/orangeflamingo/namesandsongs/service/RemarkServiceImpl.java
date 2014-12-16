@@ -73,6 +73,17 @@ public class RemarkServiceImpl implements RemarkService {
     }
 
     /**
+     * Retrieves a song from a remarkId
+     */
+    public Song getSong(Integer id) {
+        Session session = sessionFactory.openSession();
+        Remark remark = (Remark) session.get(Remark.class, id);
+
+        // Retrieve all
+        return remark.getSong();
+    }
+
+    /**
      * Edits an existing song
      */
     public void update(Remark remark) {
