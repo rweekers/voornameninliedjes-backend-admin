@@ -39,7 +39,7 @@ public class MainController {
      * The LOGGER
      */
     private static final Logger LOGGER = Logger.getLogger(MainController.class);
-    
+
     private static final String X_FWD = "X-FORWARDED-FOR";
 
     @Autowired
@@ -220,6 +220,7 @@ public class MainController {
      */
     @RequestMapping("song/{id}")
     @ResponseBody
+    @JsonView(View.Summary.class)
     public Song getSongById(@PathVariable int id) {
         return (Song) songService.get(id);
     }

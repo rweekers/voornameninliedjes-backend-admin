@@ -26,10 +26,10 @@ public class RemarkServiceImpl implements RemarkService {
 
     @Autowired
     private SessionFactory sessionFactory;
-    
+
     @Autowired
     private VisitService visitService;
-    
+
     @Autowired
     private SongService songService;
 
@@ -51,7 +51,7 @@ public class RemarkServiceImpl implements RemarkService {
     @SuppressWarnings("unchecked")
     @Override
     public List<Remark> getAll() {
-        LOGGER.debug("Retrieving all songs");
+        LOGGER.debug("Retrieving all remarks");
 
         // Create a Hibernate query (HQL)
         Session session = sessionFactory.openSession();
@@ -79,12 +79,12 @@ public class RemarkServiceImpl implements RemarkService {
         LOGGER.debug("Editing existing remark");
 
         // Retrieve session from Hibernate
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         // Retrieve existing song via id
         Remark existingRemark = (Remark) session.get(Remark.class,
                 remark.getId());
-        // Assign updated values to this song
-        existingRemark.setStatus("In progress");
+        // Assign updated values to this remark
+        LOGGER.info("Updating remark " + existingRemark);
         // Save updates
         session.save(existingRemark);
     }

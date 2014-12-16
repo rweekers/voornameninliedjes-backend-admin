@@ -35,6 +35,7 @@ public class Song implements Serializable {
     private Integer id;
 
     @OneToMany(mappedBy = "song")
+    @JsonView(View.Summary.class)
     private List<Remark> remarks;
 
     @Column(name = "artist")

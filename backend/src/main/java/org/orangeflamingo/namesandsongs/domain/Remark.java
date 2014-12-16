@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
@@ -30,6 +31,7 @@ public class Remark implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(View.Summary.class)
     private Integer id;
 
     @ManyToOne
@@ -38,27 +40,35 @@ public class Remark implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "song_id")
+    @JsonView(View.Summary.class)
     private Song song;
 
     @Column(name = "background")
+    @JsonView(View.Summary.class)
     private String background;
 
     @Column(name = "youtube")
+    @JsonView(View.Summary.class)
     private String youtube;
 
     @Column(name = "commentary")
+    @JsonView(View.Summary.class)
     private String commentary;
 
     @Column(name = "email")
+    @JsonView(View.Summary.class)
     private String email;
 
     @Column(name = "observer")
+    @JsonView(View.Summary.class)
     private String observer;
 
     @Column(name = "date")
+    @JsonView(View.Summary.class)
     private Timestamp date;
 
     @Column(name = "status")
+    @JsonView(View.Summary.class)
     private String status;
 
     public Integer getId() {
@@ -139,6 +149,10 @@ public class Remark implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+    
+    public String toString() {
+        return getId() + " - " + getCommentary() + " - " + getStatus();
     }
 
 }

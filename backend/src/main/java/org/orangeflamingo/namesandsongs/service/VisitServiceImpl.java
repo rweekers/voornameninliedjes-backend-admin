@@ -104,6 +104,7 @@ public class VisitServiceImpl implements VisitService {
         return visit;
     }
 
+    @SuppressWarnings("unchecked")
     public Visit findVisit(String ipAddress, String userAgent) {
         String queryString = "FROM  Visit visit WHERE 1 = 1 ";
 
@@ -120,7 +121,13 @@ public class VisitServiceImpl implements VisitService {
         query.setMaxResults(1);
 
         // Retrieve Visit
-        return (Visit) query.list().get(0);
+        List<Visit> visits = query.list();
+        if (visits.size() > 0) {
+            return visits.get(0);
+        } else {
+            return null;
+        }
+
     }
 
     private void location(Visit visit, HttpServletRequest request) {

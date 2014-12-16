@@ -46,7 +46,6 @@ function storeVisit($http, Data) {
             userAgent: navigator.userAgent
         }
     }).success(function(data) {
-        console.log("Stored visit for " + data.ipAddress);
         Data.setVisit(data);
     })
         .error(function(data) {});
@@ -88,7 +87,11 @@ function findVisit($http, Data) {
             userAgent: navigator.userAgent
         }
     }).success(function(data) {
-        Data.visit = data;
+        if (data) {
+            Data.visit = data;
+        } else {
+            storeVisit($http, Data);
+        }
     })
         .error(function(data) {
             console.log("Error: " + data);

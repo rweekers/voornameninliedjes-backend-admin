@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.orangeflamingo.namesandsongs.domain.Remark;
+import org.orangeflamingo.namesandsongs.domain.View;
 import org.orangeflamingo.namesandsongs.service.RemarkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 /**
  * Handles and retrieves song request
@@ -36,6 +39,7 @@ public class RemarkController {
      */
     @RequestMapping(value = "admin/remark", method = RequestMethod.GET)
     @ResponseBody
+    @JsonView(View.Summary.class)
     public List<Remark> allRemarks() {
         LOGGER.debug("Calling remark service...");
         return remarkService.getAll();
@@ -50,6 +54,7 @@ public class RemarkController {
      */
     @RequestMapping("admin/remark/{id}")
     @ResponseBody
+    @JsonView(View.Summary.class)
     public Remark getById(@PathVariable int id) {
         LOGGER.debug("Getting remark with id " + id);
         return (Remark) remarkService.get(id);

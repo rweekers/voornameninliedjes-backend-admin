@@ -18,18 +18,22 @@ angular.module('myApp.remark', ['ngRoute'])
             id: $routeParams.remarkId
         }).$promise.then(function(data) {
             $scope.remark = data;
-            console.log('blabla' + data.song.id);
+            console.log("Gotten remark " + data.id + " with songId " + data.song.id);
             $scope.song = Song.get({
                 id: data.song.id
             })
         });
 
-        $("html, body").animate({ scrollTop: 0 }, "slow");
+        $("html, body").animate({
+            scrollTop: 0
+        }, "slow");
 
         $scope.save = function() {
-            console.log("Saving song by user " + $cookieStore.get('user'));
             $scope.song.userModified = $cookieStore.get('user');
             $scope.song.$save();
+            // saving remark
+            console.log("Saving remark " + $scope.remark.id);
+            $scope.remark.$save();
         };
 
         $scope.cancel = function() {
