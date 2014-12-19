@@ -69,21 +69,7 @@ public class RemarkServiceImpl implements RemarkService {
         // Retrieve existing song first
         LOGGER.debug("Calling getRemark() with the id " + id);
         Session session = sessionFactory.openSession();
-        Remark remark = (Remark) session.get(Remark.class, id);
-        LOGGER.info("Gotten remark with visitId " + remark.getVisit().getId() + " and songId " + remark.getSong().getId());
-        return remark;
-        // return (Remark) session.get(Remark.class, id);
-    }
-
-    /**
-     * Retrieves a song from a remarkId
-     */
-    public Song getSong(Integer id) {
-        Session session = sessionFactory.openSession();
-        Remark remark = (Remark) session.get(Remark.class, id);
-
-        // Retrieve all
-        return remark.getSong();
+        return (Remark) session.get(Remark.class, id);
     }
 
     /**
@@ -98,7 +84,7 @@ public class RemarkServiceImpl implements RemarkService {
         Remark existingRemark = (Remark) session.get(Remark.class,
                 remark.getId());
         // Assign updated values to this remark
-        LOGGER.info("Updating remark " + existingRemark);
+        LOGGER.debug("Updating remark " + existingRemark);
         // Save updates
         session.save(existingRemark);
     }

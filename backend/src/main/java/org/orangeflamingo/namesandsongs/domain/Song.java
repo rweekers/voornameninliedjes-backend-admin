@@ -31,22 +31,19 @@ public class Song implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // @JsonView(View.Summary.class)
-    // @JsonView({View.Detail.class, View.Summary.class})
-    @JsonView(View.AdminDetail.class)
+    @JsonView({ View.Summary.class, View.Detail.class, View.AdminDetail.class })
     private Integer id;
 
     @OneToMany(mappedBy = "song")
-    // @JsonView({View.Detail.class, View.Summary.class})
-    // @JsonView(View.Detail.class)
+    @JsonView(View.Detail.class)
     private List<Remark> remarks;
 
     @Column(name = "artist")
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Detail.class})
     private String artist;
 
     @Column(name = "title")
-    @JsonView(View.Summary.class)
+    @JsonView({View.Summary.class, View.Detail.class})
     private String title;
 
     @Column(name = "firstname")
@@ -71,9 +68,11 @@ public class Song implements Serializable {
     private String userModified;
 
     @Column(name = "background")
+    @JsonView({View.Summary.class, View.Detail.class})
     private String background;
 
     @Column(name = "youtube")
+    @JsonView({View.Summary.class, View.Detail.class})
     private String youtube;
 
     public Integer getId() {

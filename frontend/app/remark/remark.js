@@ -73,7 +73,7 @@ angular.module('myApp.remark', ['ngRoute'])
 
         $scope.cancel = function() {
             console.log("Canceling...");
-            $location.path('/songs');
+            $location.path('/song/' + $scope.song.id);
         };
     }
 ])

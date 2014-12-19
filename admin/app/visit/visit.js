@@ -14,6 +14,5 @@ angular.module('myApp.visit', ['ngRoute'])
         $scope.visit = Visit.get({
             id: $routeParams.visitId
         });
-        console.log("Visit " + $scope.visit.browser);
         $("html, body").animate({ scrollTop: 0 }, "slow");
 }]);

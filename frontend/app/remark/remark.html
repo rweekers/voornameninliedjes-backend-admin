@@ -62,8 +62,8 @@
         <div class="col-sm-10">
             <!--a href="#/songs" ng-click="save()" ng-disabled="myForm.$invalid" class="btn btn-default">Opslaan</a-->
             <!--button type="button" ng-click="save()" ng-disabled="myForm.$invalid" class="btn btn-default">Opslaan</button-->
-            <a href="#/songs" ng-click="save()" ng-disabled="myForm.$invalid" class="btn btn-default">Opslaan</a>
-            <a href="#/songs" class="btn btn-default">Annuleren</a>
+            <a href="#/song/{{song.id}}" ng-click="save()" ng-disabled="myForm.$invalid" class="btn btn-default">Opslaan</a>
+            <a href="#/song/{{song.id}}" class="btn btn-default">Annuleren</a>
         </div>
     </div>
 </form>

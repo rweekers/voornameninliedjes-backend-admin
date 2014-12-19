@@ -220,7 +220,7 @@ public class MainController {
      */
     @RequestMapping("song/{id}")
     @ResponseBody
-    @JsonView(View.Summary.class)
+    @JsonView(View.Detail.class)
     public Song getSongById(@PathVariable int id) {
         return (Song) songService.get(id);
     }

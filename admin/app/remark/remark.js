@@ -19,20 +19,9 @@ angular.module('myApp.remark', ['ngRoute'])
         }).$promise.then(function(data) {
             $scope.remark = data;
             console.log("Gotten remark " + data.id + " with songId " + data.song.id);
-            //$scope.song = Song.get({
-            //    id: data.song.id
-            //})
-            $http({
-                url: '/namesandsongs/api/admin/remark/song/' + data.id,
-                method: 'GET',
-                params: {
-                }
-            }).success(function(song) {
-                $scope.song = song;
-            })
-                .error(function(error) {
-                    console.log("Error: " + error);
-                });
+            $scope.song = Song.get({
+                id: data.song.id
+            });
         });
 
         $("html, body").animate({
