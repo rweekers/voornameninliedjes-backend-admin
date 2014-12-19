@@ -7,4 +7,8 @@ public class View {
     public interface Detail {
 
     }
+
+    public interface AdminDetail {
+
+    }
 }

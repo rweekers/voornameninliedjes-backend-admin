@@ -69,7 +69,10 @@ public class RemarkServiceImpl implements RemarkService {
         // Retrieve existing song first
         LOGGER.debug("Calling getRemark() with the id " + id);
         Session session = sessionFactory.openSession();
-        return (Remark) session.get(Remark.class, id);
+        Remark remark = (Remark) session.get(Remark.class, id);
+        LOGGER.info("Gotten remark with visitId " + remark.getVisit().getId() + " and songId " + remark.getSong().getId());
+        return remark;
+        // return (Remark) session.get(Remark.class, id);
     }
 
     /**

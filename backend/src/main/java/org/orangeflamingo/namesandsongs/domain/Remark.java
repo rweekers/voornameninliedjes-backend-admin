@@ -31,16 +31,18 @@ public class Remark implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({View.Summary.class, View.Detail.class})
+    @JsonView(View.AdminDetail.class)
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "visit_id")
+    // @JsonView(View.Detail.class)
+    @JsonView(View.AdminDetail.class)
     private Visit visit;
 
     @ManyToOne
     @JoinColumn(name = "song_id")
-    @JsonView(View.Detail.class)
+    @JsonView(View.AdminDetail.class)
     private Song song;
 
     @Column(name = "background")
@@ -52,7 +54,8 @@ public class Remark implements Serializable {
     private String youtube;
 
     @Column(name = "commentary")
-    @JsonView({View.Summary.class, View.Detail.class})
+    @JsonView({View.Summary.class, View.AdminDetail.class})
+    // @JsonView(View.AdminDetail.class)
     private String commentary;
 
     @Column(name = "email")

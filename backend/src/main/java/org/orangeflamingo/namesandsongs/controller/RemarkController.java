@@ -55,10 +55,13 @@ public class RemarkController {
      */
     @RequestMapping("admin/remark/{id}")
     @ResponseBody
-    @JsonView(View.Detail.class)
+    @JsonView(View.AdminDetail.class)
     public Remark getById(@PathVariable int id) {
         LOGGER.debug("Getting remark with id " + id);
-        return (Remark) remarkService.get(id);
+        Remark remark = (Remark) remarkService.get(id);
+        LOGGER.info("Gotten remark with visitId " + remark.getVisit().getId()
+                + " and songId " + remark.getSong().getId());
+        return remark;
     }
 
     @RequestMapping(value = "admin/remark/{id}", method = RequestMethod.POST)
@@ -69,7 +72,7 @@ public class RemarkController {
         remarkService.update(remark);
         return remark;
     }
-    
+
     /**
      * Gets a song by remarkId
      * 
@@ -82,5 +85,5 @@ public class RemarkController {
     public Song getSongByRemarkId(@PathVariable int id) {
         LOGGER.debug("Getting song of remark with id " + id);
         return (Song) remarkService.getSong(id);
-    }    
+    }
 }

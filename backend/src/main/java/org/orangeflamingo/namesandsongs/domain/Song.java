@@ -31,11 +31,14 @@ public class Song implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(View.Summary.class)
+    // @JsonView(View.Summary.class)
+    // @JsonView({View.Detail.class, View.Summary.class})
+    @JsonView(View.AdminDetail.class)
     private Integer id;
 
     @OneToMany(mappedBy = "song")
-    @JsonView(View.Summary.class)
+    // @JsonView({View.Detail.class, View.Summary.class})
+    // @JsonView(View.Detail.class)
     private List<Remark> remarks;
 
     @Column(name = "artist")
