@@ -79,12 +79,12 @@ public class RemarkServiceImpl implements RemarkService {
         LOGGER.debug("Editing existing remark");
 
         // Retrieve session from Hibernate
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         // Retrieve existing song via id
         Remark existingRemark = (Remark) session.get(Remark.class,
                 remark.getId());
         // Assign updated values to this remark
-        LOGGER.debug("Updating remark " + existingRemark);
+        LOGGER.info("Updating remark " + existingRemark);
         // Save updates
         session.save(existingRemark);
     }

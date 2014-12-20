@@ -24,10 +24,10 @@
             <a href="#/remark/{{song.id}}" class="btn btn-primary" role="button">
             Add remark</a>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalInProgress">
+            <button type="button" class="btn btn-primary" data-toggle="modal" ng-if="(song.remarks | filter:{ status: '!'+'Finished'}).length > 0" data-target="#modalInProgress">
             Running remarks
             </button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFinished">
+            <button type="button" class="btn btn-primary" data-toggle="modal" ng-if="(song.remarks | filter:{ status: 'Finished'}).length > 0" data-target="#modalFinished">
             Processed remarks
             </button>
         </div>
