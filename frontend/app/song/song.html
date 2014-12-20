@@ -18,43 +18,83 @@
                 </tr>
                 <tr>
                     <td>Youtube</td>
-                    <td>{{song.youtube}}</td>
-                </tr>
-                <tr>
-                    <td>Youtube blabla</td>
-                    <td>{{theBestVideo}}</td>
-                </tr>
-                <tr>
-                    <td>blablabla</td>
                     <td><youtube-video video-id="song.youtube"></youtube-video></td>
                 </tr>
             </table>
             <a href="#/remark/{{song.id}}" class="btn btn-primary" role="button">
             Add remark</a>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalInProgress">
+            Running remarks
+            </button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFinished">
+            Processed remarks
+            </button>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Remarks</h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Commentary</th>
-                        <th>Background</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="remark in song.remarks">
-                        <!--td><a href="#/search/{{search.id}}" class="thumb">{{search.ipAddress}}</a></td-->
-                        <td>{{remark.commentary}}</td>
-                        <td>{{remark.background}}</td>
-                        <td>{{remark.date | date:'dd-MM-yyyy HH:mm:ss'}}</td>
-                        <td>{{remark.status}}</td>
-                    </tr>
-                </tbody>
-            </table>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="modalInProgress" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Remarks</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Commentary</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="remark in song.remarks | filter:{ status: '!'+'Finished'}">
+                                <td>{{remark.date | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+                                <td>{{remark.commentary}}</td>
+                                <td>{{remark.status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalFinished" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Remarks</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Commentary</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="remark in song.remarks | filter:{ status: 'Finished'}">
+                                <td>{{remark.date | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+                                <td>{{remark.commentary}}</td>
+                                <td>{{remark.status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
