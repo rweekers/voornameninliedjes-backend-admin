@@ -38,7 +38,9 @@ angular.module('myApp.song', ['ngRoute', 'ngResource'])
         });
 
         $(function() {
-            $('[data-toggle="tooltip"]').tooltip()
+            $('.tooltip-test').tooltip({
+                container: 'body'
+            });
         });
     }
 ])

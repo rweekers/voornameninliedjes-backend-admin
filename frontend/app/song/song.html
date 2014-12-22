@@ -14,22 +14,20 @@
                 </tr>
                 <tr>
                     <td class="col-md-6">Background</td>
-                    <td ng-if="song.background" class="col-md-6">{{song.background}}</td>
-                    <td ng-if="!song.background" class="col-md-6">No background found...</td>
+                    <td ng-show="song.background" class="col-md-6">{{song.background}}</td>
+                    <td ng-show="!song.background" class="col-md-6">No background found...</td>
                 </tr>
                 <tr>
                     <td class="col-md-6">Youtube</td>
-                    <td ng-if="song.youtube" class="col-md-6"><youtube-video video-id="song.youtube"></youtube-video></td>
-                    <td ng-if="!song.youtube" class="col-md-6">No youtube link found. Would you linke to add a <a href="#/remark/{{song.id}}" data-toggle="tooltip" data-placement="top" title="Add a remark about the song.">add a remark</a>?</td>
+                    <td ng-show="song.youtube" class="col-md-6"><youtube-video video-id="song.youtube"></youtube-video></td>
+                    <td ng-show="!song.youtube" class="col-md-6 tooltip-test">No youtube link found. Would you linke to add a <a href="#/remark/{{song.id}}" data-toggle="tooltip" class="tooltip-test" data-placement="top" title="Add a remark about the song.">add a remark</a>?</td>
                 </tr>
             </table>
             <a href="#/remark/{{song.id}}" class="btn btn-primary" role="button">
             Add remark</a>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" ng-if="(song.remarks | filter:{ status: '!'+'Finished'}).length > 0" data-target="#modalInProgress" data-placement="top" title="Show the remarks that are work in progress.">
-            Running remarks
-            </button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" ng-if="(song.remarks | filter:{ status: 'Finished'}).length > 0" data-target="#modalFinished" data-placement="top" title="Show the remarks that are processed.">
+            <button type="button" class="btn btn-primary tooltip-test" data-toggle="modal" data-target="#modalInProgress" data-placement="top" title="Show the remarks that are work in progress." ng-show="(song.remarks | filter:{ status: '!'+'Finished'}).length > 0">Running remarks</button>
+            <button type="button" class="btn btn-primary tooltip-test" data-toggle="modal" data-target="#modalFinished" data-placement="top" title="Show the remarks that are processed." ng-show="(song.remarks | filter:{ status: 'Finished'}).length > 0" >
             Processed remarks
             </button>
         </div>
