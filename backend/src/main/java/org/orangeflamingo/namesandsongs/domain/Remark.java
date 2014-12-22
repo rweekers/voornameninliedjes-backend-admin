@@ -45,11 +45,11 @@ public class Remark implements Serializable {
     private Song song;
 
     @Column(name = "background")
-    @JsonView({View.Summary.class, View.Detail.class})
+    @JsonView({View.Summary.class, View.Detail.class, View.AdminDetail.class})
     private String background;
 
     @Column(name = "youtube")
-    @JsonView({View.Summary.class, View.Detail.class})
+    @JsonView({View.Summary.class, View.Detail.class, View.AdminDetail.class})
     private String youtube;
 
     @Column(name = "commentary")
