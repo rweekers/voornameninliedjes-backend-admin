@@ -23,10 +23,21 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="commentary" class="col-sm-2 control-label">Song</label>
+			<label for="commentary" class="col-sm-2 control-label">Songtitle</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="title" id="title" ng-model="song.title">
+			</div>
+			<label for="commentary" class="col-sm-2 control-label">Artist</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" name="artist" id="artist" ng-model="song.artist">
-				<input type="text" class="form-control" name="title" id="title" ng-model="song.title">
+			</div>
+			<label for="commentary" class="col-sm-2 control-label">Youtube</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="youtube" id="youtube" ng-model="song.youtube">
+			</div>
+			<label for="commentary" class="col-sm-2 control-label">Background</label>
+			<div class="col-sm-10">
+				<textarea class="form-control" rows="5" name="background" id="background" ng-model="song.background"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
