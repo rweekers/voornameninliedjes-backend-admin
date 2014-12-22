@@ -30,9 +30,15 @@ angular.module('myApp.song', ['ngRoute', 'ngResource'])
             $scope.song = data;
             $scope.theBestVideo = 'sMKoNBRZM1M';
             // scroll to top
-            $("html, body").animate({ scrollTop: 0 }, "slow");
+            $("html, body").animate({
+                scrollTop: 0
+            }, "slow");
         }, function(errorResponse) {
             console.log("Error...");
+        });
+
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
         });
     }
 ])
