@@ -14,11 +14,13 @@
                 </tr>
                 <tr>
                     <td>Background</td>
-                    <td>{{song.background}}</td>
+                    <td ng-if="song.background">{{song.background}}</td>
+                    <td ng-if="!song.background">No background found...</td>
                 </tr>
                 <tr>
                     <td>Youtube</td>
-                    <td><youtube-video video-id="song.youtube"></youtube-video></td>
+                    <td ng-if="song.youtube"><youtube-video video-id="song.youtube"></youtube-video></td>
+                    <td ng-if="!song.youtube">No youtube link found. Would you linke to add a <a href="#/remark/{{song.id}}">add a remark</a>?</td>
                 </tr>
             </table>
             <a href="#/remark/{{song.id}}" class="btn btn-primary" role="button">
