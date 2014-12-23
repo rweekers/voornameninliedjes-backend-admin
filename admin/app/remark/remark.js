@@ -11,8 +11,8 @@ angular.module('myApp.remark', ['ngRoute'])
     }
 ])
 
-.controller('RemarkCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', 'Remark', 'Song',
-    function($scope, $routeParams, $cookieStore, $http, Remark, Song) {
+.controller('RemarkCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', '$sce', 'Remark', 'Song',
+    function($scope, $routeParams, $cookieStore, $http, $sce, Remark, Song) {
         // $scope.remarks = Remark.query();
         Remark.get({
             id: $routeParams.remarkId
@@ -27,6 +27,12 @@ angular.module('myApp.remark', ['ngRoute'])
         $("html, body").animate({
             scrollTop: 0
         }, "slow");
+
+        $("#background").on("change keyup", function() {
+            $scope.$apply(function() {
+                $scope.backgroundHTML = $sce.trustAsHtml($scope.song.background);
+            });
+        });
 
         $scope.save = function() {
             $scope.song.userModified = $cookieStore.get('user');

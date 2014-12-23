@@ -15,13 +15,13 @@
 		<div class="form-group">
 			<label for="youtube" class="col-sm-2 control-label">Youtube</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" name="youtube" id="youtube" ng-model="remark.youtube" readonly>
+				<input type="text" class="form-control" name="youtubeRemark" id="youtubeRemark" ng-model="remark.youtube" readonly>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="commentary" class="col-sm-2 control-label">Background</label>
 			<div class="col-sm-10">
-				<textarea class="form-control" rows="5" name="background" id="background" ng-model="remark.background" readonly></textarea>
+				<textarea class="form-control" rows="5" name="backgroundRemark" id="backgroundRemark" ng-model="remark.background" readonly></textarea>
 			</div>
 		</div>
 		<div class="form-group">
@@ -62,6 +62,8 @@
 			<label for="commentary" class="col-sm-2 control-label">Background</label>
 			<div class="col-sm-10">
 				<textarea class="form-control" rows="5" name="background" id="background" ng-model="song.background"></textarea>
+				<h4>Output:</h4>
+                <p ng-bind-html="backgroundHTML"></p>
 			</div>
 		</div>
 		<div class="form-group">

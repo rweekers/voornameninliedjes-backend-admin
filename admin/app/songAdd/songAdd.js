@@ -11,19 +11,27 @@ angular.module('myApp.songAdd', ['ngRoute'])
     }
 ])
 
-.controller('SongAddCtrl', ['$scope', '$location', '$routeParams', '$cookieStore', 'Song',
-    function($scope, $location, $routeParams, $cookieStore, Song) {
+.controller('SongAddCtrl', ['$scope', '$location', '$routeParams', '$cookieStore', '$sce', 'Song',
+    function($scope, $location, $routeParams, $cookieStore, $sce, Song) {
 
         /*
         $scope.song = Song.get({
             id: 12070
         });*/
         $scope.song = new Song({
-            artist: 'Test Artist'
+            // artist: 'Test Artist'
         });
-        $scope.song.title = 'Test Title';
+        // $scope.song.title = 'Test Title';
 
-        $("html, body").animate({ scrollTop: 0 }, "slow");
+        $("html, body").animate({
+            scrollTop: 0
+        }, "slow");
+
+        $("#background").on("change keyup", function() {
+            $scope.$apply(function() {
+                $scope.backgroundHTML = $sce.trustAsHtml($scope.song.background);
+            });
+        });
 
         $scope.save = function() {
             console.log("Saving song by user " + $cookieStore.get('user'));
