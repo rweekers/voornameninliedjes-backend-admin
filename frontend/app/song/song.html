@@ -14,8 +14,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-6">Background</td>
-                    <!--td ng-show="song.background" class="col-md-6">{{song.background}}</td-->
-                    <td ng-show="song.background" class="col-md-6"><textarea>{{song.background}}</textarea></td>
+                    <td ng-show="song.background" class="col-md-6"><p ng-bind-html="background"></p></td>
                     <td ng-show="!song.background" class="col-md-6 tooltip-test">No background found. Would you linke to add a <a href="#/remark/{{song.id}}" data-toggle="tooltip" class="tooltip-test" data-placement="top" title="Add a remark about the song.">add a remark</a>?</td>
                 </tr>
                 <tr>

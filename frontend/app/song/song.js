@@ -11,8 +11,8 @@ angular.module('myApp.song', ['ngRoute', 'ngResource'])
     }
 ])
 
-.controller('SongCtrl', ['$scope', '$location', '$http', '$routeParams', 'SongDetail', 'Data',
-    function($scope, $location, $http, $routeParams, SongDetail, Data) {
+.controller('SongCtrl', ['$scope', '$location', '$http', '$routeParams', '$sce', 'SongDetail', 'Data',
+    function($scope, $location, $http, $routeParams, $sce, SongDetail, Data) {
 
         if (!Data.visit) {
             if (!checkVisit()) {
@@ -28,6 +28,7 @@ angular.module('myApp.song', ['ngRoute', 'ngResource'])
             id: $routeParams.songId
         }).$promise.then(function(data) {
             $scope.song = data;
+            $scope.background = $sce.trustAsHtml($scope.song.background);
             // scroll to top
             $("html, body").animate({
                 scrollTop: 0
