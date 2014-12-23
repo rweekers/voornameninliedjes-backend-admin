@@ -67,6 +67,14 @@ public class Remark implements Serializable {
     @Column(name = "date")
     @JsonView({View.Summary.class, View.Detail.class, View.AdminDetail.class})
     private Timestamp date;
+    
+    @Column(name = "response")
+    @JsonView({View.Detail.class, View.AdminDetail.class})
+    private String response;
+    
+    @Column(name = "responsedate")
+    @JsonView({View.Detail.class, View.AdminDetail.class})
+    private Timestamp responsedate;
 
     @Column(name = "status")
     @JsonView({View.Summary.class, View.Detail.class, View.AdminDetail.class})
@@ -142,6 +150,22 @@ public class Remark implements Serializable {
 
     public void setDate(Timestamp date) {
         this.date = date;
+    }
+    
+    public String getResponse() {
+        return response;
+    }
+    
+    public void setResponse(String response) {
+        this.response = response;
+    }
+    
+    public Timestamp getResponsedate() {
+        return responsedate;
+    }
+
+    public void setResponsedate(Timestamp responsedate) {
+        this.responsedate = responsedate;
     }
 
     public String getStatus() {

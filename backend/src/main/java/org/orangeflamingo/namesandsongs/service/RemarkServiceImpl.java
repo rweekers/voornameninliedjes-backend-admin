@@ -1,5 +1,6 @@
 package org.orangeflamingo.namesandsongs.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -89,6 +90,8 @@ public class RemarkServiceImpl implements RemarkService {
         existingRemark.setStatus(remark.getStatus());
         existingRemark.setYoutube(remark.getYoutube());
         existingRemark.setUser(remark.getUser());
+        existingRemark.setResponse(remark.getResponse());
+        existingRemark.setResponsedate(new Timestamp(System.currentTimeMillis()));
         // Assign updated values to this remark
         LOGGER.info("Updating remark " + existingRemark);
         // Save updates
