@@ -15,12 +15,12 @@
                 <tr>
                     <td class="col-md-6">Background</td>
                     <td ng-show="song.background" class="col-md-6"><p ng-bind-html="background"></p></td>
-                    <td ng-show="!song.background" class="col-md-6 tooltip-test">No background found. Would you linke to add a <a href="#/remark/{{song.id}}" data-toggle="tooltip" class="tooltip-test" data-placement="top" title="Add a remark about the song.">add a remark</a>?</td>
+                    <td ng-show="!song.background" class="col-md-6 tooltip-test">No background found. Would you linke to add a add a remark?</td>
                 </tr>
                 <tr>
                     <td class="col-md-6">Youtube</td>
                     <td ng-show="song.youtube" class="col-md-6"><youtube-video video-id="song.youtube"></youtube-video></td>
-                    <td ng-show="!song.youtube" class="col-md-6 tooltip-test">No youtube link found. Would you linke to add a <a href="#/remark/{{song.id}}" data-toggle="tooltip" class="tooltip-test" data-placement="top" title="Add a remark about the song.">add a remark</a>?</td>
+                    <td ng-show="!song.youtube" class="col-md-6 tooltip-test">No youtube link found. Would you linke to add a add a remark?</td>
                 </tr>
             </table>
             <a href="#/remark/{{song.id}}" class="btn btn-primary" role="button">
