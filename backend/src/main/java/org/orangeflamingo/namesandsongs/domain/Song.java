@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +35,7 @@ public class Song implements Serializable {
     @JsonView({ View.Summary.class, View.Detail.class, View.AdminDetail.class })
     private Integer id;
 
-    @OneToMany(mappedBy = "song")
+    @OneToMany(mappedBy = "song", fetch=FetchType.EAGER)
     @JsonView(View.Detail.class)
     private List<Remark> remarks;
 
