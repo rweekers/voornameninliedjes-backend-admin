@@ -6,14 +6,16 @@
 			<thead>
 				<tr>
 					<th>IP Address</th>
-					<th>Browser and system</th>
+					<th class="hidden-xs">Browser and system</th>
+					<th class="visible-xs-* hidden-sm hidden-md hidden-lg">Browser</th>
 					<th>Date</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="visit in visits">
 					<td><a href="#/visit/{{visit.id}}" class="thumb">{{visit.ipAddress}}</a></td>
-		          	<td>{{visit.browser}} - {{visit.operatingSystem}}</td>
+		          	<td class="hidden-xs">{{visit.browser}} - {{visit.operatingSystem}}</td>
+		          	<td class="visible-xs-* hidden-sm hidden-md hidden-lg">{{visit.browser}}</td>
           		  	<td>{{visit.dateInserted | date:'dd-MM-yyyy HH:mm:ss'}}</td>
 				</tr>
 			</tbody>
