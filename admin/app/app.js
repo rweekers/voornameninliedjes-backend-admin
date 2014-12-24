@@ -28,7 +28,6 @@ config(['$routeProvider', function($routeProvider) {
     $scope.logout = function() {
         console.log("Logging out " + $rootScope.username);
         Auth.clearCredentials();
-        // $location.path('/songs');
     };
 })
 
