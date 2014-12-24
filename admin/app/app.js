@@ -20,10 +20,16 @@ angular.module('myApp', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/visits'});
 }])
-.controller('HeaderCtrl', function($scope, $location) {
+.controller('HeaderCtrl', function($scope, $location, $rootScope, Auth) {
     $scope.isActive = function(route) {
         return route === $location.path();
     }
+
+    $scope.logout = function() {
+        console.log("Logging out " + $rootScope.username);
+        Auth.clearCredentials();
+        // $location.path('/songs');
+    };
 })
 
 .config(['$httpProvider',
@@ -32,8 +38,8 @@ config(['$routeProvider', function($routeProvider) {
     }
 ])
 
-.factory('Auth', ['Base64', '$cookieStore', '$http', '$location',
-    function(Base64, $cookieStore, $http, $location) {
+.factory('Auth', ['Base64', '$cookieStore', '$http', '$location', '$rootScope', 
+    function(Base64, $cookieStore, $http, $location, $rootScope) {
         // initialize to whatever is in the cookie, if anything
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
 
@@ -45,6 +51,7 @@ config(['$routeProvider', function($routeProvider) {
                 $cookieStore.put('authdata', encoded);
                 $cookieStore.put('user', username);
                 $location.path('/visits');
+                $rootScope.username = username;
             },
             clearCredentials: function() {
                 document.execCommand("ClearAuthenticationCache");
@@ -52,6 +59,7 @@ config(['$routeProvider', function($routeProvider) {
                 $cookieStore.remove('authdata');
                 $cookieStore.remove('user');
                 $http.defaults.headers.common.Authorization = 'Basic ';
+                $rootScope.username = null;
             }
         };
     }
