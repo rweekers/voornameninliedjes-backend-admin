@@ -39,14 +39,14 @@ angular.module('myApp.remark', ['ngRoute'])
             $scope.remark.$save({
                 visitId: Data.visit.id,
                 songId: $scope.song.id
+            }, function(){
+                $location.path('/song/' + $scope.song.id);
             });
 
-            console.log("Song id: " + $scope.song.id);
             $scope.song = SongDetail.get({
                 id: $routeParams.songId
             }).$promise.then(function(data) {
                 $scope.song = data;
-                $location.path('/song/' + $scope.song.id);
             }, function(errorResponse) {
                 console.log("Error...");
             });
@@ -54,7 +54,6 @@ angular.module('myApp.remark', ['ngRoute'])
         };
 
         $scope.cancel = function() {
-            console.log("Canceling...");
             $location.path('/song/' + $scope.song.id);
         };
     }
