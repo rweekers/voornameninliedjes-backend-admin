@@ -73,7 +73,17 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
                 $scope.max = data;
             });
 
-        $scope.filterArtist = function() {
+        $scope.artistFilter = function() {
+            if (event.keyCode === 13) {
+                filterArtist();
+            }
+        }
+
+        $scope.artistFilterBlur = function() {
+            filterArtist();
+        }
+
+        function filterArtist() {
             $http.get('/namesandsongs/api/song/count', {
                 params: {
                     filterArtist: $scope.artist,
@@ -90,7 +100,17 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             $scope.update();
         }
 
-        $scope.filterTitle = function() {
+        $scope.titleFilter = function() {
+            if (event.keyCode === 13) {
+                filterTitle();
+            }
+        }
+
+        $scope.titleFilterBlur = function() {
+            filterTitle();
+        }
+
+        function filterTitle() {
             $http.get('/namesandsongs/api/song/count', {
                 params: {
                     filterArtist: $scope.artist,

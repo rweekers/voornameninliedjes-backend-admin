@@ -29,31 +29,29 @@
     </div>
     <div ng-if="result" class="alert alert-warning text-center" role="alert">{{result}}.</a></div>
     <form class="form-horizontal" role="form" name="myForm">
+        <h3>Do you know something about the song?</h3>
         <div class="form-group">
-            <label for="commentary" class="col-sm-2 control-label">Commentaar</label>
+            <label for="artist" class="col-sm-2 control-label">Do you know any Youtube clips?</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="commentary" id="commentary" ng-model="remark.commentary" placeholder="Please enter your comment" required>
-                <span ng-show="myForm.commentary.$error.required" class="help-inline">
-                Verplicht</span>
+                <input type="text" class="form-control" name="youtube" id="youtube" ng-model="remark.youtube"placeholder="Please enter any Youtube clips">
             </div>
         </div>
         <div class="form-group">
-            <label for="artist" class="col-sm-2 control-label">Youtube</label>
+            <label for="artist" class="col-sm-2 control-label">What do you know about the song itself?</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="youtube" id="youtube" ng-model="remark.youtube">
+                <textarea class="form-control" rows="5" name="background" id="background" ng-model="remark.background" placeholder="Please enter your any background information about the song"></textarea>
             </div>
         </div>
         <div class="form-group">
-            <label for="artist" class="col-sm-2 control-label">Background</label>
+            <label for="commentary" class="col-sm-2 control-label">Do you have any other remarks (e.g. spelling) about the song?</label>
             <div class="col-sm-10">
-                <textarea class="form-control" rows="5" name="background" id="background" ng-model="remark.background"></textarea>
+                <input type="text" class="form-control" name="commentary" id="commentary" ng-model="remark.commentary" placeholder="Please enter any other remarks">
             </div>
         </div>
         <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
-                <!--a href="#/song/{{song.id}}" ng-click="save()" ng-disabled="myForm.$invalid" class="btn btn-primary">Save</a-->
-                <button type="button" ng-click="save()" ng-disabled="myForm.$invalid" class="btn btn-primary">Save</button>
+                <button type="button" ng-click="save()" ng-disabled="!valid()" class="btn btn-primary">Save</button>
                 <a href="#/song/{{song.id}}" class="btn btn-primary">Cancel</a>
             </div>
         </div>

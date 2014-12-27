@@ -15,12 +15,12 @@
                 <tr>
                     <td class="col-md-6">Background</td>
                     <td ng-show="song.background" class="col-md-6"><p ng-bind-html="background"></p></td>
-                    <td ng-show="!song.background" class="col-md-6 tooltip-test">No background found. Would you linke to add a add a remark?</td>
+                    <td ng-show="!song.background" class="col-md-6 tooltip-test">No background found. Would you like to add facts about the song?</td>
                 </tr>
                 <tr>
                     <td class="col-md-6">Youtube</td>
                     <td ng-show="song.youtube" class="col-md-6"><youtube-video video-id="song.youtube"></youtube-video></td>
-                    <td ng-show="!song.youtube" class="col-md-6 tooltip-test">No youtube link found. Would you linke to add a add a remark?</td>
+                    <td ng-show="!song.youtube" class="col-md-6 tooltip-test">No youtube clip found. Would you like to add one?</td>
                 </tr>
             </table>
             <a href="#/remark/{{song.id}}" class="btn btn-primary" role="button">
@@ -51,7 +51,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="remark in song.remarks | filter:{ status: '!'+'Finished'}">
+                            <tr ng-repeat="remark in song.remarks | filter:{ status: '!'+'Finished'} | orderBy: 'date':true">
                                 <td>{{remark.date | date:'dd-MM-yyyy HH:mm:ss'}}</td>
                                 <td>{{remark.commentary}}</td>
                                 <td>{{remark.status}}</td>
@@ -85,7 +85,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="remark in song.remarks | filter:{ status: 'Finished'}">
+                            <tr ng-repeat="remark in song.remarks | filter:{ status: 'Finished'} | orderBy: 'date':true">
                                 <td>{{remark.date | date:'dd-MM-yyyy HH:mm:ss'}}</td>
                                 <td>{{remark.commentary}}</td>
                                 <td>{{remark.status}}</td>

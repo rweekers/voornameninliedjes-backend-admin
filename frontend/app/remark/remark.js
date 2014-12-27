@@ -39,7 +39,7 @@ angular.module('myApp.remark', ['ngRoute'])
             $scope.remark.$save({
                 visitId: Data.visit.id,
                 songId: $scope.song.id
-            }, function(){
+            }, function() {
                 $location.path('/song/' + $scope.song.id);
             });
 
@@ -55,6 +55,18 @@ angular.module('myApp.remark', ['ngRoute'])
 
         $scope.cancel = function() {
             $location.path('/song/' + $scope.song.id);
+        };
+
+        $scope.valid = function(e) {
+            if ($scope.remark) {
+                if ($scope.remark.background || $scope.remark.youtube || $scope.remark.commentary) {
+                    return true;
+                }
+                return false;
+            } else {
+                return false;
+            }
+
         };
     }
 ])
