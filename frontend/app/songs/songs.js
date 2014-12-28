@@ -43,6 +43,7 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         $scope.sortT = 'glyphicon-sort-by-alphabet';
         $scope.sortArtist = '';
         $scope.sortA = 'glyphicon-sort';
+        $scope.s = false;
 
         $scope.songs = Song.query({
             count: $scope.count.code,
@@ -76,13 +77,18 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             });
 
         $scope.artistFilter = function() {
-            if (event.keyCode === 13 || event.keyCode === 5) {
+            if (event.keyCode === 13) {
+                $scope.s = true;
                 filterArtist();
+            } else {
+                $scope.s = false;
             }
         }
 
         $scope.artistFilterBlur = function() {
-            filterArtist();
+            if (!$scope.s){
+                filterArtist();
+            }
         }
 
         function filterArtist() {
@@ -103,13 +109,18 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         }
 
         $scope.titleFilter = function() {
-            if (event.keyCode === 13 || event.keyCode ===5) {
+            if (event.keyCode === 13) {
+                $scope.s = true;
                 filterTitle();
+            } else {
+                $scope.s = false;
             }
         }
 
         $scope.titleFilterBlur = function() {
-            filterTitle();
+            if (!$scope.s){
+                filterTitle();
+            }
         }
 
         function filterTitle() {
