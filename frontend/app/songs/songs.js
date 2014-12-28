@@ -53,13 +53,15 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         });
 
         $scope.update = function() {
-            $scope.songs = Song.query({
+            Song.query({
                 count: $scope.count.code,
                 page: $scope.page,
                 filterArtist: $scope.artist,
                 filterTitle: $scope.title,
                 sortingTitle: $scope.sortTitle,
                 sortingArtist: $scope.sortArtist
+            }).$promise.then(function(data){
+                $scope.songs = data;
             });
         }
 
@@ -74,7 +76,7 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
             });
 
         $scope.artistFilter = function() {
-            if (event.keyCode === 13) {
+            if (event.keyCode === 13 || event.keyCode === 5) {
                 filterArtist();
             }
         }
@@ -101,7 +103,7 @@ angular.module('myApp.songs', ['ngRoute', 'ngResource'])
         }
 
         $scope.titleFilter = function() {
-            if (event.keyCode === 13) {
+            if (event.keyCode === 13 || event.keyCode ===5) {
                 filterTitle();
             }
         }

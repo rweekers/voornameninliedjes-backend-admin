@@ -11,8 +11,8 @@ angular.module('myApp.remark', ['ngRoute'])
     }
 ])
 
-.controller('RemarkCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', '$sce', 'Remark', 'Song',
-    function($scope, $routeParams, $cookieStore, $http, $sce, Remark, Song) {
+.controller('RemarkCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', '$location', '$sce', 'Remark', 'Song',
+    function($scope, $routeParams, $cookieStore, $http, $location, $sce, Remark, Song) {
         // $scope.remarks = Remark.query();
         Remark.get({
             id: $routeParams.remarkId
@@ -39,7 +39,9 @@ angular.module('myApp.remark', ['ngRoute'])
             $scope.song.$save();
             // saving remark
             console.log("Saving remark " + $scope.remark.id);
-            $scope.remark.$save();
+            $scope.remark.$save(function(){
+                $location.path('/remarks');
+            });
         };
 
         $scope.cancel = function() {

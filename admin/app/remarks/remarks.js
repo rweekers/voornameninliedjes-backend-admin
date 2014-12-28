@@ -14,6 +14,10 @@ angular.module('myApp.remarks', ['ngRoute'])
 .controller('RemarksCtrl', ['$scope', 'Remark',
     function($scope, Remark) {
         $scope.remarks = Remark.query();
+
+        $("html, body").animate({
+            scrollTop: 0
+        }, "slow");
     }
 ])
 
