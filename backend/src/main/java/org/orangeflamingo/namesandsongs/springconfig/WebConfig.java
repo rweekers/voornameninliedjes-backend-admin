@@ -1,9 +1,13 @@
 package org.orangeflamingo.namesandsongs.springconfig;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,11 +24,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableTransactionManagement
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-    private static final String PROPERTY_NAME_DATABASE_DRIVER = "org.postgresql.Driver";
-
-    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "kzciaMUwTvd4y9Q0KYI6";
-    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:postgresql://localhost:5432/namesandsongs";
-    private static final String PROPERTY_NAME_DATABASE_USERNAME = "vil";
+    private static final Logger LOGGER = Logger.getLogger(WebConfig.class);
 
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
@@ -36,12 +36,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        Properties props = dbProperties();
 
-        dataSource.setDriverClassName(PROPERTY_NAME_DATABASE_DRIVER);
-        dataSource.setUrl(PROPERTY_NAME_DATABASE_URL);
+        dataSource.setDriverClassName(props.getProperty("driver"));
+        dataSource.setUrl(props.getProperty("url"));
 
-        dataSource.setUsername(PROPERTY_NAME_DATABASE_USERNAME);
-        dataSource.setPassword(PROPERTY_NAME_DATABASE_PASSWORD);
+        dataSource.setUsername(props.getProperty("username"));
+        dataSource.setPassword(props.getProperty("password"));
 
         return dataSource;
     }
@@ -66,6 +67,26 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 PROPERTY_NAME_HIBERNATE_HBM2DDL);
         properties.put(PROPERTY_NAME_HIBERNATE_USE_SQL_COMMENTS, "true");
         return properties;
+    }
+
+    private Properties dbProperties() {
+        LOGGER.info("Reading database properties...");
+        // create and load default properties
+        Properties props = new Properties();
+        FileInputStream in;
+        try {
+            in = new FileInputStream("database.properties");
+            props.load(in);
+            in.close();
+        } catch (FileNotFoundException e) {
+            LOGGER.fatal("Failed to read database.properties: "
+                    + e.getMessage());
+            e.printStackTrace();
+        } catch (IOException e) {
+            LOGGER.fatal("Fatal IO error: " + e.getMessage());
+        }
+        LOGGER.info("Database properties loaded...");
+        return props;
     }
 
     @Bean

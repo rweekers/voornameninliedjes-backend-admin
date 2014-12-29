@@ -50,5 +50,6 @@ admin/.sonar/
 admin/sonar-project.properties
 backend/.sonar
 backend/sonar-project.properties
+backend/database.properties
 frontend/.sonar
 frontend/sonar-project.properties
