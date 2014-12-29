@@ -1,0 +1,1 @@
+alter table remark alter column commentary drop not null;
