@@ -36,8 +36,9 @@ angular.module('myApp.songEdit', ['ngRoute'])
         $scope.save = function() {
             console.log("Saving song by user " + $cookieStore.get('user'));
             $scope.song.userModified = $cookieStore.get('user');
-            $scope.song.$save();
-            $location.path('/songs');
+            $scope.song.$save(function(){
+                $location.path('/songs');
+            });
         };
 
         $scope.cancel = function() {
