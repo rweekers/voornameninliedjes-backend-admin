@@ -11,7 +11,7 @@ public interface SongService {
     public List<Song> getAll(Integer count, Integer page, String sortingArtist,
             String sortingTitle, String filterArtist, String filterTitle);
 
-    public List<Song> getAll();
+    public List<Song> getAll(Integer count);
 
     public List<Song> findByFirstname(String firstname);
 

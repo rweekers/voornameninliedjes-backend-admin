@@ -11,7 +11,16 @@ angular.module('myApp.songs', ['ngRoute'])
 
 .controller('SongsCtrl', ['$scope', 'Song', 
     function($scope, Song) {
-        $scope.songs = Song.query();
+        // $scope.songs = Song.query();
+
+        Song.query({
+            count: 15
+        }).$promise.then(function(data){
+            $scope.songs = data;
+            Song.query(function(d) {
+                $scope.songs = d;
+            });
+        });
 }])
 
 .factory('Song', ['$resource',

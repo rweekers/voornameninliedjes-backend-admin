@@ -65,7 +65,7 @@ public class SongOfTheDayServiceImpl implements SongOfTheDayService {
         if (numberOfSongsOfTheDay == 0) {
 
             LOGGER.debug("Initalizing list with songs of the day...");
-            List<Song> songs = songService.getAll();
+            List<Song> songs = songService.getAll(null);
             Collections.shuffle(songs);
             Calendar calendarDay = Calendar.getInstance();
 

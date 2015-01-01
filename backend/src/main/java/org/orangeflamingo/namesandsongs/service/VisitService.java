@@ -7,7 +7,7 @@ import org.orangeflamingo.namesandsongs.domain.Visit;
 
 public interface VisitService {
 
-    public List<Visit> getAll();
+    public List<Visit> getAll(Integer count);
 
     public Visit add(Visit visit, HttpServletRequest request);
 
