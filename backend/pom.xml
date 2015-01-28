@@ -158,13 +158,6 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		<!--dependency>
-			<groupId>jboss</groupId>
-			<artifactId>javassist</artifactId>
-			<version>3.7.GA</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency-->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>

@@ -15,6 +15,7 @@ backend/.springBeans
 backend/.idea/
 backend/namesandsongs-backend.iml
 backend/deployAndRun.bat
+backend/bin
 
 namesandsongs-frontend/logs
 namesandsongs-frontend/project/project
