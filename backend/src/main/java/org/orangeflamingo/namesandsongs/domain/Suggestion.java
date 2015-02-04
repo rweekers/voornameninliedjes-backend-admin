@@ -1,12 +1,17 @@
 package org.orangeflamingo.namesandsongs.domain;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -20,167 +25,193 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  * > Hibernate Annotations Communit Documentations</a>
  */
 @Entity
-@Table(name = "remark")
+@Table(name = "suggestion")
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Suggestion implements Serializable {
-	
+
+	private static final long serialVersionUID = 686856611627570487L;
+
 	@Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({View.Summary.class, View.AdminDetail.class})
-    private Integer id;
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView({ View.Summary.class, View.AdminDetail.class })
+	private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "visit_id")
-    @JsonView(View.AdminDetail.class)
-    private Visit visit;
+	@ManyToOne
+	@JoinColumn(name = "visit_id")
+	@JsonView(View.AdminDetail.class)
+	private Visit visit;
 
-    @ManyToMany
-    @JoinColumn(name = "song_id")
-    @JsonView(View.AdminDetail.class)
-    private Song song;
+	@ManyToMany
+	@JoinTable(name = "remark_song", joinColumns = { @JoinColumn(name = "suggestion_id") }, inverseJoinColumns = { @JoinColumn(name = "song_id") })
+	@JsonView(View.AdminDetail.class)
+	private List<Song> songs;
 
-    @Column(name = "artist")
-    @JsonView({View.Summary.class, View.Detail.class})
-    private String artist;
+	@Column(name = "artist")
+	@JsonView({ View.Summary.class, View.Detail.class })
+	private String artist;
 
-    @Column(name = "title")
-    @JsonView({View.Summary.class, View.Detail.class})
-    private String title;
+	@Column(name = "title")
+	@JsonView({ View.Summary.class, View.Detail.class })
+	private String title;
 
-    @Column(name = "background")
-    @JsonView({View.Summary.class, View.Detail.class, View.AdminDetail.class})
-    private String background;
+	@Column(name = "background")
+	@JsonView({ View.Summary.class, View.Detail.class, View.AdminDetail.class })
+	private String background;
 
-    @Column(name = "youtube")
-    @JsonView({View.Summary.class, View.Detail.class, View.AdminDetail.class})
-    private String youtube;
+	@Column(name = "youtube")
+	@JsonView({ View.Summary.class, View.Detail.class, View.AdminDetail.class })
+	private String youtube;
 
-    @Column(name = "comment")
-    @JsonView({View.Summary.class, View.Detail.class, View.AdminDetail.class})
-    private String comment;
+	@Column(name = "comment")
+	@JsonView({ View.Summary.class, View.Detail.class, View.AdminDetail.class })
+	private String comment;
 
-    @Column(name = "email")
-    @JsonView({View.Summary.class, View.Detail.class})
-    private String email;
+	@Column(name = "email")
+	@JsonView({ View.Summary.class, View.Detail.class })
+	private String email;
 
-    @Column(name = "observer")
-    @JsonView({View.Summary.class, View.Detail.class})
-    private String observer;
+	@Column(name = "observer")
+	@JsonView({ View.Summary.class, View.Detail.class })
+	private String observer;
 
-    @Column(name = "date")
-    @JsonView({View.Summary.class, View.Detail.class, View.AdminDetail.class})
-    private Timestamp date;
-    
-    @Column(name = "response")
-    @JsonView({View.Detail.class, View.AdminDetail.class})
-    private String response;
-    
-    @Column(name = "responsedate")
-    @JsonView({View.Detail.class, View.AdminDetail.class})
-    private Timestamp responsedate;
+	@Column(name = "date")
+	@JsonView({ View.Summary.class, View.Detail.class, View.AdminDetail.class })
+	private Timestamp date;
 
-    @Column(name = "status")
-    @JsonView({View.Summary.class, View.Detail.class, View.AdminDetail.class})
-    private String status;
+	@Column(name = "response")
+	@JsonView({ View.Detail.class, View.AdminDetail.class })
+	private String response;
 
-    public Integer getId() {
-        return id;
-    }
+	@Column(name = "responsedate")
+	@JsonView({ View.Detail.class, View.AdminDetail.class })
+	private Timestamp responsedate;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	@Column(name = "status")
+	@JsonView({ View.Summary.class, View.Detail.class, View.AdminDetail.class })
+	private String status;
 
-    public Visit getVisit() {
-        return visit;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setVisit(Visit visit) {
-        this.visit = visit;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Song getSong() {
-        return song;
-    }
+	public Visit getVisit() {
+		return visit;
+	}
 
-    public void setSong(Song song) {
-        this.song = song;
-    }
+	public void setVisit(Visit visit) {
+		this.visit = visit;
+	}
 
-    public String getBackground() {
-        return background;
-    }
+	public String getArtist() {
+		return artist;
+	}
 
-    public void setBackground(String background) {
-        this.background = background;
-    }
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
 
-    public String getYoutube() {
-        return youtube;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setYoutube(String youtube) {
-        this.youtube = youtube;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public String getCommentary() {
-        return commentary;
-    }
+	public String getComment() {
+		return comment;
+	}
 
-    public void setCommentary(String commentary) {
-        this.commentary = commentary;
-    }
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getObserver() {
+		return observer;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setObserver(String observer) {
+		this.observer = observer;
+	}
 
-    public String getUser() {
-        return observer;
-    }
+	public List<Song> getSongs() {
+		return this.songs;
+	}
 
-    public void setUser(String user) {
-        this.observer = user;
-    }
+	public void setSongs(List<Song> songs) {
+		this.songs = songs;
+	}
 
-    public Timestamp getDate() {
-        return date;
-    }
+	public String getBackground() {
+		return background;
+	}
 
-    public void setDate(Timestamp date) {
-        this.date = date;
-    }
-    
-    public String getResponse() {
-        return response;
-    }
-    
-    public void setResponse(String response) {
-        this.response = response;
-    }
-    
-    public Timestamp getResponsedate() {
-        return responsedate;
-    }
+	public void setBackground(String background) {
+		this.background = background;
+	}
 
-    public void setResponsedate(Timestamp responsedate) {
-        this.responsedate = responsedate;
-    }
+	public String getYoutube() {
+		return youtube;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public void setYoutube(String youtube) {
+		this.youtube = youtube;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    
-    public String toString() {
-        return getId() + " - " + getCommentary() + " - " + getStatus();
-    }
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getUser() {
+		return observer;
+	}
+
+	public void setUser(String user) {
+		this.observer = user;
+	}
+
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
+
+	public String getResponse() {
+		return response;
+	}
+
+	public void setResponse(String response) {
+		this.response = response;
+	}
+
+	public Timestamp getResponsedate() {
+		return responsedate;
+	}
+
+	public void setResponsedate(Timestamp responsedate) {
+		this.responsedate = responsedate;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String toString() {
+		return getId() + " - " + getComment() + " - " + getStatus();
+	}
 }

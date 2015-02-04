@@ -45,9 +45,9 @@ public class RemarkServiceImpl implements RemarkService {
     }
 
     /**
-     * Retrieves all songs
+     * Retrieves all remarks
      * 
-     * @return a list of songs
+     * @return a list of remarks
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -74,14 +74,14 @@ public class RemarkServiceImpl implements RemarkService {
     }
 
     /**
-     * Edits an existing song
+     * Edits an existing remark
      */
     public void update(Remark remark) {
         LOGGER.debug("Editing existing remark");
 
         // Retrieve session from Hibernate
         Session session = sessionFactory.getCurrentSession();
-        // Retrieve existing song via id
+        // Retrieve existing remark via id
         Remark existingRemark = (Remark) session.get(Remark.class,
                 remark.getId());
         existingRemark.setBackground(remark.getBackground());

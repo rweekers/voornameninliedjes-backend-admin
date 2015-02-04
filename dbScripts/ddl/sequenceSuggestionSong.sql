@@ -1,0 +1,1 @@
+CREATE SEQUENCE suggestion_song_id_seq;
