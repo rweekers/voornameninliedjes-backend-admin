@@ -43,7 +43,7 @@ public class Suggestion implements Serializable {
 	private Visit visit;
 
 	@ManyToMany
-	@JoinTable(name = "remark_song", joinColumns = { @JoinColumn(name = "suggestion_id") }, inverseJoinColumns = { @JoinColumn(name = "song_id") })
+	@JoinTable(name = "suggestion_song", joinColumns = { @JoinColumn(name = "suggestion_id") }, inverseJoinColumns = { @JoinColumn(name = "song_id") })
 	@JsonView(View.AdminDetail.class)
 	private List<Song> songs;
 
