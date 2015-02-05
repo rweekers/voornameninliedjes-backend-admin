@@ -6,7 +6,6 @@ import org.orangeflamingo.namesandsongs.domain.Suggestion;
 
 public interface SuggestionService {
 
-	
     public Suggestion addSuggestion(Suggestion suggestion, int visitId);
 
     public List<Suggestion> getAll();

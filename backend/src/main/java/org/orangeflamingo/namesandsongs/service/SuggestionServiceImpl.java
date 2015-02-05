@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class SuggestionServiceImpl {
+public class SuggestionServiceImpl implements SuggestionService {
 	private static final Logger LOGGER = Logger
 			.getLogger(SuggestionServiceImpl.class);
 
@@ -78,8 +78,8 @@ public class SuggestionServiceImpl {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Retrieve existing suggestion via id
-		Suggestion existingSuggestion = (Suggestion) session.get(Suggestion.class,
-				suggestion.getId());
+		Suggestion existingSuggestion = (Suggestion) session.get(
+				Suggestion.class, suggestion.getId());
 		existingSuggestion.setBackground(suggestion.getBackground());
 		existingSuggestion.setComment(suggestion.getComment());
 		existingSuggestion.setEmail(suggestion.getEmail());
@@ -87,8 +87,8 @@ public class SuggestionServiceImpl {
 		existingSuggestion.setYoutube(suggestion.getYoutube());
 		existingSuggestion.setUser(suggestion.getUser());
 		existingSuggestion.setResponse(suggestion.getResponse());
-		existingSuggestion
-				.setResponsedate(new Timestamp(System.currentTimeMillis()));
+		existingSuggestion.setResponsedate(new Timestamp(System
+				.currentTimeMillis()));
 		// TODO Add song to list of songs from suggestion
 		// Assign updated values to this remark
 		LOGGER.info("Updating remark " + existingSuggestion);
