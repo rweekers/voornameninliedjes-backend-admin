@@ -63,8 +63,7 @@ public class RemarkController {
 
 	@RequestMapping(value = "admin/remark/{id}", method = RequestMethod.POST)
 	@ResponseBody
-	public Remark updateRemark(@RequestBody(required = true) Remark remark,
-			@RequestParam(value = "songId", required = true) int songId) {
+	public Remark updateRemark(@RequestBody(required = true) Remark remark) {
 		LOGGER.info("Update request for admin/remark/" + remark.getId()
 				+ " with commentary: " + remark.getCommentary());
 		remarkService.update(remark);
