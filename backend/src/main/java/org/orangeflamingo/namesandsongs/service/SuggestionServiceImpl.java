@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.orangeflamingo.namesandsongs.domain.Song;
 import org.orangeflamingo.namesandsongs.domain.Suggestion;
 import org.orangeflamingo.namesandsongs.domain.Visit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,14 +73,16 @@ public class SuggestionServiceImpl implements SuggestionService {
 	/**
 	 * Edits an existing suggestion
 	 */
-	public void update(Suggestion suggestion) {
-		LOGGER.debug("Editing existing suggestion");
+	public void update(Suggestion suggestion, Integer songId) {
+		LOGGER.info("Editing existing suggestion with artist " + suggestion.getArtist());
 
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		// Retrieve existing suggestion via id
 		Suggestion existingSuggestion = (Suggestion) session.get(
 				Suggestion.class, suggestion.getId());
+		existingSuggestion.setArtist(suggestion.getArtist());
+		existingSuggestion.setTitle(suggestion.getTitle());
 		existingSuggestion.setBackground(suggestion.getBackground());
 		existingSuggestion.setComment(suggestion.getComment());
 		existingSuggestion.setEmail(suggestion.getEmail());
@@ -89,9 +92,12 @@ public class SuggestionServiceImpl implements SuggestionService {
 		existingSuggestion.setResponse(suggestion.getResponse());
 		existingSuggestion.setResponsedate(new Timestamp(System
 				.currentTimeMillis()));
+		if (songId != null) {
+			existingSuggestion.getSongs().add((Song) songService.get(songId));
+		}
 		// TODO Add song to list of songs from suggestion
 		// Assign updated values to this remark
-		LOGGER.info("Updating remark " + existingSuggestion);
+		LOGGER.info("Updating suggestion " + existingSuggestion);
 		// Save updates
 		session.save(existingSuggestion);
 	}

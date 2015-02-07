@@ -12,6 +12,6 @@ public interface SuggestionService {
 
     public Suggestion get(Integer id);
 
-    public void update(Suggestion suggestion);
+    public void update(Suggestion suggestion, Integer songId);
 	
 }

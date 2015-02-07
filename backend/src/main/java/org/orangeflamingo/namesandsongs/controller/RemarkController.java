@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -23,49 +24,50 @@ import com.fasterxml.jackson.annotation.JsonView;
 @RequestMapping("api")
 public class RemarkController {
 
-    /**
-     * The LOGGER
-     */
-    private static final Logger LOGGER = Logger
-            .getLogger(RemarkController.class);
+	/**
+	 * The LOGGER
+	 */
+	private static final Logger LOGGER = Logger
+			.getLogger(RemarkController.class);
 
-    @Autowired
-    RemarkService remarkService;
+	@Autowired
+	RemarkService remarkService;
 
-    /**
-     * Returns all remarks
-     * 
-     * @return all remarks
-     */
-    @RequestMapping(value = "admin/remark", method = RequestMethod.GET)
-    @ResponseBody
-    @JsonView(View.Summary.class)
-    public List<Remark> allRemarks() {
-        LOGGER.debug("Calling remark service...");
-        return remarkService.getAll();
-    }
+	/**
+	 * Returns all remarks
+	 * 
+	 * @return all remarks
+	 */
+	@RequestMapping(value = "admin/remark", method = RequestMethod.GET)
+	@ResponseBody
+	@JsonView(View.Summary.class)
+	public List<Remark> allRemarks() {
+		LOGGER.debug("Calling remark service...");
+		return remarkService.getAll();
+	}
 
-    /**
-     * Gets a remark by id
-     * 
-     * @param id
-     *            the id of the remark
-     * @return the remark
-     */
-    @RequestMapping("admin/remark/{id}")
-    @ResponseBody
-    @JsonView(View.AdminDetail.class)
-    public Remark getById(@PathVariable int id) {
-        LOGGER.debug("Getting remark with id " + id);
-        return (Remark) remarkService.get(id);
-    }
+	/**
+	 * Gets a remark by id
+	 * 
+	 * @param id
+	 *            the id of the remark
+	 * @return the remark
+	 */
+	@RequestMapping("admin/remark/{id}")
+	@ResponseBody
+	@JsonView(View.AdminDetail.class)
+	public Remark getById(@PathVariable int id) {
+		LOGGER.debug("Getting remark with id " + id);
+		return (Remark) remarkService.get(id);
+	}
 
-    @RequestMapping(value = "admin/remark/{id}", method = RequestMethod.POST)
-    @ResponseBody
-    public Remark updateRemark(@RequestBody(required = true) Remark remark) {
-        LOGGER.info("Update request for admin/remark/" + remark.getId()
-                + " with commentary: " + remark.getCommentary());
-        remarkService.update(remark);
-        return remark;
-    }
+	@RequestMapping(value = "admin/remark/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public Remark updateRemark(@RequestBody(required = true) Remark remark,
+			@RequestParam(value = "songId", required = true) int songId) {
+		LOGGER.info("Update request for admin/remark/" + remark.getId()
+				+ " with commentary: " + remark.getCommentary());
+		remarkService.update(remark);
+		return remark;
+	}
 }

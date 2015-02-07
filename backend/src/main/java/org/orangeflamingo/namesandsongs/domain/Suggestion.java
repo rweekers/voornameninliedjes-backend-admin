@@ -2,6 +2,7 @@ package org.orangeflamingo.namesandsongs.domain;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -140,7 +141,11 @@ public class Suggestion implements Serializable {
 	}
 
 	public List<Song> getSongs() {
-		return this.songs;
+		if (this.songs == null) {
+			return new ArrayList<Song>();
+		} else {
+			return this.songs;
+		}
 	}
 
 	public void setSongs(List<Song> songs) {
