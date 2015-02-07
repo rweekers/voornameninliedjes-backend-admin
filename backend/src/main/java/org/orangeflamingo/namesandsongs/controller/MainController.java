@@ -10,12 +10,14 @@ import org.orangeflamingo.namesandsongs.domain.Remark;
 import org.orangeflamingo.namesandsongs.domain.SearchInstruction;
 import org.orangeflamingo.namesandsongs.domain.Song;
 import org.orangeflamingo.namesandsongs.domain.SongOfTheDay;
+import org.orangeflamingo.namesandsongs.domain.Suggestion;
 import org.orangeflamingo.namesandsongs.domain.View;
 import org.orangeflamingo.namesandsongs.domain.Visit;
 import org.orangeflamingo.namesandsongs.service.RemarkService;
 import org.orangeflamingo.namesandsongs.service.SearchInstructionService;
 import org.orangeflamingo.namesandsongs.service.SongOfTheDayService;
 import org.orangeflamingo.namesandsongs.service.SongService;
+import org.orangeflamingo.namesandsongs.service.SuggestionService;
 import org.orangeflamingo.namesandsongs.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,6 +58,9 @@ public class MainController {
 
 	@Autowired
 	RemarkService remarkService;
+	
+	@Autowired
+	SuggestionService suggestionService;
 
 	/**
 	 * Gets a random song
@@ -380,5 +385,22 @@ public class MainController {
 				+ " with visitId " + visitId + " and songId " + songId);
 		remark.setDate(new Timestamp(System.currentTimeMillis()));
 		return remarkService.addRemark(remark, visitId, songId);
+	}
+	
+	/**
+	 * Saves a new suggestion
+	 * 
+	 * @param suggestion
+	 *            the suggestion to be saved
+	 * @return the remark
+	 */
+	@RequestMapping(value = "suggestion", method = RequestMethod.POST)
+	@ResponseBody
+	public Suggestion addSuggestion(@RequestBody(required = true) Suggestion suggestion,
+			@RequestParam(value = "visitId", required = true) int visitId) {
+		LOGGER.info("Saving suggestion " + suggestion.getComment()
+				+ " with visitId " + visitId);
+		suggestion.setDate(new Timestamp(System.currentTimeMillis()));
+		return suggestionService.addSuggestion(suggestion, visitId);
 	}
 }
