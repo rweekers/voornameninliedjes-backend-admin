@@ -14,4 +14,6 @@ public interface SuggestionService {
 
     public void update(Suggestion suggestion, Integer songId);
 	
+    public void removeSong(Suggestion suggestion, Integer songId);
+    
 }

@@ -71,5 +71,16 @@ public class SuggestionController {
 		suggestionService.update(suggestion, songId);
 		return suggestion;
 	}
+	
+	@RequestMapping(value = "admin/suggestionSong/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public Suggestion removeSongFromSuggestion(
+			@RequestBody(required = true) Suggestion suggestion,
+			@RequestParam(value = "songId", required = true) Integer songId) {
+		LOGGER.info("Update request for admin/suggestionSong/" + suggestion.getId()
+				+ " with commentary: " + suggestion.getComment());
+		suggestionService.removeSong(suggestion, songId);
+		return suggestion;
+	}
 
 }

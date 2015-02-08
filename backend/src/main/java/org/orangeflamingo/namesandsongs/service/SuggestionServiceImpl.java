@@ -74,7 +74,8 @@ public class SuggestionServiceImpl implements SuggestionService {
 	 * Edits an existing suggestion
 	 */
 	public void update(Suggestion suggestion, Integer songId) {
-		LOGGER.info("Editing existing suggestion with artist " + suggestion.getArtist());
+		LOGGER.info("Editing existing suggestion with artist "
+				+ suggestion.getArtist());
 
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
@@ -100,5 +101,22 @@ public class SuggestionServiceImpl implements SuggestionService {
 		LOGGER.info("Updating suggestion " + existingSuggestion);
 		// Save updates
 		session.save(existingSuggestion);
+	}
+
+	/**
+	 * TODO
+	 * 
+	 * @param suggestion
+	 * @param songId
+	 */
+	public void removeSong(Suggestion suggestion, Integer songId) {
+		Session session = sessionFactory.getCurrentSession();
+		Suggestion existingSuggestion = (Suggestion) session.get(
+				Suggestion.class, suggestion.getId());
+		if (existingSuggestion.getSongs().size() > 0) {
+			LOGGER.info("Removing song");
+			existingSuggestion.getSongs().remove((Song) songService.get(songId));
+			session.save(existingSuggestion);
+		}
 	}
 }
