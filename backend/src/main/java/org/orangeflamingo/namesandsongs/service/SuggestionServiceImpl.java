@@ -116,17 +116,18 @@ public class SuggestionServiceImpl implements SuggestionService {
 		if (existingSuggestion.getSongs().size() > 0) {
 			LOGGER.info("Removing song");
 			for (Song s : existingSuggestion.getSongs()) {
-				LOGGER.info("Loop 1. Song: " + s.getArtist + " - " + s.getTitle);
+				LOGGER.info("Loop 1. Song: " + s.getId() + " " + s.getArtist() + " - " + s.getTitle());
 			}
 
-			existingSuggestion.getSongs().remove((Song) songService.get(songId));
+			// existingSuggestion.getSongs().remove((Song) songService.get(songId));
+			existingSuggestion.getSongs().remove(0);
 			
 			for (Song s : existingSuggestion.getSongs()) {
-				LOGGER.info("Loop 2. Song: " + s.getArtist + " - " + s.getTitle);
+				LOGGER.info("Loop 2. Song: " + s.getId() + " " + s.getArtist() + " - " + s.getTitle());
 			}
 			session.save(existingSuggestion);
 			for (Song s : existingSuggestion.getSongs()) {
-				LOGGER.info("Loop 3. Song: " + s.getArtist + " - " + s.getTitle);
+				LOGGER.info("Loop 3. Song: " + s.getId() + " " + s.getArtist() + " - " + s.getTitle());
 			}
 		}
 	}
