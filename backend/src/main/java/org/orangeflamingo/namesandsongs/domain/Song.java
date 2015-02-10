@@ -180,6 +180,27 @@ public class Song implements Serializable {
         this.youtube = youtube;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+        
+        Song s = (Song) o;
+        return this.id == s.getId() && this.artist = s.getArtist() && this.title = s.getTitle();
+    }
+
+    @Override
+    public int hashCode(){
+        int result = 1; 
+        result = ((Long)this.id).hashCode();
+        return result;
+    }
+
     public String toString() {
         return getArtist() + " - " + getTitle() + " - " + getFirstname();
     }
