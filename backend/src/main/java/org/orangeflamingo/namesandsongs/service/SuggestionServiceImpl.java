@@ -104,10 +104,10 @@ public class SuggestionServiceImpl implements SuggestionService {
 	}
 
 	/**
-	 * Unlinks a given song from a suggestion
+	 * TODO
 	 * 
-	 * @param suggestion The suggestion from which the song neends to be unlinked
-	 * @param songId The id of the song that needs to be unlinked
+	 * @param suggestion
+	 * @param songId
 	 */
 	public void removeSong(Suggestion suggestion, Integer songId) {
 		Session session = sessionFactory.getCurrentSession();
@@ -120,8 +120,7 @@ public class SuggestionServiceImpl implements SuggestionService {
 			}
 
 			// existingSuggestion.getSongs().remove((Song) songService.get(songId));
-			Song song = (Song)session.get(Song.class, songId);
-			existingSuggestion.getSongs().remove(song);
+			existingSuggestion.getSongs().remove(0);
 			
 			for (Song s : existingSuggestion.getSongs()) {
 				LOGGER.info("Loop 2. Song: " + s.getId() + " " + s.getArtist() + " - " + s.getTitle());
