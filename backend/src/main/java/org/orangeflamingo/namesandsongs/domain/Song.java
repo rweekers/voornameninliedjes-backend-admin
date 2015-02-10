@@ -27,181 +27,182 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Song implements Serializable {
 
-    private static final long serialVersionUID = -5527566248002296042L;
+	private static final long serialVersionUID = -5527566248002296042L;
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({ View.Summary.class, View.Detail.class, View.AdminDetail.class })
-    private Integer id;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView({ View.Summary.class, View.Detail.class, View.AdminDetail.class })
+	private Integer id;
 
-    @OneToMany(mappedBy = "song", fetch=FetchType.EAGER)
-    @JsonView(View.Detail.class)
-    private List<Remark> remarks;
+	@OneToMany(mappedBy = "song", fetch = FetchType.EAGER)
+	@JsonView(View.Detail.class)
+	private List<Remark> remarks;
 
-    @Column(name = "artist")
-    @JsonView({View.Summary.class, View.Detail.class})
-    private String artist;
+	@Column(name = "artist")
+	@JsonView({ View.Summary.class, View.Detail.class })
+	private String artist;
 
-    @Column(name = "title")
-    @JsonView({View.Summary.class, View.Detail.class})
-    private String title;
+	@Column(name = "title")
+	@JsonView({ View.Summary.class, View.Detail.class })
+	private String title;
 
-    @Column(name = "firstname")
-    private String firstname;
+	@Column(name = "firstname")
+	private String firstname;
 
-    @Column(name = "name_index")
-    private Integer nameIndex;
+	@Column(name = "name_index")
+	private Integer nameIndex;
 
-    @Column(name = "name_length")
-    private Integer nameLength;
+	@Column(name = "name_length")
+	private Integer nameLength;
 
-    @Column(name = "date_inserted")
-    private Timestamp dateInserted;
+	@Column(name = "date_inserted")
+	private Timestamp dateInserted;
 
-    @Column(name = "date_modified")
-    private Timestamp dateModified;
+	@Column(name = "date_modified")
+	private Timestamp dateModified;
 
-    @Column(name = "user_inserted")
-    private String userInserted;
+	@Column(name = "user_inserted")
+	private String userInserted;
 
-    @Column(name = "user_modified")
-    private String userModified;
+	@Column(name = "user_modified")
+	private String userModified;
 
-    @Column(name = "background")
-    @JsonView({View.Summary.class, View.Detail.class})
-    private String background;
+	@Column(name = "background")
+	@JsonView({ View.Summary.class, View.Detail.class })
+	private String background;
 
-    @Column(name = "youtube")
-    @JsonView({View.Summary.class, View.Detail.class})
-    private String youtube;
+	@Column(name = "youtube")
+	@JsonView({ View.Summary.class, View.Detail.class })
+	private String youtube;
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public List<Remark> getRemarks() {
-        return remarks;
-    }
+	public List<Remark> getRemarks() {
+		return remarks;
+	}
 
-    public void setRemarks(List<Remark> remarks) {
-        this.remarks = remarks;
-    }
+	public void setRemarks(List<Remark> remarks) {
+		this.remarks = remarks;
+	}
 
-    public String getArtist() {
-        return artist;
-    }
+	public String getArtist() {
+		return artist;
+	}
 
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public String getFirstname() {
-        return firstname;
-    }
+	public String getFirstname() {
+		return firstname;
+	}
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
-    public Integer getNameIndex() {
-        return nameIndex;
-    }
+	public Integer getNameIndex() {
+		return nameIndex;
+	}
 
-    public void setNameIndex(Integer nameIndex) {
-        this.nameIndex = nameIndex;
-    }
+	public void setNameIndex(Integer nameIndex) {
+		this.nameIndex = nameIndex;
+	}
 
-    public Integer getNameLength() {
-        return nameLength;
-    }
+	public Integer getNameLength() {
+		return nameLength;
+	}
 
-    public void setNameLength(Integer nameLength) {
-        this.nameLength = nameLength;
-    }
+	public void setNameLength(Integer nameLength) {
+		this.nameLength = nameLength;
+	}
 
-    public Timestamp getDateInserted() {
-        return dateInserted;
-    }
+	public Timestamp getDateInserted() {
+		return dateInserted;
+	}
 
-    public void setDateInserted(Timestamp dateInserted) {
-        this.dateInserted = dateInserted;
-    }
+	public void setDateInserted(Timestamp dateInserted) {
+		this.dateInserted = dateInserted;
+	}
 
-    public Timestamp getDateModified() {
-        return dateModified;
-    }
+	public Timestamp getDateModified() {
+		return dateModified;
+	}
 
-    public void setDateModified(Timestamp dateModified) {
-        this.dateModified = dateModified;
-    }
+	public void setDateModified(Timestamp dateModified) {
+		this.dateModified = dateModified;
+	}
 
-    public String getUserInserted() {
-        return userInserted;
-    }
+	public String getUserInserted() {
+		return userInserted;
+	}
 
-    public void setUserInserted(String userInserted) {
-        this.userInserted = userInserted;
-    }
+	public void setUserInserted(String userInserted) {
+		this.userInserted = userInserted;
+	}
 
-    public String getUserModified() {
-        return userModified;
-    }
+	public String getUserModified() {
+		return userModified;
+	}
 
-    public void setUserModified(String userModified) {
-        this.userModified = userModified;
-    }
+	public void setUserModified(String userModified) {
+		this.userModified = userModified;
+	}
 
-    public String getBackground() {
-        return background;
-    }
+	public String getBackground() {
+		return background;
+	}
 
-    public void setBackground(String background) {
-        this.background = background;
-    }
+	public void setBackground(String background) {
+		this.background = background;
+	}
 
-    public String getYoutube() {
-        return youtube;
-    }
+	public String getYoutube() {
+		return youtube;
+	}
 
-    public void setYoutube(String youtube) {
-        this.youtube = youtube;
-    }
+	public void setYoutube(String youtube) {
+		this.youtube = youtube;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this) {
-            return true;
-        }
+	@Override
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
 
-        if (o == null || o.getClass() != this.getClass()) {
-            return false;
-        }
-        
-        Song s = (Song) o;
-        return this.id == s.getId() && this.artist = s.getArtist() && this.title = s.getTitle();
-    }
+		if (o == null || o.getClass() != this.getClass()) {
+			return false;
+		}
 
-    @Override
-    public int hashCode(){
-        int result = 1; 
-        result = ((Long)this.id).hashCode();
-        return result;
-    }
+		Song s = (Song) o;
+		return this.id == s.getId() && this.artist.equals(s.getArtist())
+				&& this.title.equals(s.getTitle());
+	}
 
-    public String toString() {
-        return getArtist() + " - " + getTitle() + " - " + getFirstname();
-    }
+	@Override
+	public int hashCode() {
+		int result = 1;
+		result = ((Integer) this.id).hashCode();
+		return result;
+	}
+
+	public String toString() {
+		return getArtist() + " - " + getTitle() + " - " + getFirstname();
+	}
 }
