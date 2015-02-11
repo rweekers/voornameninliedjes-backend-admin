@@ -55,9 +55,9 @@ public class Item implements Serializable {
 	@JsonView({ View.Summary.class, View.Detail.class, View.AdminDetail.class })
 	private String title;
 
-	@Column(name = "user")
+	@Column(name = "user_inserted")
 	@JsonView({ View.Summary.class, View.Detail.class })
-	private String user;
+	private String userInserted;
 
 	@Column(name = "date")
 	@JsonView({ View.Summary.class, View.Detail.class, View.AdminDetail.class })
@@ -119,12 +119,12 @@ public class Item implements Serializable {
 		this.title = title;
 	}
 	
-	public String getUser() {
-		return user;
+	public String getUserInserted() {
+		return userInserted;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUserInserted(String userInserted) {
+		this.userInserted = userInserted;
 	}
 
 	public Timestamp getDate() {

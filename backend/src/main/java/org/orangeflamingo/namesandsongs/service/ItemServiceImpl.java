@@ -33,7 +33,7 @@ public class ItemServiceImpl implements ItemService {
 		LOGGER.debug("Adding new item");
 		// Retrieve session from Hibernate and save song
 		Session session = sessionFactory.openSession();
-		item.setUser(user);
+		item.setUserInserted(user);
 		session.save(item);
 		return item;
 	}
