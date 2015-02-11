@@ -9,13 +9,11 @@ import org.apache.log4j.Logger;
 import org.orangeflamingo.namesandsongs.domain.Remark;
 import org.orangeflamingo.namesandsongs.domain.SearchInstruction;
 import org.orangeflamingo.namesandsongs.domain.Song;
-import org.orangeflamingo.namesandsongs.domain.SongOfTheDay;
 import org.orangeflamingo.namesandsongs.domain.Suggestion;
 import org.orangeflamingo.namesandsongs.domain.View;
 import org.orangeflamingo.namesandsongs.domain.Visit;
 import org.orangeflamingo.namesandsongs.service.RemarkService;
 import org.orangeflamingo.namesandsongs.service.SearchInstructionService;
-import org.orangeflamingo.namesandsongs.service.SongOfTheDayService;
 import org.orangeflamingo.namesandsongs.service.SongService;
 import org.orangeflamingo.namesandsongs.service.SuggestionService;
 import org.orangeflamingo.namesandsongs.service.VisitService;
@@ -54,24 +52,10 @@ public class MainController {
 	VisitService visitService;
 
 	@Autowired
-	SongOfTheDayService songOfTheDayService;
-
-	@Autowired
 	RemarkService remarkService;
 	
 	@Autowired
 	SuggestionService suggestionService;
-
-	/**
-	 * Gets a random song
-	 * 
-	 * @return the random song
-	 */
-	@RequestMapping(value = "song/random", method = RequestMethod.GET)
-	@ResponseBody
-	public Song randomSong() {
-		return songOfTheDayService.getSongOfTheDay();
-	}
 
 	/**
 	 * Gets a dummy song
@@ -319,26 +303,6 @@ public class MainController {
 		visit.setDateInserted(new Timestamp(System.currentTimeMillis()));
 		visitService.add(visit, request);
 		return visit;
-	}
-
-	/**
-	 * Returns all songs
-	 * 
-	 * @return all songs
-	 */
-	@RequestMapping(value = "admin/songOfTheDay/all", method = RequestMethod.GET)
-	@ResponseBody
-	public List<SongOfTheDay> allSongsOfTheDay() {
-		return songOfTheDayService.getAll();
-	}
-
-	/**
-	 * Initializes the list with random songs
-	 */
-	@RequestMapping(value = "admin/songOfTheDay/initialize", method = RequestMethod.GET)
-	@ResponseBody
-	public void initializeSongsOfTheDay() {
-		songOfTheDayService.initialize();
 	}
 
 	/**

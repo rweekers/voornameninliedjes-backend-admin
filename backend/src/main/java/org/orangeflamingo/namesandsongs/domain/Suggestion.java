@@ -2,8 +2,6 @@ package org.orangeflamingo.namesandsongs.domain;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -43,10 +39,10 @@ public class Suggestion implements Serializable {
 	@JsonView(View.AdminDetail.class)
 	private Visit visit;
 
-	@ManyToMany
-	@JoinTable(name = "suggestion_song", joinColumns = { @JoinColumn(name = "suggestion_id") }, inverseJoinColumns = { @JoinColumn(name = "song_id") })
+	@ManyToOne
+	@JoinColumn(name = "song_id")
 	@JsonView(View.AdminDetail.class)
-	private List<Song> songs;
+	private Song song;
 
 	@Column(name = "artist")
 	@JsonView({ View.Summary.class, View.Detail.class })
@@ -140,16 +136,12 @@ public class Suggestion implements Serializable {
 		this.observer = observer;
 	}
 
-	public List<Song> getSongs() {
-		if (this.songs == null) {
-			return new ArrayList<Song>();
-		} else {
-			return this.songs;
-		}
+	public Song getSong() {
+		return song;
 	}
 
-	public void setSongs(List<Song> songs) {
-		this.songs = songs;
+	public void setSong(Song song) {
+		this.song = song;
 	}
 
 	public String getBackground() {

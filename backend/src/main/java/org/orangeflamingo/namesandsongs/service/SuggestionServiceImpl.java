@@ -49,7 +49,7 @@ public class SuggestionServiceImpl implements SuggestionService {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Suggestion> getAll() {
-		LOGGER.debug("Retrieving all suggestion");
+		LOGGER.debug("Retrieving all suggestions");
 
 		// Create a Hibernate query (HQL)
 		Session session = sessionFactory.openSession();
@@ -94,7 +94,7 @@ public class SuggestionServiceImpl implements SuggestionService {
 		existingSuggestion.setResponsedate(new Timestamp(System
 				.currentTimeMillis()));
 		if (songId != null) {
-			existingSuggestion.getSongs().add((Song) songService.get(songId));
+			existingSuggestion.setSong((Song) songService.get(songId));
 		}
 		// TODO Add song to list of songs from suggestion
 		// Assign updated values to this remark
@@ -113,23 +113,11 @@ public class SuggestionServiceImpl implements SuggestionService {
 		Session session = sessionFactory.getCurrentSession();
 		Suggestion existingSuggestion = (Suggestion) session.get(
 				Suggestion.class, suggestion.getId());
-		if (existingSuggestion.getSongs().size() > 0) {
-			LOGGER.info("Removing song");
-			for (Song s : existingSuggestion.getSongs()) {
-				LOGGER.info("Loop 1. Song: " + s.getId() + " " + s.getArtist() + " - " + s.getTitle());
-			}
-
-			// existingSuggestion.getSongs().remove((Song) songService.get(songId));
-			Song song = (Song)session.get(Song.class, songId);
-			existingSuggestion.getSongs().remove(song);
-			
-			for (Song s : existingSuggestion.getSongs()) {
-				LOGGER.info("Loop 2. Song: " + s.getId() + " " + s.getArtist() + " - " + s.getTitle());
-			}
+		Song song = (Song)session.get(Song.class, songId);
+		if (existingSuggestion.getSong().equals(song)) {
+			LOGGER.info("Removing song " + songId);
+			existingSuggestion.setSong(null);
 			session.save(existingSuggestion);
-			for (Song s : existingSuggestion.getSongs()) {
-				LOGGER.info("Loop 3. Song: " + s.getId() + " " + s.getArtist() + " - " + s.getTitle());
-			}
 		}
 	}
 }
