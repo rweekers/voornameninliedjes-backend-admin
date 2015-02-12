@@ -1,6 +1,7 @@
 package org.orangeflamingo.namesandsongs.service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -29,11 +30,10 @@ public class ItemServiceImpl implements ItemService {
 	@Autowired
 	private SongService songService;
 
-	public Item addItem(Item item, String user) {
+	public Item addItem(Item item) {
 		LOGGER.debug("Adding new item");
 		// Retrieve session from Hibernate and save song
 		Session session = sessionFactory.openSession();
-		item.setUserInserted(user);
 		session.save(item);
 		return item;
 	}
@@ -85,6 +85,9 @@ public class ItemServiceImpl implements ItemService {
 		existingItem.setDate(new Timestamp(System
 				.currentTimeMillis()));
 		if (songId != null) {
+			if(existingItem.getSongs() == null) {
+				existingItem.setSongs(new ArrayList<Song>());
+			}
 			existingItem.getSongs().add((Song) songService.get(songId));
 		}
 		// TODO Add song to list of songs from suggestion

@@ -6,7 +6,7 @@ import org.orangeflamingo.namesandsongs.domain.Item;
 
 public interface ItemService {
 
-    public Item addItem(Item item, String user);
+    public Item addItem(Item item);
 
     public List<Item> getAll();
 

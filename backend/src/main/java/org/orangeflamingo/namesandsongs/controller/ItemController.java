@@ -1,5 +1,6 @@
 package org.orangeflamingo.namesandsongs.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -81,6 +82,21 @@ public class ItemController {
 				+ " with title: " + item.getTitle());
 		itemService.removeSong(item, songId);
 		return item;
+	}
+	
+	/**
+	 * Saves a new suggestion
+	 * 
+	 * @param suggestion
+	 *            the suggestion to be saved
+	 * @return the remark
+	 */
+	@RequestMapping(value = "admin/item", method = RequestMethod.POST)
+	@ResponseBody
+	public Item addItem(@RequestBody(required = true) Item item) {
+		LOGGER.info("Saving item " + item.getTitle() + " from user " + item.getUserInserted());
+		item.setDate(new Timestamp(System.currentTimeMillis()));
+		return itemService.addItem(item);
 	}
 
 }
