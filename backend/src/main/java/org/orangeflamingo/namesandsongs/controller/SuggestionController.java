@@ -34,15 +34,15 @@ public class SuggestionController {
 	SuggestionService suggestionService;
 
 	/**
-	 * Returns all suggestion
+	 * Returns all suggestions
 	 * 
-	 * @return all suggestion
+	 * @return all suggestions
 	 */
 	@RequestMapping(value = "admin/suggestion", method = RequestMethod.GET)
 	@ResponseBody
 	@JsonView(View.Summary.class)
 	public List<Suggestion> allSuggestions() {
-		LOGGER.debug("Calling suggestion service...");
+		LOGGER.debug("Calling suggestionService...");
 		return suggestionService.getAll();
 	}
 
