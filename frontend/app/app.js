@@ -10,6 +10,7 @@ angular.module('myApp', [
     'myApp.remark',
     'myApp.songs',
     'myApp.song',
+    'myApp.suggestion',
     'myApp.version'
 ]).
 config(['$routeProvider',
