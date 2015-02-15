@@ -1,0 +1,49 @@
+<div class="container" ng-controller="SuggestionCtrl">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2><i>Add suggestion</i>
+            </h2>
+        </div>
+    </div>
+    <div ng-if="result" class="alert alert-warning text-center" role="alert">{{result}}.</a></div>
+    <form class="form-horizontal" role="form" name="myForm">
+        <h3>Please fill in the artist and title of the song you know.</h3>
+        <div class="form-group">
+            <label for="artist" class="col-sm-2 control-label">Artist</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="artist" id="artist" ng-model="suggestion.youtube"placeholder="Please enter the artist">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="artist" class="col-sm-2 control-label">Title</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="5" name="title" id="title" ng-model="suggestion.title" placeholder="Please enter the title"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="artist" class="col-sm-2 control-label">Do you know any Youtube clips for the song?</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="youtube" id="youtube" ng-model="suggestion.youtube"placeholder="Please enter any Youtube clips">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="artist" class="col-sm-2 control-label">Do you know anything extra about the song?</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="5" name="background" id="background" ng-model="suggestion.background" placeholder="Please enter your any background information about the song"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="commentary" class="col-sm-2 control-label">Do you have any other comments about the song?</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="comment" id="comment" ng-model="suggestion.comment" placeholder="Please enter any other comments">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <button type="button" ng-click="save()" ng-disabled="!valid()" class="btn btn-primary">Save</button>
+                <a href="#/songs" class="btn btn-primary">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
