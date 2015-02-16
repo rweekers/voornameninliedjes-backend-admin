@@ -13,6 +13,7 @@ angular.module('myApp', [
   'myApp.searches',
   'myApp.remark',
   'myApp.remarks',
+  'myApp.suggestion',
   'myApp.suggestions',
   'myApp.login',
   'myApp.error',

@@ -13,6 +13,8 @@ angular.module('myApp.suggestion', ['ngRoute'])
 
 .controller('SuggestionCtrl', ['$scope', '$routeParams', '$cookieStore', '$http', '$location', '$sce', 'Suggestion', 'Song',
     function($scope, $routeParams, $cookieStore, $http, $location, $sce, Suggestion, Song) {
+        console.log("Suggestiondetail.")
+
         Suggestion.get({
             id: $routeParams.suggestionId
         }).$promise.then(function(data) {
