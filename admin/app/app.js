@@ -15,6 +15,9 @@ angular.module('myApp', [
   'myApp.remarks',
   'myApp.suggestion',
   'myApp.suggestions',
+  'myApp.items',
+  'myApp.itemAdd',
+  'myApp.itemEdit',
   'myApp.login',
   'myApp.error',
   'myApp.version'

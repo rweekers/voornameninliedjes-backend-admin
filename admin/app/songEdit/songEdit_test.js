@@ -8,8 +8,8 @@ describe('myApp.songs module', function() {
 
     it('should ....', inject(function($controller) {
       //spec body
-      var view1Ctrl = $controller('SongsCtrl');
-      expect(view1Ctrl).toBeDefined();
+      var songEditCtrl = $controller('SongEditCtrl');
+      expect(songEditCtrl).toBeDefined();
     }));
 
   });

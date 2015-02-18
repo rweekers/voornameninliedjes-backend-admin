@@ -1,3 +1,25 @@
 <div class="container text-center">
 	<p>Welcome to Names and Songs! {{visit.browser}}</p>
+
+    <div class="container jumbotron" ng-controller="HomeCtrl">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Newsitems</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Story</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items">
+                            <td>{{item.title}}</td>
+                            <td>{{item.story}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

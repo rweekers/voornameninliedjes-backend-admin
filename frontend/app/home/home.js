@@ -11,8 +11,8 @@ angular.module('myApp.home', ['ngRoute'])
     }
 ])
 
-.controller('HomeCtrl', ['$http', '$scope', 'Data',
-    function($http, $scope, Data) {
+.controller('HomeCtrl', ['$http', '$scope', 'Data', 'Item', 
+    function($http, $scope, Data, Item) {
         if (!Data.visit) {
             if (!checkVisit()) {
                 storeVisit($http, Data);
@@ -22,5 +22,35 @@ angular.module('myApp.home', ['ngRoute'])
                 findVisit($http, Data);
             }
         }
+        $scope.items = Item.query();
+    }
+])
+
+.factory('Item', ['$resource',
+    function($resource) {
+        return $resource('/namesandsongs/api/item/:id', {
+            id: '@id'
+        }, {
+            get: {
+                method: 'GET',
+                params: {
+                    id: ''
+                },
+                isArray: false
+            },
+            /*save: {
+                method: 'POST',
+                params: {
+                    title: ''
+                }
+            },*/
+            update: {
+                method: 'PUT',
+                params: {
+                    artist: '',
+                    title: ''
+                }
+            }
+        });
     }
 ]);

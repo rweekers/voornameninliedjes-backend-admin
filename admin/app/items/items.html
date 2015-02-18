@@ -1,0 +1,22 @@
+<div class="container">
+	<!-- Main component for a primary marketing message or call to action -->
+	<div class="jumbotron" ng-controller="ItemsCtrl">
+		<h1>Items</h1>
+		<a href="#/itemAdd" class="btn btn-primary" role="button">
+		Add item</a>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Story</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td><a href="#/itemEdit/{{item.id}}" class="thumb">{{item.title}}</a></td>
+					<td>{{item.story}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</div> <!-- /container -->

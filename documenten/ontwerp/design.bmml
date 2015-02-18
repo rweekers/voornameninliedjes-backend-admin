@@ -1,0 +1,90 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1029" measuredH="525" mockupW="931" mockupH="499">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::SubTitle" x="127" y="53" w="-1" h="-1" measuredW="348" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Attributes%20that%20Influence%20Design</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Label" x="127" y="93" w="-1" h="-1" measuredW="286" measuredH="21" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>*Audience%3A*%20Age%3F%20Race%3F%20Gender%3F%20Cultural%20Niche%3F</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="127" y="122" w="-1" h="-1" measuredW="261" measuredH="21" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>*Tone%3A*%20Casual%3F%20Formal%3F%20Friendly%3F%20Sarcastic%3F</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="127" y="150" w="-1" h="-1" measuredW="225" measuredH="21" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>*Purpose%3A*%20Informational%3F%20Conversions%3F</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::TextArea" x="98" y="26" w="392" h="180" measuredW="200" measuredH="140" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::TextArea" x="637" y="93" w="392" h="432" measuredW="200" measuredH="140" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::SubTitle" x="666" y="120" w="-1" h="-1" measuredW="127" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Style%20Guide</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Label" x="666" y="245" w="-1" h="-1" measuredW="216" measuredH="21" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Nav%20Item%201%20%7C%20Nav%20Item%202%20%7C%20Nav%20Item%203</text>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Title" x="666" y="159" w="-1" h="-1" measuredW="249" measuredH="43" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Headline%20Text</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::SubTitle" x="666" y="214" w="-1" h="-1" measuredW="304" measuredH="27" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>B-Head%20%28Or%20Sub-Head%29%20Text</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Paragraph" x="666" y="285" w="319" h="155" measuredW="275" measuredH="80" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>This%20is%20body%20text.%20Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipiscing%20elit.%20Suspendisse%20at%20ante%20at%20sapien%20sagittis%20tempor%20vitae%20at%20ipsum.%20Maecenas%20in%20lacinia%20mi.%20Duis%20urna%20purus%2C%20auctor%20placerat%20consectetur%20sit%20amet%2C%20aliquet%20et%20metus.%20Integer%20odio%20sapien%2C%20porta%20quis%20molestie%20at%2C%20tempus%20id%20augue.%20In%20molestie%20leo%20ut%20dolor%20condimentum%2C%20ac%20imperdiet%20ex%20egestas.%20Praesent%20posuere%20a%20arcu%20in%20vulputate.%20Nam%20quis%20egestas%20mauris.%20Morbi%20ullamcorper%20erat%20et%20pharetra%20semper.%20Nunc%20ac%20volutpat%20tortor%2C%20at%20cursus%20ante.%20Aliquam%20sapien%20risus%2C%20posuere%20condimentum%20ipsum%20in%2C%20sagittis%20dictum%20enim.%20Nam%20auctor%20tempus%20mattis.%20Fusce%20tempus%20justo%20risus%2C%20sed%20venenatis%20ante%20condimentum%20vitae.%20Sed%20finibus%20lobortis%20lacus%20vitae%20dapibus.%20Aenean%20quis%20purus%20ipsum.%20Maecenas%20ac%20lacinia%20lectus%2C%20nec%20posuere%20dolor.</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="666" y="467" w="-1" h="-1" measuredW="142" measuredH="19" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text>Byline%20Text%20on%20July%205th%2C%201987</text>
+      </controlProperties>
+    </control>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::Title" x="180" y="272" w="-1" h="-1" measuredW="203" measuredH="43" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Font%20%28serif%29</text>
+      </controlProperties>
+    </control>
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::TextArea" x="161" y="251" w="464" h="180" measuredW="200" measuredH="140" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::SubTitle" x="180" y="330" w="-1" h="-1" measuredW="355" measuredH="27" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Example%20of%20font%20is%20Modern%20Serif.%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="18" controlTypeID="com.balsamiq.mockups::SubTitle" x="180" y="389" w="-1" h="-1" measuredW="426" measuredH="27" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Great%20for%20arts%20and%20culture%20applications.%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::SubTitle" x="180" y="360" w="-1" h="-1" measuredW="310" measuredH="27" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Structured%2C%20Clear%2C%20%26%20Elegant.</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
