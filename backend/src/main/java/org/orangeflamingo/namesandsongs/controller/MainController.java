@@ -6,12 +6,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.orangeflamingo.namesandsongs.domain.Item;
 import org.orangeflamingo.namesandsongs.domain.Remark;
 import org.orangeflamingo.namesandsongs.domain.SearchInstruction;
 import org.orangeflamingo.namesandsongs.domain.Song;
 import org.orangeflamingo.namesandsongs.domain.Suggestion;
 import org.orangeflamingo.namesandsongs.domain.View;
 import org.orangeflamingo.namesandsongs.domain.Visit;
+import org.orangeflamingo.namesandsongs.service.ItemService;
 import org.orangeflamingo.namesandsongs.service.RemarkService;
 import org.orangeflamingo.namesandsongs.service.SearchInstructionService;
 import org.orangeflamingo.namesandsongs.service.SongService;
@@ -56,6 +58,9 @@ public class MainController {
 	
 	@Autowired
 	SuggestionService suggestionService;
+	
+	@Autowired
+	ItemService itemService;
 
 	/**
 	 * Gets a dummy song
@@ -366,5 +371,17 @@ public class MainController {
 				+ " with visitId " + visitId);
 		suggestion.setDate(new Timestamp(System.currentTimeMillis()));
 		return suggestionService.addSuggestion(suggestion, visitId);
+	}
+	
+	/**
+	 * Returns all items
+	 * 
+	 * @return all items
+	 */
+	@RequestMapping(value = "item", method = RequestMethod.GET)
+	@ResponseBody
+	@JsonView(View.Summary.class)
+	public List<Item> allItems() {
+		return itemService.getAll();
 	}
 }

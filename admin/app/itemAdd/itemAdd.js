@@ -31,6 +31,7 @@ angular.module('myApp.itemAdd', ['ngRoute'])
         $scope.save = function() {
             console.log("Saving item by user " + $cookieStore.get('user'));
             $scope.item.userInserted = $cookieStore.get('user');
+            $scope.item.type = 'Testtype';
 
             $scope.item.$save(function(user) {
                 if (user.id) {
