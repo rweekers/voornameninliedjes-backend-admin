@@ -22,7 +22,7 @@ angular.module('myApp.itemAdd', ['ngRoute'])
             scrollTop: 0
         }, "slow");
 
-        $("#background").on("change keyup", function() {
+        $("#story").on("change keyup", function() {
             $scope.$apply(function() {
                 $scope.backgroundHTML = $sce.trustAsHtml($scope.item.story);
             });

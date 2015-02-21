@@ -1,8 +1,8 @@
 'use strict';
 
-describe('myApp.about module', function() {
+describe('myApp.contact module', function() {
 
-  beforeEach(module('myApp.about'));
+  beforeEach(module('myApp.contact'));
 
   describe('about controller', function(){
 

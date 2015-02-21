@@ -1,15 +1,15 @@
 'use strict';
 
-describe('myApp.about module', function() {
+describe('myApp.songs module', function() {
 
-  beforeEach(module('myApp.about'));
+  beforeEach(module('myApp.songs'));
 
-  describe('about controller', function(){
+  describe('songs controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
-      var aboutCtrl = $controller('AboutCtrl');
-      expect(aboutCtrl).toBeDefined();
+      var songsCtrl = $controller('SongsCtrl');
+      expect(songsCtrl).toBeDefined();
     }));
 
   });
