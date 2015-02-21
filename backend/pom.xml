@@ -11,7 +11,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jackson.version>2.4.3</jackson.version>
 		<jaxb-api.version>2.2.11</jaxb-api.version>
-		<spring.version>4.1.4.RELEASE</spring.version>
+		<spring.version>4.1.5.RELEASE</spring.version>
 		<spring-security.version>3.2.5.RELEASE</spring-security.version>
 	</properties>
 	<dependencies>
