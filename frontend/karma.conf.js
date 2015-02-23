@@ -9,9 +9,9 @@ module.exports = function(config){
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angular-resource/angular-resource.js',
       'app/components/**/*.js',
-      'app/song*/**/*.js',
-      'app/suggestion/**/*.js',
-      'app/remark/**/*.js', 
+      // 'app/song*/**/*.js',
+      // 'app/suggestion/**/*.js',
+      // 'app/remark/**/*.js', 
       'app/home/**/*.js',
       'app/app.js'
     ],

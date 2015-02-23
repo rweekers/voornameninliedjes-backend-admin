@@ -11,10 +11,13 @@ describe('myApp.home module', function() {
       //   ctrl = $controller('HomeCtrl', {$scope:scope});
 
       //spec body
-      var Date = {};
-      var homeCtrl = $controller('HomeCtrl', {Data: Data});
+      var Data = {};
+      var Item = {
+      	query : function() {return null}
+      }
+      var $scope = {};
+      var homeCtrl = $controller('HomeCtrl', {Data: Data, Item: Item, $scope: $scope});
       expect(homeCtrl).toBeDefined();
-      expect(scope).toBeDefined();
     }));
 
   });

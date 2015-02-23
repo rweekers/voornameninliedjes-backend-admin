@@ -7,8 +7,9 @@ describe('myApp.remark module', function() {
   describe('remark controller', function(){
 
     it('should ....', inject(function($controller) {
+      var $scope = {};
       //spec body
-      var remarkCtrl = $controller('RemarkCtrl');
+      var remarkCtrl = $controller('RemarkCtrl', {$scope: $scope});
       expect(remarkCtrl).toBeDefined();
     }));
 
