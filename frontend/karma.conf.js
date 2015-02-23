@@ -12,7 +12,8 @@ module.exports = function(config){
       'app/song*/**/*.js',
       'app/suggestion/**/*.js',
       'app/remark/**/*.js', 
-      'app/home/**/*.js'
+      'app/home/**/*.js',
+      'app/app.js'
     ],
 
     autoWatch : true,
@@ -27,6 +28,12 @@ module.exports = function(config){
             'karma-jasmine',
             'karma-junit-reporter'
             ],
+
+    // perhaps good to measure coverage
+    coverageReporter: {
+      type: 'text-summary',
+      dir: 'coverage/'
+    },
 
     junitReporter : {
       outputFile: 'test_out/unit.xml',
