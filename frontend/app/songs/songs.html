@@ -10,9 +10,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<td><div class="input-group"><input type="text" class="form-control" name="title" id="title" ng-model="title" ng-blur="titleFilterBlur()" ng-keypress="titleFilter()" ng-focus="s = true">
+				<td><div class="input-group"><input type="search" class="form-control" name="title" id="title" ng-model="title" ng-blur="titleFilterBlur()" ng-keypress="titleFilter()" ng-focus="s = true">
 				<span class="input-group-btn"><button type="button" class="btn btn-default" ng-click="srtTitle()"><span class="glyphicon {{sortT}}"></span></button></span></div></td>
-				<td><div class="input-group"><input type="text" class="form-control" name="artist" id="artist" ng-model="artist" ng-blur="artistFilterBlur()" ng-keypress="artistFilter()" ng-focus="s = true"><span class="input-group-btn"><button type="button" class="btn btn-default" ng-click="srtArtist()"><span class="glyphicon {{sortA}}"></span></button></span></div></td>
+				<td><div class="input-group"><input type="search" class="form-control" name="artist" id="artist" ng-model="artist" ng-blur="artistFilterBlur()" ng-keypress="artistFilter()" ng-focus="s = true"><span class="input-group-btn"><button type="button" class="btn btn-default" ng-click="srtArtist()"><span class="glyphicon {{sortA}}"></span></button></span></div></td>
 				<tr ng-repeat="song in songs">
 					<td><a href="#/song/{{song.id}}" class="thumb">{{song.title}}</a></td>
 					<td>{{song.artist}}</td>
