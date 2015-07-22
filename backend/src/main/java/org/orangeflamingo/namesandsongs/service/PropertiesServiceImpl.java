@@ -21,7 +21,7 @@ public class PropertiesServiceImpl implements PropertiesService {
 		LOGGER.info("Creating propertiesService...");
 		// create and load default properties
 		props = new Properties();
-		FileInputStream in = new FileInputStream("/config.properties");
+		FileInputStream in = new FileInputStream("config.properties");
 		LOGGER.info("Properties loaded...");
 		props.load(in);
 		in.close();
