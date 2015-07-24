@@ -14,6 +14,7 @@ import org.orangeflamingo.namesandsongs.domain.Suggestion;
 import org.orangeflamingo.namesandsongs.domain.View;
 import org.orangeflamingo.namesandsongs.domain.Visit;
 import org.orangeflamingo.namesandsongs.service.ItemService;
+import org.orangeflamingo.namesandsongs.service.RedisSongService;
 import org.orangeflamingo.namesandsongs.service.RemarkService;
 import org.orangeflamingo.namesandsongs.service.SearchInstructionService;
 import org.orangeflamingo.namesandsongs.service.SongService;
@@ -61,7 +62,22 @@ public class MainController {
 	
 	@Autowired
 	ItemService itemService;
+	
+	@Autowired
+	RedisSongService redisSongService;
 
+	/**
+	 * Makes a call to Redis
+	 * 
+	 * @return confirmation value
+	 */
+	@RequestMapping(value = "redis", method = RequestMethod.GET)
+	@ResponseBody
+	public void redis() {
+		LOGGER.info("Calling redis service...");
+		redisSongService.addLink("mylist", "blabla");
+	}
+	
 	/**
 	 * Gets a dummy song
 	 * 

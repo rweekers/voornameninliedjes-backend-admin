@@ -11,6 +11,9 @@ import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
@@ -24,75 +27,97 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableTransactionManagement
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-    private static final Logger LOGGER = Logger.getLogger(WebConfig.class);
+	private static final Logger LOGGER = Logger.getLogger(WebConfig.class);
 
-    private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
-    private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-    private static final String PROPERTY_NAME_HIBERNATE_FORMAT_SQL = "hibernate.format_sql";
-    private static final String PROPERTY_NAME_HIBERNATE_USE_SQL_COMMENTS = "hibernate.use_sql_comments";
-    private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "org.orangeflamingo.namesandsongs.domain";
-    private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL = "hibernate.hbm2ddl.validate";
+	private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
+	private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
+	private static final String PROPERTY_NAME_HIBERNATE_FORMAT_SQL = "hibernate.format_sql";
+	private static final String PROPERTY_NAME_HIBERNATE_USE_SQL_COMMENTS = "hibernate.use_sql_comments";
+	private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "org.orangeflamingo.namesandsongs.domain";
+	private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL = "hibernate.hbm2ddl.validate";
 
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        Properties props = dbProperties();
+	@Bean
+	public DataSource dataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		Properties props = dbProperties();
 
-        dataSource.setDriverClassName(props.getProperty("driver"));
-        dataSource.setUrl(props.getProperty("url"));
+		dataSource.setDriverClassName(props.getProperty("driver"));
+		dataSource.setUrl(props.getProperty("url"));
 
-        dataSource.setUsername(props.getProperty("username"));
-        dataSource.setPassword(props.getProperty("password"));
+		dataSource.setUsername(props.getProperty("username"));
+		dataSource.setPassword(props.getProperty("password"));
 
-        return dataSource;
-    }
+		return dataSource;
+	}
 
-    @Bean(name = "sessionFactory")
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
-        sessionFactoryBean
-                .setPackagesToScan(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN);
-        sessionFactoryBean.setDataSource(dataSource());
-        sessionFactoryBean.setHibernateProperties(hibProperties());
-        return sessionFactoryBean;
-    }
+	@Bean(name = "sessionFactory")
+	public LocalSessionFactoryBean sessionFactory() {
+		LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
+		sessionFactoryBean
+				.setPackagesToScan(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN);
+		sessionFactoryBean.setDataSource(dataSource());
+		sessionFactoryBean.setHibernateProperties(hibProperties());
+		return sessionFactoryBean;
+	}
 
-    private Properties hibProperties() {
-        Properties properties = new Properties();
-        properties.put(PROPERTY_NAME_HIBERNATE_DIALECT,
-                PROPERTY_NAME_HIBERNATE_DIALECT);
-        properties.put(PROPERTY_NAME_HIBERNATE_FORMAT_SQL, "true");
-        properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, "false");
-        properties.put(PROPERTY_NAME_HIBERNATE_HBM2DDL,
-                PROPERTY_NAME_HIBERNATE_HBM2DDL);
-        properties.put(PROPERTY_NAME_HIBERNATE_USE_SQL_COMMENTS, "true");
-        return properties;
-    }
+	@Bean(name = "jedisConnFactory")
+	public JedisConnectionFactory jedisConnFactory() {
+		JedisConnectionFactory jedisConnFactory = new JedisConnectionFactory();
+		jedisConnFactory.setUsePool(true);
+		return jedisConnFactory;
+	}
 
-    private Properties dbProperties() {
-        LOGGER.info("Reading database properties...");
-        // create and load default properties
-        Properties props = new Properties();
-        FileInputStream in;
-        try {
-            in = new FileInputStream("database.properties");
-            props.load(in);
-            in.close();
-        } catch (FileNotFoundException e) {
-            LOGGER.fatal("Failed to read database.properties: "
-                    + e.getMessage());
-            e.printStackTrace();
-        } catch (IOException e) {
-            LOGGER.fatal("Fatal IO error: " + e.getMessage());
-        }
-        LOGGER.info("Database properties loaded...");
-        return props;
-    }
+	@Bean(name = "stringRedisSerializer")
+	public StringRedisSerializer redisSerializer() {
+		return new StringRedisSerializer();
+	}
+	
+	@Bean(name = "redisTemplate")
+	public RedisTemplate<String, String> redisTemplate() {
+		RedisTemplate<String, String> redisTemplate = new RedisTemplate<String, String>();
+		LOGGER.info("Creating RedisTemplate with connectionFactory on port "
+				+ jedisConnFactory().getPort());
+		redisTemplate.setConnectionFactory(jedisConnFactory());
+		redisTemplate.setDefaultSerializer(redisSerializer());
+		return redisTemplate;
+	}
 
-    @Bean
-    public HibernateTransactionManager transactionManager() {
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory().getObject());
-        return transactionManager;
-    }
+	private Properties hibProperties() {
+		Properties properties = new Properties();
+		properties.put(PROPERTY_NAME_HIBERNATE_DIALECT,
+				PROPERTY_NAME_HIBERNATE_DIALECT);
+		properties.put(PROPERTY_NAME_HIBERNATE_FORMAT_SQL, "true");
+		properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, "false");
+		properties.put(PROPERTY_NAME_HIBERNATE_HBM2DDL,
+				PROPERTY_NAME_HIBERNATE_HBM2DDL);
+		properties.put(PROPERTY_NAME_HIBERNATE_USE_SQL_COMMENTS, "true");
+		return properties;
+	}
+
+	private Properties dbProperties() {
+		LOGGER.info("Reading database properties...");
+		// create and load default properties
+		Properties props = new Properties();
+		FileInputStream in;
+		try {
+			in = new FileInputStream("database.properties");
+			props.load(in);
+			in.close();
+		} catch (FileNotFoundException e) {
+			LOGGER.fatal("Failed to read database.properties: "
+					+ e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			LOGGER.fatal("Fatal IO error: " + e.getMessage());
+		}
+		LOGGER.info("Database properties loaded...");
+		return props;
+	}
+
+	@Bean
+	public HibernateTransactionManager transactionManager() {
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+		transactionManager.setSessionFactory(sessionFactory().getObject());
+		return transactionManager;
+	}
 }
