@@ -129,7 +129,7 @@ public class SongServiceImpl implements SongService {
 		LOGGER.debug("Query2: " + query.getQueryString());
 
 		query.setFirstResult(offset);
-		query.setMaxResults(count);
+		// query.setMaxResults(count);
 
 		return query.list();
 	}

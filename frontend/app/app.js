@@ -10,6 +10,7 @@ angular.module('myApp', [
     'myApp.remark',
     'myApp.songs',
     'myApp.song',
+    'myApp.songtest',
     'myApp.suggestion',
     'myApp.version'
 ]).

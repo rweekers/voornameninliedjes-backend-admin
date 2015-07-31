@@ -75,7 +75,25 @@ public class MainController {
 	@ResponseBody
 	public void redis() {
 		LOGGER.info("Calling redis service...");
-		redisSongService.addLink("mylist", "blabla");
+		redisSongService.addLink("mylist", "blabla2");
+	}
+	
+	/**
+	 * Makes a call to Redis
+	 * 
+	 * @return confirmation value
+	 */
+	@RequestMapping(value = "redisal", method = RequestMethod.GET)
+	@ResponseBody
+	public void redisPushSong() {
+		/*
+		Song song = songService.getYouCanCallMeAl();
+		*/
+		Song s = new Song();
+		s.setArtist("Testartiest");
+		s.setFirstname("Anne");
+		s.setTitle("Hallo Anne");
+		redisSongService.addSong(s);
 	}
 	
 	/**
@@ -147,7 +165,18 @@ public class MainController {
 			@RequestParam(value = "filterArtist", required = false) String filterArtist,
 			@RequestParam(value = "filterTitle", required = false) String filterTitle) {
 		return songService.getAll(count, page, sortingArtist, sortingTitle,
-				filterArtist, filterTitle);
+		 		filterArtist, filterTitle);
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "song2", method = RequestMethod.GET)
+	@ResponseBody
+	@JsonView(View.Summary.class)
+	public List<Song> allSongs2(){
+		return redisSongService.getSongs();
 	}
 
 	/**

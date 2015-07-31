@@ -8,11 +8,14 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.orangeflamingo.namesandsongs.domain.Song;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
@@ -62,8 +65,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean(name = "jedisConnFactory")
 	public JedisConnectionFactory jedisConnFactory() {
+		Properties props = dbProperties();
 		JedisConnectionFactory jedisConnFactory = new JedisConnectionFactory();
 		jedisConnFactory.setUsePool(true);
+		LOGGER.info("Setting redis password "
+				+ props.getProperty("redis_password"));
+		jedisConnFactory.setPassword(props.getProperty("redis_password"));
 		return jedisConnFactory;
 	}
 
@@ -72,13 +79,28 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		return new StringRedisSerializer();
 	}
 	
+	@Bean(name = "jdkSerializer")
+	public JdkSerializationRedisSerializer jdkSerializer() {
+		return new JdkSerializationRedisSerializer();
+	}
+	
+	@Bean(name = "jacksonSerializer")
+	public Jackson2JsonRedisSerializer<Song> jacksonSerializer() {
+		// JacksonJsonRedisSerializer<Song> j = new JacksonJsonRedisSerializer<Song>(Song.class);
+		// JacksonJsonRedisSerializer<Song> jsonSerializer = new JacksonJsonRedisSerializer<Song>(Song.class);
+		Jackson2JsonRedisSerializer<Song> jackson2JsonSerializer = new Jackson2JsonRedisSerializer<Song>(Song.class);
+		return jackson2JsonSerializer;
+	}
+
 	@Bean(name = "redisTemplate")
-	public RedisTemplate<String, String> redisTemplate() {
-		RedisTemplate<String, String> redisTemplate = new RedisTemplate<String, String>();
+	public RedisTemplate<String, Object> redisTemplate() {
+		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
 		LOGGER.info("Creating RedisTemplate with connectionFactory on port "
 				+ jedisConnFactory().getPort());
 		redisTemplate.setConnectionFactory(jedisConnFactory());
-		redisTemplate.setDefaultSerializer(redisSerializer());
+		// redisTemplate.setDefaultSerializer(redisSerializer());
+		redisTemplate.setKeySerializer(redisSerializer());
+		redisTemplate.setValueSerializer(jacksonSerializer());
 		return redisTemplate;
 	}
 
