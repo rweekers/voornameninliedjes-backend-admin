@@ -1,0 +1,1 @@
+alter table song add artist_spotify_id varchar(50);
