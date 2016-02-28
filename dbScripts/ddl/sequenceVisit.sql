@@ -1,1 +1,0 @@
-CREATE SEQUENCE visit_id_seq;

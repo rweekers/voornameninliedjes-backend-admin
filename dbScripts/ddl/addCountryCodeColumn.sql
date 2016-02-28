@@ -1,1 +1,0 @@
-alter table visit add column countryCode varchar(3);

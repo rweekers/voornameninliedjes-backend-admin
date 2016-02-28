@@ -1,1 +1,0 @@
-alter table searchinstruction add column visit_id integer REFERENCES visit(id);

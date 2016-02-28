@@ -1,1 +1,0 @@
-alter table song add column youtube varchar(255);

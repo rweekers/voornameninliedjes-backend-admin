@@ -1,1 +1,0 @@
-alter table remark add column response text;

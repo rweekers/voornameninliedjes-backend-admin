@@ -1,1 +1,0 @@
-alter table suggestion add column song_id integer REFERENCES song(id);

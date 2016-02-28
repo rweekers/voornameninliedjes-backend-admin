@@ -1,1 +1,0 @@
-alter table visit add column userAgent text;

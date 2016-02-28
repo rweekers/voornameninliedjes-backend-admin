@@ -1,1 +1,0 @@
-alter table searchinstruction add column browser varchar(255), add column operatingSystem varchar(255), add column userAgent text;

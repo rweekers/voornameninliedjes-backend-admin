@@ -1,1 +1,0 @@
-update song set user_inserted = 'Nadja' where firstname = 'Caroline' and artist = 'Lou Reed';
