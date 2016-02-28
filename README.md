@@ -36,4 +36,4 @@ and run with
 
 mvn jetty:run
 
-The REST services can be found on localhost:8080/namesandsongs/api/<service>
+The REST services can be found on localhost:8080/namesandsongs/api/*servicename*
