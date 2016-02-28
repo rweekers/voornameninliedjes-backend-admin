@@ -1,29 +1,39 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This README desbribes the steps to install the application and get it running. 
 
-### What is this repository for? ###
+### Create the database ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Clone the voornameninliedjes-database project
+* Create a database
+* Import the basic.sql database
 
-### How do I get set up? ###
+### Config files ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+Create a file database.properties in the project root
 
-### Contribution guidelines ###
+Fill the file with the following properties:
 
-* Writing tests
-* Code review
-* Other guidelines
+driver=<Database driver, for Postgresql org.postgresql.Driver>
+url=<url of your database, including port>
+username=<user of your database>
+password=<password for your user>
 
-### Who do I talk to? ###
+Create a file config.properties in the project root
 
-* Repo owner or admin
-* Other community or team contact
+Fill the following properties:
+
+user=<admin user>
+password=<admin password>
+
+### Install and run ###
+
+Install the application with the following command:
+
+mvn clean install
+
+and run with
+
+mvn jetty:run
+
+The REST services can be found on localhost:8080/namesandsongs/api/<service>
