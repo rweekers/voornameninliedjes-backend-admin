@@ -85,11 +85,11 @@ public class ItemController {
 	}
 	
 	/**
-	 * Saves a new suggestion
+	 * Saves a new item
 	 * 
-	 * @param suggestion
-	 *            the suggestion to be saved
-	 * @return the remark
+	 * @param item
+	 *            the item to be saved
+	 * @return the item
 	 */
 	@RequestMapping(value = "admin/item", method = RequestMethod.POST)
 	@ResponseBody
