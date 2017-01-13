@@ -1,1 +1,7 @@
 language: java
+
+addons:
+  sonarqube:
+script:
+  # other script steps might be done before running the actual SonarQube analysis
+  - sonar-scanner
