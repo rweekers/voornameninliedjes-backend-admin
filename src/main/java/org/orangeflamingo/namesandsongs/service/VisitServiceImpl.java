@@ -126,7 +126,7 @@ public class VisitServiceImpl implements VisitService {
 
 		// Retrieve Visit
 		List<Visit> visits = query.list();
-		if (visits.size() > 0) {
+		if (!visits.isEmpty()) {
 			return visits.get(0);
 		} else {
 			return null;

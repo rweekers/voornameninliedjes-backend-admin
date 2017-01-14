@@ -1,21 +1,13 @@
 package org.orangeflamingo.namesandsongs.domain;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * For a complete reference see <a href=
@@ -197,11 +189,11 @@ public class Song implements Serializable {
 
 	@Override
 	public int hashCode() {
-		int result = 1;
-		result = ((Integer) this.id).hashCode();
+		int result = ((Integer) this.id).hashCode();
 		return result;
 	}
 
+	@Override
 	public String toString() {
 		return getArtist() + " - " + getTitle() + " - " + getFirstname();
 	}

@@ -77,14 +77,18 @@ public class SongServiceImpl implements SongService {
 		LOGGER.debug("Retrieving all songs with filterArtist " + filterArtist
 				+ " and filterTitle " + filterTitle);
 
+		int c;
+
 		if (count == null || count > MAX_PAGE) {
-			count = MAX_PAGE;
+			c = MAX_PAGE;
+		} else {
+			c = count;
 		}
 
 		int offset = 0;
 
 		if (page != null) {
-			offset = page * count;
+			offset = page * c;
 		}
 
 		// Create a Hibernate query (HQL)
@@ -129,7 +133,7 @@ public class SongServiceImpl implements SongService {
 		LOGGER.debug("Query2: " + query.getQueryString());
 
 		query.setFirstResult(offset);
-		query.setMaxResults(count);
+		query.setMaxResults(c);
 
 		return query.list();
 	}
