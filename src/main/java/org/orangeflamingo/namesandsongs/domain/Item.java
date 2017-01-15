@@ -101,7 +101,7 @@ public class Item implements Serializable {
 
 	public List<Song> getSongs() {
 		if (this.songs == null) {
-			return new ArrayList<Song>();
+			return new ArrayList<>();
 		} else {
 			return this.songs;
 		}
@@ -134,7 +134,8 @@ public class Item implements Serializable {
 	public void setDate(Timestamp date) {
 		this.date = date;
 	}
-	
+
+	@Override
 	public String toString() {
 		return getId() + " - " + getTitle() + " - " + getStatus();
 	}

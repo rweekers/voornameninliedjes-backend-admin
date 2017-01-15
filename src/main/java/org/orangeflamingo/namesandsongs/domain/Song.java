@@ -189,8 +189,7 @@ public class Song implements Serializable {
 
 	@Override
 	public int hashCode() {
-		int result = ((Integer) this.id).hashCode();
-		return result;
+		return id.hashCode();
 	}
 
 	@Override

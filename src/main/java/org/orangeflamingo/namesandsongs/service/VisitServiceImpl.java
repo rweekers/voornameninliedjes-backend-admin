@@ -165,9 +165,9 @@ public class VisitServiceImpl implements VisitService {
 			visit.setLongitude(new BigDecimal(response.getLocation()
 					.getLongitude()));
 		} catch (IOException e) {
-			LOGGER.error("IO voor GeoIp2Location mislukt " + e.getMessage());
+			LOGGER.error("IO voor GeoIp2Location mislukt " + e);
 		} catch (GeoIp2Exception e) {
-			LOGGER.error("GeoIp2Location mislukt " + e.getMessage());
+			LOGGER.error("GeoIp2Location mislukt " + e);
 		}
 
 	}

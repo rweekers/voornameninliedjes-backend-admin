@@ -29,8 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             throws Exception {
 
         auth.inMemoryAuthentication()
-                .withUser(propertiesService.get("user"))
-                .password(propertiesService.get("password"))
+                .withUser(/*propertiesService.get("user")*/"remco")
+                .password(/*propertiesService.get("password")*/"bla")
                 .roles(ADMIN);
     }
 

@@ -1,20 +1,12 @@
 package org.orangeflamingo.namesandsongs.domain;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * For a complete reference see <a href=
@@ -175,7 +167,8 @@ public class Remark implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
+    @Override
     public String toString() {
         return getId() + " - " + getCommentary() + " - " + getStatus();
     }
