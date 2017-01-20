@@ -79,7 +79,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
             in.close();
         } catch (FileNotFoundException e) {
             LOGGER.fatal("Failed to read database.properties: " + e);
-            e.printStackTrace();
         } catch (IOException e) {
             LOGGER.fatal("Fatal IO error: " + e);
         }
