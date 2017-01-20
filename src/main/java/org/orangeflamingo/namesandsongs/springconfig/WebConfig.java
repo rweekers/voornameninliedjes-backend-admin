@@ -1,12 +1,5 @@
 package org.orangeflamingo.namesandsongs.springconfig;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,6 +10,12 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import javax.sql.DataSource;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
@@ -79,11 +78,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
             props.load(in);
             in.close();
         } catch (FileNotFoundException e) {
-            LOGGER.fatal("Failed to read database.properties: "
-                    + e.getMessage());
+            LOGGER.fatal("Failed to read database.properties: " + e);
             e.printStackTrace();
         } catch (IOException e) {
-            LOGGER.fatal("Fatal IO error: " + e.getMessage());
+            LOGGER.fatal("Fatal IO error: " + e);
         }
         LOGGER.info("Database properties loaded...");
         return props;
