@@ -1,14 +1,13 @@
 package org.orangeflamingo.namesandsongs.controller;
 
-import java.io.IOException;
+import org.apache.log4j.Logger;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.log4j.Logger;
-import org.springframework.web.filter.OncePerRequestFilter;
+import java.io.IOException;
 
 /**
  * Filter to set Access-Control-Allow-Origin for calls from different server
@@ -48,7 +47,7 @@ public class CorsFilter extends OncePerRequestFilter {
                 && "OPTIONS".equals(request.getMethod())) {
             // CORS "pre-flight" request
             response.setHeader("Access-Control-Allow-Origin",
-                    "namesandsongs.dev");
+                    "*");
             response.setHeader("Access-Control-Allow-Credentials", "true");
             response.setHeader("Access-Control-Allow-Methods",
                     "POST, PUT, GET, DELETE, OPTIONS");
