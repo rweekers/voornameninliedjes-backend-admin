@@ -5,10 +5,10 @@ jdk: oraclejdk8
 
 addons:
   sonarqube:
-  branches:
+  # branches:
     # - master
-    - spring-boot
+    # - spring-boot
 script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
   # other script steps might be done before running the actual SonarQube analysis
-  # - sonar-scanner
+  - sonar-scanner
