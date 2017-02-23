@@ -21,3 +21,8 @@ addons:
     build_command_prepend: "mvn clean"
     build_command:   "mvn -DskipTests=true compile"
     branch_pattern: coverity_scan
+  sonarqube:
+    
+script:
+  # other script steps might be done before running the actual SonarQube analysis
+  - sonar-scanner
