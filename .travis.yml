@@ -19,7 +19,8 @@ addons:
       description: "Build submitted via Travis CI"
     notification_email: remco.weekers@gmail.com
     build_command_prepend: "mvn clean"
-    build_command:   "mvn -DskipTests=true compile"
+    # build_command:   "mvn -DskipTests=true compile"
+    build_command:   "mvn build"
     branch_pattern: coverity_scan
   sonarqube:
     
