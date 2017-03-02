@@ -25,6 +25,7 @@ addons:
   sonarqube:
     
 script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+  # - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package
   # other script steps might be done before running the actual SonarQube analysis
   - sonar-scanner
