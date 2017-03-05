@@ -108,7 +108,7 @@ public class ItemServiceImpl implements ItemService {
 		Item existingItem = (Item) session.get(
 				Item.class, item.getId());
 		
-		if (existingItem.getSongs().size() > 0) {
+		if (!existingItem.getSongs().isEmpty()) {
 			LOGGER.info("Removing song with id " + songId);
 			Song song = (Song)session.get(Song.class, songId);
 			existingItem.getSongs().remove(song);

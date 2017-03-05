@@ -14,6 +14,7 @@ dist
 .springBeans
 .idea/
 namesandsongs-backend.iml
+backend-sublime.workspace
 bin
 database.properties
 config.properties
