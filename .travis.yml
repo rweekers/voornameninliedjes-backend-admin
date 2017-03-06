@@ -3,25 +3,7 @@ language: java
 # See http://stackoverflow.com/questions/40208309/travis-ci-build-failing-on-android-app-unsupported-major-minor-version-52
 jdk: oraclejdk8
 
-env:
-  global:
-   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-   #   via the "travis encrypt" command using the project repo's public key
-   - secure: "ey06h2WDne3gj24lz4YLiJstzPp2lUj02HJHVOanyl6lVZ3YyJ8CPfE8u4zYfl+bgl+EfYkughhM9G/eQKlWYZkm040tRk31ZGxgNeqHrYm1jsy9gs+VEiQcmfUSv9jTcLKO8cL9N+rQMdiFFLUkgDrhxgsRGLbEIE5H47d8EMypn1yYiNBSjDHNkBDf0kEbOC35u7iXUc7gfNa+cBdPmNCglbyBlR5IYwaa2z32nAmBOhQQ6HVOcY1UTclqVz8AQA7Ce9M1PCJEMTFeGL/vjOBgkIVyVTbysjqi5484zAf4BwK5I1Xy/74zE2/5Qb5baDkYpZ1HwG1Zkk3ciWMOk0eQ6k0ecWQCJMaMGOhE8bfmZ7/4spoBniWSEAA7a8GhrnUv9Vz56ET4vAimtMcgqVby+gIZ6Ie1KkCcvV/ln2hjxp8o2KkZyX4tOgsX5dgPVf4MGF5PI5VZUuIgb+zjX2S2unsstif+7RieGJNJSiiVeiSqwhtZLPjnon9yO2KZ+JmQAqhCizdzCjnp9rXEHTBfGjT+9wZKrY5lvL663Bs8jwutVtcunmk9gVZq3hemyu00IANaXLUGnvo62h8sDDbNONO+dZpQ4jLsdB8UPErQeCK38CeQHXtIutPvuLBWUfovv+g3dj2MnK97zsTTzHA+MoA7dI59pYp2wNo5ogI="
-
-before_install:
-      - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
-
 addons:
-  coverity_scan:
-    project:
-      name: "rweekers/voornameninliedjes-backend-spring"
-      description: "Build submitted via Travis CI"
-    notification_email: remco.weekers@gmail.com
-    build_command_prepend: "mvn clean"
-    # build_command:   "mvn -DskipTests=true compile"
-    build_command:   "mvn build"
-    branch_pattern: coverity_scan
   sonarqube:
     
 script:
