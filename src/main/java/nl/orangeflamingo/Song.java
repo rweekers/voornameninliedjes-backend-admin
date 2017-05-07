@@ -1,11 +1,11 @@
 package nl.orangeflamingo;
 
-public class Greeting {
+public class Song {
 
     private final long id;
     private final String content;
 
-    public Greeting(long id, String content) {
+    public Song(long id, String content) {
         this.id = id;
         this.content = content;
     }

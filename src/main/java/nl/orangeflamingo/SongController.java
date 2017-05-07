@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
-public class GreetingController {
+public class SongController {
 
-    private static final String template = "Hello, %s!";
+    private static final String template = "Title: %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return new Greeting(counter.incrementAndGet(),
-                String.format(template, name));
+    @RequestMapping("/song")
+    public Song greeting(@RequestParam(value = "title", defaultValue = "Roxanne") String title) {
+        return new Song(counter.incrementAndGet(),
+                String.format(template, title));
     }
 }
