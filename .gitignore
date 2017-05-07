@@ -13,7 +13,7 @@ dist
 .settings/
 .springBeans
 .idea/
-namesandsongs-backend.iml
+voornameninliedjes-backend-spring.iml
 backend-sublime.workspace
 bin
 database.properties
