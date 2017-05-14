@@ -17,4 +17,9 @@ public class SongController {
         return new Song(counter.incrementAndGet(),
                 String.format(template, title));
     }
+
+    @RequestMapping("/customer")
+    public Customer getCustomer() {
+        return new Customer("test", "test");
+    }
 }
