@@ -1,11 +1,11 @@
 package nl.orangeflamingo.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import nl.orangeflamingo.SongRepository;
 import nl.orangeflamingo.domain.Song;
+import nl.orangeflamingo.domain.View;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,15 +16,15 @@ public class SongController {
     private SongRepository songRepository;
 
     @RequestMapping("/song")
-    public Song greeting(@RequestParam(value = "title", defaultValue = "Roxanne") String title) {
-        Song song = new Song();
-        song.setArtist("The Police");
-        song.setTitle(title);
-        return song;
-    }
-
-    @RequestMapping("/songs")
+    @JsonView(View.Summary.class)
     public List<Song> allSongs() {
         return songRepository.findAll();
+    }
+
+    @RequestMapping("song/{id}")
+    @ResponseBody
+    @JsonView(View.Detail.class)
+    public Song getSongById(@PathVariable long id) {
+        return songRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Song not found for id " + id));
     }
 }
