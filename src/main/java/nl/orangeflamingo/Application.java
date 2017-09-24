@@ -29,48 +29,19 @@ public class Application {
             log.info("");
 
             // fetch an individual customer by ID
-            Song customer = repository.findById(1L).get();
+            Song song = repository.findById(1L).orElseThrow(() -> new RuntimeException("Song not found"));
             log.info("Customer found with findOne(1L):");
             log.info("--------------------------------");
-            log.info(customer.toString());
+            log.info(song.toString());
             log.info("");
 
             // fetch customers by artist
             log.info("Customer found with findByLastName('Nirvana'):");
             log.info("--------------------------------------------");
-            for (Song song : repository.findByArtist("Nirvana")) {
-                log.info(song.toString());
+            for (Song nirvana : repository.findByArtist("Nirvana")) {
+                log.info(nirvana.toString());
             }
             log.info("");
         };
     }
-
-//    @Bean
-//    public CommandLineRunner demo(CustomerRepository repository) {
-//        return (args) -> {
-//            // fetch all customers
-//            log.info("Customers found with findAll():");
-//            log.info("-------------------------------");
-//            for (Customer customer : repository.findAll()) {
-//                log.info(customer.toString());
-//            }
-//            log.info("");
-//
-//            // fetch an individual customer by ID
-//            Customer customer = repository.findById(1L).get();
-//            log.info("Customer found with findOne(1L):");
-//            log.info("--------------------------------");
-//            log.info(customer.toString());
-//            log.info("");
-//
-//            // fetch customers by last name
-//            log.info("Customer found with findByLastName('Bauer'):");
-//            log.info("--------------------------------------------");
-//            for (Customer bauer : repository.findByLastName("Bauer")) {
-//                log.info(bauer.toString());
-//            }
-//            log.info("");
-//        };
-//    }
-
 }
