@@ -40,7 +40,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <docker.image.prefix>springio</docker.image.prefix>
+        <docker.image.prefix>rweekers</docker.image.prefix>
     </properties>
 
 
