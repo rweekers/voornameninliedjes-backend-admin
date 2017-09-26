@@ -30,13 +30,13 @@ public class Application {
 
             // fetch an individual customer by ID
             Song song = repository.findById(1L).orElseThrow(() -> new RuntimeException("Song not found"));
-            log.info("Customer found with findOne(1L):");
+            log.info("Song found with findOne(1L):");
             log.info("--------------------------------");
             log.info(song.toString());
             log.info("");
 
             // fetch customers by artist
-            log.info("Customer found with findByLastName('Nirvana'):");
+            log.info("Song found with findByLastName('Nirvana'):");
             log.info("--------------------------------------------");
             for (Song nirvana : repository.findByArtist("Nirvana")) {
                 log.info(nirvana.toString());
