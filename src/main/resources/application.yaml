@@ -5,6 +5,7 @@ spring:
       enabled: true
   datasource:
     platform: h2
+    initialize: true
 
 spring:
   profiles: test
@@ -12,6 +13,8 @@ spring:
     hibernate:
       ddl-auto: validate
   datasource:
+    platform: postgresql
+    initialize: false
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/voornameninliedjes
     username: postgres
