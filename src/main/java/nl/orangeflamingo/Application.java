@@ -36,9 +36,9 @@ public class Application {
             log.info("");
 
             // fetch customers by artist
-            log.info("Song found with findByLastName('Nirvana'):");
+            log.info("Song found with findByArtist('Nirvana'):");
             log.info("--------------------------------------------");
-            for (Song nirvana : repository.findByArtist("Nirvana")) {
+            for (Song nirvana : repository.findByArtistIgnoreCase("Nirvana")) {
                 log.info(nirvana.toString());
             }
             log.info("");

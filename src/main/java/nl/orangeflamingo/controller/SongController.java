@@ -21,10 +21,22 @@ public class SongController {
         return songRepository.findAll();
     }
 
-    @RequestMapping("song/{id}")
+    @RequestMapping("/song/{id}")
     @ResponseBody
     @JsonView(View.Detail.class)
     public Song getSongById(@PathVariable long id) {
         return songRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Song not found for id " + id));
+    }
+
+    @RequestMapping(value = "/song/artist/{artist}", method = RequestMethod.GET)
+    @JsonView(View.Summary.class)
+    public List<Song> findSongsByArtist(@PathVariable("artist") String artist) {
+        return songRepository.findByArtistIgnoreCase(artist);
+    }
+
+    @RequestMapping(value = "/song/title/{title}", method = RequestMethod.GET)
+    @JsonView(View.Summary.class)
+    public List<Song> findSongsByTitle(@PathVariable("title") String title) {
+        return songRepository.findByTitleIgnoreCase(title);
     }
 }
