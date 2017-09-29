@@ -38,7 +38,7 @@ public class Application {
             // fetch customers by artist
             log.info("Song found with findByArtist('Nirvana'):");
             log.info("--------------------------------------------");
-            for (Song nirvana : repository.findByArtistIgnoreCase("Nirvana")) {
+            for (Song nirvana : repository.findByArtistLikeIgnoreCase("Nirvana")) {
                 log.info(nirvana.toString());
             }
             log.info("");
