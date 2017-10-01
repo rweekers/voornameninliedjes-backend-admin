@@ -1,6 +1,7 @@
 package nl.orangeflamingo;
 
 import nl.orangeflamingo.domain.Song;
+import nl.orangeflamingo.domain.SongRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

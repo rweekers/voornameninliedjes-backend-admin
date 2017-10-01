@@ -1,6 +1,6 @@
-package nl.orangeflamingo;
+package nl.orangeflamingo.domain;
 
-import nl.orangeflamingo.domain.Song;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +14,7 @@ public interface SongRepository extends CrudRepository<Song, Long> {
     List<Song> findAll();
 
     List<Song> findByTitleLikeIgnoreCase(String title);
+
+    List<Song> findAll(Specification<Song> spec);
 
 }

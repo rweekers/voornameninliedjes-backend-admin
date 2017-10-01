@@ -1,8 +1,8 @@
 package nl.orangeflamingo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import nl.orangeflamingo.SongRepository;
 import nl.orangeflamingo.domain.Song;
+import nl.orangeflamingo.domain.SongRepository;
 import nl.orangeflamingo.domain.View;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +37,6 @@ public class SongController {
     @RequestMapping(value = "/song/title/{title}", method = RequestMethod.GET)
     @JsonView(View.Summary.class)
     public List<Song> findSongsByTitle(@PathVariable("title") String title) {
-        return songRepository.findByTitleLikeIgnoreCase("%" + title + "%");
+         return songRepository.findByTitleLikeIgnoreCase("%" + title + "%");
     }
 }
