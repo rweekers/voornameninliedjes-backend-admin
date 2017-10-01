@@ -31,12 +31,12 @@ public class SongController {
     @RequestMapping(value = "/song/artist/{artist}", method = RequestMethod.GET)
     @JsonView(View.Summary.class)
     public List<Song> findSongsByArtist(@PathVariable("artist") String artist) {
-        return songRepository.findByArtistLikeIgnoreCase(artist);
+        return songRepository.findByArtistLikeIgnoreCase("%" + artist + "%");
     }
 
     @RequestMapping(value = "/song/title/{title}", method = RequestMethod.GET)
     @JsonView(View.Summary.class)
     public List<Song> findSongsByTitle(@PathVariable("title") String title) {
-        return songRepository.findByTitleLikeIgnoreCase(title);
+        return songRepository.findByTitleLikeIgnoreCase("%" + title + "%");
     }
 }
