@@ -13,13 +13,11 @@ import java.util.List;
 @RestController
 public class SongController {
 
-    @Autowired
-    private SongRepository songRepository;
+    private final SongRepository songRepository;
 
-    @RequestMapping("/song")
-    @JsonView(View.Summary.class)
-    public List<Song> allSongs() {
-        return songRepository.findAll();
+    @Autowired
+    public SongController(SongRepository songRepository) {
+        this.songRepository = songRepository;
     }
 
     @RequestMapping("/song/{id}")

@@ -11,8 +11,6 @@ public interface SongRepository extends CrudRepository<Song, Long> {
 
     List<Song> findByArtistLikeIgnoreCase(String artist);
 
-    List<Song> findAll();
-
     List<Song> findByTitleLikeIgnoreCase(String title);
 
     List<Song> findAll(Specification<Song> spec);
