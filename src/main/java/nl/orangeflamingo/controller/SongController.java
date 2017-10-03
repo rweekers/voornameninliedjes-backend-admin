@@ -6,6 +6,8 @@ import nl.orangeflamingo.domain.SongRepository;
 import nl.orangeflamingo.domain.SongSpecs;
 import nl.orangeflamingo.domain.View;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,5 +44,11 @@ public class SongController {
     @JsonView(View.Summary.class)
     public List<Song> findSongsByQuery(@PathVariable("query") String query) {
         return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query));
+    }
+
+    @RequestMapping(value = "/song/get", params = { "page", "size" }, method = RequestMethod.GET)
+    @JsonView(View.Summary.class)
+    public Page<Song> test(@RequestParam("page") int page, @RequestParam("size") int size) {
+        return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike("nirvana"), PageRequest.of(page, size));
     }
 }
