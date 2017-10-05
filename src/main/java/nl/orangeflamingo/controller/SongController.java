@@ -5,6 +5,8 @@ import nl.orangeflamingo.domain.Song;
 import nl.orangeflamingo.domain.SongRepository;
 import nl.orangeflamingo.domain.SongSpecs;
 import nl.orangeflamingo.domain.View;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +18,8 @@ import java.util.List;
 public class SongController {
 
     private final SongRepository songRepository;
+
+    private final Logger log = LoggerFactory.getLogger(SongController.class);
 
     @Autowired
     public SongController(SongRepository songRepository) {
@@ -48,7 +52,9 @@ public class SongController {
 
     @RequestMapping(value = "/song", params = { "page", "size" }, method = RequestMethod.GET)
     @JsonView(View.Summary.class)
-    public Page<Song> test(@RequestParam("page") int page, @RequestParam("size") int size) {
-        return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike("nirvana"), PageRequest.of(page, size));
+    public Page<Song> findSongsByPage(@RequestParam("page") int page, @RequestParam("size") int size) {
+        log.info("Getting songs for page {} and size {}", page, size);
+        // return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike("nirvana"), PageRequest.of(page, size));
+        return songRepository.findAll(PageRequest.of(page, size));
     }
 }

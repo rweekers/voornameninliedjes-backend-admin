@@ -19,4 +19,6 @@ public interface SongRepository extends CrudRepository<Song, Long> {
 
     Page<Song> findAll(Specification<Song> spec, Pageable page);
 
+    Page<Song> findAll(Pageable page);
+
 }
