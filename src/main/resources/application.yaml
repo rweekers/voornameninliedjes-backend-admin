@@ -19,3 +19,18 @@ spring:
     url: jdbc:postgresql://localhost:5432/voornameninliedjes
     username: postgres
     password: postgres
+
+# Logging
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        type: trace
+#
+#spring:
+#  jpa:
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        format_sql: true
+
