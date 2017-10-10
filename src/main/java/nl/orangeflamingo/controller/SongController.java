@@ -51,10 +51,9 @@ public class SongController {
     }
 
     @RequestMapping(value = "/song", params = { "page", "size" }, method = RequestMethod.GET)
-    @JsonView(View.Summary.class)
     public Page<Song> findSongsByPage(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("Getting songs for page {} and size {}", page, size);
-        // return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike("nirvana"), PageRequest.of(page, size));
-        return songRepository.findAll(PageRequest.of(page, size));
+        Page<Song> songPage = songRepository.findAll(PageRequest.of(page, size));
+        return songPage;
     }
 }
