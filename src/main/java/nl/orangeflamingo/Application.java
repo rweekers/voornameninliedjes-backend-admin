@@ -20,7 +20,7 @@ public class Application {
 
     @Bean
     public CommandLineRunner demo(SongRepository repository) {
-        return (args) -> {
+        return args -> {
             // fetch all customers
             log.info("Songs found with findAll():");
             log.info("-------------------------------");
