@@ -53,7 +53,6 @@ public class SongController {
     @RequestMapping(value = "/song", params = { "page", "size" }, method = RequestMethod.GET)
     public Page<Song> findSongsByPage(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("Getting songs for page {} and size {}", page, size);
-        Page<Song> songPage = songRepository.findAll(PageRequest.of(page, size));
-        return songPage;
+        return songRepository.findAll(PageRequest.of(page, size));
     }
 }
