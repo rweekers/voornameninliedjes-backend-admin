@@ -32,6 +32,12 @@ public class SongControllerTest {
     }
 
     @Test
+    public void testFindSongsByQuery() {
+        List<Song> songsByQuery = songController.findSongsByQuery("olly");
+        assertEquals(2, songsByQuery.size());
+    }
+
+    @Test
     public void testFindSongsByPage() {
         Page<Song> songsByPage = songController.findSongsByPage(0, 1);
         assertEquals(1, songsByPage.getSize());
