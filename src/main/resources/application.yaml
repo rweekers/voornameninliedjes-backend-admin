@@ -1,5 +1,6 @@
 spring:
-  profiles: development
+  profiles:
+    active: development
   h2:
     console:
       enabled: true

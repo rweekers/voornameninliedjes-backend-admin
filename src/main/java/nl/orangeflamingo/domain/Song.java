@@ -62,4 +62,8 @@ public class Song implements Serializable {
     @Column(name = "youtube")
     @JsonView({ View.Summary.class, View.Detail.class })
     private String youtube;
+
+    public String toString() {
+        return this.artist + " - " + this.title;
+    }
 }

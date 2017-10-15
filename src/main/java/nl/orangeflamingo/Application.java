@@ -15,34 +15,17 @@ public class Application {
     private static final Logger log = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class);
+        SpringApplication.run(Application.class, args);
     }
 
     @Bean
     public CommandLineRunner demo(SongRepository repository) {
         return args -> {
-            // fetch all customers
+            // fetch all songs
             log.info("Songs found with findAll():");
-            log.info("-------------------------------");
             for (Song song : repository.findAll()) {
                 log.info(song.toString());
             }
-            log.info("");
-
-            // fetch an individual customer by ID
-            Song song = repository.findById(1L).orElseThrow(() -> new RuntimeException("Song not found"));
-            log.info("Song found with findOne(1L):");
-            log.info("--------------------------------");
-            log.info(song.toString());
-            log.info("");
-
-            // fetch customers by artist
-            log.info("Song found with findByArtist('Nirvana'):");
-            log.info("--------------------------------------------");
-            for (Song nirvana : repository.findByArtistLikeIgnoreCase("Nirvana")) {
-                log.info(nirvana.toString());
-            }
-            log.info("");
         };
     }
 }
