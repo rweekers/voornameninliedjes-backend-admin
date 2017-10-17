@@ -44,7 +44,7 @@ public class SongController {
          return songRepository.findByTitleLikeIgnoreCase("%" + title + "%");
     }
 
-    @RequestMapping(value = "/song/search/{query}", method = RequestMethod.GET)
+    @RequestMapping(value = "/song/{query}", method = RequestMethod.GET)
     @JsonView(View.Summary.class)
     public List<Song> findSongsByQuery(@PathVariable("query") String query) {
         return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query));
@@ -54,5 +54,11 @@ public class SongController {
     public Page<Song> findSongsByPage(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("Getting songs for page {} and size {}", page, size);
         return songRepository.findAll(PageRequest.of(page, size));
+    }
+
+    @RequestMapping(value = "/song/{query}", params = { "page", "size" }, method = RequestMethod.GET)
+    public Page<Song> findSongsByQueryAndPage(@PathVariable("query") String query, @RequestParam("page") int page,
+                                              @RequestParam("size") int size) {
+        return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query), PageRequest.of(page, size));
     }
 }
