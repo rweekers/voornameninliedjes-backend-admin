@@ -42,4 +42,11 @@ public class SongControllerTest {
         Page<Song> songsByPage = songController.findSongsByPage(0, 1);
         assertEquals(1, songsByPage.getSize());
     }
+
+    @Test
+    public void testFindSongsBySpecificationAndPage() {
+        Page<Song> songsBySpecificationAndPage = songController.findSongsByQueryAndPage("olly", 0, 1);
+        assertEquals(1, songsBySpecificationAndPage.getSize());
+        assertEquals(2, songsBySpecificationAndPage.getTotalPages());
+    }
 }
