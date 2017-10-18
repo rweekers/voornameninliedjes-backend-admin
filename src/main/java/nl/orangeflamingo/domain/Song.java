@@ -63,7 +63,11 @@ public class Song implements Serializable {
     @JsonView({ View.Summary.class, View.Detail.class })
     private String youtube;
 
-    public String toString() {
-        return this.artist + " - " + this.title;
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getArtist() {
+        return this.artist;
     }
 }

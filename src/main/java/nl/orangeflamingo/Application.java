@@ -26,7 +26,7 @@ public class Application {
             // fetch all songs
             log.info("Songs found with findAll():");
             for (Song song : repository.findAll()) {
-                log.info(song.toString());
+                log.info(song.getArtist() + " - " + song.getTitle());
             }
         };
     }

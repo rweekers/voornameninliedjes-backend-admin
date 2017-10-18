@@ -20,6 +20,13 @@ public class SongControllerTest {
     private SongController songController;
 
     @Test
+    public void testFindSongById() {
+        Song song = songController.getSongById(1L);
+        assertEquals("Dolly Parton", song.getArtist());
+        assertEquals("Jolene", song.getTitle());
+    }
+
+    @Test
     public void testFindSongsByArtist() {
         List<Song> songsByArtist = songController.findSongsByArtist("Dolly Parton");
         assertEquals(1, songsByArtist.size());
