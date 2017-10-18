@@ -22,7 +22,7 @@ public class SongRepositoryTest {
     @Test
     public void testAllSongs() {
         List<Song> allSongs = songRepository.findAll();
-        assertEquals(3, allSongs.size());
+        assertEquals(5, allSongs.size());
     }
 
     @Test

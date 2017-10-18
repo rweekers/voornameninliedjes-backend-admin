@@ -28,8 +28,8 @@ public class SongControllerTest {
 
     @Test
     public void testFindSongsByArtist() {
-        List<Song> songsByArtist = songController.findSongsByArtist("Dolly Parton");
-        assertEquals(1, songsByArtist.size());
+        List<Song> songsByArtist = songController.findSongsByArtist("Beatles");
+        assertEquals(2, songsByArtist.size());
     }
 
     @Test
