@@ -21,6 +21,19 @@ spring:
     username: postgres
     password: postgres
 
+spring:
+  profiles: prod
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    platform: postgresql
+    initialize: false
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://${POSTGRES_DB_HOST}:${POSTGRES_DB_PORT}/voornameninliedjes
+    username: ${POSTGRES_DB_USERNAME}
+    password: ${POSTGRES_DB_PASSWORD}
+
 # Logging
 #logging:
 #  level:
