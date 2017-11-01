@@ -76,6 +76,7 @@
                 <configuration>
                     <repository>${docker.image.prefix}/${project.artifactId}</repository>
                     <tag>${project.version}</tag>
+                    <tag>latest</tag>
                 </configuration>
             </plugin>
         </plugins>
