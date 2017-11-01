@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:9-jdk
 VOLUME /tmp
 ADD target/voornameninliedjes-backend-spring-0.9.0.jar app.jar
 ENV JAVA_OPTS=""
