@@ -73,9 +73,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
+<!--                 <configuration>
                     <jvmArguments>--add-modules java.xml.bind,java.xml.ws,java.xml.ws.annotation</jvmArguments>
-                </configuration>
+                </configuration> -->
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
