@@ -26,6 +26,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     platform: postgresql
     initialize: false
