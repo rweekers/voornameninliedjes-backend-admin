@@ -23,7 +23,7 @@ public class Song implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({ View.Summary.class, View.Detail.class, View.AdminDetail.class })
+    @JsonView({ View.Summary.class, View.Detail.class })
     private Long id;
 
     @Column(name = "artist")
