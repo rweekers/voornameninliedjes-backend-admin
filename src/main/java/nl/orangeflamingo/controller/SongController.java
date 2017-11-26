@@ -17,6 +17,8 @@ import java.util.List;
 @RestController
 public class SongController {
 
+    private static final int MAX_SIZE = 30;
+
     private final SongRepository songRepository;
 
     private final Logger log = LoggerFactory.getLogger(SongController.class);
@@ -35,30 +37,37 @@ public class SongController {
     @RequestMapping(value = "/song/artist/{artist}", method = RequestMethod.GET)
     @JsonView(View.Summary.class)
     public List<Song> findSongsByArtist(@PathVariable("artist") String artist) {
-        return songRepository.findByArtistLikeIgnoreCase("%" + artist + "%");
+        List<Song> songsByArtist = songRepository.findByArtistLikeIgnoreCase("%" + artist + "%");
+        return songsByArtist.subList(0, getMaxSize(songsByArtist.size()));
     }
 
     @RequestMapping(value = "/song/title/{title}", method = RequestMethod.GET)
     @JsonView(View.Summary.class)
     public List<Song> findSongsByTitle(@PathVariable("title") String title) {
-         return songRepository.findByTitleLikeIgnoreCase("%" + title + "%");
+        List<Song> songsByTitle = songRepository.findByTitleLikeIgnoreCase("%" + title + "%");
+        return songsByTitle.subList(0, getMaxSize(songsByTitle.size()));
     }
 
     @RequestMapping(value = "/song/{query}", method = RequestMethod.GET)
     @JsonView(View.Summary.class)
     public List<Song> findSongsByQuery(@PathVariable("query") String query) {
-        return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query));
+        List<Song> songsByQuery = songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query));
+        return songsByQuery.subList(0, getMaxSize(songsByQuery.size()));
     }
 
     @RequestMapping(value = "/song", params = { "page", "size" }, method = RequestMethod.GET)
     public Page<Song> findSongsByPage(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("Getting songs for page {} and size {}", page, size);
-        return songRepository.findAll(PageRequest.of(page, size));
+        return songRepository.findAll(PageRequest.of(page, size > MAX_SIZE ? MAX_SIZE : size));
     }
 
     @RequestMapping(value = "/song/{query}", params = { "page", "size" }, method = RequestMethod.GET)
     public Page<Song> findSongsByQueryAndPage(@PathVariable("query") String query, @RequestParam("page") int page,
                                               @RequestParam("size") int size) {
-        return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query), PageRequest.of(page, size));
+        return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query), PageRequest.of(page, size > MAX_SIZE ? MAX_SIZE : size));
+    }
+
+    private int getMaxSize(int size) {
+        return size > MAX_SIZE ? MAX_SIZE : size;
     }
 }
