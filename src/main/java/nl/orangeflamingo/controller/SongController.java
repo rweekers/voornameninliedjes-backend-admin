@@ -48,7 +48,7 @@ public class SongController {
         return songsByTitle.subList(0, getMaxSize(songsByTitle.size()));
     }
 
-    @RequestMapping(value = "/song/{query}", method = RequestMethod.GET)
+    @RequestMapping(value = "/song/query/{query}", method = RequestMethod.GET)
     @JsonView(View.Summary.class)
     public List<Song> findSongsByQuery(@PathVariable("query") String query) {
         List<Song> songsByQuery = songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query));
@@ -61,7 +61,7 @@ public class SongController {
         return songRepository.findAll(PageRequest.of(page, size > MAX_SIZE ? MAX_SIZE : size));
     }
 
-    @RequestMapping(value = "/song/{query}", params = { "page", "size" }, method = RequestMethod.GET)
+    @RequestMapping(value = "/song/query/{query}", params = { "page", "size" }, method = RequestMethod.GET)
     public Page<Song> findSongsByQueryAndPage(@PathVariable("query") String query, @RequestParam("page") int page,
                                               @RequestParam("size") int size) {
         return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query), PageRequest.of(page, size > MAX_SIZE ? MAX_SIZE : size));
