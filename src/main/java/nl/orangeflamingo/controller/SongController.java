@@ -55,6 +55,7 @@ public class SongController {
         return songsByQuery.subList(0, getMaxSize(songsByQuery.size()));
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/song", method = RequestMethod.GET)
     public List<Song> allSongs() {
         List<Song> songs = songRepository.findAll().subList(0, MAX_SIZE);
