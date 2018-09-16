@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 public class SongController {
 
-    private static final int MAX_SIZE = 30;
+    private static final int MAX_SIZE = 100;
 
     private final SongRepository songRepository;
 
@@ -53,6 +53,13 @@ public class SongController {
     public List<Song> findSongsByQuery(@PathVariable("query") String query) {
         List<Song> songsByQuery = songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query));
         return songsByQuery.subList(0, getMaxSize(songsByQuery.size()));
+    }
+
+    @RequestMapping(value = "/song", method = RequestMethod.GET)
+    public List<Song> allSongs() {
+        List<Song> songs = songRepository.findAll().subList(0, MAX_SIZE);
+        log.info("Getting {} songs", songs.size());
+        return songs;
     }
 
     @RequestMapping(value = "/song", params = { "page", "size" }, method = RequestMethod.GET)
