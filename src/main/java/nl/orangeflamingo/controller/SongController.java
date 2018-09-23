@@ -63,13 +63,15 @@ public class SongController {
         return songs;
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/song", params = { "page", "size" }, method = RequestMethod.GET)
     public Page<Song> findSongsByPage(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("Getting songs for page {} and size {}", page, size);
         return songRepository.findAll(PageRequest.of(page, size > MAX_SIZE ? MAX_SIZE : size));
     }
 
-    @RequestMapping(value = "/song/query/{query}", params = { "page", "size" }, method = RequestMethod.GET)
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/song/{query}", params = { "page", "size" }, method = RequestMethod.GET)
     public Page<Song> findSongsByQueryAndPage(@PathVariable("query") String query, @RequestParam("page") int page,
                                               @RequestParam("size") int size) {
         return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query), PageRequest.of(page, size > MAX_SIZE ? MAX_SIZE : size));
