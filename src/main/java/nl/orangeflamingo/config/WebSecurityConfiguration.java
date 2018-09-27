@@ -16,6 +16,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/song/**").permitAll()
+                .antMatchers("/songs/**").permitAll()
                 .anyRequest().authenticated();
     }
 

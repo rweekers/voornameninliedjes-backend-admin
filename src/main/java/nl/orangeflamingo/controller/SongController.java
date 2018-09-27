@@ -34,21 +34,21 @@ public class SongController {
         return songRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Song not found for id " + id));
     }
 
-    @RequestMapping(value = "/song/artist/{artist}", method = RequestMethod.GET)
+    @RequestMapping(value = "/songs/artist/{artist}", method = RequestMethod.GET)
     @JsonView(View.Summary.class)
     public List<Song> findSongsByArtist(@PathVariable("artist") String artist) {
         List<Song> songsByArtist = songRepository.findByArtistLikeIgnoreCase("%" + artist + "%");
         return songsByArtist.subList(0, getMaxSize(songsByArtist.size()));
     }
 
-    @RequestMapping(value = "/song/title/{title}", method = RequestMethod.GET)
+    @RequestMapping(value = "/songs/title/{title}", method = RequestMethod.GET)
     @JsonView(View.Summary.class)
     public List<Song> findSongsByTitle(@PathVariable("title") String title) {
         List<Song> songsByTitle = songRepository.findByTitleLikeIgnoreCase("%" + title + "%");
         return songsByTitle.subList(0, getMaxSize(songsByTitle.size()));
     }
 
-    @RequestMapping(value = "/song/query/{query}", method = RequestMethod.GET)
+    @RequestMapping(value = "/songs/{query}", method = RequestMethod.GET)
     @JsonView(View.Summary.class)
     public List<Song> findSongsByQuery(@PathVariable("query") String query) {
         List<Song> songsByQuery = songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query));
@@ -56,25 +56,25 @@ public class SongController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/song", method = RequestMethod.GET)
+    @RequestMapping(value = "/songs", method = RequestMethod.GET)
     public List<Song> allSongs() {
-        List<Song> songs = songRepository.findAll().subList(0, MAX_SIZE);
+        List<Song> songs = songRepository.findAll();
         log.info("Getting {} songs", songs.size());
-        return songs;
+        return songs.subList(0, getMaxSize(songs.size()));
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/song", params = { "page", "size" }, method = RequestMethod.GET)
     public Page<Song> findSongsByPage(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("Getting songs for page {} and size {}", page, size);
-        return songRepository.findAll(PageRequest.of(page, size > MAX_SIZE ? MAX_SIZE : size));
+        return songRepository.findAll(PageRequest.of(page, getMaxSize(size)));
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/song/{query}", params = { "page", "size" }, method = RequestMethod.GET)
-    public Page<Song> findSongsByQueryAndPage(@PathVariable("query") String query, @RequestParam("page") int page,
+    public Page<Song> findSongsByQueryAndPage(@PathVariable(value = "query") String query, @RequestParam("page") int page,
                                               @RequestParam("size") int size) {
-        return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query), PageRequest.of(page, size > MAX_SIZE ? MAX_SIZE : size));
+        return songRepository.findAll(SongSpecs.songWithArtistOrTitleLike(query), PageRequest.of(page, getMaxSize(size)));
     }
 
     private int getMaxSize(int size) {
