@@ -1,20 +1,26 @@
-.SyncID
-.SyncIgnore
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
 
-logs
-project/project
-project/target
-target/
-tmp
-.history
-dist
+### STS ###
+.apt_generated
 .classpath
+.factorypath
 .project
-.settings/
+.settings
 .springBeans
-.idea/
-voornameninliedjes-backend-spring.iml
-backend-sublime.workspace
-bin
-database.properties
-config.properties
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
