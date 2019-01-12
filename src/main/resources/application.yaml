@@ -10,3 +10,10 @@ spring:
       username: mongoadmin
       password: secret
       authentication-database: admin
+
+orangeflamingo:
+  admin:
+    user1: remco
+    password1: secret
+    user2: nadja
+    password2: secret
