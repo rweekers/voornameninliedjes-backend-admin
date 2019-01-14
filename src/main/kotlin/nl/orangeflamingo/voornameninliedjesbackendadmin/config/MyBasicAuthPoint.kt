@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse
 class MyBasicAuthPoint: BasicAuthenticationEntryPoint() {
 
     override fun commence(request: HttpServletRequest, response: HttpServletResponse, authException: AuthenticationException) {
-        response.addHeader("WWW-Authenticate", "Bsic realm=$realmName")
+        response.addHeader("WWW-Authenticate", "Basic realm=$realmName")
         response.status = HttpServletResponse.SC_UNAUTHORIZED
         response.writer.println("HTTP Status 401 - ${authException.message}")
     }
