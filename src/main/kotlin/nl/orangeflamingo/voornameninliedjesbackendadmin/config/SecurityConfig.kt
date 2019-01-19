@@ -45,7 +45,10 @@ class SecurityConfig: WebSecurityConfigurerAdapter() {
     }
 
     override fun configure(http: HttpSecurity) {
-        http.authorizeRequests()
+        http
+                // TODO enable CSRF, see https://docs.spring.io/spring-security/site/docs/4.0.x/reference/htmlsingle/#csrf-configure
+                .csrf().disable()
+                .authorizeRequests()
                 // specify that any api url added later will be allowed and all admin is only usable by ADMIN or OWNER
                 .antMatchers("/api/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")

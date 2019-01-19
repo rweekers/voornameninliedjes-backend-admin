@@ -11,6 +11,7 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
+import java.time.Instant
 
 
 @SpringBootApplication
@@ -22,11 +23,11 @@ class AdminSongApplication {
     @Bean
     fun init(songRepository: SongRepository) = CommandLineRunner {
         val songList = listOf<Song>(
-                Song("1", "Michael Jackson", "Ben", "Ben"),
-                Song("2", "Neil Diamond", "Sweet Caroline", "Caroline"),
-                Song("3", "The Police", "Roxanne", "Roxanne"),
-                Song("4", "Dolly Parton", "Jolene", "Jolene"),
-                Song("5", "The Kinks", "Lola", "Lola")
+                Song("1", "Michael Jackson", "Ben", "Ben", Instant.now(), null, "Remco", "null"),
+                Song("2", "Neil Diamond", "Sweet Caroline", "Caroline", Instant.now(), null, "Remco", "null"),
+                Song("3", "The Police", "Roxanne", "Roxanne", Instant.now(), null, "Remco", "null"),
+                Song("4", "Dolly Parton", "Jolene", "Jolene", Instant.now(), null, "Remco", "null"),
+                Song("5", "The Kinks", "Lola", "Lola", Instant.now(), null, "Remco", "null")
         )
         songRepository.saveAll(songList)
         log.info("Saving ${songList.size} songs")
