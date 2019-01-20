@@ -1,9 +1,11 @@
 package nl.orangeflamingo.voornameninliedjesbackendadmin
 
-import nl.orangeflamingo.voornameninliedjesbackend.controller.SongController
-import nl.orangeflamingo.voornameninliedjesbackend.domain.Song
-import nl.orangeflamingo.voornameninliedjesbackend.repository.SongRepository
+import nl.orangeflamingo.voornameninliedjesbackendadmin.controller.SongController
+import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.Song
+import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.SongRepository
 import nl.orangeflamingo.voornameninliedjesbackendadmin.config.SecurityConfig
+import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.Audit
+import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.SongStatus
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -16,18 +18,18 @@ import java.time.Instant
 
 @SpringBootApplication
 @ComponentScan(basePackageClasses = [SongRepository::class, SongController::class, SecurityConfig::class])
-@EnableMongoRepositories(value = ["nl.orangeflamingo.voornameninliedjesbackend.repository"])
+@EnableMongoRepositories(value = ["nl.orangeflamingo.voornameninliedjesbackendadmin.repository"])
 class AdminSongApplication {
     private val log = LoggerFactory.getLogger(AdminSongApplication::class.java)
 
     @Bean
     fun init(songRepository: SongRepository) = CommandLineRunner {
         val songList = listOf<Song>(
-                Song("1", "Michael Jackson", "Ben", "Ben", Instant.now(), null, "Remco", "null"),
-                Song("2", "Neil Diamond", "Sweet Caroline", "Caroline", Instant.now(), null, "Remco", "null"),
-                Song("3", "The Police", "Roxanne", "Roxanne", Instant.now(), null, "Remco", "null"),
-                Song("4", "Dolly Parton", "Jolene", "Jolene", Instant.now(), null, "Remco", "null"),
-                Song("5", "The Kinks", "Lola", "Lola", Instant.now(), null, "Remco", "null")
+                Song("1", "Michael Jackson", "Ben", "Ben", null, null, SongStatus.SHOW, Audit(dateInserted = Instant.now(), userInserted =  "Remco")),
+                Song("2", "Neil Diamond", "Sweet Caroline", "Caroline", null, null, SongStatus.SHOW, Audit(dateInserted = Instant.now(), userInserted =  "Remco")),
+                Song("3", "The Police", "Roxanne", "Roxanne", null, null, SongStatus.SHOW, Audit(dateInserted = Instant.now(), userInserted =  "Remco")),
+                Song("4", "Dolly Parton", "Jolene", "Jolene", null, null, SongStatus.IN_PROGRESS, Audit(dateInserted = Instant.now(), userInserted =  "Remco")),
+                Song("5", "The Kinks", "Lola", "Lola", null, null, SongStatus.IN_PROGRESS, Audit(dateInserted = Instant.now(), userInserted =  "Remco"))
         )
         songRepository.saveAll(songList)
         log.info("Saving ${songList.size} songs")
