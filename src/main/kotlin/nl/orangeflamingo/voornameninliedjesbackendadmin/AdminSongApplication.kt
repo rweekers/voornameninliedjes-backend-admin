@@ -1,17 +1,18 @@
 package nl.orangeflamingo.voornameninliedjesbackendadmin
 
-import nl.orangeflamingo.voornameninliedjesbackendadmin.controller.SongController
-import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.Song
-import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.SongRepository
 import nl.orangeflamingo.voornameninliedjesbackendadmin.config.SecurityConfig
+import nl.orangeflamingo.voornameninliedjesbackendadmin.controller.SongController
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.Audit
+import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.Song
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.SongStatus
+import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.SongRepository
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
+import org.springframework.context.annotation.Profile
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
 import java.time.Instant
 
@@ -23,6 +24,7 @@ class AdminSongApplication {
     private val log = LoggerFactory.getLogger(AdminSongApplication::class.java)
 
     @Bean
+    @Profile("!pro")
     fun init(songRepository: SongRepository) = CommandLineRunner {
         val songList = listOf<Song>(
                 Song("1", "Michael Jackson", "Ben", "Ben", null, null, SongStatus.SHOW, Audit(dateInserted = Instant.now(), userInserted =  "Remco")),
