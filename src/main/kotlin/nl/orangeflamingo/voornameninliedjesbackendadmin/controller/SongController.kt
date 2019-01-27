@@ -2,8 +2,8 @@ package nl.orangeflamingo.voornameninliedjesbackendadmin.controller
 
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.Audit
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.Song
-import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.SongDto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.SongStatus
+import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.SongDto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.SongRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -17,7 +17,7 @@ class SongController {
 
     @GetMapping("/songs")
     fun getSongs(): List<SongDto> {
-        return songRepository.findAll().filter { it.status == SongStatus.SHOW }.map { convertToDto(it) }
+        return songRepository.findAll().map { convertToDto(it) }
     }
 
     @GetMapping("/songs/{id}")
