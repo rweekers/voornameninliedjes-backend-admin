@@ -33,6 +33,20 @@ class SongController {
     @PutMapping("/songs/{id}")
     fun replaceSong(@RequestBody song: SongDto, @PathVariable id: String): SongDto {
         assert(song.id == id)
+        val songFromDb = songRepository.findById(id)
+        if (songFromDb.isPresent) {
+            var songDB = songFromDb.get()
+            songDB.artist = song.artist
+            songDB.title = song.title
+            songDB.name = song.name
+            songDB.status = SongStatus.valueOf(song.status)
+            songDB.background = song.background
+            songDB.youtube = song.youtube
+            val audit = Audit(userInserted = song.userInserted, dateInserted = song.dateInserted, userModified = song.userModified, dateModified = song.dateModified)
+            songDB.audit = audit
+            songRepository.save(songDB)
+            return convertToDto(songDB)
+        }
         return convertToDto(songRepository.save(convert(song)))
     }
 
@@ -44,10 +58,10 @@ class SongController {
     private fun convert(songDto: SongDto): Song {
         val audit = Audit(userInserted = songDto.userInserted, dateInserted = songDto.dateInserted, userModified = songDto.userModified, dateModified = songDto.dateModified)
         val status = SongStatus.valueOf(songDto.status)
-        return Song(id = null, artist = songDto.artist, title = songDto.title, name = songDto.name, background = songDto.background, youtube = songDto.youtube, status = status, audit = audit)
+        return Song(id = null, artist = songDto.artist, title = songDto.title, name = songDto.name, background = songDto.background, youtube = songDto.youtube, spotify = songDto.spotify, status = status, audit = audit)
     }
 
     private fun convertToDto(song: Song): SongDto {
-        return SongDto(song.id, song.artist, song.title, song.name, song.background, song.youtube, song.status.name, song.audit.dateInserted, song.audit.dateModified, song.audit.userInserted, song.audit.userModified)
+        return SongDto(song.id, song.artist, song.title, song.name, song.background, song.youtube, song.spotify, song.status.name, song.audit.dateInserted, song.audit.dateModified, song.audit.userInserted, song.audit.userModified)
     }
 }

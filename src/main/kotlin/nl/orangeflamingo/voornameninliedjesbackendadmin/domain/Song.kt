@@ -15,21 +15,23 @@ data class Song(
         val id: String?,
 
         @Field("artist")
-        val artist: String,
+        var artist: String,
 
         @Field("title")
-        val title: String,
+        var title: String,
 
         @Field("name")
-        val name: String,
+        var name: String,
 
-        val background: String?,
+        var background: String?,
 
-        val youtube: String?,
+        var youtube: String?,
 
-        val status: SongStatus,
+        var spotify: String?,
 
-        val audit: Audit
+        var status: SongStatus,
+
+        var audit: Audit
 ) {
     override fun toString(): String {
         return "Song(name=$artist, code=$title"

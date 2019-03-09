@@ -27,11 +27,11 @@ class AdminSongApplication {
     @Profile("!pro")
     fun init(songRepository: SongRepository) = CommandLineRunner {
         val songList = listOf<Song>(
-                Song("1", "Michael Jackson", "Ben", "Ben", null, null, SongStatus.SHOW, Audit(dateInserted = Instant.now(), userInserted =  "Remco")),
-                Song("2", "Neil Diamond", "Sweet Caroline", "Caroline", null, null, SongStatus.SHOW, Audit(dateInserted = Instant.now(), userInserted =  "Remco")),
-                Song("3", "The Police", "Roxanne", "Roxanne", null, null, SongStatus.SHOW, Audit(dateInserted = Instant.now(), userInserted =  "Remco")),
-                Song("4", "Dolly Parton", "Jolene", "Jolene", null, null, SongStatus.IN_PROGRESS, Audit(dateInserted = Instant.now(), userInserted =  "Remco")),
-                Song("5", "The Kinks", "Lola", "Lola", null, null, SongStatus.IN_PROGRESS, Audit(dateInserted = Instant.now(), userInserted =  "Remco"))
+                Song("1", "Michael Jackson", "Ben", "Ben", null, null, null, SongStatus.SHOW, Audit(dateInserted = Instant.now(), userInserted =  "Remco")),
+                Song("2", "Neil Diamond", "Sweet Caroline", "Caroline", null, null, null, SongStatus.SHOW, Audit(dateInserted = Instant.now(), userInserted =  "Remco")),
+                Song("3", "The Police", "Roxanne", "Roxanne", null, null, null, SongStatus.SHOW, Audit(dateInserted = Instant.now(), userInserted =  "Remco")),
+                Song("4", "Dolly Parton", "Jolene", "Jolene", null, null, null, SongStatus.IN_PROGRESS, Audit(dateInserted = Instant.now(), userInserted =  "Remco")),
+                Song("5", "The Kinks", "Lola", "Lola", null, null, null, SongStatus.IN_PROGRESS, Audit(dateInserted = Instant.now(), userInserted =  "Remco"))
         )
         songRepository.saveAll(songList)
         log.info("Saving ${songList.size} songs")

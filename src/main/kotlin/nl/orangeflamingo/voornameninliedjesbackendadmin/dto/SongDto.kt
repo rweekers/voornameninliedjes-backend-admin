@@ -29,6 +29,8 @@ data class SongDto(
 
         val youtube: String?,
 
+        val spotify: String?,
+
         val status: String,
 
         @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Europe/Amsterdam")
