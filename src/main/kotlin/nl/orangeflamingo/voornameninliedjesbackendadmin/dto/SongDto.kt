@@ -33,6 +33,8 @@ data class SongDto(
 
         val status: String,
 
+        val flickrPhotos: Set<String> = setOf(),
+
         @JsonIgnoreProperties(allowGetters = true)
         val logs: List<LogEntry> = listOf()
 

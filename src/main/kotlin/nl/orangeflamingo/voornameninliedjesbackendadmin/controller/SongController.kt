@@ -48,11 +48,26 @@ class SongController {
             songDB.background = song.background
             songDB.youtube = song.youtube
             songDB.spotify = song.spotify
+            songDB.flickrPhotos = song.flickrPhotos.toMutableSet()
             songDB.logs.add(logEntry)
             songRepository.save(songDB)
             return convertToDto(songDB)
         }
         return convertToDto(songRepository.save(convert(song, mutableListOf(logEntry))))
+    }
+
+    @PostMapping("/songs/{user}/{id}/{flickrId}")
+    fun addFlickrPhoto(@PathVariable user: String, @PathVariable id: String, @PathVariable flickrId: String) {
+        var songOptional = songRepository.findById(id)
+        if (songOptional.isPresent) {
+            val song = songOptional.get()
+            val logEntry = LogEntry(Instant.now(), user)
+            song.logs.add(logEntry)
+            song.flickrPhotos.add(flickrId)
+            songRepository.save(song)
+        } else {
+            log.warn("Song with id $id not found")
+        }
     }
 
     @DeleteMapping("/songs/{id}")
@@ -66,6 +81,6 @@ class SongController {
     }
 
     private fun convertToDto(song: Song): SongDto {
-        return SongDto(song.id, song.artist, song.title, song.name, song.background, song.youtube, song.spotify, song.status.name, song.logs)
+        return SongDto(song.id, song.artist, song.title, song.name, song.background, song.youtube, song.spotify, song.status.name, song.flickrPhotos, song.logs)
     }
 }

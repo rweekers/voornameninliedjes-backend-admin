@@ -31,6 +31,8 @@ data class Song(
 
         var status: SongStatus,
 
+        var flickrPhotos: MutableSet<String> = mutableSetOf(),
+
         val logs: MutableList<LogEntry> = mutableListOf()
 ) {
     override fun toString(): String {
