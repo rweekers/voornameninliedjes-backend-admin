@@ -34,27 +34,6 @@ class SongController {
         return convertToDto(songRepository.save(convert(newSong, mutableListOf(logEntry))))
     }
 
-    @PostMapping("/migrate-history")
-    fun migrate() {
-        songRepository.findAll().forEach{
-            song ->
-                if (song.logs.isEmpty()) {
-                    val firstEntry = LogEntry(song.audit?.dateInserted!!, song.audit?.userInserted!!)
-                    val secondEntry = LogEntry(song.audit?.dateModified!!, song.audit?.userModified!!)
-
-                    song.logs.add(firstEntry)
-                    song.logs.add(secondEntry)
-
-                    song.audit = null
-                    songRepository.save(song)
-                } else {
-                    log.info("Already migrated")
-                }
-        }
-
-        log.info("Migrating all songs' history")
-    }
-
     @PutMapping("/songs/{user}/{id}")
     fun replaceSong(@RequestBody song: SongDto, @PathVariable user: String, @PathVariable id: String): SongDto {
         assert(song.id == id)
@@ -69,7 +48,6 @@ class SongController {
             songDB.background = song.background
             songDB.youtube = song.youtube
             songDB.spotify = song.spotify
-            songDB.audit = null
             songDB.logs.add(logEntry)
             songRepository.save(songDB)
             return convertToDto(songDB)
@@ -84,10 +62,10 @@ class SongController {
 
     private fun convert(songDto: SongDto, logs: MutableList<LogEntry>): Song {
         val status = SongStatus.valueOf(songDto.status)
-        return Song(id = null, artist = songDto.artist, title = songDto.title, name = songDto.name, background = songDto.background, youtube = songDto.youtube, spotify = songDto.spotify, status = status, audit = null, logs = logs)
+        return Song(id = null, artist = songDto.artist, title = songDto.title, name = songDto.name, background = songDto.background, youtube = songDto.youtube, spotify = songDto.spotify, status = status, logs = logs)
     }
 
     private fun convertToDto(song: Song): SongDto {
-        return SongDto(song.id, song.artist, song.title, song.name, song.background, song.youtube, song.spotify, song.status.name, song.audit?.dateInserted, song.audit?.dateModified, song.audit?.userInserted, song.audit?.userModified, song.logs)
+        return SongDto(song.id, song.artist, song.title, song.name, song.background, song.youtube, song.spotify, song.status.name, song.logs)
     }
 }

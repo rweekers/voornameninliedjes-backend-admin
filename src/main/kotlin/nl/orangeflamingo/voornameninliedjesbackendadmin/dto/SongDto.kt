@@ -1,13 +1,11 @@
 package nl.orangeflamingo.voornameninliedjesbackendadmin.dto
 
-import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.LogEntry
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.index.CompoundIndex
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field
-import java.time.Instant
 import java.util.*
 import javax.annotation.Generated
 
@@ -34,15 +32,6 @@ data class SongDto(
         val spotify: String?,
 
         val status: String,
-
-        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Europe/Amsterdam")
-        val dateInserted: Instant?,
-
-        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Europe/Amsterdam")
-        val dateModified: Instant?,
-
-        val userInserted: String?,
-        val userModified: String?,
 
         @JsonIgnoreProperties(allowGetters = true)
         val logs: List<LogEntry> = listOf()
