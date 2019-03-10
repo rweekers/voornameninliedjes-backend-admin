@@ -1,6 +1,8 @@
 package nl.orangeflamingo.voornameninliedjesbackendadmin.dto
 
 import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.LogEntry
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.index.CompoundIndex
 import org.springframework.data.mongodb.core.mapping.Document
@@ -34,13 +36,16 @@ data class SongDto(
         val status: String,
 
         @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Europe/Amsterdam")
-        val dateInserted: Instant = Instant.now(),
+        val dateInserted: Instant?,
 
         @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Europe/Amsterdam")
-        val dateModified: Instant = dateInserted,
+        val dateModified: Instant?,
 
-        val userInserted: String,
-        val userModified: String = userInserted
+        val userInserted: String?,
+        val userModified: String?,
+
+        @JsonIgnoreProperties(allowGetters = true)
+        val logs: List<LogEntry> = listOf()
 
 ) {
     override fun toString(): String {

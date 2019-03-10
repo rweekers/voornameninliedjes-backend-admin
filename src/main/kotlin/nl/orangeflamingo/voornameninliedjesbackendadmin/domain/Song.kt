@@ -31,7 +31,9 @@ data class Song(
 
         var status: SongStatus,
 
-        var audit: Audit
+        var audit: Audit?,
+
+        val logs: MutableList<LogEntry> = mutableListOf()
 ) {
     override fun toString(): String {
         return "Song(name=$artist, code=$title"
