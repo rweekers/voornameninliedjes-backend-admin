@@ -12,15 +12,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 
 
-
-
-
 @Configuration
 @EnableWebSecurity
-class SecurityConfig: WebSecurityConfigurerAdapter() {
+class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     @Autowired
     private lateinit var authenticationEntryPoint: MyBasicAuthPoint
+
+//    @Autowired
+//    private lateinit var myUserDetailsService: MyUserDetailsService
 
     @Value("\${orangeflamingo.admin.user1}")
     private lateinit var user1: String
@@ -36,7 +36,9 @@ class SecurityConfig: WebSecurityConfigurerAdapter() {
 
     @Autowired
     fun configureGlobal(auth: AuthenticationManagerBuilder) {
-        auth.inMemoryAuthentication()
+        auth
+//                .authenticationProvider(authenticationProvider())
+                .inMemoryAuthentication()
                 .withUser(user1).password(passwordEncoder().encode(password1))
                 .roles("ADMIN", "OWNER")
                 .and()
@@ -58,6 +60,14 @@ class SecurityConfig: WebSecurityConfigurerAdapter() {
                 .httpBasic()
                 .authenticationEntryPoint(authenticationEntryPoint)
     }
+
+//    @Bean
+//    fun authenticationProvider(): DaoAuthenticationProvider {
+//        val authProvider = DaoAuthenticationProvider()
+//        authProvider.setUserDetailsService(myUserDetailsService)
+//        authProvider.setPasswordEncoder(passwordEncoder())
+//        return authProvider
+//    }
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {
