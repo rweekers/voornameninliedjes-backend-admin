@@ -1,9 +1,10 @@
 package nl.orangeflamingo.voornameninliedjesbackendadmin.config
 
+import nl.orangeflamingo.voornameninliedjesbackendadmin.service.MyUserDetailsService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -19,31 +20,13 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     @Autowired
     private lateinit var authenticationEntryPoint: MyBasicAuthPoint
 
-//    @Autowired
-//    private lateinit var myUserDetailsService: MyUserDetailsService
-
-    @Value("\${orangeflamingo.admin.user1}")
-    private lateinit var user1: String
-
-    @Value("\${orangeflamingo.admin.password1}")
-    private lateinit var password1: String
-
-    @Value("\${orangeflamingo.admin.user2}")
-    private lateinit var user2: String
-
-    @Value("\${orangeflamingo.admin.password2}")
-    private lateinit var password2: String
+    @Autowired
+    private lateinit var myUserDetailsService: MyUserDetailsService
 
     @Autowired
     fun configureGlobal(auth: AuthenticationManagerBuilder) {
         auth
-//                .authenticationProvider(authenticationProvider())
-                .inMemoryAuthentication()
-                .withUser(user1).password(passwordEncoder().encode(password1))
-                .roles("ADMIN", "OWNER")
-                .and()
-                .withUser(user2).password(passwordEncoder().encode(password2))
-                .roles("ADMIN")
+                .authenticationProvider(authenticationProvider())
     }
 
     override fun configure(http: HttpSecurity) {
@@ -61,13 +44,13 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .authenticationEntryPoint(authenticationEntryPoint)
     }
 
-//    @Bean
-//    fun authenticationProvider(): DaoAuthenticationProvider {
-//        val authProvider = DaoAuthenticationProvider()
-//        authProvider.setUserDetailsService(myUserDetailsService)
-//        authProvider.setPasswordEncoder(passwordEncoder())
-//        return authProvider
-//    }
+    @Bean
+    fun authenticationProvider(): DaoAuthenticationProvider {
+        val authProvider = DaoAuthenticationProvider()
+        authProvider.setUserDetailsService(myUserDetailsService)
+        authProvider.setPasswordEncoder(passwordEncoder())
+        return authProvider
+    }
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {

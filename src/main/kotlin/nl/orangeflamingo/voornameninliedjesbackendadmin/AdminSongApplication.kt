@@ -6,6 +6,7 @@ import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.LogEntry
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.Song
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.SongStatus
 import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.SongRepository
+import nl.orangeflamingo.voornameninliedjesbackendadmin.service.MyUserDetailsService
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -18,7 +19,7 @@ import java.time.Instant
 
 
 @SpringBootApplication
-@ComponentScan(basePackageClasses = [SongRepository::class, SongController::class, SecurityConfig::class])
+@ComponentScan(basePackageClasses = [SongRepository::class, SongController::class, SecurityConfig::class, MyUserDetailsService::class])
 @EnableMongoRepositories(value = ["nl.orangeflamingo.voornameninliedjesbackendadmin.repository"])
 class AdminSongApplication {
     private val log = LoggerFactory.getLogger(AdminSongApplication::class.java)
