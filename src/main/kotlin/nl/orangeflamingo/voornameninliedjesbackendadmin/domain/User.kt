@@ -9,7 +9,7 @@ import javax.annotation.Generated
 data class User(
         @Id
         @Generated
-        val id: String?,
+        val id: String? = null,
 
         @Field("username")
         var username: String,
