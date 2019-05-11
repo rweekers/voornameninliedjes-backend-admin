@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/owner")
 class UserController {
     private val log = LoggerFactory.getLogger(UserController::class.java)
 
@@ -26,6 +26,7 @@ class UserController {
 
     @PostMapping("/users")
     fun newUser(@RequestBody newUser: User): User {
+        log.info("Creating new user ${newUser.username}")
         return userRepository.save(newUser)
     }
 }

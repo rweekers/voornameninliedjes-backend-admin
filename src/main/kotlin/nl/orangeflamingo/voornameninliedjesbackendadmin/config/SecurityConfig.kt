@@ -36,7 +36,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .authorizeRequests()
                 // specify that any api url added later will be allowed and all admin is only usable by ADMIN or OWNER
                 .antMatchers("/api/**").permitAll()
-                .antMatchers("/admin/**").authenticated()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/owner/**").hasRole("OWNER")
                 .anyRequest().authenticated()
                 .and()

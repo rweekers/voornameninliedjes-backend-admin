@@ -15,5 +15,8 @@ data class User(
         var username: String,
 
         @Field("password")
-        var password: String
+        var password: String,
+
+        @Field("roles")
+        val roles: MutableSet<String>
 )

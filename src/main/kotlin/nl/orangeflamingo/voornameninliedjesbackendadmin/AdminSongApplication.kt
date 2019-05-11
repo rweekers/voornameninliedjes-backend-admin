@@ -40,9 +40,10 @@ class AdminSongApplication {
         songRepository.saveAll(songList)
         log.info("Saving ${songList.size} songs")
 
-        val user = User(username = "remco", password = passwordEncoder.encode("remco"))
-        userRepository.save(user)
-        log.info("Saving user $user")
+        val userRemco = User(username = "remco", password = passwordEncoder.encode("secret"), roles = mutableSetOf("ADMIN", "OWNER"))
+        val userNadja = User(username = "nadja", password = passwordEncoder.encode("secret"), roles = mutableSetOf("ADMIN"))
+        userRepository.saveAll(listOf(userRemco, userNadja))
+        log.info("Saving users $userRemco and $userNadja")
     }
 }
 
