@@ -2,27 +2,16 @@ package nl.orangeflamingo.voornameninliedjesbackendadmin.dto
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.LogEntry
-import org.springframework.data.annotation.Id
-import org.springframework.data.mongodb.core.index.CompoundIndex
-import org.springframework.data.mongodb.core.mapping.Document
-import org.springframework.data.mongodb.core.mapping.Field
 import java.util.*
-import javax.annotation.Generated
 
-@CompoundIndex(name = "song_uq_idx", def = "{'artist': 1, 'title': 1, 'name': 1}", unique = true)
-@Document(collection = "Songs")
 data class SongDto(
-        @Id
-        @Generated
+
         val id: String?,
 
-        @Field("artist")
         val artist: String,
 
-        @Field("title")
         val title: String,
 
-        @Field("name")
         val name: String,
 
         val background: String?,
