@@ -1,5 +1,6 @@
 package nl.orangeflamingo.voornameninliedjesbackendadmin.controller
 
+import nl.orangeflamingo.voornameninliedjesbackendadmin.Utils.Companion.ROLE_ADMIN
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.LogEntry
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.Song
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.SongStatus
@@ -7,33 +8,38 @@ import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.SongDto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.SongRepository
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.access.annotation.Secured
 import org.springframework.web.bind.annotation.*
 import java.time.Instant
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api")
 class SongController {
     private val log = LoggerFactory.getLogger(SongController::class.java)
 
     @Autowired
     private lateinit var songRepository: SongRepository
 
+    @Secured(ROLE_ADMIN)
     @GetMapping("/songs")
     fun getSongs(): List<SongDto> {
         return songRepository.findAll().map { convertToDto(it) }
     }
 
+    @Secured(ROLE_ADMIN)
     @GetMapping("/songs/{id}")
     fun getSongById(@PathVariable("id") id: String): SongDto {
         return songRepository.findById(id).map { convertToDto(it) }.orElseThrow { RuntimeException("Song with $id not found") }
     }
 
+    @Secured(ROLE_ADMIN)
     @PostMapping("/songs/{user}")
     fun newSong(@RequestBody newSong: SongDto, @PathVariable user: String): SongDto {
         val logEntry = LogEntry(Instant.now(), user)
         return convertToDto(songRepository.save(convert(newSong, mutableListOf(logEntry))))
     }
 
+    @Secured(ROLE_ADMIN)
     @PutMapping("/songs/{user}/{id}")
     fun replaceSong(@RequestBody song: SongDto, @PathVariable user: String, @PathVariable id: String): SongDto {
         assert(song.id == id)
@@ -56,6 +62,7 @@ class SongController {
         return convertToDto(songRepository.save(convert(song, mutableListOf(logEntry))))
     }
 
+    @Secured(ROLE_ADMIN)
     @PostMapping("/songs/{user}/{id}/{flickrId}")
     fun addFlickrPhoto(@PathVariable user: String, @PathVariable id: String, @PathVariable flickrId: String) {
         var songOptional = songRepository.findById(id)
@@ -70,6 +77,7 @@ class SongController {
         }
     }
 
+    @Secured(ROLE_ADMIN)
     @DeleteMapping("/songs/{id}")
     fun deleteSong(@PathVariable id: String) {
         songRepository.deleteById(id)
