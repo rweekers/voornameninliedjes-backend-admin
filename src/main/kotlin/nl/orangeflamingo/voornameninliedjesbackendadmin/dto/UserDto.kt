@@ -8,5 +8,5 @@ data class UserDto(
 
         val password: String,
 
-        val roles: MutableSet<String>
+        val roles: MutableSet<String> = mutableSetOf()
 )
