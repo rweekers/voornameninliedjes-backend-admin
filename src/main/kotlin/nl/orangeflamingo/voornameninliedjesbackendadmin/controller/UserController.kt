@@ -26,11 +26,13 @@ class UserController {
 
     @Secured(ROLE_OWNER)
     @GetMapping("/users")
+    @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun getUsers(): List<UserDto> {
         return userRepository.findAll().map { convertToDto(it) }
     }
 
     @PostMapping("/authenticate")
+    @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun authenticate(@RequestBody user: UserDto): ResponseEntity<UserDto> {
         val dbUser = userRepository.findByUsername(username = user.username)?: return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()
         val loginSuccessful = passwordEncoder.matches(user.password, dbUser.password)
@@ -46,6 +48,7 @@ class UserController {
 
     @Secured(ROLE_OWNER)
     @GetMapping("/users/{id}")
+    @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun getUserById(@PathVariable("id") id: String): UserDto {
         val user = userRepository.findById(id).orElseThrow { RuntimeException("User with $id not found") }
         return convertToDto(user)
@@ -53,6 +56,7 @@ class UserController {
 
     @Secured(ROLE_OWNER)
     @PostMapping("/users")
+    @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun newUser(@RequestBody newUser: UserDto): User {
         log.info("Creating new user ${newUser.username}")
         val user = convert(newUser)
