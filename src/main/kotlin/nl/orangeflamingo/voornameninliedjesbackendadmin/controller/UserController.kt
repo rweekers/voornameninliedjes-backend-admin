@@ -1,6 +1,5 @@
 package nl.orangeflamingo.voornameninliedjesbackendadmin.controller
 
-import nl.orangeflamingo.voornameninliedjesbackendadmin.Utils.Companion.ROLE_OWNER
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.User
 import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.UserDto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.UserRepository
@@ -8,7 +7,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.security.access.annotation.Secured
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -24,7 +23,7 @@ class UserController {
     @Autowired
     private lateinit var passwordEncoder: PasswordEncoder
 
-    @Secured(ROLE_OWNER)
+    @PreAuthorize("hasRole('ROLE_OWNER')")
     @GetMapping("/users")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun getUsers(): List<UserDto> {
@@ -46,7 +45,7 @@ class UserController {
         ))
     }
 
-    @Secured(ROLE_OWNER)
+    @PreAuthorize("hasRole('ROLE_OWNER')")
     @GetMapping("/users/{id}")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun getUserById(@PathVariable("id") id: String): UserDto {
@@ -54,7 +53,7 @@ class UserController {
         return convertToDto(user)
     }
 
-    @Secured(ROLE_OWNER)
+    @PreAuthorize("hasRole('ROLE_OWNER')")
     @PostMapping("/users")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun newUser(@RequestBody newUser: UserDto): User {

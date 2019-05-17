@@ -1,6 +1,5 @@
 package nl.orangeflamingo.voornameninliedjesbackendadmin.controller
 
-import nl.orangeflamingo.voornameninliedjesbackendadmin.Utils.Companion.ROLE_ADMIN
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.LogEntry
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.Song
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.SongStatus
@@ -8,7 +7,7 @@ import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.SongDto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.SongRepository
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.security.access.annotation.Secured
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 import java.time.Instant
 
@@ -20,21 +19,21 @@ class SongController {
     @Autowired
     private lateinit var songRepository: SongRepository
 
-    @Secured(ROLE_ADMIN)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/songs")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun getSongs(): List<SongDto> {
         return songRepository.findAll().map { convertToDto(it) }
     }
 
-    @Secured(ROLE_ADMIN)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/songs/{id}")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun getSongById(@PathVariable("id") id: String): SongDto {
         return songRepository.findById(id).map { convertToDto(it) }.orElseThrow { RuntimeException("Song with $id not found") }
     }
 
-    @Secured(ROLE_ADMIN)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/songs/{user}")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun newSong(@RequestBody newSong: SongDto, @PathVariable user: String): SongDto {
@@ -42,7 +41,7 @@ class SongController {
         return convertToDto(songRepository.save(convert(newSong, mutableListOf(logEntry))))
     }
 
-    @Secured(ROLE_ADMIN)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/songs/{user}/{id}")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun replaceSong(@RequestBody song: SongDto, @PathVariable user: String, @PathVariable id: String): SongDto {
@@ -66,7 +65,7 @@ class SongController {
         return convertToDto(songRepository.save(convert(song, mutableListOf(logEntry))))
     }
 
-    @Secured(ROLE_ADMIN)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/songs/{user}/{id}/{flickrId}")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun addFlickrPhoto(@PathVariable user: String, @PathVariable id: String, @PathVariable flickrId: String) {
@@ -82,7 +81,7 @@ class SongController {
         }
     }
 
-    @Secured(ROLE_ADMIN)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/songs/{id}")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun deleteSong(@PathVariable id: String) {
