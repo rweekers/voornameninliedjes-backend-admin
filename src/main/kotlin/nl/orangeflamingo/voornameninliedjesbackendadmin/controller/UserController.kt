@@ -2,6 +2,9 @@ package nl.orangeflamingo.voornameninliedjesbackendadmin.controller
 
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.User
 import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.UserDto
+import nl.orangeflamingo.voornameninliedjesbackendadmin.generic.InvalidCredentials
+import nl.orangeflamingo.voornameninliedjesbackendadmin.generic.ResponseError
+import nl.orangeflamingo.voornameninliedjesbackendadmin.generic.Utils.Companion.INVALID_CREDENTIALS
 import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.UserRepository
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -33,9 +36,11 @@ class UserController {
     @PostMapping("/authenticate")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun authenticate(@RequestBody user: UserDto): ResponseEntity<UserDto> {
-        val dbUser = userRepository.findByUsername(username = user.username)?: return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()
-        val loginSuccessful = passwordEncoder.matches(user.password, dbUser.password)
-        if (!loginSuccessful) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()
+        val dbUser = userRepository.findByUsername(username = user.username)
+                ?: throw InvalidCredentials(INVALID_CREDENTIALS)
+        if (!passwordEncoder.matches(user.password, dbUser.password)) {
+            throw InvalidCredentials(INVALID_CREDENTIALS)
+        }
 
         return ResponseEntity.of(Optional.of(UserDto(
                 id = dbUser.id,
@@ -43,6 +48,11 @@ class UserController {
                 password = user.password,
                 roles = dbUser.roles)
         ))
+    }
+
+    @ExceptionHandler(InvalidCredentials::class)
+    fun handleException(exception: InvalidCredentials): ResponseEntity<ResponseError> {
+        return ResponseEntity(ResponseError(exception.message ?: "Onbekende fout"), HttpStatus.UNAUTHORIZED)
     }
 
     @PreAuthorize("hasRole('ROLE_OWNER')")
