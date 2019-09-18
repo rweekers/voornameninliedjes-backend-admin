@@ -3,7 +3,9 @@ package nl.orangeflamingo.voornameninliedjesbackendadmin.controller
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.LogEntry
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.Song
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.SongStatus
+import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.WikimediaPhoto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.SongDto
+import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.WikimediaPhotoDto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.SongRepository
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -49,7 +51,7 @@ class SongController {
         val logEntry = LogEntry(Instant.now(), user)
         val songFromDb = songRepository.findById(id)
         if (songFromDb.isPresent) {
-            var songDB = songFromDb.get()
+            val songDB = songFromDb.get()
             songDB.artist = song.artist
             songDB.title = song.title
             songDB.name = song.name
@@ -57,6 +59,7 @@ class SongController {
             songDB.background = song.background
             songDB.youtube = song.youtube
             songDB.spotify = song.spotify
+            songDB.wikimediaPhotos = song.wikimediaPhotos.map { w -> convertToDomain(w) }.toMutableSet()
             songDB.flickrPhotos = song.flickrPhotos.toMutableSet()
             songDB.logs.add(logEntry)
             songRepository.save(songDB)
@@ -69,7 +72,7 @@ class SongController {
     @PostMapping("/songs/{user}/{id}/{flickrId}")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun addFlickrPhoto(@PathVariable user: String, @PathVariable id: String, @PathVariable flickrId: String) {
-        var songOptional = songRepository.findById(id)
+        val songOptional = songRepository.findById(id)
         if (songOptional.isPresent) {
             val song = songOptional.get()
             val logEntry = LogEntry(Instant.now(), user)
@@ -94,6 +97,14 @@ class SongController {
     }
 
     private fun convertToDto(song: Song): SongDto {
-        return SongDto(song.id, song.artist, song.title, song.name, song.background, song.youtube, song.spotify, song.status.name, song.flickrPhotos, song.logs)
+        return SongDto(song.id, song.artist, song.title, song.name, song.background, song.youtube, song.spotify, song.status.name, song.wikimediaPhotos.map { w -> convertToDto(w) }.toSet(), song.flickrPhotos, song.logs)
+    }
+
+    private fun convertToDto(wikimediaPhoto: WikimediaPhoto): WikimediaPhotoDto {
+        return WikimediaPhotoDto(wikimediaPhoto.url, wikimediaPhoto.attribution)
+    }
+
+    private fun convertToDomain(wikimediaPhotoDto: WikimediaPhotoDto): WikimediaPhoto {
+        return WikimediaPhoto(wikimediaPhotoDto.url, wikimediaPhotoDto.attribution)
     }
 }

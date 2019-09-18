@@ -31,6 +31,8 @@ data class Song(
 
         var status: SongStatus,
 
+        var wikimediaPhotos: MutableSet<WikimediaPhoto> = mutableSetOf(),
+
         var flickrPhotos: MutableSet<String> = mutableSetOf(),
 
         val logs: MutableList<LogEntry> = mutableListOf()
@@ -49,3 +51,8 @@ data class Song(
         return Objects.hash(artist, title, name)
     }
 }
+
+data class WikimediaPhoto(
+        val url: String,
+        val attribution: String
+)
