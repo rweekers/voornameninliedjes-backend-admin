@@ -25,6 +25,8 @@ class SongController {
     @Autowired
     private lateinit var songRepository: SongRepository
 
+    val restTemplate: RestTemplate = RestTemplate()
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/songs")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
@@ -132,8 +134,6 @@ class SongController {
         }
         val flickrPhotoId = song.flickrPhotos.firstOrNull()
         if (flickrPhotoId != null) {
-            val restTemplate = RestTemplate()
-
             val photo = restTemplate.getForObject("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=9676a28e9cb321d2721e813055abb6dc&format=json&nojsoncallback=true&photo_id=" + flickrPhotoId, FlickrPhotoDto::class.java)?.photo
 
 
