@@ -4,6 +4,7 @@ import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.LogEntry
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.Song
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.SongStatus
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.WikimediaPhoto
+import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.FlickrPhotoDto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.SongDto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.WikimediaPhotoDto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.SongRepository
@@ -11,7 +12,10 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.client.RestTemplate
 import java.time.Instant
+
+
 
 @RestController
 @RequestMapping("/api")
@@ -25,14 +29,14 @@ class SongController {
     @GetMapping("/songs")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun getSongs(): List<SongDto> {
-        return songRepository.findAll().map { convertToDto(it) }
+        return songRepository.findAll().map { convertToDto(it) }.map { enrichSong(it) }
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/songs/{id}")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun getSongById(@PathVariable("id") id: String): SongDto {
-        return songRepository.findById(id).map { convertToDto(it) }.orElseThrow { RuntimeException("Song with $id not found") }
+        return songRepository.findById(id).map { convertToDto(it) }.map { enrichSong(it) }.orElseThrow { RuntimeException("Song with $id not found") }
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -97,7 +101,20 @@ class SongController {
     }
 
     private fun convertToDto(song: Song): SongDto {
-        return SongDto(song.id, song.artist, song.title, song.name, song.background, song.youtube, song.spotify, song.status.name, song.wikimediaPhotos.map { w -> convertToDto(w) }.toSet(), song.flickrPhotos, song.logs)
+        return SongDto(
+                id = song.id,
+                artist = song.artist,
+                title = song.title,
+                name = song.name,
+                artistImage = "https://ak9.picdn.net/shutterstock/videos/24149239/thumb/1.jpg",
+                background = song.background,
+                youtube = song.youtube,
+                spotify = song.spotify,
+                status = song.status.name,
+                wikimediaPhotos = song.wikimediaPhotos.map { w -> convertToDto(w) }.toSet(),
+                flickrPhotos = song.flickrPhotos,
+                logs = song.logs
+        )
     }
 
     private fun convertToDto(wikimediaPhoto: WikimediaPhoto): WikimediaPhotoDto {
@@ -106,5 +123,24 @@ class SongController {
 
     private fun convertToDomain(wikimediaPhotoDto: WikimediaPhotoDto): WikimediaPhoto {
         return WikimediaPhoto(wikimediaPhotoDto.url, wikimediaPhotoDto.attribution)
+    }
+
+    private fun enrichSong(song: SongDto): SongDto {
+        val wikimediaPhoto = song.wikimediaPhotos.firstOrNull()
+        if (wikimediaPhoto != null) {
+            return song.copy(artistImage = wikimediaPhoto.url)
+        }
+        val flickrPhotoId = song.flickrPhotos.firstOrNull()
+        if (flickrPhotoId != null) {
+            val restTemplate = RestTemplate()
+
+            val photo = restTemplate.getForObject("https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=9676a28e9cb321d2721e813055abb6dc&format=json&nojsoncallback=true&photo_id=" + flickrPhotoId, FlickrPhotoDto::class.java)?.photo
+
+
+            if (photo != null) {
+                return song.copy(artistImage = "https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg")
+            }
+        }
+        return song
     }
 }

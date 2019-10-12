@@ -1,9 +1,7 @@
 package nl.orangeflamingo.voornameninliedjesbackendadmin.dto
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.annotation.JsonView
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.LogEntry
-import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.WikimediaPhoto
 import java.util.*
 
 data class SongDto(
@@ -15,6 +13,8 @@ data class SongDto(
         val title: String,
 
         val name: String,
+
+        val artistImage: String,
 
         val background: String?,
 
@@ -50,4 +50,15 @@ data class SongDto(
 data class WikimediaPhotoDto(
         val url: String,
         val attribution: String
+)
+
+data class PhotoDto(
+        val farm: String,
+        val server: String,
+        val id: String,
+        val secret: String
+)
+
+data class FlickrPhotoDto(
+        val photo: PhotoDto
 )

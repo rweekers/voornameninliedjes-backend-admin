@@ -31,11 +31,11 @@ class AdminSongApplication {
 
         val songList = listOf<Song>(
                 Song("1", "Michael Jackson", "Ben", "Ben", null, null, null, SongStatus.SHOW, mutableSetOf(), mutableSetOf(), mutableListOf<LogEntry>(LogEntry(Instant.now(), "Remco"))),
-                Song("2", "Neil Diamond", "Sweet Caroline", "Caroline", null, null, null, SongStatus.SHOW, mutableSetOf(), mutableSetOf(), mutableListOf<LogEntry>(LogEntry(Instant.now(), "Remco"))),
-                Song("3", "The Police", "Roxanne", "Roxanne", null, null, null, SongStatus.SHOW, mutableSetOf(), mutableSetOf(), mutableListOf<LogEntry>(LogEntry(Instant.now(), "Remco"))),
+                Song("2", "Neil Diamond", "Sweet Caroline", "Caroline", null, null, null, SongStatus.SHOW, mutableSetOf(), mutableSetOf("5919550669"), mutableListOf<LogEntry>(LogEntry(Instant.now(), "Remco"))),
+                Song("3", "The Police", "Roxanne", "Roxanne", null, null, null, SongStatus.SHOW, mutableSetOf(wikimediaPhoto), mutableSetOf(), mutableListOf<LogEntry>(LogEntry(Instant.now(), "Remco"))),
                 Song("4", "Dolly Parton", "Jolene", "Jolene", null, null, null, SongStatus.IN_PROGRESS, mutableSetOf(), mutableSetOf(), mutableListOf<LogEntry>(LogEntry(Instant.now(), "Remco"))),
                 Song("5", "The Kinks", "Lola", "Lola", null, null, null, SongStatus.IN_PROGRESS, mutableSetOf(), mutableSetOf(), mutableListOf<LogEntry>(LogEntry(Instant.now(), "Remco"))),
-                Song("6", "Paul Simon", "You Can Call Me Al", "Al", null, null, null, SongStatus.SHOW, mutableSetOf(wikimediaPhoto), mutableSetOf(), mutableListOf(LogEntry(Instant.now(), "Remco")))
+                Song("6", "Paul Simon", "You Can Call Me Al", "Al", null, null, null, SongStatus.SHOW, mutableSetOf(wikimediaPhoto), mutableSetOf("5919550669"), mutableListOf(LogEntry(Instant.now(), "Remco")))
         )
         songRepository.saveAll(songList)
         log.info("Saving ${songList.size} songs")
