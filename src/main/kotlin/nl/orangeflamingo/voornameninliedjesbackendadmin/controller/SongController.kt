@@ -31,7 +31,7 @@ class SongController {
     @GetMapping("/songs")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun getSongs(): List<SongDto> {
-        return songRepository.findAll(Sort(Sort.Direction.ASC, "id")).map { convertToDto(it) }.map { enrichSong(it) }
+        return songRepository.findAll(Sort(Sort.Direction.ASC, "name")).map { convertToDto(it) }.map { enrichSong(it) }
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
