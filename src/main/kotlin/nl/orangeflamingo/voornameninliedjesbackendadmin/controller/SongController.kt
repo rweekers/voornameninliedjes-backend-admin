@@ -10,6 +10,7 @@ import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.WikimediaPhotoDto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.SongRepository
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.cache.annotation.CachePut
 import org.springframework.data.domain.Sort
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
@@ -29,6 +30,7 @@ class SongController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/songs")
+    @CachePut(value = "songs")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun getSongs(): List<SongDto> {
         return songRepository.findAll(Sort(Sort.Direction.ASC, "name")).map { convertToDto(it) }.map { enrichSong(it) }
