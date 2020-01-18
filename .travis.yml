@@ -1,14 +1,14 @@
 language: java
-
-# See http://stackoverflow.com/questions/40208309/travis-ci-build-failing-on-android-app-unsupported-major-minor-version-52
-jdk: oraclejdk8
+jdk: openjdk8
+install: true
+os: linux
+dist: trusty
+script:
+  - "./gradlew build --scan -s"
+  - "./gradlew sonarqube"
 
 addons:
-  sonarqube:
-    
-script:
-  # - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
-  # - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
-  # other script steps might be done before running the actual SonarQube analysis
-  - sonar-scanner
+  sonarcloud:
+    organization: "nl-orangeflamingo"
+    token:
+      secure: "aNSDMdMBUTYoYDqySUQ8+11vDNMHYsL3UBsIMRmR7/LCn/s1Qwf2nqu/vTdsoxZtEJNTrHE4A4Z4ZucsrzCBFRXOIL92ZAqRoQ3b8Sr+MallT/uvNLnmScxu+Itku2pgmCeE3eVy9LLbWsTpi9wQw28+jPP0/TICm3uSZ/oVhsQsASCVRCMkh5cv3CzZNSkyVP9q02W1D5W3Qk/q6puJDnt79LN7U2Ewm+E9OUDsbmpg46KMG8egdCOKzr/yC/4wIuoy8rcajjy7CYQZgGfoNPRoBFXpMek/VqgSfFpv2dAhVj23ne+BHjAbrFZsoiPLZroks/Iew+2HnORbONNJCAR/ECWnBQaapvU6JQ6e9JsU1hg/UJvfgNEIamNj4sWD4Hwr0RSpYcef0eNt6cQ07sYu56Guo+6iGUXKUXDuVxw0bEQl2XV9ZOYB4tb/TXX+M9RFtbPjGdiPVhQiBrMfr5dB5Xb7VD6rY4CSBvZC8Fos8sdp43H9jshzEl4Pw64ZFgwvGWf9fDvwAEFYrJIYDYECGYexNCVNbS/Fst69vZJ2qkG7QpnsZCb7qxGVYnDKgQHPxLftLA/B+hB5voOOuO+XBojdrQroU3kaVA1N9NKNmSM+clmXWl1HMq9V8zesZAoXEg/wXHfHZabm8RoVYNpa3Gc1nQvqMX/cMxwJUtw="
