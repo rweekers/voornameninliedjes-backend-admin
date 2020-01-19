@@ -29,8 +29,8 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.8.RELEASE"
 	id("com.bmuschko.docker-remote-api") version "6.1.2"
 	id("org.sonarqube") version "2.8"
-	kotlin("jvm") version "1.3.50"
-	kotlin("plugin.spring") version "1.3.50"
+	kotlin("jvm") version "1.3.61"
+	kotlin("plugin.spring") version "1.3.61"
 	jacoco
 }
 
@@ -56,8 +56,8 @@ tasks.jacocoTestCoverageVerification {
 tasks.test {
 	useJUnitPlatform()
 
-//	dependsOn(startMyAppContainer)
-//	finalizedBy(stopMyAppContainer)
+	dependsOn(startMyAppContainer)
+	finalizedBy(stopMyAppContainer)
 }
 
 sonarqube {
@@ -78,12 +78,14 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("com.ninja-squad:springmockk:1.1.3")
 }
 
