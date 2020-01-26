@@ -5,10 +5,10 @@ os: linux
 dist: trusty
 script:
   - "./gradlew build --scan -s"
-  - "./gradlew sonarqube"
+#  - "./gradlew sonarqube"
 
-addons:
-  sonarcloud:
-    organization: "nl-orangeflamingo"
-    token:
-      secure: "4J5JQUbsMvXnJ5fxblLirIhEaDYwwUt5B4B7mEZjpWjcc86cUUrbFQAURK4FJSe00iWSo41s9vG0aAZA1ozPDmVIgCtR4b4slxn2bNe1UWj4CUCnQoS3oQHnY2d5o1/miYM1bR5KlyLBzGkCuDKNqWhAybSiYBaE+ivihJDBH1g9b9nA8SxchwzAr9d7yA8rFOqf7iGBrqEGa4iujEzWqjiSudARjUlVcNE23+vLoKnZVgE2zL0Z1vWSCRnjK8nvTtPxDP5WMpaAmCvVV5L+X9itEzQ22gyQjPyJQHSiPEbUJzM3wt6UcaCilf24B4nPbKcNMl5cDknrqOOjLvSzM+FapQi+YnZ/FEeGvi8WFK8N0PT57AyMGgXMIxLtKTbMYZ3Acx9yHof2zFl99AO4QoxvQ/XgQorocbm0anBd5Pu7m0XIY2gBvHjivflom7CCnazdKVCwHbfHobyy004iEhfM3lM+4jhqB+zpHo5I+D1vi8AO99E+uSXuzX+I9ERADwLY/2w6UPQZv6OXpfbLKTnuNd65iXVbZKqutAzpcSNdR3uHLtbTQJDSjoLkCM/CKRWqp+Q2OnwZjuBAdbziyv73mE+zrjd8EMmaALfe+b1rRp9gSOQUI6rVZfNyQY8+j8K1F/hld8cwdoagNhG2a1Jl6TcrKtTZcyd9wNN7Rdo="
+#addons:
+#  sonarcloud:
+#    organization: "nl-orangeflamingo"
+#    token:
+#      secure: "4J5JQUbsMvXnJ5fxblLirIhEaDYwwUt5B4B7mEZjpWjcc86cUUrbFQAURK4FJSe00iWSo41s9vG0aAZA1ozPDmVIgCtR4b4slxn2bNe1UWj4CUCnQoS3oQHnY2d5o1/miYM1bR5KlyLBzGkCuDKNqWhAybSiYBaE+ivihJDBH1g9b9nA8SxchwzAr9d7yA8rFOqf7iGBrqEGa4iujEzWqjiSudARjUlVcNE23+vLoKnZVgE2zL0Z1vWSCRnjK8nvTtPxDP5WMpaAmCvVV5L+X9itEzQ22gyQjPyJQHSiPEbUJzM3wt6UcaCilf24B4nPbKcNMl5cDknrqOOjLvSzM+FapQi+YnZ/FEeGvi8WFK8N0PT57AyMGgXMIxLtKTbMYZ3Acx9yHof2zFl99AO4QoxvQ/XgQorocbm0anBd5Pu7m0XIY2gBvHjivflom7CCnazdKVCwHbfHobyy004iEhfM3lM+4jhqB+zpHo5I+D1vi8AO99E+uSXuzX+I9ERADwLY/2w6UPQZv6OXpfbLKTnuNd65iXVbZKqutAzpcSNdR3uHLtbTQJDSjoLkCM/CKRWqp+Q2OnwZjuBAdbziyv73mE+zrjd8EMmaALfe+b1rRp9gSOQUI6rVZfNyQY8+j8K1F/hld8cwdoagNhG2a1Jl6TcrKtTZcyd9wNN7Rdo="
