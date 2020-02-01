@@ -1,11 +1,11 @@
 language: java
-jdk: openjdk8
+jdk: openjdk11
 install: true
 os: linux
 dist: trusty
 script:
   - "./gradlew build --scan -s"
-  - "./gradlew sonarqube"
+#  - "./gradlew sonarqube"
 addons:
   sonarcloud:
     organization: nl-orangeflamingo
