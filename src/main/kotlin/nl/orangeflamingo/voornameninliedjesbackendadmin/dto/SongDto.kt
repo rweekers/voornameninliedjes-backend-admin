@@ -14,7 +14,7 @@ data class SongDto(
 
         val name: String,
 
-        val artistImage: String,
+        val artistImage: String?,
 
         val background: String?,
 
@@ -60,5 +60,5 @@ data class PhotoDto(
 )
 
 data class FlickrPhotoDto(
-        val photo: PhotoDto
+        val photo: PhotoDto?
 )
