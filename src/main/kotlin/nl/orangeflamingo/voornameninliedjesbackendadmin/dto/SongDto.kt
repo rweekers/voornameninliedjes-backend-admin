@@ -28,6 +28,8 @@ data class SongDto(
 
         val flickrPhotos: Set<String> = setOf(),
 
+        val sources: Set<SourceDto> = setOf(),
+
         @JsonIgnoreProperties(allowGetters = true)
         val logs: List<LogEntry> = listOf()
 
@@ -61,4 +63,9 @@ data class PhotoDto(
 
 data class FlickrPhotoDto(
         val photo: PhotoDto?
+)
+
+data class SourceDto(
+        val url: String,
+        val name: String
 )

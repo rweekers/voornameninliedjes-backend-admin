@@ -1,11 +1,9 @@
 package nl.orangeflamingo.voornameninliedjesbackendadmin.controller
 
-import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.LogEntry
-import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.Song
-import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.SongStatus
-import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.WikimediaPhoto
+import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.*
 import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.FlickrPhotoDto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.SongDto
+import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.SourceDto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.WikimediaPhotoDto
 import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.SongRepository
 import org.slf4j.LoggerFactory
@@ -82,6 +80,7 @@ class SongController {
             songDB.spotify = song.spotify
             songDB.wikimediaPhotos = song.wikimediaPhotos.map { w -> convertToDomain(w) }.toMutableSet()
             songDB.flickrPhotos = song.flickrPhotos.toMutableSet()
+            songDB.sources = song.sources.map { s -> convertToDomain(s) }.toMutableSet()
             songDB.logs.add(logEntry)
             songRepository.save(songDB)
             return convertToDto(songDB)
@@ -114,7 +113,7 @@ class SongController {
 
     private fun convert(songDto: SongDto, logs: MutableList<LogEntry>): Song {
         val status = SongStatus.valueOf(songDto.status)
-        return Song(id = null, artist = songDto.artist, title = songDto.title, name = songDto.name, background = songDto.background, youtube = songDto.youtube, spotify = songDto.spotify, status = status, logs = logs)
+        return Song(id = null, artist = songDto.artist, title = songDto.title, name = songDto.name, background = songDto.background, youtube = songDto.youtube, spotify = songDto.spotify, sources = songDto.sources.map { s -> convertToDomain(s) }.toMutableSet(), status = status, logs = logs)
     }
 
     private fun convertToDto(song: Song): SongDto {
@@ -130,6 +129,7 @@ class SongController {
                 status = song.status.name,
                 wikimediaPhotos = song.wikimediaPhotos.map { w -> convertToDto(w) }.toSet(),
                 flickrPhotos = song.flickrPhotos,
+                sources = song.sources.map { s -> convertToDto(s) }.toSet(),
                 logs = song.logs
         )
     }
@@ -140,6 +140,14 @@ class SongController {
 
     private fun convertToDomain(wikimediaPhotoDto: WikimediaPhotoDto): WikimediaPhoto {
         return WikimediaPhoto(wikimediaPhotoDto.url, wikimediaPhotoDto.attribution)
+    }
+
+    private fun convertToDomain(sourceDto: SourceDto): Source {
+        return Source(url = sourceDto.url, name = sourceDto.name)
+    }
+
+    private fun convertToDto(source: Source): SourceDto {
+        return SourceDto(url = source.url, name = source.name)
     }
 
     private fun enrichSong(song: SongDto): SongDto {

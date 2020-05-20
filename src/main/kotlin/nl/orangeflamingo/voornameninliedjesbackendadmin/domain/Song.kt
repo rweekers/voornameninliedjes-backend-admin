@@ -35,6 +35,8 @@ data class Song(
 
         var flickrPhotos: MutableSet<String> = mutableSetOf(),
 
+        var sources: MutableSet<Source> = mutableSetOf(),
+
         val logs: MutableList<LogEntry> = mutableListOf()
 ) {
     override fun toString(): String {
@@ -55,4 +57,9 @@ data class Song(
 data class WikimediaPhoto(
         val url: String,
         val attribution: String
+)
+
+data class Source(
+        val url: String,
+        val name: String
 )
