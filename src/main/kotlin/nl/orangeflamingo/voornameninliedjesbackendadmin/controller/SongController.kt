@@ -1,10 +1,7 @@
 package nl.orangeflamingo.voornameninliedjesbackendadmin.controller
 
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.*
-import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.FlickrPhotoDto
-import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.SongDto
-import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.SourceDto
-import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.WikimediaPhotoDto
+import nl.orangeflamingo.voornameninliedjesbackendadmin.dto.*
 import nl.orangeflamingo.voornameninliedjesbackendadmin.repository.SongRepository
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,6 +9,7 @@ import org.springframework.cache.annotation.CachePut
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.client.RestTemplate
+import java.lang.IllegalArgumentException
 import java.time.Instant
 
 
@@ -111,6 +109,20 @@ class SongController {
         songRepository.deleteById(id)
     }
 
+    @PreAuthorize("hasRole('ROLE_OWNER')")
+    @PutMapping("/songs/{id}")
+    @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
+    fun prependLogs(@RequestBody logs: List<LogEntryDto>, @PathVariable id: String): SongDto {
+        val songFromDb = songRepository.findById(id).orElseThrow { IllegalArgumentException("Song with id $id not found") }
+
+        // Reverse list to start with most recent and add all at beginning
+        val logsToPrepend = logs.map { convertToDomain(it) }.reversed()
+        logsToPrepend.forEach { songFromDb.logs.add(0, it) }
+
+        songRepository.save(songFromDb)
+        return convertToDto(songFromDb)
+    }
+
     private fun convert(songDto: SongDto, logs: MutableList<LogEntry>): Song {
         val status = SongStatus.valueOf(songDto.status)
         return Song(id = null, artist = songDto.artist, title = songDto.title, name = songDto.name, background = songDto.background, youtube = songDto.youtube, spotify = songDto.spotify, sources = songDto.sources.map { s -> convertToDomain(s) }.toMutableSet(), status = status, logs = logs)
@@ -148,6 +160,10 @@ class SongController {
 
     private fun convertToDto(source: Source): SourceDto {
         return SourceDto(url = source.url, name = source.name)
+    }
+
+    private fun convertToDomain(logEntryDto: LogEntryDto): LogEntry {
+        return LogEntry(date = logEntryDto.date, user = logEntryDto.user)
     }
 
     private fun enrichSong(song: SongDto): SongDto {

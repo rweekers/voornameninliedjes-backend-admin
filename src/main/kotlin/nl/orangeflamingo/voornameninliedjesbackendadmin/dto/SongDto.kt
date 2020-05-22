@@ -1,7 +1,9 @@
 package nl.orangeflamingo.voornameninliedjesbackendadmin.dto
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import nl.orangeflamingo.voornameninliedjesbackendadmin.domain.LogEntry
+import java.time.Instant
 import java.util.*
 
 data class SongDto(
@@ -68,4 +70,10 @@ data class FlickrPhotoDto(
 data class SourceDto(
         val url: String,
         val name: String
+)
+
+data class LogEntryDto(
+        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ", timezone = "Europe/Amsterdam")
+        val date: Instant = Instant.now(),
+        val user: String
 )
