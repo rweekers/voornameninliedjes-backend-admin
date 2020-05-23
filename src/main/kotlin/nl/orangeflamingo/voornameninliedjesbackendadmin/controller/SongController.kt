@@ -110,7 +110,7 @@ class SongController {
     }
 
     @PreAuthorize("hasRole('ROLE_OWNER')")
-    @PutMapping("/songs/{id}")
+    @PutMapping("/songs/{id}/prepend-logs")
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
     fun prependLogs(@RequestBody logs: List<LogEntryDto>, @PathVariable id: String): SongDto {
         val songFromDb = songRepository.findById(id).orElseThrow { IllegalArgumentException("Song with id $id not found") }
@@ -118,6 +118,20 @@ class SongController {
         // Reverse list to start with most recent and add all at beginning
         val logsToPrepend = logs.map { convertToDomain(it) }.reversed()
         logsToPrepend.forEach { songFromDb.logs.add(0, it) }
+
+        songRepository.save(songFromDb)
+        return convertToDto(songFromDb)
+    }
+
+    @PreAuthorize("hasRole('ROLE_OWNER')")
+    @PutMapping("/songs/{id}/replace-logs")
+    @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
+    fun replaceLogs(@RequestBody logs: List<LogEntryDto>, @PathVariable id: String): SongDto {
+        val songFromDb = songRepository.findById(id).orElseThrow { IllegalArgumentException("Song with id $id not found") }
+
+        val newLogs = logs.map { convertToDomain(it) }
+        songFromDb.logs.clear()
+        songFromDb.logs.addAll(newLogs)
 
         songRepository.save(songFromDb)
         return convertToDto(songFromDb)
