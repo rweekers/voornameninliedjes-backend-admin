@@ -1,3 +1,5 @@
 package nl.orangeflamingo.voornameninliedjesbackendadmin.generic
 
-class InvalidCredentials(message: String) : Exception(message)
+class InvalidCredentialsException(message: String) : Exception(message)
+
+class UserNotFoundException(message: String) : Exception(message)
