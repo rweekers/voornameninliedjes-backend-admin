@@ -39,9 +39,9 @@ class SongController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/songs", params = ["fist-character"])
+    @GetMapping("/songs", params = ["first-character"])
     @CrossOrigin(origins = ["http://localhost:3000", "https://voornameninliedjes.nl", "*"])
-    fun getSongsWithNameStartingWith(@RequestParam(name = "fist-character") firstCharacter: String): List<SongDto> {
+    fun getSongsWithNameStartingWith(@RequestParam(name = "first-character") firstCharacter: String): List<SongDto> {
         return songRepository.findAllByNameStartsWithIgnoreCaseOrderByName(firstCharacter).map { convertToDto(it) }.map { enrichSong(it) }
     }
 
