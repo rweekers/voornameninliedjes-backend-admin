@@ -4,6 +4,7 @@ server:
 spring:
   data:
     mongodb:
+      auto-index-creation: false
       host: localhost
       port: 27017
       database: voornameninliedjes
@@ -17,3 +18,9 @@ orangeflamingo:
     password1: secret
     user2: nadja
     password2: secret
+
+# These will be transferred to System properties, see https://docs.spring.io/spring-boot/docs/2.1.4.RELEASE/reference/html/boot-features-logging.html#boot-features-custom-log-configuration
+# These systems properties are uses in log4j2 configuration
+logging:
+  file:
+    path: logs
